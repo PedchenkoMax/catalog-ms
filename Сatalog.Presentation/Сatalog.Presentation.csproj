@@ -17,4 +17,11 @@
       <Folder Include="Interfaces" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
+      <ProjectReference Include="..\Catalog.BusinessLogic\Catalog.BusinessLogic.csproj" />
+      <ProjectReference Include="..\Сatalog.Domain\Сatalog.Domain.csproj" />
+      <ProjectReference Include="..\Сatalog.Infrastructure\Сatalog.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

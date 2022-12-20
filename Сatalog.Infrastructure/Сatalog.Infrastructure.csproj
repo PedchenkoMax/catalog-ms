@@ -11,4 +11,9 @@
       <Folder Include="Repositories" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
+      <ProjectReference Include="..\Сatalog.Domain\Сatalog.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
