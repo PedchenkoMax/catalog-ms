@@ -14,8 +14,7 @@ namespace Catalog.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public string Image { get; private set; }
         public int StockQuantity { get; private set; }
-        public int CategoryId { get; private set; }
-        public int BrandId { get; private set; }
+        public int CategoryId { get; private set; }        
         public Category Category { get; private set; }        
 
         protected Product() { }
