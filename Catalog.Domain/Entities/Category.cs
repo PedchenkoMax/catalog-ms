@@ -1,5 +1,4 @@
-﻿using Catalog.Domain.Exception;
-using System.Xml.Linq;
+﻿using Catalog.Domain.Exceptions;
 
 namespace Catalog.Domain.Entities;
 
