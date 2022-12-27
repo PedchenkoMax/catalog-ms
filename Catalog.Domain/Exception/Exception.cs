@@ -1,5 +1,4 @@
-﻿
-namespace Catalog.Domain.Objects
+﻿namespace Catalog.Domain.Objects
 {
     public class DomainException : Exception
     {
