@@ -2,7 +2,7 @@
 
 namespace Catalog.Domain.Exception;
 
-public class AssertionConcern
+public static class AssertionConcern
 {
     public static void AssertArgumentEquals(object object1, object object2, string message)
     {
