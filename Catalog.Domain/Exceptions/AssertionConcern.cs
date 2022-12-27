@@ -1,24 +1,9 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Catalog.Domain.Exception;
+namespace Catalog.Domain.Exceptions;
 
 public static class AssertionConcern
-{
-    public static void AssertArgumentEquals(object object1, object object2, string message)
-    {
-        if (!object1.Equals(object2))
-        {
-            throw new DomainException(message);
-        }
-    }
-
-    public static void AssertArgumentFalse(bool boolValue, string message)
-    {
-        if (boolValue)
-        {
-            throw new DomainException(message);
-        }
-    }
+{ 
 
     public static void AssertArgumentLength(string stringValue, int maximum, string message)
     {
@@ -54,15 +39,7 @@ public static class AssertionConcern
         {
             throw new DomainException(message);
         }
-    }
-
-    public static void AssertArgumentNotEquals(object object1, object object2, string message)
-    {
-        if (object1.Equals(object2))
-        {
-            throw new DomainException(message);
-        }
-    }
+    }  
 
     public static void AssertArgumentNotNull(object object1, string message)
     {
@@ -135,28 +112,5 @@ public static class AssertionConcern
             throw new DomainException(message);
         }
     }
-
-    public static void AssertArgumentTrue(bool boolValue, string message)
-    {
-        if (!boolValue)
-        {
-            throw new DomainException(message);
-        }
-    }
-
-    public static void AssertStateFalse(bool boolValue, string message)
-    {
-        if (boolValue)
-        {
-            throw new DomainException(message);
-        }
-    }
-
-    public static void AssertStateTrue(bool boolValue, string message)
-    {
-        if (!boolValue)
-        {
-            throw new DomainException(message);
-        }
-    }
+    
 }
