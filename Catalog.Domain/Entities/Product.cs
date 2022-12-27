@@ -1,4 +1,5 @@
 ﻿using Catalog.Domain.Exception;
+using System.Xml.Linq;
 
 namespace Catalog.Domain.Entities;
 
@@ -56,19 +57,21 @@ public class Product
 
     public void ChangeName(string name)
     {
-        AssertionConcern.AssertArgumentNotEmpty(name, "Product description cannot be empty");
+        AssertionConcern.AssertArgumentNotEmpty(name, "Product name cannot be empty");
+        AssertionConcern.AssertArgumentLength(name, 60, "Product name cannot be longer than 60 characters");
         Name = name;
     }
 
     public void ChangeDescription(string description)
     {
         AssertionConcern.AssertArgumentNotEmpty(description, "Product description cannot be empty");
+        AssertionConcern.AssertArgumentLength(description, 4000, "Product description cannot be longer than 4000 characters");
         Description = description;
     }
 
     public void ChangePrice(decimal price)
     {
-        AssertionConcern.AssertArgumentGreaterThan(price, 1, "Product price cannot be less than 1");
+        AssertionConcern.AssertArgumentGreaterThan(price, 0.01, "Product price cannot be less than 0.01");
         Price = price;
     }
 
@@ -81,9 +84,11 @@ public class Product
     private void Validate()
     {
         AssertionConcern.AssertArgumentNotEmpty(Name, "Product name cannot be empty");
+        AssertionConcern.AssertArgumentLength(Name, 60, "Product name cannot be longer than 60 characters");
         AssertionConcern.AssertArgumentNotEmpty(Description, "Product description cannot be empty");
-        AssertionConcern.AssertArgumentNotEquals(CategoryId, 0, "Product category id cannot be empty");
-        AssertionConcern.AssertArgumentGreaterThan(Price, 1, "Product price cannot be less than 1");
+        AssertionConcern.AssertArgumentLength(Description, 4000, "Product description cannot be longer than 4000 characters");
+        AssertionConcern.AssertArgumentNotEmpty(CategoryId,"Product category id cannot be empty");
+        AssertionConcern.AssertArgumentGreaterThan(Price, 0.01, "Product price cannot be less than 0.01");
         AssertionConcern.AssertArgumentNotEmpty(Image, "Product image cannot be empty");
     }
 }
