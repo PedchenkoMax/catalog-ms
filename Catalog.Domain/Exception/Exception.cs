@@ -1,6 +1,6 @@
-﻿namespace Catalog.Domain.Objects;
+﻿namespace Catalog.Domain.Exception;
 
-public class DomainException : Exception
+public class DomainException : System.Exception
 {
     public DomainException()
     {
@@ -10,7 +10,7 @@ public class DomainException : Exception
     {
     }
 
-    public DomainException(string message, Exception innerException) : base(message, innerException)
+    public DomainException(string message, System.Exception innerException) : base(message, innerException)
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Catalog.Domain.Objects;
+namespace Catalog.Domain.Exception;
 
 public class AssertionConcern
 {

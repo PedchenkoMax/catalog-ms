@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Objects;
+﻿using Catalog.Domain.Exception;
 
 namespace Catalog.Domain.Entities;
 
