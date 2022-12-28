@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Exceptions;
+using Catalog.Domain.Exceptions;
 
 namespace Catalog.Domain.Entities;
 
@@ -70,7 +70,7 @@ public class Product
 
     public void ChangePrice(decimal price)
     {
-        AssertionConcern.AssertArgumentGreaterThan(price, 0.01, "Product price cannot be less than 0.01");
+        AssertionConcern.AssertArgumentGreaterThan(price, 0.01M, "Product price cannot be less than 0.01");
         Price = price;
     }
 
@@ -87,7 +87,7 @@ public class Product
         AssertionConcern.AssertArgumentNotEmpty(Description, "Product description cannot be empty");
         AssertionConcern.AssertArgumentLength(Description, 4000, "Product description cannot be longer than 4000 characters");
         AssertionConcern.AssertArgumentNotEmpty(CategoryId,"Product category id cannot be empty");
-        AssertionConcern.AssertArgumentGreaterThan(Price, 0.01, "Product price cannot be less than 0.01");
+        AssertionConcern.AssertArgumentGreaterThan(Price, 0.01M, "Product price cannot be less than 0.01");
         AssertionConcern.AssertArgumentNotEmpty(Image, "Product image cannot be empty");
     }
 }
