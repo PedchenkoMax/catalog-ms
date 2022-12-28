@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Numerics;
+using System.Text.RegularExpressions;
 
 namespace Catalog.Domain.Exceptions;
 
@@ -48,69 +49,23 @@ public static class AssertionConcern
             throw new DomainException(message);
         }
     }
-
-    public static void AssertArgumentRange(double value, double minimum, double maximum, string message)
+   
+    public static void AssertArgumentRange<T>(T value, T minimum, T maximum, string message) where T : INumber<T>
     {
         if (value < minimum || value > maximum)
         {
             throw new DomainException(message);
         }
     }
-
-    public static void AssertArgumentRange(float value, float minimum, float maximum, string message)
-    {
-        if (value < minimum || value > maximum)
-        {
-            throw new DomainException(message);
-        }
-    }
-
-    public static void AssertArgumentRange(int value, int minimum, int maximum, string message)
-    {
-        if (value < minimum || value > maximum)
-        {
-            throw new DomainException(message);
-        }
-    }
-
-    public static void AssertArgumentRange(long value, long minimum, long maximum, string message)
-    {
-        if (value < minimum || value > maximum)
-        {
-            throw new DomainException(message);
-        }
-    }
-
-    public static void AssertArgumentGreaterThan(long value, long minimum, string message)
+    
+    public static void AssertArgumentGreaterThan<T>(T value, T minimum, string message) where T : INumber<T>
     {
         if (value < minimum)
         {
             throw new DomainException(message);
         }
     }
+    
 
-    public static void AssertArgumentGreaterThan(double value, double minimum, string message)
-    {
-        if (value < minimum)
-        {
-            throw new DomainException(message);
-        }
-    }
-
-    public static void AssertArgumentGreaterThan(decimal value, decimal minimum, string message)
-    {
-        if (value < minimum)
-        {
-            throw new DomainException(message);
-        }
-    }
-
-    public static void AssertArgumentGreaterThan(int value, int minimum, string message)
-    {
-        if (value < minimum)
-        {
-            throw new DomainException(message);
-        }
-    }
     
 }
