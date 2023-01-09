@@ -1,6 +1,5 @@
 #pragma warning disable CS8618
 
-using System.Reflection;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database.Configurations;
 using Microsoft.EntityFrameworkCore;
