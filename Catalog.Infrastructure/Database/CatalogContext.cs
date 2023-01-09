@@ -5,7 +5,7 @@ using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database.Configurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Catalog.Infrastructure;
+namespace Catalog.Infrastructure.Database;
 
 public class CatalogContext : DbContext
 {

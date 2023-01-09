@@ -1,4 +1,5 @@
 using Catalog.Infrastructure;
+using Catalog.Infrastructure.Database;
 using Catalog.Infrastructure.Database.Repositories;
 using Microsoft.EntityFrameworkCore;
 
