@@ -15,4 +15,12 @@ public class CatalogContext : DbContext
 
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Category { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        // builder.ApplyConfigurationsFromAssembly(typeof(ProductConfiguration).Assembly);
+        // builder.ApplyConfigurationsFromAssembly(typeof(CategoryConfiguration).Assembly);
+    }
 }
