@@ -27,7 +27,7 @@ public class ProductRepository : IProductRepository
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Product>> GetAllByCategoryAsync(int categoryId)
+    public async Task<IEnumerable<Product>> GetProductsByCategoryIdAsync(int categoryId)
     {
         return await products
             .Where(x => x.CategoryId == categoryId)

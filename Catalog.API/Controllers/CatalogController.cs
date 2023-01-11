@@ -49,5 +49,28 @@ namespace Catalog.API.Controllers
             return Ok(product);
 
         }
+
+        [HttpGet]
+        [Route("category/{categoryId}")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> ProductsByCategoryIdAsync(int categoryId)
+        {
+            if (categoryId <= 0)
+            {
+                return BadRequest();
+            }
+
+            var product = await repository.GetProductsByCategoryIdAsync(categoryId);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+
+        }
     }
 }
