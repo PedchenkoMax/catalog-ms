@@ -21,7 +21,7 @@ public class ProductRepository : IProductRepository
             .FirstOrDefaultAsync(x => x.ProductId == productId);
     }
 
-    public async Task<IEnumerable<Product>> GetAllAsync()
+    public async Task<IEnumerable<Product>> GetProductsAsync()
     {
         return await products
             .ToListAsync();
