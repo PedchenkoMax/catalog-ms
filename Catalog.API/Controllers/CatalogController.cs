@@ -1,7 +1,9 @@
 ﻿using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
 using Catalog.Infrastructure.Database.Interfaces;
 using Catalog.Infrastructure.Database.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace Catalog.API.Controllers
@@ -10,11 +12,13 @@ namespace Catalog.API.Controllers
     [ApiController]
     public class CatalogController : ControllerBase
     {
-        private readonly IProductRepository repository;
+        private readonly IProductRepository repository;        
+        private readonly CatalogContext catalogContext;//test alternative 
 
-        public CatalogController(IProductRepository repository)
+        public CatalogController(IProductRepository repository, CatalogContext catalogContext)
         {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));           
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));            
+            this.catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
         }
         
         [HttpGet]
@@ -23,6 +27,7 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> ProductsAsync()
         {
             var products = await repository.GetProductsAsync();
+
             return Ok(products);
         }
         
@@ -52,8 +57,9 @@ namespace Catalog.API.Controllers
         [Route("categories")]
         [ProducesResponseType(typeof(IEnumerable<Category>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Category>>> CategoriesAsync()
-        {
-            var categories = await repository.GetCategoriesAsync();
+        {            
+            var categories = await catalogContext.Category.ToListAsync();
+
             return Ok(categories);
         }
         
