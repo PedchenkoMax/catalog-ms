@@ -1,39 +1,36 @@
 ﻿using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Infrastructure.Database.Repositories;
 
-public class ProductRepository
+public class ProductRepository : IProductRepository
 {
     private readonly CatalogContext ctx;
+    private readonly DbSet<Product> products;
 
     public ProductRepository(CatalogContext ctx)
     {
         this.ctx = ctx;
+        products = ctx.Products;
     }
 
-    public List<Product> GetAll()
+    public async Task<Product?> GetByIdAsync(Guid productId)
     {
-        return ctx.Products.ToList();
+        return await products
+            .FirstOrDefaultAsync(x => x.ProductId == productId);
     }
 
-    public Product Get(Guid productId)
+    public async Task<IEnumerable<Product>> GetAllAsync()
     {
-        return ctx.Products
-            .First(x => x.ProductId == productId);
+        return await products
+            .ToListAsync();
     }
 
-    public int Add(Product newProduct)
+    public async Task<IEnumerable<Product>> GetAllByCategoryAsync(int categoryId)
     {
-        ctx.Products.Add(newProduct);
-
-        return ctx.SaveChanges();
-    }
-
-    public int Remove(Product product)
-    {
-        ctx.Products.Remove(product);
-
-        return ctx.SaveChanges();
+        return await products
+            .Where(x => x.CategoryId == categoryId)
+            .ToListAsync();
     }
 }
