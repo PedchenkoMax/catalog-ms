@@ -15,7 +15,7 @@ public class ProductRepository : IProductRepository
         products = ctx.Products;
     }
 
-    public async Task<Product?> GetByIdAsync(Guid productId)
+    public async Task<Product?> GetProductByIdAsync(Guid productId)
     {
         return await products
             .FirstOrDefaultAsync(x => x.ProductId == productId);

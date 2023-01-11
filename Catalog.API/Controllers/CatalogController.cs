@@ -24,7 +24,30 @@ namespace Catalog.API.Controllers
         {
             var products = await repository.GetProductsAsync();
             return Ok(products);
-        }        
 
+        }
+
+        [HttpGet]
+        [Route("products/{productId}")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Product>> ProductByIdAsync(Guid productId)
+        {
+            if (productId != Guid.Empty)
+            {
+                return BadRequest();
+            }
+
+            var product = await repository.GetProductByIdAsync(productId);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+
+        }
     }
 }

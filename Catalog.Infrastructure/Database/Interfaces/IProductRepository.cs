@@ -4,7 +4,7 @@ namespace Catalog.Infrastructure.Database.Interfaces;
 
 public interface IProductRepository
 {
-    Task<Product?> GetByIdAsync(Guid productId);
+    Task<Product?> GetProductByIdAsync(Guid productId);
     Task<IEnumerable<Product>> GetProductsAsync();
     Task<IEnumerable<Product>> GetAllByCategoryAsync(int categoryId);
 }
