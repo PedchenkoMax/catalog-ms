@@ -33,4 +33,6 @@ public class ProductRepository : IProductRepository
             .Where(x => x.CategoryId == categoryId)
             .ToListAsync();
     }
+
+    // Task<IEnumerable<Category>> GetCategoriesAsync()
 }

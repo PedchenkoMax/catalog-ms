@@ -16,7 +16,7 @@ namespace Catalog.API.Controllers
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));           
         }
-
+        
         [HttpGet]
         [Route("products")]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
@@ -24,9 +24,8 @@ namespace Catalog.API.Controllers
         {
             var products = await repository.GetProductsAsync();
             return Ok(products);
-
         }
-
+        
         [HttpGet]
         [Route("products/{productId}")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -47,9 +46,17 @@ namespace Catalog.API.Controllers
             }
 
             return Ok(product);
-
         }
-
+        
+        [HttpGet]
+        [Route("categories")]
+        [ProducesResponseType(typeof(IEnumerable<Category>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Category>>> CategoriesAsync()
+        {
+            var categories = await repository.GetCategoriesAsync();
+            return Ok(categories);
+        }
+        
         [HttpGet]
         [Route("category/{categoryId}")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -62,15 +69,14 @@ namespace Catalog.API.Controllers
                 return BadRequest();
             }
 
-            var product = await repository.GetProductsByCategoryIdAsync(categoryId);
+            var products = await repository.GetProductsByCategoryIdAsync(categoryId);
 
-            if (product == null)
+            if (products == null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
-
+            return Ok(products);
         }
     }
 }
