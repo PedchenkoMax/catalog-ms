@@ -1,7 +1,5 @@
 ﻿using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
-using Catalog.Infrastructure.Database.Interfaces;
-using Catalog.Infrastructure.Database.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -11,13 +9,11 @@ namespace Catalog.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class CatalogController : ControllerBase
-    {
-        private readonly IProductRepository repository;        
-        private readonly CatalogContext catalogContext;//test alternative 
+    {         
+        private readonly CatalogContext catalogContext;
 
-        public CatalogController(IProductRepository repository, CatalogContext catalogContext)
-        {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));            
+        public CatalogController(CatalogContext catalogContext)
+        {                      
             this.catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
         }
         
@@ -26,7 +22,8 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> ProductsAsync()
         {
-            var products = await repository.GetProductsAsync();
+            var products = await catalogContext.Products
+                .ToListAsync();
 
             return Ok(products);
         }
@@ -43,7 +40,8 @@ namespace Catalog.API.Controllers
                 return BadRequest();
             }
 
-            var product = await repository.GetProductByIdAsync(productId);
+            var product = await catalogContext.Products
+                .FirstOrDefaultAsync(x => x.ProductId == productId);
 
             if (product == null)
             {
@@ -58,15 +56,15 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<Category>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Category>>> CategoriesAsync()
         {            
-            var categories = await catalogContext.Category.ToListAsync();
+            var categories = await catalogContext.Category
+                .ToListAsync();
 
             return Ok(categories);
         }
         
         [HttpGet]
         [Route("category/{categoryId}")]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]        
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> ProductsByCategoryIdAsync(int categoryId)
         {
@@ -75,12 +73,9 @@ namespace Catalog.API.Controllers
                 return BadRequest();
             }
 
-            var products = await repository.GetProductsByCategoryIdAsync(categoryId);
-
-            if (products == null)
-            {
-                return NotFound();
-            }
+            var products = await catalogContext.Category
+                .Where(x => x.CategoryId == categoryId)
+                .ToListAsync();           
 
             return Ok(products);
         }
