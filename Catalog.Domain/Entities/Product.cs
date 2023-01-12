@@ -11,7 +11,7 @@ public class Product
 
     public int CategoryId { get; set; }
     public Category Category { get; set; }
-    
-    // public Guid ProviderId  { get; set; }
-    // public Provider Provider { get; set; }
+
+    public int BrandId { get; set; }
+    public Brand Brand { get; set; }
 }
