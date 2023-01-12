@@ -49,22 +49,27 @@ namespace Catalog.API.Controllers
             }
 
             return Ok(product);
-        }       
-        
-        [HttpGet]
-        [Route("category/{categoryId}")]
+        }     
+
+        [Route("products/category/{categoryId}/brand/{brandId:int?}")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]        
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Product>>> ProductsByCategoryIdAsync(int categoryId)
-        {
+        public async Task<ActionResult<IEnumerable<Product>>> ProductsByCategoryIdAndBrandIdAsync(int categoryId, int? brandId)
+        {    
+
             if (categoryId <= 0)
             {
                 return BadRequest();
             }
 
-            var products = await catalogContext.Category
+            IEnumerable<Product> products = await catalogContext.Products
                 .Where(x => x.CategoryId == categoryId)
-                .ToListAsync();           
+                .ToListAsync();
+
+            if (brandId.HasValue)
+            {
+                products = products.Where(p => p.BrandId == brandId);
+            }                     
 
             return Ok(products);
         }
