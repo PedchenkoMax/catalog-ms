@@ -1,4 +1,5 @@
-﻿using Catalog.Domain.Entities;
+﻿using Catalog.API.ViewModel;
+using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,7 @@ using System.Net;
 
 namespace Catalog.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class CatalogController : ControllerBase
     {         
@@ -20,12 +21,20 @@ namespace Catalog.API.Controllers
         [HttpGet]
         [Route("products")]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Product>>> ProductsAsync()
+        public async Task<ActionResult<IEnumerable<Product>>> ProductsAsync([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
         {
-            var products = await catalogContext.Products
+            var totalProduct = await catalogContext.Products
+                .LongCountAsync();
+
+            var productOnPage = await catalogContext.Products
+                .OrderBy(p => p.ProductName)
+                .Skip(pageSize * pageIndex)
+                .Take(pageSize)
                 .ToListAsync();
 
-            return Ok(products);
+            var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, productOnPage);
+
+            return Ok(model);
         }
         
         [HttpGet]
