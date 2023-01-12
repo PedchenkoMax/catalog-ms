@@ -49,18 +49,7 @@ namespace Catalog.API.Controllers
             }
 
             return Ok(product);
-        }
-        
-        [HttpGet]
-        [Route("categories")]
-        [ProducesResponseType(typeof(IEnumerable<Category>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Category>>> CategoriesAsync()
-        {            
-            var categories = await catalogContext.Category
-                .ToListAsync();
-
-            return Ok(categories);
-        }
+        }       
         
         [HttpGet]
         [Route("category/{categoryId}")]
@@ -78,6 +67,28 @@ namespace Catalog.API.Controllers
                 .ToListAsync();           
 
             return Ok(products);
+        }
+
+        [HttpGet]
+        [Route("categories")]
+        [ProducesResponseType(typeof(IEnumerable<Category>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Category>>> CategoriesAsync()
+        {
+            var categories = await catalogContext.Category
+                .ToListAsync();
+
+            return Ok(categories);
+        }
+
+        [HttpGet]
+        [Route("brends")]
+        [ProducesResponseType(typeof(IEnumerable<Brand>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Brand>>> BrandsAsync()
+        {
+            var brands = await catalogContext.Brand
+                .ToListAsync();
+
+            return Ok(brands);
         }
     }
 }
