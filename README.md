@@ -1,4 +1,13 @@
-<h1>API documentation</h1>
+<h1>Catalog microservice</h1>
+
+<h2>Main responsibilities</h2>
+
+<li>Retrieving and displaying product information and details, such as <b>product name</b>, <b>description</b>, <b>price</b>, <b>images</b>, and <b>availability</b>.</li>
+<li>Filtering and searching for products based on various criteria, such as <b>category</b>, <b>price range</b>, and <b>keywords</b>.</li>
+<li>Sorting and ordering products based on different criteria, such as <b>popularity</b>, <b>price</b>, and <b>rating</b>.</li>
+<li>Providing detailed information about product reviews, ratings, and other user-generated content.</li>
+
+<h2>API documentation</h2>
 
 <p>This API allows users to perform read operations on products, categories, and brands. </p>
 <p>The following routes and methods are available:</p>
