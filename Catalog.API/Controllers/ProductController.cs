@@ -17,8 +17,8 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Product>>> GetAll([FromQuery] int pageSize = 10,
+    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PaginatedProductsViewModel<Product>>> GetAll([FromQuery] int pageSize = 10,
         [FromQuery] int pageIndex = 0)
     {
         var totalProduct = await productSet.LongCountAsync();
@@ -73,4 +73,5 @@ public class ProductController : ControllerBase
         
         return Ok(products);
     }
+
 }
