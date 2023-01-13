@@ -1,9 +1,8 @@
-﻿using Catalog.API.ViewModel;
+using Catalog.API.ViewModel;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 
 namespace Catalog.API.Controllers
 {
@@ -20,7 +19,7 @@ namespace Catalog.API.Controllers
         
         [HttpGet]
         [Route("products")]
-        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Product>>> ProductsAsync([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
         {
             var totalProduct = await catalogContext.Products
@@ -39,9 +38,9 @@ namespace Catalog.API.Controllers
         
         [HttpGet]
         [Route("products/{productId}")]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         public async Task<ActionResult<Product>> ProductByIdAsync(Guid productId)
         {
             if (productId != Guid.Empty)
@@ -61,8 +60,8 @@ namespace Catalog.API.Controllers
         }     
 
         [Route("products/category/{categoryId}/brand/{brandId:int?}")]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]        
-        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]        
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Product>>> ProductsByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
         {    
 
@@ -80,7 +79,7 @@ namespace Catalog.API.Controllers
 
         [HttpGet]
         [Route("categories")]
-        [ProducesResponseType(typeof(IEnumerable<Category>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Category>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Category>>> CategoriesAsync()
         {
             var categories = await catalogContext.Category
@@ -91,7 +90,7 @@ namespace Catalog.API.Controllers
 
         [HttpGet]
         [Route("brands")]
-        [ProducesResponseType(typeof(IEnumerable<Brand>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Brand>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Brand>>> BrandsAsync()
         {
             var brands = await catalogContext.Brand
