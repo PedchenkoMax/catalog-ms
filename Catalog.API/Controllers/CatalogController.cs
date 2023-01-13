@@ -95,7 +95,7 @@ namespace Catalog.API.Controllers
         }
 
         [HttpGet]
-        [Route("brends")]
+        [Route("brands")]
         [ProducesResponseType(typeof(IEnumerable<Brand>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Brand>>> BrandsAsync()
         {
