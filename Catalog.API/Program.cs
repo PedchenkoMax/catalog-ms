@@ -1,32 +1,27 @@
-using Catalog.Infrastructure;
 using Catalog.Infrastructure.Database;
-using Catalog.Infrastructure.Database.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<CatalogContext>(opt =>
-    opt.UseSqlServer(builder.Configuration["ConnectionString"]));
-
-builder.Services.AddScoped<ProductRepository>();
-
-
-var app = builder.Build();
-
-
-if (app.Environment.IsDevelopment())
+var services = builder.Services;
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    services.AddControllers();
+    services.AddEndpointsApiExplorer();
+    services.AddSwaggerGen();
+    services.AddDbContext<CatalogContext>(o => o.UseSqlServer(builder.Configuration["ConnectionString"]));
 }
 
-app.UseAuthorization();
+var app = builder.Build();
+{
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-app.MapControllers();
+    app.UseAuthorization();
+
+    app.MapControllers();
+}
 
 app.Run();
