@@ -1,5 +1,4 @@
 ﻿using Catalog.Domain.Entities;
-using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,18 +8,18 @@ namespace Catalog.API.Controllers;
 [ApiController]
 public class CategoryController : ControllerBase
 {
-    private readonly CatalogContext catalogContext;
+    private readonly DbSet<Category> categorySet;
 
-    public CategoryController(CatalogContext catalogContext)
+    public CategoryController(DbSet<Category> categorySet)
     {
-        this.catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
+        this.categorySet = categorySet;
     }
 
-    [HttpGet] [ProducesResponseType(typeof(IEnumerable<Category>), StatusCodes.Status200OK)]
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<Category>), StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Category>>> GetAll()
     {
-        var categories = await catalogContext.Category
-            .ToListAsync();
+        var categories = await categorySet.ToListAsync();
 
         return Ok(categories);
     }
