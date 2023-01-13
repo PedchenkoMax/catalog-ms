@@ -27,7 +27,7 @@ namespace Catalog.API.Controllers
                 .LongCountAsync();
 
             var productOnPage = await catalogContext.Products
-                .OrderBy(p => p.ProductName)
+                .OrderBy(p => p.Name)
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
                 .ToListAsync();
