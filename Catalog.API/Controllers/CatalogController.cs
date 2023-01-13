@@ -1,4 +1,4 @@
-using Catalog.API.ViewModel;
+﻿using Catalog.API.ViewModel;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
@@ -65,11 +65,6 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> ProductsByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
         {    
-
-            if (categoryId <= 0)
-            {
-                return BadRequest();
-            }
 
             IEnumerable<Product> products = await catalogContext.Products
                 .Where(x => x.CategoryId == categoryId)
