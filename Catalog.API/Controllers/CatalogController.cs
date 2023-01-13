@@ -1,4 +1,4 @@
-﻿using Catalog.API.ViewModel;
+using Catalog.API.ViewModel;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
@@ -63,7 +63,7 @@ namespace Catalog.API.Controllers
         [Route("products/category/{categoryId}/brand/{brandId:int?}")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]        
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Product>>> ProductsByCategoryIdAndBrandIdAsync(int categoryId, int? brandId)
+        public async Task<ActionResult<IEnumerable<Product>>> ProductsByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
         {    
 
             if (categoryId <= 0)
