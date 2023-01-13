@@ -29,25 +29,7 @@ public class ProductController : ControllerBase
             .OrderBy(e => e.Name)
             .Skip(pageSize * pageIndex)
             .Take(pageSize)
-            .Select(productEntity => new Product
-            {
-                ProductId = productEntity.ProductId,
-                Name = productEntity.Name,
-                Quantity = productEntity.Quantity,
-                Price = productEntity.Price,
-                Image = productEntity.Image,
-                Description = productEntity.Description,
-                Category = new Category
-                {
-                    CategoryId = productEntity.CategoryEntity.CategoryId,
-                    Name = productEntity.CategoryEntity.Name
-                },
-                Brand = new Brand
-                {
-                    BrandId = productEntity.BrandEntity.BrandId,
-                    Name = productEntity.BrandEntity.Name
-                },
-            })
+            .Select(productEntity => productEntity.ToProduct())
             .ToListAsync();
 
         var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, products);
@@ -65,25 +47,7 @@ public class ProductController : ControllerBase
             return BadRequest();
 
         var product = await productSet
-            .Select(productEntity => new Product
-            {
-                ProductId = productEntity.ProductId,
-                Name = productEntity.Name,
-                Quantity = productEntity.Quantity,
-                Price = productEntity.Price,
-                Image = productEntity.Image,
-                Description = productEntity.Description,
-                Category = new Category
-                {
-                    CategoryId = productEntity.CategoryEntity.CategoryId,
-                    Name = productEntity.CategoryEntity.Name
-                },
-                Brand = new Brand
-                {
-                    BrandId = productEntity.BrandEntity.BrandId,
-                    Name = productEntity.BrandEntity.Name
-                },
-            })
+            .Select(productEntity => productEntity.ToProduct())
             .FirstOrDefaultAsync(x => x.ProductId == productId);
 
         if (product == null)
@@ -104,25 +68,7 @@ public class ProductController : ControllerBase
             query = query.Where(p => p.BrandId == brandId);
 
         var products = await query
-            .Select(productEntity => new Product
-            {
-                ProductId = productEntity.ProductId,
-                Name = productEntity.Name,
-                Quantity = productEntity.Quantity,
-                Price = productEntity.Price,
-                Image = productEntity.Image,
-                Description = productEntity.Description,
-                Category = new Category
-                {
-                    CategoryId = productEntity.CategoryEntity.CategoryId,
-                    Name = productEntity.CategoryEntity.Name
-                },
-                Brand = new Brand
-                {
-                    BrandId = productEntity.BrandEntity.BrandId,
-                    Name = productEntity.BrandEntity.Name
-                },
-            })
+            .Select(productEntity => productEntity.ToProduct())
             .ToListAsync();
         
         return Ok(products);

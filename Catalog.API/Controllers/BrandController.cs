@@ -21,11 +21,7 @@ public class BrandController : ControllerBase
     public async Task<ActionResult<IEnumerable<Brand>>> GetAll()
     {
         var brands = await brandSet
-            .Select(brandEntity => new Brand
-            {
-                BrandId = brandEntity.BrandId,
-                Name = brandEntity.Name
-            })
+            .Select(brandEntity => brandEntity.ToBrand())
             .ToListAsync();
 
         return Ok(brands);

@@ -21,11 +21,7 @@ public class CategoryController : ControllerBase
     public async Task<ActionResult<IEnumerable<Category>>> GetAll()
     {
         var categories = await categorySet
-            .Select(categoryEntity => new Category
-            {
-                CategoryId = categoryEntity.CategoryId,
-                Name = categoryEntity.Name
-            })
+            .Select(categoryEntity => categoryEntity.ToCategory())
             .ToListAsync();
 
         return Ok(categories);
