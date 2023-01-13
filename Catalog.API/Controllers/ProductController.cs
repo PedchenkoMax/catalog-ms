@@ -18,17 +18,12 @@ public class ProductController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
-<<<<<<< HEAD
     public async Task<ActionResult<PaginatedProductsViewModel<Product>>> GetAll([FromQuery] int pageSize = 10,
-=======
-    public async Task<ActionResult<IEnumerable<PaginatedProductsViewModel<Product>>>> GetAll(
-        [FromQuery] int pageSize = 10,
->>>>>>> f7875e7016727607107eecad9d91bcb140db88a6
         [FromQuery] int pageIndex = 0)
     {
         var totalProduct = await productSet.LongCountAsync();
 
-        var products = await productSet
+        var productsOnPage = await productSet
             .Include(e => e.CategoryEntity)
             .Include(e => e.BrandEntity)
             .OrderBy(e => e.Name)
@@ -37,7 +32,7 @@ public class ProductController : ControllerBase
             .Select(productEntity => productEntity.ToProduct())
             .ToListAsync();
 
-        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, products);
+        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, productsOnPage);
 
         return Ok(model);
     }
@@ -63,8 +58,9 @@ public class ProductController : ControllerBase
 
     [HttpGet("category/{categoryId:guid}/brand/{brandId:guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
+    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PaginatedProductsViewModel<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, 
+        Guid? brandId, [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
     {
         var query = productSet
             .Where(x => x.CategoryId == categoryId);
@@ -72,11 +68,18 @@ public class ProductController : ControllerBase
         if (brandId.HasValue)
             query = query.Where(p => p.BrandId == brandId);
 
-        var products = await query
-            .Select(productEntity => productEntity.ToProduct())
-            .ToListAsync();
-        
-        return Ok(products);
+        var totalProduct = await query.LongCountAsync();
+
+        var productsOnPage = await query         
+           .OrderBy(e => e.Name)
+           .Skip(pageSize * pageIndex)
+           .Take(pageSize)
+           .Select(productEntity => productEntity.ToProduct())
+           .ToListAsync();
+
+        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, productsOnPage);
+
+        return Ok(model);       
     }
 
 }
