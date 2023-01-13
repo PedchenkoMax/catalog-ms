@@ -1,4 +1,5 @@
-﻿using Catalog.Domain.Entities;
+﻿using Catalog.API.ViewModel;
+using Catalog.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +17,16 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<CategoryEntity>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<CategoryEntity>>> GetAll()
+    [ProducesResponseType(typeof(IEnumerable<Category>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<Category>>> GetAll()
     {
-        var categories = await categorySet.ToListAsync();
+        var categories = await categorySet
+            .Select(categoryEntity => new Category
+            {
+                CategoryId = categoryEntity.CategoryId,
+                Name = categoryEntity.Name
+            })
+            .ToListAsync();
 
         return Ok(categories);
     }

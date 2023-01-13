@@ -17,18 +17,40 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<ProductEntity>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<ProductEntity>>> GetAll([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
+    [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<Product>>> GetAll([FromQuery] int pageSize = 10,
+        [FromQuery] int pageIndex = 0)
     {
         var totalProduct = await productSet.LongCountAsync();
 
-        var productOnPage = await productSet
-            .OrderBy(p => p.Name)
+        var products = await productSet
+            .Include(e => e.CategoryEntity)
+            .Include(e => e.BrandEntity)
+            .OrderBy(e => e.Name)
             .Skip(pageSize * pageIndex)
             .Take(pageSize)
+            .Select(productEntity => new Product
+            {
+                ProductId = productEntity.ProductId,
+                Name = productEntity.Name,
+                Quantity = productEntity.Quantity,
+                Price = productEntity.Price,
+                Image = productEntity.Image,
+                Description = productEntity.Description,
+                Category = new Category
+                {
+                    CategoryId = productEntity.CategoryEntity.CategoryId,
+                    Name = productEntity.CategoryEntity.Name
+                },
+                Brand = new Brand
+                {
+                    BrandId = productEntity.BrandEntity.BrandId,
+                    Name = productEntity.BrandEntity.Name
+                },
+            })
             .ToListAsync();
 
-        var model = new PaginatedProductsViewModel<ProductEntity>(pageIndex, pageSize, totalProduct, productOnPage);
+        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, products);
 
         return Ok(model);
     }
@@ -36,13 +58,33 @@ public class ProductController : ControllerBase
     [HttpGet("{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ProductEntity), StatusCodes.Status200OK)]
-    public async Task<ActionResult<ProductEntity>> GetById(Guid productId)
+    [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+    public async Task<ActionResult<Product>> GetById(Guid productId)
     {
         if (productId != Guid.Empty)
             return BadRequest();
 
-        var product = await productSet.FirstOrDefaultAsync(x => x.ProductId == productId);
+        var product = await productSet
+            .Select(productEntity => new Product
+            {
+                ProductId = productEntity.ProductId,
+                Name = productEntity.Name,
+                Quantity = productEntity.Quantity,
+                Price = productEntity.Price,
+                Image = productEntity.Image,
+                Description = productEntity.Description,
+                Category = new Category
+                {
+                    CategoryId = productEntity.CategoryEntity.CategoryId,
+                    Name = productEntity.CategoryEntity.Name
+                },
+                Brand = new Brand
+                {
+                    BrandId = productEntity.BrandEntity.BrandId,
+                    Name = productEntity.BrandEntity.Name
+                },
+            })
+            .FirstOrDefaultAsync(x => x.ProductId == productId);
 
         if (product == null)
             return NotFound();
@@ -52,16 +94,37 @@ public class ProductController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ProductEntity), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<ProductEntity>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
+    [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
     {
-        IEnumerable<ProductEntity> products = await productSet
-            .Where(x => x.CategoryId == categoryId)
-            .ToListAsync();
+        var query = productSet
+            .Where(x => x.CategoryId == categoryId);
 
         if (brandId.HasValue)
-            products = products.Where(p => p.BrandId == brandId);
+            query = query.Where(p => p.BrandId == brandId);
 
+        var products = await query
+            .Select(productEntity => new Product
+            {
+                ProductId = productEntity.ProductId,
+                Name = productEntity.Name,
+                Quantity = productEntity.Quantity,
+                Price = productEntity.Price,
+                Image = productEntity.Image,
+                Description = productEntity.Description,
+                Category = new Category
+                {
+                    CategoryId = productEntity.CategoryEntity.CategoryId,
+                    Name = productEntity.CategoryEntity.Name
+                },
+                Brand = new Brand
+                {
+                    BrandId = productEntity.BrandEntity.BrandId,
+                    Name = productEntity.BrandEntity.Name
+                },
+            })
+            .ToListAsync();
+        
         return Ok(products);
     }
 }

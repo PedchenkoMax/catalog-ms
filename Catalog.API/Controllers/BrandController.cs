@@ -1,4 +1,5 @@
-﻿using Catalog.Domain.Entities;
+﻿using Catalog.API.ViewModel;
+using Catalog.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +17,16 @@ public class BrandController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<BrandEntity>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<BrandEntity>>> GetAll()
+    [ProducesResponseType(typeof(IEnumerable<Brand>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<Brand>>> GetAll()
     {
-        var brands = await brandSet.ToListAsync();
+        var brands = await brandSet
+            .Select(brandEntity => new Brand
+            {
+                BrandId = brandEntity.BrandId,
+                Name = brandEntity.Name
+            })
+            .ToListAsync();
 
         return Ok(brands);
     }
