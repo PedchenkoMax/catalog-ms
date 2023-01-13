@@ -1,10 +1,14 @@
-﻿using Catalog.Domain.Entities;
+﻿using System.ComponentModel;
+using Catalog.Domain.Entities;
 
 namespace Catalog.API.ViewModel;
 
 public record Category
 {
+    [DefaultValue("00000000-0000-0000-0000-000000000000")]
     public Guid CategoryId { get; init; }
+
+    [DefaultValue("Unnamed Category")]
     public string Name { get; init; }
 }
 
