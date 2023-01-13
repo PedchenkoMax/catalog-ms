@@ -56,7 +56,7 @@ public class ProductController : ControllerBase
         return Ok(product);
     }
 
-    [HttpGet]
+    [HttpGet("category/{categoryId:guid}/brand/{brandId:guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
