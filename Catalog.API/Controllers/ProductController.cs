@@ -9,16 +9,16 @@ namespace Catalog.API.Controllers;
 [ApiController]
 public class ProductController : ControllerBase
 {
-    private readonly DbSet<Product> productSet;
+    private readonly DbSet<ProductEntity> productSet;
 
-    public ProductController(DbSet<Product> productSet)
+    public ProductController(DbSet<ProductEntity> productSet)
     {
         this.productSet = productSet;
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Product>>> GetAll([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
+    [ProducesResponseType(typeof(IEnumerable<ProductEntity>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<ProductEntity>>> GetAll([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
     {
         var totalProduct = await productSet.LongCountAsync();
 
@@ -28,7 +28,7 @@ public class ProductController : ControllerBase
             .Take(pageSize)
             .ToListAsync();
 
-        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, productOnPage);
+        var model = new PaginatedProductsViewModel<ProductEntity>(pageIndex, pageSize, totalProduct, productOnPage);
 
         return Ok(model);
     }
@@ -36,8 +36,8 @@ public class ProductController : ControllerBase
     [HttpGet("{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
-    public async Task<ActionResult<Product>> GetById(Guid productId)
+    [ProducesResponseType(typeof(ProductEntity), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ProductEntity>> GetById(Guid productId)
     {
         if (productId != Guid.Empty)
             return BadRequest();
@@ -52,10 +52,10 @@ public class ProductController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
+    [ProducesResponseType(typeof(ProductEntity), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<ProductEntity>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, Guid? brandId)
     {
-        IEnumerable<Product> products = await productSet
+        IEnumerable<ProductEntity> products = await productSet
             .Where(x => x.CategoryId == categoryId)
             .ToListAsync();
 

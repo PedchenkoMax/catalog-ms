@@ -8,16 +8,16 @@ namespace Catalog.API.Controllers;
 [ApiController]
 public class BrandController : ControllerBase
 {
-    private readonly DbSet<Brand> brandSet;
+    private readonly DbSet<BrandEntity> brandSet;
 
-    public BrandController(DbSet<Brand> brandSet)
+    public BrandController(DbSet<BrandEntity> brandSet)
     {
         this.brandSet = brandSet;
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Brand>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Brand>>> GetAll()
+    [ProducesResponseType(typeof(IEnumerable<BrandEntity>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<BrandEntity>>> GetAll()
     {
         var brands = await brandSet.ToListAsync();
 

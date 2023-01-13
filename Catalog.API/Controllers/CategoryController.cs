@@ -8,16 +8,16 @@ namespace Catalog.API.Controllers;
 [ApiController]
 public class CategoryController : ControllerBase
 {
-    private readonly DbSet<Category> categorySet;
+    private readonly DbSet<CategoryEntity> categorySet;
 
-    public CategoryController(DbSet<Category> categorySet)
+    public CategoryController(DbSet<CategoryEntity> categorySet)
     {
         this.categorySet = categorySet;
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Category>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Category>>> GetAll()
+    [ProducesResponseType(typeof(IEnumerable<CategoryEntity>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<CategoryEntity>>> GetAll()
     {
         var categories = await categorySet.ToListAsync();
 

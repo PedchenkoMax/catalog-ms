@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain.Entities;
 
-public class Brand
+public class BrandEntity
 {
     public Guid BrandId { get; set; }
     public string Name { get; set; }

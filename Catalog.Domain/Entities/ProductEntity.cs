@@ -1,6 +1,6 @@
 namespace Catalog.Domain.Entities;
 
-public class Product
+public class ProductEntity
 {
     public Guid ProductId { get; set; }
     public string Name { get; set; }
@@ -10,8 +10,8 @@ public class Product
     public string? Description { get; set; }
 
     public Guid CategoryId { get; set; }
-    public Category Category { get; set; }
+    public CategoryEntity CategoryEntity { get; set; }
 
     public Guid BrandId { get; set; }
-    public Brand Brand { get; set; }
+    public BrandEntity BrandEntity { get; set; }
 }
