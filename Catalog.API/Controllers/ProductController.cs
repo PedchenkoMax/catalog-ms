@@ -1,7 +1,9 @@
 using Catalog.API.ViewModel;
 using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Catalog.API.Controllers;
 
@@ -48,7 +50,7 @@ public class ProductController : ControllerBase
 
         var product = await productSet
             .Select(productEntity => productEntity.ToProduct())
-            .FirstOrDefaultAsync(x => x.ProductId == productId);
+            .FirstOrDefaultAsync(p => p.ProductId == productId);
 
         if (product == null)
             return NotFound();
@@ -62,8 +64,11 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<PaginatedProductsViewModel<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, 
         Guid? brandId, [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
     {
+        if (categoryId != Guid.Empty)
+            return BadRequest();
+
         var query = productSet
-            .Where(x => x.CategoryId == categoryId);
+            .Where(p => p.CategoryId == categoryId);
 
         if (brandId.HasValue)
             query = query.Where(p => p.BrandId == brandId);
@@ -71,7 +76,7 @@ public class ProductController : ControllerBase
         var totalProduct = await query.LongCountAsync();
 
         var productsOnPage = await query         
-           .OrderBy(e => e.Name)
+           .OrderBy(p => p.Name)
            .Skip(pageSize * pageIndex)
            .Take(pageSize)
            .Select(productEntity => productEntity.ToProduct())
@@ -82,4 +87,24 @@ public class ProductController : ControllerBase
         return Ok(model);       
     }
 
+    [HttpGet("search/{name:minlength(1)}")]   
+    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<PaginatedProductsViewModel<Product>>> SearchProductByNameAsync(string name, 
+        [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
+    {
+        var query = productSet
+            .Where(p => p.Name.StartsWith(name));
+
+        var totalItems = await query.LongCountAsync();
+
+        var productsOnPage = await query           
+            .Skip(pageSize * pageIndex)
+            .Take(pageSize)
+            .Select(productEntity => productEntity.ToProduct())
+            .ToListAsync();        
+
+        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalItems, productsOnPage);
+
+        return Ok(model);
+    }
 }
