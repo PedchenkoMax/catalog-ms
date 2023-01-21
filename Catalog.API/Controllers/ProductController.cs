@@ -43,7 +43,7 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
-    public async Task<ActionResult<Product>> GetById(Guid productId)
+    public async Task<IActionResult> GetById([FromQuery] Guid productId)
     {
         if (productId != Guid.Empty)
             return BadRequest();
@@ -62,7 +62,7 @@ public class ProductController : ControllerBase
     [HttpGet("category/{categoryId:guid}/brand/{brandId:guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PaginatedProductsViewModel<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId, 
+    public async Task<ActionResult<PaginatedProductsViewModel<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId,
         Guid? brandId, [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
     {
         if (categoryId != Guid.Empty)
@@ -90,7 +90,7 @@ public class ProductController : ControllerBase
 
     [HttpGet("search/{name:minlength(1)}")]   
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<PaginatedProductsViewModel<Product>>> SearchProductByNameAsync(string name, 
+    public async Task<IActionResult> SearchProductByNameAsync(
         [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
     {
         var query = productSet
