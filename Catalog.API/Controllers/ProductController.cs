@@ -1,10 +1,8 @@
 using Catalog.API.ViewModel;
 using Catalog.API.ViewModel.Filters;
 using Catalog.Domain.Entities;
-using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 
 namespace Catalog.API.Controllers;
 
@@ -17,27 +15,6 @@ public class ProductController : ControllerBase
     public ProductController(DbSet<ProductEntity> productSet)
     {
         this.productSet = productSet;
-    }
-
-    [HttpGet]
-    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PaginatedProductsViewModel<Product>>> GetAll([FromQuery] int pageSize = 10,
-        [FromQuery] int pageIndex = 0)
-    {
-        var totalProduct = await productSet.LongCountAsync();
-
-        var productsOnPage = await productSet
-            .Include(e => e.CategoryEntity)
-            .Include(e => e.BrandEntity)
-            .OrderBy(e => e.Name)
-            .Skip(pageSize * pageIndex)
-            .Take(pageSize)
-            .Select(productEntity => productEntity.ToProduct())
-            .ToListAsync();
-
-        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, productsOnPage);
-
-        return Ok(model);
     }
 
     [HttpGet("{productId:guid}")]
@@ -58,35 +35,6 @@ public class ProductController : ControllerBase
             return NotFound();
 
         return Ok(product);
-    }
-
-    [HttpGet("category/{categoryId:guid}/brand/{brandId:guid}")]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PaginatedProductsViewModel<Product>>> GetByCategoryIdAndBrandIdAsync(Guid categoryId,
-        Guid? brandId, [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
-    {
-        if (categoryId != Guid.Empty)
-            return BadRequest();
-
-        var query = productSet
-            .Where(p => p.CategoryId == categoryId);
-
-        if (brandId.HasValue)
-            query = query.Where(p => p.BrandId == brandId);
-
-        var totalProduct = await query.LongCountAsync();
-
-        var productsOnPage = await query         
-           .OrderBy(p => p.Name)
-           .Skip(pageSize * pageIndex)
-           .Take(pageSize)
-           .Select(productEntity => productEntity.ToProduct())
-           .ToListAsync();
-
-        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalProduct, productsOnPage);
-
-        return Ok(model);       
     }
 
     [HttpGet("search/{name:minlength(1)}")]
@@ -112,6 +60,7 @@ public class ProductController : ControllerBase
 
         return Ok(model);
     }
+
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
