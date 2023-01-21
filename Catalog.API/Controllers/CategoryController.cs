@@ -21,6 +21,7 @@ public class CategoryController : ControllerBase
     public async Task<ActionResult<IEnumerable<Category>>> GetAll()
     {
         var categories = await categorySet
+            .AsNoTracking()
             .Select(categoryEntity => categoryEntity.ToCategory())
             .ToListAsync();
 

@@ -49,6 +49,7 @@ public class ProductController : ControllerBase
             return BadRequest();
 
         var product = await productSet
+            .AsNoTracking()
             .Select(productEntity => productEntity.ToProduct())
             .FirstOrDefaultAsync(p => p.ProductId == productId);
 
@@ -93,6 +94,7 @@ public class ProductController : ControllerBase
         [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
     {
         var query = productSet
+            .AsNoTracking()
             .Where(p => p.Name.StartsWith(name));
 
         var totalItems = await query.LongCountAsync();

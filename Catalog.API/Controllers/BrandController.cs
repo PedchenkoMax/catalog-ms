@@ -21,6 +21,7 @@ public class BrandController : ControllerBase
     public async Task<ActionResult<IEnumerable<Brand>>> GetAll()
     {
         var brands = await brandSet
+            .AsNoTracking()
             .Select(brandEntity => brandEntity.ToBrand())
             .ToListAsync();
 
