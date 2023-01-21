@@ -1,0 +1,30 @@
+version: "3"
+name: catalog-ms
+services:
+  catalog-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      container_name: catalog-api
+      image: catalog-api      # docker build -t catalog-api .          
+    ports:                      
+      - 80:80                   
+    depends_on:
+      - catalog-db
+    
+  catalog-db:
+    container_name: catalog-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=KtPm23GLP@ssW0rd!   
+
+volumes:
+  catalog-db-data:
+    driver: local
+
+    build:
+          context: .
+          dockerfile: Dockerfile
