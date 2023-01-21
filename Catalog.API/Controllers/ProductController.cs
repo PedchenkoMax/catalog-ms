@@ -1,4 +1,5 @@
 using Catalog.API.ViewModel;
+using Catalog.API.ViewModel.Filters;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
@@ -88,10 +89,11 @@ public class ProductController : ControllerBase
         return Ok(model);       
     }
 
-    [HttpGet("search/{name:minlength(1)}")]   
-    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), (int)HttpStatusCode.OK)]
+    [HttpGet("search/{name:minlength(1)}")]
+    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
     public async Task<IActionResult> SearchProductByNameAsync(
-        [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
+        [FromQuery] string name,
+        [FromQuery] PaginationFilter pagination)
     {
         var query = productSet
             .AsNoTracking()
@@ -99,13 +101,14 @@ public class ProductController : ControllerBase
 
         var totalItems = await query.LongCountAsync();
 
-        var productsOnPage = await query           
-            .Skip(pageSize * pageIndex)
-            .Take(pageSize)
+        var productsOnPage = await query
+            .AsNoTracking()
+            .Skip(pagination.PageSize * pagination.PageIndex)
+            .Take(pagination.PageSize)
             .Select(productEntity => productEntity.ToProduct())
-            .ToListAsync();        
+            .ToListAsync();
 
-        var model = new PaginatedProductsViewModel<Product>(pageIndex, pageSize, totalItems, productsOnPage);
+        var model = new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, totalItems, productsOnPage);
 
         return Ok(model);
     }
