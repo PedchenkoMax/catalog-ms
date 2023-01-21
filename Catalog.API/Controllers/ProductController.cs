@@ -112,4 +112,45 @@ public class ProductController : ControllerBase
 
         return Ok(model);
     }
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetProducts(
+        [FromQuery] ProductFilter filter,
+        [FromQuery] PaginationFilter pagination)
+    {
+        var products = productSet
+            .Include(p => p.CategoryEntity)
+            .Include(p => p.BrandEntity)
+            .AsNoTracking()
+            .AsQueryable();
+
+        if (filter.CategoryId != null)
+            products = products.Where(p => p.CategoryId == filter.CategoryId);
+
+        if (filter.BrandIds != null && filter.BrandIds.Any())
+            products = products.Where(p => filter.BrandIds.Contains(p.BrandId));
+
+        if (filter.MinPrice != null && filter.MaxPrice != null)
+            products = products.Where(p => p.Price >= filter.MinPrice && p.Price <= filter.MaxPrice);
+        else if (filter.MinPrice != null)
+            products = products.Where(p => p.Price >= filter.MinPrice);
+        else if (filter.MaxPrice != null)
+            products = products.Where(p => p.Price <= filter.MaxPrice);
+
+        var count = products.Count();
+
+        if (pagination.PageIndex * pagination.PageSize >= count)
+            return BadRequest();
+
+        var data = await products
+            .Skip(pagination.PageIndex * pagination.PageSize)
+            .Take(pagination.PageSize)
+            .Select(x => x.ToProduct())
+            .ToListAsync();
+
+        var paginatedProduct = new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, count, data);
+
+        return Ok(paginatedProduct);
+    }
 }
