@@ -80,12 +80,9 @@ public class ProductController : ControllerBase
         if (filter.BrandIds != null && filter.BrandIds.Any())
             products = products.Where(p => filter.BrandIds.Contains(p.BrandId));
 
-        if (filter.MinPrice != null && filter.MaxPrice != null)
-            products = products.Where(p => p.Price >= filter.MinPrice && p.Price <= filter.MaxPrice);
-        else if (filter.MinPrice != null)
-            products = products.Where(p => p.Price >= filter.MinPrice);
-        else if (filter.MaxPrice != null)
-            products = products.Where(p => p.Price <= filter.MaxPrice);
+        products = products.Where(p =>
+            (filter.MinPrice == null || p.Price >= filter.MinPrice) &&
+            (filter.MaxPrice == null || p.Price <= filter.MaxPrice));
 
         var count = products.Count();
 
