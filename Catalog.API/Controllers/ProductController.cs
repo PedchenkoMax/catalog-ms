@@ -67,6 +67,7 @@ public class ProductController : ControllerBase
     public async Task<IActionResult> GetProducts(
         [FromQuery] ProductFilter filter,
         [FromQuery] PaginationFilter pagination,
+        [FromQuery] OrderingFilter ordering,
         [FromQuery] SearchFilter search)
     {
         var products = productSet
@@ -87,6 +88,21 @@ public class ProductController : ControllerBase
 
         if (!string.IsNullOrEmpty(search.Query))
             products = products.Where(p => p.Name.Contains(search.Query, StringComparison.OrdinalIgnoreCase));
+
+        products = ordering.OrderBy switch
+        {
+            "Name" => ordering.Desc
+                ? products.OrderByDescending(p => p.Name)
+                : products.OrderBy(p => p.Name),
+
+            "Price" => ordering.Desc
+                ? products.OrderByDescending(p => p.Price)
+                : products.OrderBy(p => p.Price),
+
+            _ => ordering.Desc
+                ? products.OrderByDescending(p => p.ProductId)
+                : products.OrderBy(p => p.ProductId)
+        };
 
         var count = products.Count();
 
