@@ -36,31 +36,6 @@ public class ProductController : ControllerBase
 
         return Ok(product);
     }
-
-    [HttpGet("search/{name:minlength(1)}")]
-    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> SearchProductByNameAsync(
-        [FromQuery] string name,
-        [FromQuery] PaginationFilter pagination)
-    {
-        var query = productSet
-            .AsNoTracking()
-            .Where(p => p.Name.StartsWith(name));
-
-        var totalItems = await query.LongCountAsync();
-
-        var productsOnPage = await query
-            .AsNoTracking()
-            .Skip(pagination.PageSize * pagination.PageIndex)
-            .Take(pagination.PageSize)
-            .Select(productEntity => productEntity.ToProduct())
-            .ToListAsync();
-
-        var model = new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, totalItems, productsOnPage);
-
-        return Ok(model);
-    }
-
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
