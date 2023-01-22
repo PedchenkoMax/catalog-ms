@@ -66,7 +66,8 @@ public class ProductController : ControllerBase
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetProducts(
         [FromQuery] ProductFilter filter,
-        [FromQuery] PaginationFilter pagination)
+        [FromQuery] PaginationFilter pagination,
+        [FromQuery] SearchFilter search)
     {
         var products = productSet
             .Include(p => p.CategoryEntity)
@@ -83,6 +84,9 @@ public class ProductController : ControllerBase
         products = products.Where(p =>
             (filter.MinPrice == null || p.Price >= filter.MinPrice) &&
             (filter.MaxPrice == null || p.Price <= filter.MaxPrice));
+
+        if (!string.IsNullOrEmpty(search.Query))
+            products = products.Where(p => p.Name.Contains(search.Query, StringComparison.OrdinalIgnoreCase));
 
         var count = products.Count();
 
