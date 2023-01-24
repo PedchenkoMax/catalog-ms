@@ -1,21 +1,19 @@
 version: "3.4"
 
 services:
-  catalog-api:   
+  catalog-api:
     build:
       context: .
-      dockerfile: Dockerfile        
-    ports:                      
-      - "8080:80"                   
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
     depends_on:
       - catalog-db
-    
-  catalog-db:    
+  
+  catalog-db:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     ports:
       - "1433:1433"
-
     environment:
       - ACCEPT_EULA="Y"
       - SA_PASSWORD="KtPm23GLP@ssW0rd!"
-      
