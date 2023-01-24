@@ -2,6 +2,7 @@ version: "3.4"
 
 services:
   catalog-api:
+    container_name: catalog-api
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,6 +12,7 @@ services:
       - catalog-db
   
   catalog-db:
+    container_name: catalog-mssql-db
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     ports:
       - "1433:1433"
