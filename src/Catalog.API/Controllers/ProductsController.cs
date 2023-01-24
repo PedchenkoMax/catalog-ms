@@ -8,11 +8,11 @@ namespace Catalog.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ProductController : ControllerBase
+public class ProductsController : ControllerBase
 {
     private readonly DbSet<ProductEntity> productSet;
 
-    public ProductController(DbSet<ProductEntity> productSet)
+    public ProductsController(DbSet<ProductEntity> productSet)
     {
         this.productSet = productSet;
     }
@@ -21,7 +21,7 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetById([FromQuery] Guid productId)
+    public async Task<IActionResult> ProductByIdAsync([FromQuery] Guid productId)
     {
         if (productId != Guid.Empty)
             return BadRequest();
@@ -36,10 +36,11 @@ public class ProductController : ControllerBase
 
         return Ok(product);
     }
+
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetProducts(
+    public async Task<IActionResult> ProductsByParametersAsync(
         [FromQuery] ProductFilter filter,
         [FromQuery] PaginationFilter pagination,
         [FromQuery] OrderingFilter ordering,
@@ -79,18 +80,18 @@ public class ProductController : ControllerBase
                 : products.OrderBy(p => p.ProductId)
         };
 
-        var count = products.Count();
+        var totalProducts = products.Count();
 
-        if (pagination.PageIndex * pagination.PageSize >= count)
+        if (pagination.PageIndex * pagination.PageSize >= totalProducts)
             return BadRequest();
 
-        var data = await products
+        var productsOnPage = await products
             .Skip(pagination.PageIndex * pagination.PageSize)
             .Take(pagination.PageSize)
             .Select(x => x.ToProduct())
             .ToListAsync();
 
-        var paginatedProduct = new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, count, data);
+        var paginatedProduct = new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, totalProducts, productsOnPage);
 
         return Ok(paginatedProduct);
     }
