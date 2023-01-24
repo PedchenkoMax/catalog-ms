@@ -9,9 +9,9 @@ services:
     ports:
       - "8080:80"
     depends_on:
-      - catalog-db
+      - catalog-mssql-db
   
-  catalog-db:
+  catalog-mssql-db:
     container_name: catalog-mssql-db
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     ports:
