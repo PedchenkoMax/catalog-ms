@@ -80,9 +80,9 @@ public class ProductsController : ControllerBase
                 : products.OrderBy(p => p.ProductId)
         };
 
-        var totalProducts = products.Count();
+        var totalNumberOfProducts = products.Count();
 
-        if (pagination.PageIndex * pagination.PageSize >= totalProducts)
+        if (pagination.PageIndex * pagination.PageSize >= totalNumberOfProducts)
             return BadRequest();
 
         var productsOnPage = await products
@@ -91,7 +91,7 @@ public class ProductsController : ControllerBase
             .Select(x => x.ToProduct())
             .ToListAsync();
 
-        var paginatedProduct = new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, totalProducts, productsOnPage);
+        var paginatedProduct = new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, totalNumberOfProducts, productsOnPage);
 
         return Ok(paginatedProduct);
     }
