@@ -19,3 +19,9 @@ services:
     environment:
       - ACCEPT_EULA="Y"
       - SA_PASSWORD="KtPm23GLP@ssW0rd!"
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+volumes:
+  mssql-data:
+    driver: local
