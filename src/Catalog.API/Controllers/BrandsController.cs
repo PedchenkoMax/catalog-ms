@@ -7,18 +7,18 @@ namespace Catalog.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class BrandController : ControllerBase
+public class BrandsController : ControllerBase
 {
     private readonly DbSet<BrandEntity> brandSet;
 
-    public BrandController(DbSet<BrandEntity> brandSet)
+    public BrandsController(DbSet<BrandEntity> brandSet)
     {
         this.brandSet = brandSet;
     }
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Brand>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Brand>>> GetAll()
+    public async Task<ActionResult<IEnumerable<Brand>>> GetBrandsAsync()
     {
         var brands = await brandSet
             .AsNoTracking()
