@@ -1,13 +1,13 @@
-﻿namespace Catalog.API.ViewModel.Filters;
+﻿namespace Catalog.API.ViewModel.Parameters;
 
-public record ProductFilter
+public record FilteringParameters
 {
     public Guid? CategoryId { get; init; }
     public List<Guid>? BrandIds { get; init; }
     public decimal? MinPrice { get; init; }
     public decimal? MaxPrice { get; init; }
 
-    public ProductFilter(Guid? categoryId = null, List<Guid>? brandIds = null, decimal? minPrice = null, decimal? maxPrice = null)
+    public FilteringParameters(Guid? categoryId = null, List<Guid>? brandIds = null, decimal? minPrice = null, decimal? maxPrice = null)
     {
         CategoryId = categoryId;
         BrandIds = brandIds;

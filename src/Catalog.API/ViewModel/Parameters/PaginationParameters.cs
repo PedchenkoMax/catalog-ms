@@ -1,11 +1,11 @@
-namespace Catalog.API.ViewModel.Filters;
+namespace Catalog.API.ViewModel.Parameters;
 
-public record PaginationFilter
+public record PaginationParameters
 {
     public int PageIndex { get; init; }
     public int PageSize { get; init; }
 
-    public PaginationFilter(int pageIndex = 0, int pageSize = 10)
+    public PaginationParameters(int pageIndex = 0, int pageSize = 10)
     {
         PageIndex = pageIndex;
         PageSize = pageSize;

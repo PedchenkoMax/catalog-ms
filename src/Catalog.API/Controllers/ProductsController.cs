@@ -1,5 +1,5 @@
 using Catalog.API.ViewModel;
-using Catalog.API.ViewModel.Filters;
+using Catalog.API.ViewModel.Parameters;
 using Catalog.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -41,10 +41,10 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ProductsByParametersAsync(
-        [FromQuery] ProductFilter filter,
-        [FromQuery] PaginationFilter pagination,
-        [FromQuery] OrderingFilter ordering,
-        [FromQuery] SearchFilter search)
+        [FromQuery] FilteringParameters filter,
+        [FromQuery] PaginationParameters pagination,
+        [FromQuery] OrderingParameters ordering,
+        [FromQuery] SearchParameters search)
     {
         var products = productSet
             .Include(p => p.CategoryEntity)
