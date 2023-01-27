@@ -7,18 +7,18 @@ namespace Catalog.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CategoryController : ControllerBase
+public class CategoriesController : ControllerBase
 {
     private readonly DbSet<CategoryEntity> categorySet;
 
-    public CategoryController(DbSet<CategoryEntity> categorySet)
+    public CategoriesController(DbSet<CategoryEntity> categorySet)
     {
         this.categorySet = categorySet;
     }
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Category>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Category>>> GetAll()
+    public async Task<ActionResult<IEnumerable<Category>>> GetCategoriesAsync()
     {
         var categories = await categorySet
             .AsNoTracking()
