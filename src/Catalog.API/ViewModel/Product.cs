@@ -17,7 +17,7 @@ public record Product
     public IList<ProductImage> Images { get; init; }
 
     [DefaultValue(0.0f)]
-    public decimal Price { get; init; }
+    public decimal FullPrice { get; init; }
 
     [DefaultValue(0.0f)]
     public decimal Sale { get; init; }
@@ -49,7 +49,7 @@ public static class ProductExtensions
                     IsMain = e.IsMain
                 })
                 .ToList(),
-            Price = productEntity.Price,
+            FullPrice = productEntity.FullPrice,
             Sale = productEntity.Sale,
             Quantity = productEntity.Quantity,
             IsActive = productEntity.IsActive,

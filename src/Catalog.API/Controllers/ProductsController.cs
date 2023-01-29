@@ -59,8 +59,8 @@ public class ProductsController : ControllerBase
             products = products.Where(p => filter.BrandIds.Contains(p.BrandId));
 
         products = products.Where(p =>
-            (filter.MinPrice == null || p.Price >= filter.MinPrice) &&
-            (filter.MaxPrice == null || p.Price <= filter.MaxPrice));
+            (filter.MinPrice == null || p.FullPrice >= filter.MinPrice) &&
+            (filter.MaxPrice == null || p.FullPrice <= filter.MaxPrice));
 
         if (!string.IsNullOrEmpty(search.Query))
             products = products.Where(p => p.Name.Contains(search.Query, StringComparison.OrdinalIgnoreCase));
@@ -72,8 +72,8 @@ public class ProductsController : ControllerBase
                 : products.OrderBy(p => p.Name),
 
             "Price" => ordering.Desc
-                ? products.OrderByDescending(p => p.Price)
-                : products.OrderBy(p => p.Price),
+                ? products.OrderByDescending(p => p.FullPrice)
+                : products.OrderBy(p => p.FullPrice),
 
             _ => ordering.Desc
                 ? products.OrderByDescending(p => p.ProductId)
