@@ -39,6 +39,7 @@ public class ProductsController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ProductsByParametersAsync(
         [FromQuery] FilteringParameters filter,
@@ -73,7 +74,7 @@ public class ProductsController : ControllerBase
         var totalNumberOfProducts = products.Count();
 
         if (pagination.PageIndex * pagination.PageSize >= totalNumberOfProducts)
-            return BadRequest();
+            return NotFound();
 
         var productsOnPage = await products
             .Skip(pagination.PageIndex * pagination.PageSize)
