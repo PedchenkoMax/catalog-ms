@@ -42,10 +42,10 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ProductsByParametersAsync(
+        [FromQuery] SearchParameters search,
         [FromQuery] FilteringParameters filter,
-        [FromQuery] PaginationParameters pagination,
         [FromQuery] OrderingParameters ordering,
-        [FromQuery] SearchParameters search)
+        [FromQuery] PaginationParameters pagination)
     {
         var products = productSet
             .Include(p => p.CategoryEntity)
@@ -53,6 +53,9 @@ public class ProductsController : ControllerBase
             .AsNoTracking()
             .AsQueryable();
 
+        if (!string.IsNullOrEmpty(search.Query))
+            products = products.Where(p => p.Name.Contains(search.Query, StringComparison.OrdinalIgnoreCase));
+        
         if (filter.CategoryId != null)
             products = products.Where(p => p.CategoryId == filter.CategoryId);
 
@@ -62,9 +65,6 @@ public class ProductsController : ControllerBase
         products = products.Where(p =>
             (filter.MinPrice == null || p.FullPrice >= filter.MinPrice) &&
             (filter.MaxPrice == null || p.FullPrice <= filter.MaxPrice));
-
-        if (!string.IsNullOrEmpty(search.Query))
-            products = products.Where(p => p.Name.Contains(search.Query, StringComparison.OrdinalIgnoreCase));
 
         if (ordering.OrderBy == "Price")
             products = ordering.Desc
