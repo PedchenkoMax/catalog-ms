@@ -11,17 +11,22 @@ public record Product
     [DefaultValue("Unnamed Product")]
     public string Name { get; init; }
 
-    [DefaultValue(0)]
-    public int? Quantity { get; init; }
+    [DefaultValue("Not specified")]
+    public string Description { get; init; }
+
+    public IList<ProductImage> Images { get; init; }
 
     [DefaultValue(0.0f)]
     public decimal Price { get; init; }
 
-    [DefaultValue("https://blobstorage.com/default-image.jpg")]
-    public string? Image { get; init; }
+    [DefaultValue(0.0f)]
+    public decimal Sale { get; init; }
 
-    [DefaultValue("Not specified")]
-    public string? Description { get; init; }
+    [DefaultValue(0)]
+    public int Quantity { get; init; }
+
+    [DefaultValue(true)]
+    public bool IsActive { get; init; }
 
     public Category Category { get; init; }
 
@@ -36,10 +41,18 @@ public static class ProductExtensions
         {
             ProductId = productEntity.ProductId,
             Name = productEntity.Name,
-            Quantity = productEntity.Quantity,
-            Price = productEntity.Price,
-            Image = productEntity.Image,
             Description = productEntity.Description,
+            Images = productEntity.Images
+                .Select(e => new ProductImage
+                {
+                    ImageUrl = e.ImageUrl,
+                    IsMain = e.IsMain
+                })
+                .ToList(),
+            Price = productEntity.Price,
+            Sale = productEntity.Sale,
+            Quantity = productEntity.Quantity,
+            IsActive = productEntity.IsActive,
             Category = new Category
             {
                 CategoryId = productEntity.CategoryId,
