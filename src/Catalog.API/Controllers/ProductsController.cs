@@ -65,20 +65,10 @@ public class ProductsController : ControllerBase
         if (!string.IsNullOrEmpty(search.Query))
             products = products.Where(p => p.Name.Contains(search.Query, StringComparison.OrdinalIgnoreCase));
 
-        products = ordering.OrderBy switch
-        {
-            "Name" => ordering.Desc
-                ? products.OrderByDescending(p => p.Name)
-                : products.OrderBy(p => p.Name),
-
-            "Price" => ordering.Desc
+        if (ordering.OrderBy == "Price")
+            products = ordering.Desc
                 ? products.OrderByDescending(p => p.FullPrice)
-                : products.OrderBy(p => p.FullPrice),
-
-            _ => ordering.Desc
-                ? products.OrderByDescending(p => p.ProductId)
-                : products.OrderBy(p => p.ProductId)
-        };
+                : products.OrderBy(p => p.FullPrice);
 
         var totalNumberOfProducts = products.Count();
 
@@ -91,7 +81,8 @@ public class ProductsController : ControllerBase
             .Select(x => x.ToProduct())
             .ToListAsync();
 
-        var paginatedProduct = new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, totalNumberOfProducts, productsOnPage);
+        var paginatedProduct =
+            new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, totalNumberOfProducts, productsOnPage);
 
         return Ok(paginatedProduct);
     }
