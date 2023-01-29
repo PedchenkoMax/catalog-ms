@@ -81,8 +81,11 @@ public class ProductsController : ControllerBase
             .Select(x => x.ToProduct())
             .ToListAsync();
 
-        var paginatedProduct =
-            new PaginatedProductsViewModel<Product>(pagination.PageIndex, pagination.PageSize, totalNumberOfProducts, productsOnPage);
+        var paginatedProduct = new PaginatedProductsViewModel<Product>(
+            pagination.PageIndex,
+            pagination.PageSize,
+            totalNumberOfProducts,
+            productsOnPage);
 
         return Ok(paginatedProduct);
     }
