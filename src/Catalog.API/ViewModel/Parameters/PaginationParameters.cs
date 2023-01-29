@@ -2,9 +2,6 @@ namespace Catalog.API.ViewModel.Parameters;
 
 public record PaginationParameters
 {
-    public int PageIndex { get; init; }
-    public int PageSize { get; init; }
-
     public PaginationParameters(int pageIndex = 0, int pageSize = 10)
     {
         PageIndex = pageIndex;
@@ -17,4 +14,7 @@ public record PaginationParameters
         if (pageSize >= 100)
             throw new ArgumentException("pageSize cant be greater than 100");
     }
+
+    public int PageIndex { get; init; }
+    public int PageSize { get; init; }
 }
