@@ -2,7 +2,7 @@
 
 public record FilteringParameters
 {
-    public FilteringParameters(Guid? categoryId = null, List<Guid>? brandIds = null, decimal? minPrice = null, decimal? maxPrice = null)
+    public FilteringParameters(Guid? categoryId, List<Guid>? brandIds, decimal? minPrice, decimal? maxPrice)
     {
         CategoryId = categoryId;
         BrandIds = brandIds;
