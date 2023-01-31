@@ -40,7 +40,7 @@ public class ProductsController : ControllerBase
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(PaginatedProductsViewModel<Product>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PaginatedList<Product>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ProductsByParametersAsync(
         [FromQuery] SearchParameters search,
         [FromQuery] FilteringParameters filter,
