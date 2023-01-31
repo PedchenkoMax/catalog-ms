@@ -36,22 +36,22 @@ public static class QueryableProductFilterExtensions
         this IQueryable<ProductEntity> products,
         OrderFilter ordering,
         OrderByEnum defaultOrderBy = OrderByEnum.Discount,
-        bool defaultDesc = true)
+        bool defaultIsDesc = true)
     {
         var orderBy = ordering.OrderBy ?? defaultOrderBy;
-        var desc = ordering.Desc ?? defaultDesc;
+        var isDesc = ordering.IsDesc ?? defaultIsDesc;
 
         return orderBy switch
         {
-            OrderByEnum.Discount => desc
+            OrderByEnum.Discount => isDesc
                 ? products.OrderByDescending(p => p.Discount)
                 : products.OrderBy(p => p.Discount),
 
-            OrderByEnum.FullPrice => desc
+            OrderByEnum.FullPrice => isDesc
                 ? products.OrderByDescending(p => p.FullPrice)
                 : products.OrderBy(p => p.FullPrice),
 
-            OrderByEnum.Quantity => desc
+            OrderByEnum.Quantity => isDesc
                 ? products.OrderByDescending(p => p.Quantity)
                 : products.OrderBy(p => p.Quantity),
             _ => products

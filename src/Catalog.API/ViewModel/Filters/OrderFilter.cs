@@ -7,7 +7,7 @@ namespace Catalog.API.ViewModel.Filters;
 
 public record OrderFilter(
     [EnumDataType(typeof(OrderByEnum))] OrderByEnum? OrderBy,
-    bool? Desc);
+    bool? IsDesc);
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum OrderByEnum
