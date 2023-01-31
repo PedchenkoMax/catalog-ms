@@ -36,7 +36,7 @@ public static partial class QueryableParametersExtensions
             OrderByEnum.FullPrice => desc
                 ? products.OrderByDescending(p => p.FullPrice)
                 : products.OrderBy(p => p.FullPrice),
-        
+
             OrderByEnum.Quantity => desc
                 ? products.OrderByDescending(p => p.Quantity)
                 : products.OrderBy(p => p.Quantity),

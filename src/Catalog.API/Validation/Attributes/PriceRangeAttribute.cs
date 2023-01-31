@@ -3,8 +3,8 @@
 namespace Catalog.API.Validation.Attributes;
 
 /// <summary>
-/// Validates that 'minPrice' and 'maxPrice' is greater than zero,
-/// and 'maxPrice' is also greater than 'minPrice'.
+///     Validates that 'minPrice' and 'maxPrice' is greater than zero,
+///     and 'maxPrice' is also greater than 'minPrice'.
 /// </summary>
 public class PriceRangeAttribute : ValidationAttribute
 {
