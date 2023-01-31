@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Catalog.Domain.Entities;
 
-namespace Catalog.API.ViewModel;
+namespace Catalog.API.DTO;
 
 public record Brand
 {

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Catalog.API.ViewModel.Filters;
+namespace Catalog.API.DTO.Filters;
 
 public record PaginationFilter(
     [Range(0, int.MaxValue)] int? PageIndex,

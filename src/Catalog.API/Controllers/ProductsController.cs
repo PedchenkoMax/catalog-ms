@@ -1,6 +1,6 @@
+using Catalog.API.DTO;
+using Catalog.API.DTO.Filters;
 using Catalog.API.QueryableExtensions;
-using Catalog.API.ViewModel;
-using Catalog.API.ViewModel.Filters;
 using Catalog.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

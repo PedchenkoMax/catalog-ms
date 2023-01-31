@@ -1,4 +1,4 @@
-﻿using Catalog.API.ViewModel.Filters;
+﻿using Catalog.API.DTO.Filters;
 using Catalog.Domain.Entities;
 
 namespace Catalog.API.QueryableExtensions;

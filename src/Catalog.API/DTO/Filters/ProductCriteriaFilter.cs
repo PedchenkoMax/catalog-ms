@@ -1,6 +1,6 @@
 ﻿using Catalog.API.Validation.Attributes;
 
-namespace Catalog.API.ViewModel.Filters;
+namespace Catalog.API.DTO.Filters;
 
 public record ProductCriteriaFilter(
     [GuidId] Guid? CategoryId,

@@ -1,4 +1,4 @@
-﻿using Catalog.API.ViewModel;
+﻿using Catalog.API.DTO;
 using Catalog.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

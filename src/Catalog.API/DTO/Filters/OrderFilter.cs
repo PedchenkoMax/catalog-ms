@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 #pragma warning disable CS8524
 
-namespace Catalog.API.ViewModel.Filters;
+namespace Catalog.API.DTO.Filters;
 
 public record OrderFilter(
     [EnumDataType(typeof(OrderByEnum))] OrderByEnum? OrderBy,

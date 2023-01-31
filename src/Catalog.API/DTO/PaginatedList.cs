@@ -1,4 +1,4 @@
-﻿namespace Catalog.API.ViewModel;
+﻿namespace Catalog.API.DTO;
 
 public record PaginatedList<TEntity>(
     int PageIndex,

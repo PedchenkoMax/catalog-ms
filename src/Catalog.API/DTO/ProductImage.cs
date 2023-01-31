@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Catalog.API.ViewModel;
+namespace Catalog.API.DTO;
 
 public record ProductImage
 {
