@@ -47,47 +47,26 @@ public class ProductsController : ControllerBase
         [FromQuery] OrderingParameters ordering,
         [FromQuery] PaginationParameters pagination)
     {
+        if (!ModelState.IsValid)
+            return ValidationProblem(ModelState);
+
         var products = productSet
             .Include(p => p.CategoryEntity)
             .Include(p => p.BrandEntity)
             .AsNoTracking()
             .AsQueryable();
 
-        if (!string.IsNullOrEmpty(search.Query))
-            products = products.Where(p => p.Name.Contains(search.Query, StringComparison.OrdinalIgnoreCase));
-        
-        if (filter.CategoryId != null)
-            products = products.Where(p => p.CategoryId == filter.CategoryId);
+        products.ApplySearch(search);
+        products.ApplyFilter(filter);
+        products.ApplyOrder(ordering);
+        products.ApplyPagination(pagination);
 
-        if (filter.BrandIds != null && filter.BrandIds.Any())
-            products = products.Where(p => filter.BrandIds.Contains(p.BrandId));
-
-        products = products.Where(p =>
-            (filter.MinPrice == null || p.FullPrice >= filter.MinPrice) &&
-            (filter.MaxPrice == null || p.FullPrice <= filter.MaxPrice));
-
-        if (ordering.OrderBy == "Price")
-            products = ordering.Desc
-                ? products.OrderByDescending(p => p.FullPrice)
-                : products.OrderBy(p => p.FullPrice);
-
-        var totalNumberOfProducts = products.Count();
-
-        if (pagination.PageIndex * pagination.PageSize >= totalNumberOfProducts)
-            return NotFound();
-
-        var productsOnPage = await products
-            .Skip(pagination.PageIndex * pagination.PageSize)
-            .Take(pagination.PageSize)
+        var res = await products
             .Select(x => x.ToProduct())
             .ToListAsync();
 
-        var paginatedProduct = new PaginatedProductsViewModel<Product>(
-            pagination.PageIndex,
-            pagination.PageSize,
-            totalNumberOfProducts,
-            productsOnPage);
-
-        return Ok(paginatedProduct);
+        return res.Count == 0
+            ? NotFound()
+            : Ok(res);
     }
 }
