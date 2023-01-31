@@ -14,7 +14,7 @@ public record OrderingParameters(
 public enum OrderByEnum
 {
     FullPrice,
-    Sale,
+    Discount,
     Quantity
 }
 
@@ -24,15 +24,15 @@ public static partial class QueryableParametersExtensions
         this IQueryable<ProductEntity> products,
         OrderingParameters ordering)
     {
-        var orderBy = ordering.OrderBy ?? OrderByEnum.Sale;
+        var orderBy = ordering.OrderBy ?? OrderByEnum.Discount;
         var desc = ordering.Desc ?? true;
 
         return orderBy switch
         {
-            OrderByEnum.Sale => desc
-                ? products.OrderByDescending(p => p.Sale)
-                : products.OrderBy(p => p.Sale),
-            
+            OrderByEnum.Discount => desc
+                ? products.OrderByDescending(p => p.Discount)
+                : products.OrderBy(p => p.Discount),
+
             OrderByEnum.FullPrice => desc
                 ? products.OrderByDescending(p => p.FullPrice)
                 : products.OrderBy(p => p.FullPrice),

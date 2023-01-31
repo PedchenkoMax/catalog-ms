@@ -20,7 +20,7 @@ public record Product
     public decimal FullPrice { get; init; }
 
     [DefaultValue(0.0f)]
-    public decimal Sale { get; init; }
+    public decimal Discount { get; init; }
 
     [DefaultValue(0)]
     public int Quantity { get; init; }
@@ -50,7 +50,7 @@ public static class ProductExtensions
                 })
                 .ToList(),
             FullPrice = productEntity.FullPrice,
-            Sale = productEntity.Sale,
+            Discount = productEntity.Discount,
             Quantity = productEntity.Quantity,
             IsActive = productEntity.IsActive,
             Category = new Category
