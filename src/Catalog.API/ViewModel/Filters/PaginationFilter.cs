@@ -1,17 +1,17 @@
 using System.ComponentModel.DataAnnotations;
 using Catalog.Domain.Entities;
 
-namespace Catalog.API.ViewModel.Parameters;
+namespace Catalog.API.ViewModel.Filters;
 
-public record PaginationParameters(
+public record PaginationFilter(
     [Range(0, int.MaxValue)] int? PageIndex,
     [Range(1, 100)] int? PageSize);
 
-public static partial class QueryableParametersExtensions
+public static partial class QueryableFiltersExtensions
 {
     public static IQueryable<ProductEntity> ApplyPagination(
         this IQueryable<ProductEntity> products,
-        PaginationParameters pagination)
+        PaginationFilter pagination)
     {
         var pageIndex = pagination.PageIndex ?? 0;
         var pagePage = pagination.PageSize ?? 10;

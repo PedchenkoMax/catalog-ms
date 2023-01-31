@@ -1,5 +1,5 @@
 using Catalog.API.ViewModel;
-using Catalog.API.ViewModel.Parameters;
+using Catalog.API.ViewModel.Filters;
 using Catalog.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -42,10 +42,10 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(PaginatedList<Product>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ProductsByParametersAsync(
-        [FromQuery] SearchParameters search,
-        [FromQuery] FilteringParameters filter,
-        [FromQuery] OrderingParameters ordering,
-        [FromQuery] PaginationParameters pagination)
+        [FromQuery] SearchFilter search,
+        [FromQuery] ProductCriteriaFilter criteria,
+        [FromQuery] OrderFilter ordering,
+        [FromQuery] PaginationFilter pagination)
     {
         if (!ModelState.IsValid)
             return ValidationProblem(ModelState);
@@ -57,7 +57,7 @@ public class ProductsController : ControllerBase
             .AsQueryable();
 
         products.ApplySearch(search);
-        products.ApplyFilter(filter);
+        products.ApplyProductCriteria(criteria);
         products.ApplyOrder(ordering);
         products.ApplyPagination(pagination);
 

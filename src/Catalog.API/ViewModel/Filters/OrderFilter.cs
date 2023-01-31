@@ -4,9 +4,9 @@ using Catalog.Domain.Entities;
 
 #pragma warning disable CS8524
 
-namespace Catalog.API.ViewModel.Parameters;
+namespace Catalog.API.ViewModel.Filters;
 
-public record OrderingParameters(
+public record OrderFilter(
     [EnumDataType(typeof(OrderByEnum))] OrderByEnum? OrderBy,
     bool? Desc);
 
@@ -18,11 +18,11 @@ public enum OrderByEnum
     Quantity
 }
 
-public static partial class QueryableParametersExtensions
+public static partial class QueryableFiltersExtensions
 {
     public static IQueryable<ProductEntity> ApplyOrder(
         this IQueryable<ProductEntity> products,
-        OrderingParameters ordering)
+        OrderFilter ordering)
     {
         var orderBy = ordering.OrderBy ?? OrderByEnum.Discount;
         var desc = ordering.Desc ?? true;
