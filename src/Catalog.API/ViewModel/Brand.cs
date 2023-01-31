@@ -12,7 +12,7 @@ public record Brand
     public string Name { get; init; }
 
     [DefaultValue("https://blobstorage.com/default-image.jpg")]
-    public string ImageUrl { get; init; }
+    public string Image { get; init; }
 }
 
 public static class BrandExtensions
@@ -23,7 +23,7 @@ public static class BrandExtensions
         {
             BrandId = brandEntity.BrandId,
             Name = brandEntity.Name,
-            ImageUrl = brandEntity.ImageUrl
+            Image = brandEntity.Image
         };
     }
 }

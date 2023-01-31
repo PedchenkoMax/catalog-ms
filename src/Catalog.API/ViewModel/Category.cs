@@ -12,7 +12,7 @@ public record Category
     public string Name { get; init; }
 
     [DefaultValue("https://blobstorage.com/default-image.jpg")]
-    public string ImageUrl { get; init; }
+    public string Image { get; init; }
 }
 
 public static class CategoryExtensions
@@ -23,7 +23,7 @@ public static class CategoryExtensions
         {
             CategoryId = categoryEntity.CategoryId,
             Name = categoryEntity.Name,
-            ImageUrl = categoryEntity.ImageUrl
+            Image = categoryEntity.Image
         };
     }
 }
