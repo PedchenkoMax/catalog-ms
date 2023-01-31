@@ -1,3 +1,4 @@
+using Catalog.API.Middlewares;
 using Catalog.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,8 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 
+    app.ConfigureExceptionHandler();
+    
     app.UseAuthorization();
 
     app.MapControllers();
