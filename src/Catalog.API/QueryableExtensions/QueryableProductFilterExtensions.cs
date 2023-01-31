@@ -34,10 +34,12 @@ public static class QueryableProductFilterExtensions
 
     public static IQueryable<ProductEntity> ApplyOrder(
         this IQueryable<ProductEntity> products,
-        OrderFilter ordering)
+        OrderFilter ordering,
+        OrderByEnum defaultOrderBy = OrderByEnum.Discount,
+        bool defaultDesc = true)
     {
-        var orderBy = ordering.OrderBy ?? OrderByEnum.Discount;
-        var desc = ordering.Desc ?? true;
+        var orderBy = ordering.OrderBy ?? defaultOrderBy;
+        var desc = ordering.Desc ?? defaultDesc;
 
         return orderBy switch
         {
