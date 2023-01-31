@@ -1,21 +1,20 @@
 ﻿using Catalog.API.ViewModel.Filters;
-using Catalog.Domain.Entities;
 
 namespace Catalog.API.QueryableExtensions;
 
 public static class QueryableGenericFilterExtensions
 {
-    public static IQueryable<ProductEntity> ApplyPagination(
-        this IQueryable<ProductEntity> products,
+    public static IQueryable<T> ApplyPagination<T>(
+        this IQueryable<T> items,
         PaginationFilter pagination)
     {
         var pageIndex = pagination.PageIndex ?? 0;
         var pagePage = pagination.PageSize ?? 10;
 
-        products = products
+        items = items
             .Skip(pageIndex * pagePage)
             .Take(pagePage);
 
-        return products;
+        return items;
     }
 }
