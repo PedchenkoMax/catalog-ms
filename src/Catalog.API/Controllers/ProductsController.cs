@@ -1,3 +1,4 @@
+using Catalog.API.QueryableExtensions;
 using Catalog.API.ViewModel;
 using Catalog.API.ViewModel.Filters;
 using Catalog.Domain.Entities;
