@@ -1,20 +1,9 @@
-﻿namespace Catalog.API.ViewModel.Parameters;
+﻿using Catalog.API.Validation.Attributes;
 
-public record FilteringParameters
-{
-    public FilteringParameters(Guid? categoryId, List<Guid>? brandIds, decimal? minPrice, decimal? maxPrice)
-    {
-        CategoryId = categoryId;
-        BrandIds = brandIds;
-        MinPrice = minPrice;
-        MaxPrice = maxPrice;
+namespace Catalog.API.ViewModel.Parameters;
 
-        if (minPrice > maxPrice)
-            throw new ArgumentException("Invalid price range: min price cannot be greater than max price.");
-    }
-
-    public Guid? CategoryId { get; init; }
-    public List<Guid>? BrandIds { get; init; }
-    public decimal? MinPrice { get; init; }
-    public decimal? MaxPrice { get; init; }
-}
+public record FilteringParameters(
+    [GuidId] Guid? CategoryId,
+    [GuidIdCollection] List<Guid>? BrandIds,
+    [PriceRange] decimal? MinPrice,
+    decimal? MaxPrice);
