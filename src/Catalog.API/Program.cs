@@ -28,8 +28,9 @@ var app = builder.Build();
 
     app.UseHttpLogging();
 
-    app.ConfigureExceptionHandler();
-    
+    app.UseExceptionHandler("/error");
+    //app.ConfigureExceptionHandler();
+
     app.UseAuthorization();
 
     app.MapControllers();
