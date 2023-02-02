@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Catalog.Domain.Entities;
 
 namespace Catalog.API.DTO;
@@ -42,27 +42,13 @@ public static class ProductExtensions
             ProductId = entity.ProductId,
             Name = entity.Name,
             Description = entity.Description,
-            Images = entity.Images
-                .Select(e => new ProductImage
-                {
-                    ImageUrl = e.ImageUrl,
-                    IsMain = e.IsMain
-                })
-                .ToList(),
+            Images = entity.Images?.Select(e => e.ToDTO()).ToList(),
             FullPrice = entity.FullPrice,
             Discount = entity.Discount,
             Quantity = entity.Quantity,
             IsActive = entity.IsActive,
-            Category = new Category
-            {
-                CategoryId = entity.CategoryId,
-                Name = entity.CategoryEntity.Name
-            },
-            Brand = new Brand
-            {
-                BrandId = entity.BrandId,
-                Name = entity.BrandEntity.Name
-            }
+            Category = entity.Category?.ToDTO(),
+            Brand = entity.Brand?.ToDTO()
         };
     }
 }
