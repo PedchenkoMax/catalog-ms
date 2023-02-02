@@ -29,6 +29,9 @@ public class ProductsController : ControllerBase
             return BadRequest();
 
         var product = await productSet
+            .Include(p => p.Category)
+            .Include(p => p.Brand)
+            .Include(p => p.Images)
             .AsNoTracking()
             .Select(productEntity => productEntity.ToDTO())
             .FirstOrDefaultAsync(p => p.ProductId == productId);
@@ -53,8 +56,9 @@ public class ProductsController : ControllerBase
             return ValidationProblem(ModelState);
 
         var products = productSet
-            .Include(p => p.CategoryEntity)
-            .Include(p => p.BrandEntity)
+            .Include(p => p.Category)
+            .Include(p => p.Brand)
+            .Include(p => p.Images)
             .AsNoTracking()
             .AsQueryable();
 
