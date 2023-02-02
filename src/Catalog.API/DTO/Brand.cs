@@ -13,6 +13,8 @@ public record Brand
 
     [DefaultValue("https://blobstorage.com/default-image.jpg")]
     public string Image { get; init; }
+    
+    public IList<Product>? Products { get; set; }
 }
 
 public static class BrandExtensions
