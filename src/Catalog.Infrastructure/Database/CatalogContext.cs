@@ -13,8 +13,8 @@ public class CatalogContext : DbContext
     }
 
     public DbSet<ProductEntity> Products { get; set; }
-    public DbSet<CategoryEntity> Category { get; set; }
-    public DbSet<BrandEntity> Brand { get; set; }
+    public DbSet<CategoryEntity> Categories { get; set; }
+    public DbSet<BrandEntity> Brands { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
