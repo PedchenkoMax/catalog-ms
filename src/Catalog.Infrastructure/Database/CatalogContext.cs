@@ -1,7 +1,7 @@
 #pragma warning disable CS8618
 
+using System.Reflection;
 using Catalog.Domain.Entities;
-using Catalog.Infrastructure.Database.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Infrastructure.Database;
@@ -21,7 +21,6 @@ public class CatalogContext : DbContext
     {
         base.OnModelCreating(builder);
 
-        // builder.ApplyConfigurationsFromAssembly(typeof(ProductConfiguration).Assembly);
-        // builder.ApplyConfigurationsFromAssembly(typeof(CategoryConfiguration).Assembly);
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
