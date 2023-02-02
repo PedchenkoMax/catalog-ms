@@ -62,10 +62,10 @@ public class ProductsController : ControllerBase
             .AsNoTracking()
             .AsQueryable();
 
-        products.ApplySearch(search);
-        products.ApplyProductCriteria(criteria);
-        products.ApplyOrder(ordering);
-        products.ApplyPagination(pagination);
+        products = products.ApplyFilter(filter);
+        products = products.ApplySearch(search);
+        products = products.ApplyPagination(pagination);
+        products = products.ApplyOrder(ordering);
 
         var res = await products
             .Select(x => x.ToDTO())
