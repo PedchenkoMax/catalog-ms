@@ -35,33 +35,33 @@ public record Product
 
 public static class ProductExtensions
 {
-    public static Product ToDTO(this ProductEntity productEntity)
+    public static Product ToDTO(this ProductEntity entity)
     {
         return new Product
         {
-            ProductId = productEntity.ProductId,
-            Name = productEntity.Name,
-            Description = productEntity.Description,
-            Images = productEntity.Images
+            ProductId = entity.ProductId,
+            Name = entity.Name,
+            Description = entity.Description,
+            Images = entity.Images
                 .Select(e => new ProductImage
                 {
                     ImageUrl = e.ImageUrl,
                     IsMain = e.IsMain
                 })
                 .ToList(),
-            FullPrice = productEntity.FullPrice,
-            Discount = productEntity.Discount,
-            Quantity = productEntity.Quantity,
-            IsActive = productEntity.IsActive,
+            FullPrice = entity.FullPrice,
+            Discount = entity.Discount,
+            Quantity = entity.Quantity,
+            IsActive = entity.IsActive,
             Category = new Category
             {
-                CategoryId = productEntity.CategoryId,
-                Name = productEntity.CategoryEntity.Name
+                CategoryId = entity.CategoryId,
+                Name = entity.CategoryEntity.Name
             },
             Brand = new Brand
             {
-                BrandId = productEntity.BrandId,
-                Name = productEntity.BrandEntity.Name
+                BrandId = entity.BrandId,
+                Name = entity.BrandEntity.Name
             }
         };
     }

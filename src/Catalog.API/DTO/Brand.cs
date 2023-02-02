@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Catalog.Domain.Entities;
 
 namespace Catalog.API.DTO;
@@ -17,13 +17,13 @@ public record Brand
 
 public static class BrandExtensions
 {
-    public static Brand ToDTO(this BrandEntity brandEntity)
+    public static Brand ToDTO(this BrandEntity entity)
     {
         return new Brand
         {
-            BrandId = brandEntity.BrandId,
-            Name = brandEntity.Name,
-            Image = brandEntity.Image
+            BrandId = entity.BrandId,
+            Name = entity.Name,
+            Image = entity.Image
         };
     }
 }

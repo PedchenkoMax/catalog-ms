@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Catalog.Domain.Entities;
 
 namespace Catalog.API.DTO;
@@ -17,13 +17,13 @@ public record Category
 
 public static class CategoryExtensions
 {
-    public static Category ToDTO(this CategoryEntity categoryEntity)
+    public static Category ToDTO(this CategoryEntity entity)
     {
         return new Category
         {
-            CategoryId = categoryEntity.CategoryId,
-            Name = categoryEntity.Name,
-            Image = categoryEntity.Image
+            CategoryId = entity.CategoryId,
+            Name = entity.Name,
+            Image = entity.Image
         };
     }
 }
