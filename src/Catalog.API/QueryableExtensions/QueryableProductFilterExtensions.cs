@@ -1,13 +1,13 @@
-﻿using Catalog.API.DTO.Filters;
+using Catalog.API.DTO.Filters;
 using Catalog.Domain.Entities;
 
 namespace Catalog.API.QueryableExtensions;
 
 public static class QueryableProductFilterExtensions
 {
-    public static IQueryable<ProductEntity> ApplyProductCriteria(
+    public static IQueryable<ProductEntity> ApplyFilter(
         this IQueryable<ProductEntity> products,
-        ProductCriteriaFilter criteriaFilter)
+        ProductFilter criteriaFilter)
     {
         if (criteriaFilter.CategoryId != null)
             products = products.Where(p => p.CategoryId == criteriaFilter.CategoryId);

@@ -47,8 +47,8 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(PaginatedList<Product>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ProductsByParametersAsync(
+        [FromQuery] ProductFilter filter,
         [FromQuery] SearchFilter search,
-        [FromQuery] ProductCriteriaFilter criteria,
         [FromQuery] OrderFilter ordering,
         [FromQuery] PaginationFilter pagination)
     {
