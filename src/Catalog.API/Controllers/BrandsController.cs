@@ -1,5 +1,6 @@
-﻿using Catalog.API.DTO;
+using Catalog.API.DTO;
 using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +12,9 @@ public class BrandsController : ControllerBase
 {
     private readonly DbSet<BrandEntity> brandSet;
 
-    public BrandsController(DbSet<BrandEntity> brandSet)
+    public BrandsController(CatalogContext context)
     {
-        this.brandSet = brandSet;
+        brandSet = context.Brands;
     }
 
     [HttpGet]

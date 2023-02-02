@@ -2,6 +2,7 @@ using Catalog.API.DTO;
 using Catalog.API.DTO.Filters;
 using Catalog.API.QueryableExtensions;
 using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,9 +14,9 @@ public class ProductsController : ControllerBase
 {
     private readonly DbSet<ProductEntity> productSet;
 
-    public ProductsController(DbSet<ProductEntity> productSet)
+    public ProductsController(CatalogContext context)
     {
-        this.productSet = productSet;
+        productSet = context.Products;
     }
 
     [HttpGet("{productId:guid}")]

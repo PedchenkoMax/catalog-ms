@@ -1,5 +1,6 @@
-﻿using Catalog.API.DTO;
+using Catalog.API.DTO;
 using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +12,9 @@ public class CategoriesController : ControllerBase
 {
     private readonly DbSet<CategoryEntity> categorySet;
 
-    public CategoriesController(DbSet<CategoryEntity> categorySet)
+    public CategoriesController(CatalogContext context)
     {
-        this.categorySet = categorySet;
+        categorySet = context.Categories;
     }
 
     [HttpGet]
