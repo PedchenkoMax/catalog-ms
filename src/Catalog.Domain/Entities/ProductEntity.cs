@@ -12,8 +12,8 @@ public class ProductEntity
     public bool IsActive { get; set; }
 
     public Guid CategoryId { get; set; }
-    public CategoryEntity CategoryEntity { get; set; }
+    public CategoryEntity Category { get; set; }
 
     public Guid BrandId { get; set; }
-    public BrandEntity BrandEntity { get; set; }
+    public BrandEntity Brand { get; set; }
 }
