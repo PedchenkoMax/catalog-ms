@@ -14,7 +14,7 @@ public record Product
     [DefaultValue("Not specified")]
     public string Description { get; init; }
 
-    public IList<ProductImage> Images { get; init; }
+    public IList<ProductImage>? Images { get; init; }
 
     [DefaultValue(0.0f)]
     public decimal FullPrice { get; init; }
@@ -28,9 +28,9 @@ public record Product
     [DefaultValue(true)]
     public bool IsActive { get; init; }
 
-    public Category Category { get; init; }
+    public Category? Category { get; init; }
 
-    public Brand Brand { get; init; }
+    public Brand? Brand { get; init; }
 }
 
 public static class ProductExtensions
