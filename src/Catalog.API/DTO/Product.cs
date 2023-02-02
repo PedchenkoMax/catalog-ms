@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using Catalog.Domain.Entities;
 
 namespace Catalog.API.DTO;
@@ -35,7 +35,7 @@ public record Product
 
 public static class ProductExtensions
 {
-    public static Product ToProduct(this ProductEntity productEntity)
+    public static Product ToDTO(this ProductEntity productEntity)
     {
         return new Product
         {

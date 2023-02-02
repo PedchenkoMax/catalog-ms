@@ -1,4 +1,4 @@
-using Catalog.API.DTO;
+﻿using Catalog.API.DTO;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,7 @@ public class CategoriesController : ControllerBase
     {
         var categories = await categorySet
             .AsNoTracking()
-            .Select(categoryEntity => categoryEntity.ToCategory())
+            .Select(categoryEntity => categoryEntity.ToDTO())
             .ToListAsync();
 
         return Ok(categories);

@@ -1,4 +1,4 @@
-using Catalog.API.DTO;
+﻿using Catalog.API.DTO;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,7 @@ public class BrandsController : ControllerBase
     {
         var brands = await brandSet
             .AsNoTracking()
-            .Select(brandEntity => brandEntity.ToBrand())
+            .Select(brandEntity => brandEntity.ToDTO())
             .ToListAsync();
 
         return Ok(brands);

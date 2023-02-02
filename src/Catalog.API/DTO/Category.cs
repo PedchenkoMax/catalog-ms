@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using Catalog.Domain.Entities;
 
 namespace Catalog.API.DTO;
@@ -17,7 +17,7 @@ public record Category
 
 public static class CategoryExtensions
 {
-    public static Category ToCategory(this CategoryEntity categoryEntity)
+    public static Category ToDTO(this CategoryEntity categoryEntity)
     {
         return new Category
         {

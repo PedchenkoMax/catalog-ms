@@ -30,7 +30,7 @@ public class ProductsController : ControllerBase
 
         var product = await productSet
             .AsNoTracking()
-            .Select(productEntity => productEntity.ToProduct())
+            .Select(productEntity => productEntity.ToDTO())
             .FirstOrDefaultAsync(p => p.ProductId == productId);
 
         if (product == null)
@@ -64,7 +64,7 @@ public class ProductsController : ControllerBase
         products.ApplyPagination(pagination);
 
         var res = await products
-            .Select(x => x.ToProduct())
+            .Select(x => x.ToDTO())
             .ToListAsync();
 
         return res.Count == 0
