@@ -15,6 +15,7 @@ public class CatalogContext : DbContext
     public DbSet<ProductEntity> Products { get; set; }
     public DbSet<CategoryEntity> Categories { get; set; }
     public DbSet<BrandEntity> Brands { get; set; }
+    public DbSet<ProductImageEntity> ProductImages { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
