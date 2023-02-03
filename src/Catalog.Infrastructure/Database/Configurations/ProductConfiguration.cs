@@ -152,6 +152,241 @@ public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
                 IsActive = true,
                 CategoryId = SeedDataConstants.CategoryTv,
                 BrandId = SeedDataConstants.BrandLg
-            });
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook1,
+                Name = "Lenovo ThinkPad X1 Carbon 14-Inch Laptop",
+                Description = "The Lenovo ThinkPad X1 Carbon features a 14-inch full HD display," +
+                              " 8th Gen Intel Core i7 processor, and 16GB RAM.",
+                FullPrice = 999.99M,
+                Discount = 0.0M,
+                Quantity = 10,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook2,
+                Name = "Lenovo Ideapad 330 15-Inch Laptop",
+                Description = "The Lenovo Ideapad 330 features a 15-inch full HD display," +
+                              " Intel Celeron N4000 processor, and 4GB RAM.",
+                FullPrice = 499.99M,
+                Discount = 199.99M,
+                Quantity = 20,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook3,
+                Name = "Lenovo Legion Y540 15-Inch Gaming Laptop",
+                Description = "The Lenovo Legion Y540 features a 15-inch full HD display," +
+                              " 9th Gen Intel Core i7 processor, and 16GB RAM.",
+                FullPrice = 1299.99M,
+                Discount = 0.0M,
+                Quantity = 15,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook4,
+                Name = "Lenovo Yoga C930 2-In-1 Laptop",
+                Description = "The Lenovo Yoga C930 features a 13.9-inch full HD display," +
+                              " 8th Gen Intel Core i7 processor, and 8GB RAM.",
+                FullPrice = 1299.99M,
+                Discount = 100.0M,
+                Quantity = 10,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook5,
+                Name = "Lenovo ThinkPad X1 Yoga",
+                Description = "The Lenovo ThinkPad X1 Yoga features a 14-inch Full HD IPS touch screen," +
+                              " Intel Core i7 processor, and 8GB of RAM.",
+                FullPrice = 1599.99M,
+                Discount = 0.0M,
+                Quantity = 20,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook6,
+                Name = "Lenovo Legion 5",
+                Description = "The Lenovo Legion 5 features a 15.6-inch Full HD IPS display," +
+                              " AMD Ryzen 5 4600H processor, and NVIDIA GeForce GTX 1650 graphics card.",
+                FullPrice = 999.99M,
+                Discount = 0.0M,
+                Quantity = 10,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook7,
+                Name = "Lenovo IdeaPad 5",
+                Description = "The Lenovo IdeaPad 5 features a 14-inch Full HD IPS display," +
+                              " Intel Core i5 processor, and 8GB of RAM.",
+                FullPrice = 699.99M,
+                Discount = 100.0M,
+                Quantity = 15,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook8,
+                Name = "Lenovo Yoga 9i",
+                Description = "The Lenovo Yoga 9i features a 14-inch Full HD IPS touch screen," +
+                              " Intel Core i7 processor, and 16GB of RAM.",
+                FullPrice = 1799.99M,
+                Discount = 200.0M,
+                Quantity = 0,
+                IsActive = false,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook9,
+                Name = "Lenovo ThinkPad P1",
+                Description = "The Lenovo ThinkPad P1 features a 15.6-inch Full HD IPS display," +
+                              " Intel Core i7 processor, and NVIDIA Quadro P620 graphics card.",
+                FullPrice = 2199.99M,
+                Discount = 300.0M,
+                Quantity = 3,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandLenovo
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook10,
+                Name = "Apple MacBook Pro 16-inch",
+                Description = "The Apple MacBook Pro 16-inch features a 16-inch Retina Display," +
+                              " 9th-generation 6-Core Intel Core i7 processor, and AMD Radeon Pro 5300M graphics card.",
+                FullPrice = 2499.99M,
+                Discount = 500.0M,
+                Quantity = 0,
+                IsActive = false,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook11,
+                Name = "Apple MacBook Air 13-inch",
+                Description = "The Apple MacBook Air 13-inch features a 13.3-inch Retina Display," +
+                              " 8th-generation dual-core Intel Core i5 processor, and 8GB of RAM.",
+                FullPrice = 999.99M,
+                Discount = 100.0M,
+                Quantity = 10,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook12,
+                Name = "Apple MacBook Pro 15-inch",
+                Description = "The Apple MacBook Pro 15-inch features a 15.4-inch Retina Display," +
+                              " 9th-generation 8-Core Intel Core i9 processor, and AMD Radeon Pro 555X graphics card.",
+                FullPrice = 2799.99M,
+                Discount = 700.0M,
+                Quantity = 5,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook13,
+                Name = "Apple MacBook 12-inch",
+                Description = "The Apple MacBook 12-inch features a 12-inch Retina Display," +
+                              " 7th-generation dual-core Intel Core m3 processor, and 8GB of RAM.",
+                FullPrice = 799.99M,
+                Discount = 50.0M,
+                Quantity = 20,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook14,
+                Name = "Apple MacBook Pro 13-inch",
+                Description = "The Apple MacBook Pro 13-inch features a 13.3-inch Retina Display," +
+                              " 10th-generation quad-core Intel Core i5 processor, and Intel Iris Plus Graphics.",
+                FullPrice = 1499.99M,
+                Discount = 250.0M,
+                Quantity = 8,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook15,
+                Name = "Apple MacBook Pro 16-inch",
+                Description = "The Apple MacBook Pro 16-inch features a 16-inch Retina display," +
+                              " 9th generation Intel Core i9 processor, and 32GB of RAM.",
+                FullPrice = 2499.99M,
+                Discount = 500.0M,
+                Quantity = 2,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook16,
+                Name = "Apple MacBook 12-inch",
+                Description = "The Apple MacBook 12-inch features a 12-inch Retina display," +
+                              " Intel Core m3 processor, and 8GB of RAM.",
+                FullPrice = 799.99M,
+                Discount = 100.0M,
+                Quantity = 6,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook17,
+                Name = "Apple MacBook Pro Touch Bar",
+                Description = "The Apple MacBook Pro Touch Bar features a 13.3-inch Retina display," +
+                              " Intel Core i5 processor, and 16GB of RAM.",
+                FullPrice = 1299.99M,
+                Discount = 150.0M,
+                Quantity = 4,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            },
+            new ProductEntity
+            {
+                ProductId = SeedDataConstants.Notebook18,
+                Name = "Apple MacBook Pro Touch Bar 15-inch",
+                Description = "The Apple MacBook Pro Touch Bar 15-inch features a 15-inch Retina display," +
+                              " Intel Core i7 processor, and 32GB of RAM.",
+                FullPrice = 1799.99M,
+                Discount = 250.0M,
+                Quantity = 3,
+                IsActive = true,
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                BrandId = SeedDataConstants.BrandApple
+            }
+        );
     }
 }

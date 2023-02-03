@@ -21,19 +21,25 @@ public class BrandConfiguration : IEntityTypeConfiguration<BrandEntity>
             {
                 BrandId = SeedDataConstants.BrandApple,
                 Name = "Apple",
-                Image = "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                Image = "https://blob.com/BrandApple.png"
             },
             new BrandEntity
             {
                 BrandId = SeedDataConstants.BrandSamsung,
                 Name = "Samsung",
-                Image = "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+                Image = "https://blob.com/BrandSamsung.png"
             },
             new BrandEntity
             {
                 BrandId = SeedDataConstants.BrandLg,
                 Name = "Lg",
-                Image = "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+                Image = "https://blob.com/BrandLg.png"
+            },
+            new BrandEntity
+            {
+                BrandId = SeedDataConstants.BrandLenovo,
+                Name = "Lenovo",
+                Image = "https://blob.com/BrandLenovo.png"
             }
         );
     }

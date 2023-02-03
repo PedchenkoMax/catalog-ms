@@ -21,13 +21,19 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
             {
                 CategoryId = SeedDataConstants.CategoryPhone,
                 Name = "Phone",
-                Image = "https://cdn-icons-png.flaticon.com/512/65/65680.png"
+                Image = "https://blob.com/CategoryPhone.png"
             },
             new CategoryEntity
             {
                 CategoryId = SeedDataConstants.CategoryTv,
                 Name = "TV",
-                Image = "https://cdn-icons-png.flaticon.com/512/3443/3443580.png"
+                Image = "https://blob.com/CategoryTv.png"
+            },
+            new CategoryEntity
+            {
+                CategoryId = SeedDataConstants.CategoryNotebook,
+                Name = "Notebook",
+                Image = "https://blob.com/CategoryNotebook.png"
             }
         );
     }
