@@ -23,7 +23,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
-    public async Task<IActionResult> ProductByIdAsync([FromQuery] Guid productId)
+    public async Task<IActionResult> ProductByIdAsync([FromRoute] Guid productId)
     {
         if (productId != Guid.Empty)
             return BadRequest();
