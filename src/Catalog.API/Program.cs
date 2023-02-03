@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Catalog.API.Middlewares;
 using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.HttpLogging;
@@ -7,7 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 {
-    services.AddControllers();
+    services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        });
+
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
     services.AddDbContext<CatalogContext>(o => o.UseSqlServer(builder.Configuration["ConnectionString"]));
