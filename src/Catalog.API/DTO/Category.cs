@@ -5,13 +5,13 @@ namespace Catalog.API.DTO;
 
 public record Category
 {
-    [DefaultValue("00000000-0000-0000-0000-000000000000")]
+    [DefaultValue("5e7274ad-3132-4ad7-be36-38778a8f7b1c")]
     public Guid CategoryId { get; init; }
 
-    [DefaultValue("Unnamed Category")]
+    [DefaultValue("Phone")]
     public string Name { get; init; }
 
-    [DefaultValue("https://blobstorage.com/default-image.jpg")]
+    [DefaultValue("https://cdn-icons-png.flaticon.com/512/65/65680.png")]
     public string Image { get; init; }
     
     public IList<Product>? Products { get; set; }

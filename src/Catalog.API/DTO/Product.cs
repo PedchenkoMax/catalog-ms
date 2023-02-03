@@ -5,24 +5,25 @@ namespace Catalog.API.DTO;
 
 public record Product
 {
-    [DefaultValue("00000000-0000-0000-0000-000000000000")]
+    [DefaultValue("1e338b12-8aa6-438f-8832-8c7429805d59")]
     public Guid ProductId { get; init; }
 
-    [DefaultValue("Unnamed Product")]
+    [DefaultValue("Samsung Galaxy Z Flip")]
     public string Name { get; init; }
 
-    [DefaultValue("Not specified")]
+    [DefaultValue("The Samsung Galaxy Z Flip features a 6.7-inch foldable AMOLED display, " +
+                  "Snapdragon 855+ processor, and a dual camera system.")]
     public string Description { get; init; }
 
     public IList<ProductImage>? Images { get; init; }
 
-    [DefaultValue(0.0f)]
+    [DefaultValue(999.99)]
     public decimal FullPrice { get; init; }
 
-    [DefaultValue(0.0f)]
+    [DefaultValue(100.0)]
     public decimal Discount { get; init; }
 
-    [DefaultValue(0)]
+    [DefaultValue(12)]
     public int Quantity { get; init; }
 
     [DefaultValue(true)]

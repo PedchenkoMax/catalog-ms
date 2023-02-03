@@ -5,7 +5,7 @@ namespace Catalog.API.DTO;
 
 public record ProductImage
 {
-    [DefaultValue("https://blobstorage.com/default-image.jpg")]
+    [DefaultValue("https://blob.com/Phone5Image-1.png")]
     public string ImageUrl { get; init; }
 
     [DefaultValue(true)]
