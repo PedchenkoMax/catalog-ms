@@ -25,7 +25,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
     public async Task<IActionResult> ProductByIdAsync([FromRoute] Guid productId)
     {
-        if (productId != Guid.Empty)
+        if (productId == Guid.Empty)
             return BadRequest();
 
         var product = await productSet
