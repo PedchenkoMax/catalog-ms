@@ -33,13 +33,12 @@ public class ProductsController : ControllerBase
             .Include(p => p.Brand)
             .Include(p => p.Images)
             .AsNoTracking()
-            .Select(productEntity => productEntity.ToDTO())
             .FirstOrDefaultAsync(p => p.ProductId == productId);
 
         if (product == null)
             return NotFound();
 
-        return Ok(product);
+        return Ok(product.ToDTO());
     }
 
     [HttpGet]
