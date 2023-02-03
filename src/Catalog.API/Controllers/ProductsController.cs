@@ -64,8 +64,8 @@ public class ProductsController : ControllerBase
 
         products = products.ApplyFilter(filter);
         products = products.ApplySearch(search);
-        products = products.ApplyPagination(pagination);
         products = products.ApplyOrder(ordering);
+        products = products.ApplyPagination(pagination);
 
         var res = await products
             .Select(x => x.ToDTO())
