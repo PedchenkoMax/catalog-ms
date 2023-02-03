@@ -28,17 +28,17 @@ public class ProductsController : ControllerBase
         if (productId == Guid.Empty)
             return BadRequest();
 
-        var product = await productSet
+        var entity = await productSet
             .Include(p => p.Category)
             .Include(p => p.Brand)
             .Include(p => p.Images)
             .AsNoTracking()
             .FirstOrDefaultAsync(p => p.ProductId == productId);
 
-        if (product == null)
+        if (entity == null)
             return NotFound();
 
-        return Ok(product.ToDTO());
+        return Ok(entity.ToDTO());
     }
 
     [HttpGet]
