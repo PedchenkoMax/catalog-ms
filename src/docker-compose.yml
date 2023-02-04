@@ -21,6 +21,19 @@ services:
       - SA_PASSWORD="KtPm23GLP@ssW0rd!"
     volumes:
       - mssql-data:/var/opt/mssql
+  
+  rabbitmq:
+    container_name: "rabbitmq"
+    image: rabbitmq:3.11.8-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
 
 volumes:
   mssql-data:
