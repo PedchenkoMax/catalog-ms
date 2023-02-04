@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Catalog.API.Middlewares;
@@ -20,8 +21,14 @@ var services = builder.Services;
 
     services.AddMassTransit(configurator =>
     {
+        configurator.SetKebabCaseEndpointNameFormatter();
+
+        configurator.AddConsumers(Assembly.GetExecutingAssembly());
+
         configurator.UsingRabbitMq((context, busConfigurator) =>
         {
+            busConfigurator.ConfigureEndpoints(context);
+
             var host = builder.Configuration["MessageBroker:Host"];
             var username = builder.Configuration["MessageBroker:Username"];
             var password = builder.Configuration["MessageBroker:Password"];
