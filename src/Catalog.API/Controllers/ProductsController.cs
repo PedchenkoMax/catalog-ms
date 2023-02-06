@@ -33,7 +33,7 @@ public class ProductsController : ControllerBase
             .Include(p => p.Brand)
             .Include(p => p.Images)
             .AsNoTracking()
-            .FirstOrDefaultAsync(p => p.ProductId == productId);
+            .FirstOrDefaultAsync(p => p.Id == productId);
 
         if (entity == null)
             return NotFound();

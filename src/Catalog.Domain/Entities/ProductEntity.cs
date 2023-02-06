@@ -1,8 +1,9 @@
+using Catalog.Domain.Abstractions;
+
 namespace Catalog.Domain.Entities;
 
-public class ProductEntity
+public class ProductEntity : Entity
 {
-    public Guid ProductId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public IList<ProductImageEntity>? Images { get; set; }

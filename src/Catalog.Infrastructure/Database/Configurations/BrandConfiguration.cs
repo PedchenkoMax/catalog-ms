@@ -9,7 +9,7 @@ public class BrandConfiguration : IEntityTypeConfiguration<BrandEntity>
 {
     public void Configure(EntityTypeBuilder<BrandEntity> builder)
     {
-        builder.HasKey(x => x.BrandId);
+        builder.HasKey(x => x.Id);
 
         builder.HasMany(x => x.Products)
             .WithOne(x => x.Brand)
@@ -19,25 +19,25 @@ public class BrandConfiguration : IEntityTypeConfiguration<BrandEntity>
         builder.HasData(
             new BrandEntity
             {
-                BrandId = SeedDataConstants.BrandApple,
+                Id = SeedDataConstants.BrandApple,
                 Name = "Apple",
                 Image = "https://blob.com/BrandApple.png"
             },
             new BrandEntity
             {
-                BrandId = SeedDataConstants.BrandSamsung,
+                Id = SeedDataConstants.BrandSamsung,
                 Name = "Samsung",
                 Image = "https://blob.com/BrandSamsung.png"
             },
             new BrandEntity
             {
-                BrandId = SeedDataConstants.BrandLg,
+                Id = SeedDataConstants.BrandLg,
                 Name = "Lg",
                 Image = "https://blob.com/BrandLg.png"
             },
             new BrandEntity
             {
-                BrandId = SeedDataConstants.BrandLenovo,
+                Id = SeedDataConstants.BrandLenovo,
                 Name = "Lenovo",
                 Image = "https://blob.com/BrandLenovo.png"
             }

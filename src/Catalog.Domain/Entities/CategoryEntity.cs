@@ -1,8 +1,9 @@
-﻿namespace Catalog.Domain.Entities;
+﻿using Catalog.Domain.Abstractions;
 
-public class CategoryEntity
+namespace Catalog.Domain.Entities;
+
+public class CategoryEntity : Entity
 {
-    public Guid CategoryId { get; set; }
     public string Name { get; set; }
     public string Image { get; set; }
 

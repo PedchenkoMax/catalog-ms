@@ -9,7 +9,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
 {
     public void Configure(EntityTypeBuilder<CategoryEntity> builder)
     {
-        builder.HasKey(x => x.CategoryId);
+        builder.HasKey(x => x.Id);
 
         builder.HasMany(x => x.Products)
             .WithOne(x => x.Category)
@@ -19,19 +19,19 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
         builder.HasData(
             new CategoryEntity
             {
-                CategoryId = SeedDataConstants.CategoryPhone,
+                Id = SeedDataConstants.CategoryPhone,
                 Name = "Phone",
                 Image = "https://blob.com/CategoryPhone.png"
             },
             new CategoryEntity
             {
-                CategoryId = SeedDataConstants.CategoryTv,
+                Id = SeedDataConstants.CategoryTv,
                 Name = "TV",
                 Image = "https://blob.com/CategoryTv.png"
             },
             new CategoryEntity
             {
-                CategoryId = SeedDataConstants.CategoryNotebook,
+                Id = SeedDataConstants.CategoryNotebook,
                 Name = "Notebook",
                 Image = "https://blob.com/CategoryNotebook.png"
             }

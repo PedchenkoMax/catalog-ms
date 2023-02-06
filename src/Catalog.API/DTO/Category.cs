@@ -23,7 +23,7 @@ public static class CategoryExtensions
     {
         return new Category
         {
-            CategoryId = entity.CategoryId,
+            CategoryId = entity.Id,
             Name = entity.Name,
             Image = entity.Image
         };

@@ -23,7 +23,7 @@ public static class BrandExtensions
     {
         return new Brand
         {
-            BrandId = entity.BrandId,
+            BrandId = entity.Id,
             Name = entity.Name,
             Image = entity.Image
         };

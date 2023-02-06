@@ -9,7 +9,7 @@ public class ProductImageConfiguration : IEntityTypeConfiguration<ProductImageEn
 {
     public void Configure(EntityTypeBuilder<ProductImageEntity> builder)
     {
-        builder.HasKey(x => x.ProductImageId);
+        builder.HasKey(x => x.Id);
 
 
         SeedProductImage(builder, SeedDataConstants.Phone1, 5, "Phone1Image");
@@ -50,7 +50,7 @@ public class ProductImageConfiguration : IEntityTypeConfiguration<ProductImageEn
         for (var i = 1; i <= count; i++)
             builder.HasData(new ProductImageEntity
             {
-                ProductImageId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 ImageUrl = $"https://blob.com/{imagePrefix}-{i}.png",
                 IsMain = i == 1,
                 ProductId = productId

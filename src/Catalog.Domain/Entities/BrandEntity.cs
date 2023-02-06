@@ -1,8 +1,9 @@
-﻿namespace Catalog.Domain.Entities;
+﻿using Catalog.Domain.Abstractions;
 
-public class BrandEntity
+namespace Catalog.Domain.Entities;
+
+public class BrandEntity : Entity
 {
-    public Guid BrandId { get; set; }
     public string Name { get; set; }
     public string Image { get; set; }
 

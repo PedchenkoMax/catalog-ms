@@ -1,8 +1,9 @@
-﻿namespace Catalog.Domain.Entities;
+﻿using Catalog.Domain.Abstractions;
 
-public class ProductImageEntity
+namespace Catalog.Domain.Entities;
+
+public class ProductImageEntity : Entity
 {
-    public Guid ProductImageId { get; set; }
     public string ImageUrl { get; set; }
     public bool IsMain { get; set; }
 

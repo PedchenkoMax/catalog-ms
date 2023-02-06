@@ -40,7 +40,7 @@ public static class ProductExtensions
     {
         return new Product
         {
-            ProductId = entity.ProductId,
+            ProductId = entity.Id,
             Name = entity.Name,
             Description = entity.Description,
             Images = entity.Images?.Select(e => e.ToDTO()).ToList(),
