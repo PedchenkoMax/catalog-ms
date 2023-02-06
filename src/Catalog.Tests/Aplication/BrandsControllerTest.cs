@@ -5,12 +5,12 @@ using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
 using Xunit;
-
 
 namespace Catalog.Tests.Aplication;
 
@@ -21,8 +21,7 @@ public class BrandsControllerTest
     public BrandsControllerTest()
     {
         _contextOptions = new DbContextOptionsBuilder<CatalogContext>()
-            .UseInMemoryDatabase(databaseName: "InMempryBrandsControllerTest")
-            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
+            .UseInMemoryDatabase(databaseName: "in-memory-brands-database")            
             .Options;
 
         using var context = new CatalogContext(_contextOptions);
@@ -30,10 +29,7 @@ public class BrandsControllerTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        context.Brands.AddRange(
-            new BrandEntity { BrandId = new Guid("002f51c2-d7dd-4d55-b3ab-b6f0f0d11111"), Name = "Apple", Image = "https://blob.com/BrandApple.png" },
-            new BrandEntity { BrandId = new Guid("002f51c2-d7dd-4d55-b3ab-b6f0f0d22222"), Name = "Dell", Image = "https://blob.com/BrandDell.png" },
-            new BrandEntity { BrandId = new Guid("002f51c2-d7dd-4d55-b3ab-b6f0f0d33333"), Name = "Lenovo", Image = "https://blob.com/BrandLenovo.png" });
+        context.Brands.AddRange(GetFakeBrandsList());
 
         context.SaveChanges();
     }
@@ -41,9 +37,9 @@ public class BrandsControllerTest
     [Fact]
     public async Task GetBrandsAsync_Success()
     {
-        using var context = new CatalogContext(_contextOptions);
+        using var brandContext = new CatalogContext(_contextOptions);
 
-        var brandController = new BrandsController(context);
+        var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
 
         Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
@@ -59,7 +55,30 @@ public class BrandsControllerTest
         //    b => Assert.Equal("Lenovo", b.Name));
     }
 
-
+    private List<BrandEntity> GetFakeBrandsList()
+    {
+        return new List<BrandEntity>()
+        {
+            new()
+            {
+                BrandId = new Guid("002f51c2-d7dd-4d55-b3ab-b6f0f0d11111"),
+                Name = "Apple",
+                Image = "https://blob.com/BrandApple.png"
+            },
+            new()
+            {
+                BrandId = new Guid("002f51c2-d7dd-4d55-b3ab-b6f0f0d22222"),
+                Name = "Dell",
+                Image = "https://blob.com/BrandDell.png"
+            },
+            new()
+            {
+                BrandId = new Guid("002f51c2-d7dd-4d55-b3ab-b6f0f0d33333"),
+                Name = "Lenovo",
+                Image = "https://blob.com/BrandLenovo.png"
+            }
+        };        
+    }
 }
 
 
