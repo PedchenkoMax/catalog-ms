@@ -5,24 +5,21 @@ using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Options;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
 using System;
 using Xunit;
 
+
 namespace Catalog.Tests.Aplication;
 
-public class BrandsControllerTest
+public class BrandsControllerInMemoryTest
 {
-    private readonly DbContextOptions<CatalogContext> _contextOptions;
+    private readonly DbContextOptions<CatalogContext> _contextOptions;    
 
-    public BrandsControllerTest()
+    public BrandsControllerInMemoryTest()
     {
         _contextOptions = new DbContextOptionsBuilder<CatalogContext>()
             .UseInMemoryDatabase(databaseName: "in-memory-brands-database")            
-            .Options;
+            .Options;        
 
         using var context = new CatalogContext(_contextOptions);
 
@@ -32,7 +29,7 @@ public class BrandsControllerTest
         context.Brands.AddRange(GetFakeBrandsList());
 
         context.SaveChanges();
-    }
+    }    
 
     [Fact]
     public async Task GetBrandsAsync_Success()
@@ -79,6 +76,8 @@ public class BrandsControllerTest
             }
         };        
     }
+
+
 }
 
 
