@@ -1,8 +1,16 @@
 using Catalog.Domain.Entities;
+using Catalog.API.Controllers;
+using Catalog.API.DTO;
 using Catalog.Infrastructure.Database;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
+using System;
 using Xunit;
+
 
 namespace Catalog.Tests.Aplication;
 
@@ -13,7 +21,7 @@ public class BrandsControllerTest
     public BrandsControllerTest()
     {
         _contextOptions = new DbContextOptionsBuilder<CatalogContext>()
-            .UseInMemoryDatabase(databaseName: "InMempryBrandControllerTest")
+            .UseInMemoryDatabase(databaseName: "InMempryBrandsControllerTest")
             .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
             .Options;
 
@@ -29,6 +37,28 @@ public class BrandsControllerTest
 
         context.SaveChanges();
     }
+
+    [Fact]
+    public async Task GetBrandsAsync_Success()
+    {
+        using var context = new CatalogContext(_contextOptions);
+
+        var brandController = new BrandsController(context);
+        var actionResult = await brandController.GetBrandsAsync();
+
+        Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
+
+        //var brands = Assert.IsAssignableFrom<IEnumerable<Brand>>(actionResult.Value);
+
+        //Assert.Equal(3, brands.Count());
+
+        //Assert.Collection(
+        //    brands,
+        //    b => Assert.Equal("Apple", b.Name),
+        //    b => Assert.Equal("Dell", b.Name),
+        //    b => Assert.Equal("Lenovo", b.Name));
+    }
+
 
 }
 
