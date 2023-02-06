@@ -51,6 +51,29 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
     #endregion
 
 
+    [Fact]
+    public async Task GetBrandsAsync_Success()
+    {     using var brandContext = CreateContext();
+
+        var brandController = new BrandsController(brandContext);
+
+        var actionResult = await brandController.GetBrandsAsync();
+
+        Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
+
+        //var brands = Assert.IsAssignableFrom<IEnumerable<Brand>>(actionResult.Value);
+
+        //Assert.Equal(3, actionResult.brands.Count());
+
+        //Assert.Collection(
+        //    brands,
+        //    b => Assert.Equal("Apple", b.Name),
+        //    b => Assert.Equal("Dell", b.Name),
+        //    b => Assert.Equal("Lenovo", b.Name));
+    }
+
+
+
     private List<BrandEntity> GetFakeBrandsList()
     {
         return new List<BrandEntity>()
