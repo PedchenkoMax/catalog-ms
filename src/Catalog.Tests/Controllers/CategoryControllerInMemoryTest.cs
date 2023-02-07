@@ -42,7 +42,24 @@ public class CategoryControllerInMemoryTest
         var actionResult = await categoryController.GetCategoriesAsync();
 
         Assert.IsType<ActionResult<IEnumerable<Category>>>(actionResult);
-    }    
+    }
+
+    [Fact]
+    public async Task GetCategoriesAsync_ShouldReturnAllBrands_WhenSuccess()
+    {
+        using var categoryContext = new CatalogContext(_contextOptions);
+
+        var categoryController = new BrandsController(categoryContext);
+        var actionResult = await categoryController.GetBrandsAsync();
+
+        var brands = Assert.IsAssignableFrom<IEnumerable<Category>>(actionResult.Value);
+        Assert.Equal(3, brands.Count());
+        Assert.Collection(
+            brands,
+            b => Assert.Equal("Apple", b.Name),
+            b => Assert.Equal("Dell", b.Name),
+            b => Assert.Equal("Lenovo", b.Name));
+    }
 
     private List<CategoryEntity> GetFakeCategoryList()
     {
