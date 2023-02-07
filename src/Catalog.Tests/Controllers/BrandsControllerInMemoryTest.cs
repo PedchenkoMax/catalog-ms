@@ -16,7 +16,7 @@ public class BrandsControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        context.Brands.AddRange(GetFakeBrandsList());
+        context.Brands.AddRange(FakeData.GetFakeBrandsList());
 
         context.SaveChanges();
     }
@@ -59,32 +59,7 @@ public class BrandsControllerInMemoryTest
             b => Assert.Equal("Apple", b.Name),
             b => Assert.Equal("Dell", b.Name),
             b => Assert.Equal("Lenovo", b.Name));
-    }
-
-    private List<BrandEntity> GetFakeBrandsList()
-    {
-        return new List<BrandEntity>()
-        {
-            new()
-            {
-                BrandId = new Guid("002f54c2-d7dd-4d55-b3ab-b022816471f1"),
-                Name = "Apple",
-                Image = "https://blob.com/BrandApple.png"
-            },
-            new()
-            {
-                BrandId = new Guid("002f54c2-d7dd-4d55-b3ab-b022816471f2"),
-                Name = "Dell",
-                Image = "https://blob.com/BrandDell.png"
-            },
-            new()
-            {
-                BrandId = new Guid("002f54c2-d7dd-4d55-b3ab-b022816471f3"),
-                Name = "Lenovo",
-                Image = "https://blob.com/BrandLenovo.png"
-            }
-        };        
-    }
+    }   
 }
 
 

@@ -16,7 +16,7 @@ public class CategoryControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        context.Categories.AddRange(GetFakeCategoryList());
+        context.Categories.AddRange(FakeData.GetFakeCategoryList());
 
         context.SaveChanges();
     }
@@ -59,32 +59,7 @@ public class CategoryControllerInMemoryTest
             b => Assert.Equal("Apple", b.Name),
             b => Assert.Equal("Dell", b.Name),
             b => Assert.Equal("Lenovo", b.Name));
-    }
-
-    private List<CategoryEntity> GetFakeCategoryList()
-    {
-        return new List<CategoryEntity>()
-        {
-            new()
-            {
-                CategoryId = new Guid("004f54c2-d7dd-4d56-b3ab-b022816471f1"),
-                Name = "Phone",
-                Image = "https://blob.com/CategoryPhone.png"
-            },
-            new()
-            {
-                CategoryId = new Guid("004f54c2-d7dd-4d56-b3ab-b022816471f2"),
-                Name = "TV",
-                Image = "https://blob.com/CategoryTv.png"
-            },
-            new()
-            {
-                CategoryId = new Guid("004f54c2-d7dd-4d56-b3ab-b022816471f3"),
-                Name = "Notebook",
-                Image = "https://blob.com/CategoryNotebook.png"
-            }         
-        };        
-    }
+    }    
 }
 
 

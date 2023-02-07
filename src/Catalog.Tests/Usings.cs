@@ -10,4 +10,5 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.Data.Sqlite;
 global using System.Data.Common;
 global using Xunit;
+global using Catalog.Tests.Controllers;
 
