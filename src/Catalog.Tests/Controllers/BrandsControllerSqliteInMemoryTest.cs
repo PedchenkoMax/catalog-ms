@@ -67,7 +67,7 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();        
 
-        var brands = Assert.IsAssignableFrom<List<Brand>>(actionResult.Value);
+        var brands = Assert.IsAssignableFrom<IEnumerable<Brand>>(actionResult.Value);
         Assert.Equal(3, brands.Count());
         Assert.Collection(
             brands,

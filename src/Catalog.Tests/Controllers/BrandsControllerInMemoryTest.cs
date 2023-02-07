@@ -28,7 +28,7 @@ public class BrandsControllerInMemoryTest
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
-        var okResult = actionResult?.Result as OkObjectResult;
+        var okResult = actionResult.Result as OkObjectResult;
 
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
     }
@@ -52,7 +52,7 @@ public class BrandsControllerInMemoryTest
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
 
-        var brands = Assert.IsAssignableFrom<List<Brand>>(actionResult.Value);
+        var brands = Assert.IsAssignableFrom<IEnumerable<Brand>>(actionResult.Value);
         Assert.Equal(3, brands.Count());
         Assert.Collection(
             brands,
