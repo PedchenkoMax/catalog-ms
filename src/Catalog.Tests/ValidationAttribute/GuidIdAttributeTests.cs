@@ -13,6 +13,16 @@ public class GuidIdAttributeTests
        
         Assert.True(result);
     }
+
+    [Fact]
+    public void IsValid_WithInvalidType_ReturnsFalse()
+    {        
+        var attribute = new GuidIdAttribute();
+        
+        var result = attribute.IsValid("not a guid");
+        
+        Assert.False(result);
+    }
     
 }
 
