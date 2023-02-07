@@ -1,6 +1,4 @@
-﻿using Catalog.API.Validation.Attributes;
-
-namespace Catalog.Tests.ValidationAttribute;
+﻿namespace Catalog.Tests.ValidationAttribute;
 
 public class GuidIdAttributeTests
 {
