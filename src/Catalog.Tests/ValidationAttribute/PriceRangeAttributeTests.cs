@@ -43,4 +43,22 @@ public class PriceRangeAttributeTests
         Assert.False(isValid);        
         Assert.Equal("MaxPrice must not be less than zero.", results[0].ErrorMessage);
     }
+
+    [Fact]
+    public void MinPriceGreaterThanOrEqualToMaxPrice_ReturnsValidationError()
+    {
+        var model = new TestModel
+        {
+            MinPrice = 10,
+            MaxPrice = 10
+        };
+
+        var context = new ValidationContext(model);
+        var results = new List<ValidationResult>();
+        var isValid = Validator.TryValidateObject(model, context, results, true);
+
+        Assert.False(isValid);       
+        Assert.Equal("MinPrice must be lower than MaxPrice.", results[0].ErrorMessage);
+    }
+    
 }
