@@ -16,7 +16,7 @@ public class BrandsControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        //context.Brands.AddRange(GetFakeBrandsList());
+        context.Brands.AddRange(GetFakeBrandsList());
 
         context.SaveChanges();
     }
@@ -28,9 +28,9 @@ public class BrandsControllerInMemoryTest
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
-        var okResult = actionResult.Result as OkObjectResult;
+        var okResult = actionResult?.Result as OkObjectResult;
 
-        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        Assert.Equal(StatusCodes.Status200OK, okResult?.StatusCode);
     }
 
     [Fact]

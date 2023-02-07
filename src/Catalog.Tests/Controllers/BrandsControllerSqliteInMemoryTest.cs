@@ -26,7 +26,7 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
             viewCommand.ExecuteNonQuery();
         }
 
-        context.AddRange(GetFakeBrandsList());
+        context.Brands.AddRange(GetFakeBrandsList());
         
         context.SaveChanges();
     }
@@ -44,7 +44,7 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
         var actionResult = await brandController.GetBrandsAsync();
         var okResult = actionResult?.Result as OkObjectResult;        
 
-        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        Assert.Equal(StatusCodes.Status200OK, okResult?.StatusCode);
     }
 
 

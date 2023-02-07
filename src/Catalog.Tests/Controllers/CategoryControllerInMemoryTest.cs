@@ -28,9 +28,9 @@ public class CategoryControllerInMemoryTest
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoriesAsync();
-        var okResult = actionResult.Result as OkObjectResult;
+        var okResult = actionResult?.Result as OkObjectResult;
 
-        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        Assert.Equal(StatusCodes.Status200OK, okResult?.StatusCode);
     }
 
     [Fact]
