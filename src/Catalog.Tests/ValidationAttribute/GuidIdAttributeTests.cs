@@ -23,7 +23,27 @@ public class GuidIdAttributeTests
         
         Assert.False(result);
     }
-    
+
+    [Fact]
+    public void IsValid_WithEmptyGuid_ReturnsFalse()    
+    {        
+        var attribute = new GuidIdAttribute();
+        
+        var result = attribute.IsValid(Guid.Empty);
+       
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void IsValid_WithValidGuid_ReturnsTrue()
+    {        
+        var attribute = new GuidIdAttribute();
+        var validGuid = Guid.NewGuid();
+       
+        var result = attribute.IsValid(validGuid);
+        
+        Assert.True(result);
+    }
 }
 
 
