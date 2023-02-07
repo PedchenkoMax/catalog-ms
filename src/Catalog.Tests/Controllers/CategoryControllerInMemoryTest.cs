@@ -31,6 +31,17 @@ public class CategoryControllerInMemoryTest
         var okResult = actionResult.Result as OkObjectResult;
 
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetCategoriesAsync_ReturnActionResultOfIEnumerableOfBrand_WhenSuccess()
+    {
+        using var categoryContext = new CatalogContext(_contextOptions);
+
+        var categoryController = new CategoriesController(categoryContext);
+        var actionResult = await categoryController.GetCategoriesAsync();
+
+        Assert.IsType<ActionResult<IEnumerable<Category>>>(actionResult);
     }    
 
     private List<CategoryEntity> GetFakeCategoryList()
