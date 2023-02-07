@@ -19,7 +19,19 @@ public class CategoryControllerInMemoryTest
         context.Categories.AddRange(GetFakeCategoryList());
 
         context.SaveChanges();
-    }   
+    }
+
+    [Fact]
+    public async Task GetCategoriesAsync_Returns200Ok_WhenRequestIsSuccess()
+    {
+        using var categoryContext = new CatalogContext(_contextOptions);
+
+        var categoryController = new CategoriesController(categoryContext);
+        var actionResult = await categoryController.GetCategoriesAsync();
+        var okResult = actionResult.Result as OkObjectResult;
+
+        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+    }    
 
     private List<CategoryEntity> GetFakeCategoryList()
     {
