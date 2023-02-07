@@ -1,15 +1,3 @@
-using Catalog.Domain.Entities;
-using Catalog.API.Controllers;
-using Catalog.API.DTO;
-using Catalog.Infrastructure.Database;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using System;
-using Xunit;
-using Microsoft.AspNetCore.Http;
-using Catalog.Domain.Constants;
-
 namespace Catalog.Tests.Aplication;
 
 public class BrandsControllerInMemoryTest
@@ -40,7 +28,7 @@ public class BrandsControllerInMemoryTest
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
-        var okResult = actionResult.Result as OkObjectResult;
+        var okResult = actionResult?.Result as OkObjectResult;
 
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
     }
@@ -77,28 +65,26 @@ public class BrandsControllerInMemoryTest
     {
         return new List<BrandEntity>()
         {
-             new BrandEntity
+            new()
             {
-                BrandId = SeedDataConstants.BrandApple,
+                BrandId = new Guid("002f54c2-d7dd-4d55-b3ab-b022816471f1"),
                 Name = "Apple",
                 Image = "https://blob.com/BrandApple.png"
             },
-            new BrandEntity
+            new()
             {
-                BrandId = SeedDataConstants.BrandSamsung,
-                Name = "Samsung",
-                Image = "https://blob.com/BrandSamsung.png"
+                BrandId = new Guid("002f54c2-d7dd-4d55-b3ab-b022816471f2"),
+                Name = "Dell",
+                Image = "https://blob.com/BrandDell.png"
             },
-            new BrandEntity
+            new()
             {
-                BrandId = SeedDataConstants.BrandLg,
-                Name = "Lg",
-                Image = "https://blob.com/BrandLg.png"
+                BrandId = new Guid("002f54c2-d7dd-4d55-b3ab-b022816471f3"),
+                Name = "Lenovo",
+                Image = "https://blob.com/BrandLenovo.png"
             }
         };        
     }
-
-
 }
 
 

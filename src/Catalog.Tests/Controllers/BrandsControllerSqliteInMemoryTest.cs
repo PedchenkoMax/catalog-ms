@@ -1,25 +1,10 @@
-using Catalog.Domain.Entities;
-using Catalog.API.Controllers;
-using Catalog.API.DTO;
-using Catalog.Infrastructure.Database;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using System;
-using Xunit;
-using System.Reflection.Metadata;
-using System.Data.Common;
-using Microsoft.Data.Sqlite;
-using Microsoft.AspNetCore.Http;
-
 namespace Catalog.Tests.Aplication;
 
 public class BrandsControllerSqliteInMemoryTest : IDisposable
 {
     private readonly DbConnection _connection;
     private readonly DbContextOptions<CatalogContext> _contextOptions;
-
-    #region ConstructorAndDispose
+    
     public BrandsControllerSqliteInMemoryTest()
     {       
         _connection = new SqliteConnection("Filename=:memory:");
@@ -49,8 +34,6 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
     CatalogContext CreateContext() => new CatalogContext(_contextOptions);
 
     public void Dispose() => _connection.Dispose();
-    #endregion
-
 
     [Fact]
     public async Task GetBrandsAsync_Returns200Ok_WhenRequestIsSuccess()
@@ -59,7 +42,7 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
-        var okResult = actionResult.Result as OkObjectResult;        
+        var okResult = actionResult?.Result as OkObjectResult;        
 
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
     }
