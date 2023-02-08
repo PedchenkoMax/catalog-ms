@@ -16,7 +16,7 @@ public class BrandsControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        context.Brands.AddRange(FakeData.GetFakeBrandsList());
+        //context.Brands.AddRange(FakeData.GetFakeBrandsList());
 
         context.SaveChanges();
     }

@@ -23,6 +23,6 @@ public class ApplyPaginationTests
         Assert.Equal(3, result.Count());
         Assert.Equal(4, result.First());
         Assert.Equal(6, result.Last());
-    }    
+    }   
 }
 

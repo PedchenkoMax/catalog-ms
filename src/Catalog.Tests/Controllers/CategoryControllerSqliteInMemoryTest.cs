@@ -26,7 +26,7 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
             viewCommand.ExecuteNonQuery();
         }
 
-        context.Categories.AddRange(FakeData.GetFakeCategoryList());
+        //context.Categories.AddRange(FakeData.GetFakeCategoryList());
 
         context.SaveChanges();
     }

@@ -26,7 +26,7 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
             viewCommand.ExecuteNonQuery();
         }
 
-        context.Brands.AddRange(FakeData.GetFakeBrandsList());
+        //context.Brands.AddRange(FakeData.GetFakeBrandsList());
         
         context.SaveChanges();
     }
