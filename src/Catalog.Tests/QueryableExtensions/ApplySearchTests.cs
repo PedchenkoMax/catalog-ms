@@ -14,5 +14,17 @@ public class ApplySearchTests
         Assert.Equal(2, filteredProducts.Count());
         Assert.True(filteredProducts.All(p => p.Name.ToLower().Contains("iphone")));
     }
+
+    [Fact]
+    public void ApplySearch_WithNullSearchFilter_ShouldReturnAllProducts()
+    {       
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var search = new SearchFilter(null);
+       
+        var filteredProducts = products.ApplySearch(search);
+      
+        Assert.NotNull(filteredProducts);
+        Assert.Equal(12, filteredProducts.Count());
+    }
 }
 
