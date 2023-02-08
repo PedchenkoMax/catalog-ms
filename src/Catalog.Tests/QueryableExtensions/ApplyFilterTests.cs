@@ -94,4 +94,18 @@ public class ApplyFilterTests
         Assert.Equal(10, result.Count());
         Assert.True(result.All(p => p.FullPrice <= maxPrice));
     }
+
+    [Fact]
+    public void ApplyFilter_ShouldFilterByMinAndMaxPrice()
+    {
+        var minPrice = 700;
+        var maxPrice = 2200;
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var criteriaFilter = new ProductFilter(default, default, minPrice, maxPrice);
+
+        var result = products.ApplyFilter(criteriaFilter);
+
+        Assert.Equal(8, result.Count());
+        Assert.True(result.All(p => p.FullPrice >= minPrice && p.FullPrice <= maxPrice));
+    }
 }
