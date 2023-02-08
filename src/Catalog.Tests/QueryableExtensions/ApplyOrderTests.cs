@@ -48,5 +48,29 @@ public class ApplyOrderTests
         var result = products.AsQueryable().ApplyOrder(order);
 
         Assert.Equal(products.OrderByDescending(p => p.FullPrice), result);
+    }
+
+    [Fact]
+    public void GivenOrderFilterWithOrderByQuantity_ShouldOrderByQuantity()
+    {
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var IsDesc = false;
+        var order = new OrderFilter(OrderByEnum.Quantity, IsDesc);
+
+        var result = products.AsQueryable().ApplyOrder(order);
+
+        Assert.Equal(products.OrderBy(p => p.Quantity), result);
+    }
+
+    [Fact]
+    public void GivenOrderFilterWithOrderByQuantityAndIsDescTrue_ShouldOrderByQuantityDescending()
+    {
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var IsDesc = true;
+        var order = new OrderFilter(OrderByEnum.Quantity, IsDesc);
+
+        var result = products.AsQueryable().ApplyOrder(order);
+
+        Assert.Equal(products.OrderByDescending(p => p.Quantity), result);
     }    
 }
