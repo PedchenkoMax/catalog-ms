@@ -22,6 +22,7 @@ public class ApplyFilterTests
         { 
             SeedDataConstants.BrandApple 
         };
+
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var criteriaFilter = new ProductFilter(default, brandId.ToList(), default, default);
 
@@ -48,4 +49,24 @@ public class ApplyFilterTests
         Assert.Equal(9, result.Count());
         Assert.True(result.All(p => brandIds.Contains(p.BrandId)));
     }
+
+    [Fact]
+    public void ApplyFilter_ShouldFilterByCategoryIdAndBrandIds()
+    {
+        var categoryId = SeedDataConstants.CategoryNotebook;
+        var brandIds = new List<Guid>()
+        {
+            SeedDataConstants.BrandApple,
+            SeedDataConstants.BrandSamsung
+        };
+
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var criteriaFilter = new ProductFilter(categoryId, brandIds, default, default);
+
+        var result = products.ApplyFilter(criteriaFilter);
+
+        Assert.Equal(4, result.Count());
+        Assert.True(result.All(p => p.CategoryId == categoryId && brandIds.Contains(p.BrandId)));
+    }
+    
 }
