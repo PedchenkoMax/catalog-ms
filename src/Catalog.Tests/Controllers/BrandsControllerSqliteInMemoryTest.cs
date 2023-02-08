@@ -72,7 +72,8 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
         Assert.Collection(
             brands,
             b => Assert.Equal("Apple", b.Name),
-            b => Assert.Equal("Dell", b.Name),
+            b => Assert.Equal("Samsung", b.Name),
+            b => Assert.Equal("Lg", b.Name),
             b => Assert.Equal("Lenovo", b.Name));
     }
 }

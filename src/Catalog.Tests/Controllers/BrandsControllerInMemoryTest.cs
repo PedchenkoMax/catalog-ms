@@ -45,7 +45,7 @@ public class BrandsControllerInMemoryTest
     }
 
     [Fact]
-    public async Task GetBrandsAsync_ShouldReturnAllBrands_WhenSuccess()
+    public async Task GetBrandsAsync_ShouldReturnAllFourFakeBrands_WhenSuccess()
     {
         using var brandContext = new CatalogContext(_contextOptions);
 
@@ -53,11 +53,12 @@ public class BrandsControllerInMemoryTest
         var actionResult = await brandController.GetBrandsAsync();
 
         var brands = Assert.IsAssignableFrom<IEnumerable<Brand>>(actionResult.Value);
-        Assert.Equal(3, brands.Count());
+        Assert.Equal(4, brands.Count());
         Assert.Collection(
             brands,
             b => Assert.Equal("Apple", b.Name),
-            b => Assert.Equal("Dell", b.Name),
+            b => Assert.Equal("Samsung", b.Name),
+            b => Assert.Equal("Lg", b.Name),
             b => Assert.Equal("Lenovo", b.Name));
     }   
 }

@@ -67,13 +67,13 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
         var categoryController = new BrandsController(categoryContext);
         var actionResult = await categoryController.GetBrandsAsync();
 
-        var brands = Assert.IsAssignableFrom<IEnumerable<Category>>(actionResult.Value);
-        Assert.Equal(3, brands.Count());
+        var categories = Assert.IsAssignableFrom<IEnumerable<Category>>(actionResult.Value);
+        Assert.Equal(3, categories.Count());
         Assert.Collection(
-            brands,
-            b => Assert.Equal("Apple", b.Name),
-            b => Assert.Equal("Dell", b.Name),
-            b => Assert.Equal("Lenovo", b.Name));
+            categories,
+            b => Assert.Equal("Phone", b.Name),
+            b => Assert.Equal("TV", b.Name),
+            b => Assert.Equal("Notebook", b.Name));
     }    
 }
 
