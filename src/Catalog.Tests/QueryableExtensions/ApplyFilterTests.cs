@@ -68,5 +68,18 @@ public class ApplyFilterTests
         Assert.Equal(4, result.Count());
         Assert.True(result.All(p => p.CategoryId == categoryId && brandIds.Contains(p.BrandId)));
     }
-    
+
+    [Fact]
+    public void ApplyFilter_ShouldFilterByMinPrice()
+    {
+        var minPrice = 1000;
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var criteriaFilter = new ProductFilter(default, default, minPrice, default);
+
+        var result = products.ApplyFilter(criteriaFilter);
+
+        Assert.Equal(5, result.Count());
+        Assert.True(result.All(p => p.FullPrice >= minPrice));
+    }
+        
 }
