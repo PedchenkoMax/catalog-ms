@@ -26,5 +26,17 @@ public class ApplySearchTests
         Assert.NotNull(filteredProducts);
         Assert.Equal(12, filteredProducts.Count());
     }
+
+    [Fact]
+    public void ApplySearch_WithEmptySearchFilter_ShouldReturnAllProducts()
+    {        
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var search = new SearchFilter(string.Empty);
+        
+        var filteredProducts = products.ApplySearch(search);
+       
+        Assert.NotNull(filteredProducts);
+        Assert.Equal(12, filteredProducts.Count());
+    }
 }
 
