@@ -52,14 +52,14 @@ public class ApplyFilterTests
 
     [Fact]
     public void ApplyFilter_ShouldFilterByCategoryIdAndBrandIds()
-    {
-        var categoryId = SeedDataConstants.CategoryNotebook;
+    {        
         var brandIds = new List<Guid>()
         {
             SeedDataConstants.BrandApple,
             SeedDataConstants.BrandSamsung
         };
 
+        var categoryId = SeedDataConstants.CategoryNotebook;
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var criteriaFilter = new ProductFilter(categoryId, brandIds, default, default);
 
@@ -112,17 +112,16 @@ public class ApplyFilterTests
     [Fact]
     public void ApplyFilter_ShouldFilterByAllCriteria()
     {
-        var categoryId = SeedDataConstants.CategoryNotebook;
-
         var brandIds = new List<Guid>()
         {
             SeedDataConstants.BrandApple,
             SeedDataConstants.BrandSamsung
         };
 
+        var categoryId = SeedDataConstants.CategoryNotebook;      
+        var products = FakeData.GetFakeProductsList().AsQueryable();
         var minPrice = 700;
         var maxPrice = 2200;
-        var products = FakeData.GetFakeProductsList().AsQueryable();
         var criteriaFilter = new ProductFilter(categoryId, brandIds, minPrice, maxPrice);
 
         var result = products.ApplyFilter(criteriaFilter);
