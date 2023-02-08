@@ -72,14 +72,26 @@ public class ApplyFilterTests
     [Fact]
     public void ApplyFilter_ShouldFilterByMinPrice()
     {
-        var minPrice = 1000;
+        var minPrice = 700;
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var criteriaFilter = new ProductFilter(default, default, minPrice, default);
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(5, result.Count());
+        Assert.Equal(10, result.Count());
         Assert.True(result.All(p => p.FullPrice >= minPrice));
     }
-        
+
+    [Fact]
+    public void ApplyFilter_ShouldFilterByMaxPrice()
+    {
+        var maxPrice = 2200;
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var criteriaFilter = new ProductFilter(default, default, default, maxPrice);
+
+        var result = products.ApplyFilter(criteriaFilter);
+
+        Assert.Equal(10, result.Count());
+        Assert.True(result.All(p => p.FullPrice <= maxPrice));
+    }
 }
