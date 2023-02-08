@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.FilterExtensions;
+﻿namespace Catalog.Tests.QueryableExtensions;
 public class ApplySearchTests
 {
     [Fact]
