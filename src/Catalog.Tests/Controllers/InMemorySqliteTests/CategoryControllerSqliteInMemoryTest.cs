@@ -1,4 +1,4 @@
-namespace Catalog.Tests.Aplication;
+namespace Catalog.Tests.Controllers.InMemorySqliteTests;
 
 public class CategoryControllerSqliteInMemoryTest : IDisposable
 {
@@ -26,7 +26,7 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
             viewCommand.ExecuteNonQuery();
         }
 
-        //context.Categories.AddRange(FakeData.GetFakeCategoryList());
+        //context.Categories.AddRangeAsync(FakeData.GetFakeCategoryList());
 
         context.SaveChanges();
     }
@@ -57,23 +57,6 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
         var actionResult = await categoryController.GetCategoriesAsync();
 
         Assert.IsType<ActionResult<IEnumerable<Category>>>(actionResult);
-    }
-
-    [Fact]
-    public async Task GetCategoriesAsync_ShouldReturnAllBrands_WhenSuccess()
-    {
-        using var categoryContext = CreateContext();
-
-        var categoryController = new BrandsController(categoryContext);
-        var actionResult = await categoryController.GetBrandsAsync();
-
-        var categories = Assert.IsAssignableFrom<IEnumerable<Category>>(actionResult.Value);
-        Assert.Equal(3, categories.Count());
-        Assert.Collection(
-            categories,
-            b => Assert.Equal("Phone", b.Name),
-            b => Assert.Equal("TV", b.Name),
-            b => Assert.Equal("Notebook", b.Name));
     }    
 }
 

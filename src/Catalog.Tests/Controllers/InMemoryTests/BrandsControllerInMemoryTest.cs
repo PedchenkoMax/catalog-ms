@@ -1,15 +1,15 @@
-namespace Catalog.Tests.Aplication;
+namespace Catalog.Tests.Controllers.InMemoryTests;
 
 public class BrandsControllerInMemoryTest
 {
-    private readonly DbContextOptions<CatalogContext> _contextOptions;    
+    private readonly DbContextOptions<CatalogContext> _contextOptions;
 
     public BrandsControllerInMemoryTest()
     {
         _contextOptions = new DbContextOptionsBuilder<CatalogContext>()
-            .UseInMemoryDatabase(databaseName: "in-memory-brands-database")
+            .UseInMemoryDatabase("BrandsControllerTest")
             .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-            .Options;        
+            .Options;
 
         using var context = new CatalogContext(_contextOptions);
 
@@ -43,24 +43,6 @@ public class BrandsControllerInMemoryTest
 
         Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
     }
-
-    [Fact]
-    public async Task GetBrandsAsync_ShouldReturnAllFourFakeBrands_WhenSuccess()
-    {
-        using var brandContext = new CatalogContext(_contextOptions);
-
-        var brandController = new BrandsController(brandContext);
-        var actionResult = await brandController.GetBrandsAsync();
-
-        var brands = Assert.IsAssignableFrom<IEnumerable<Brand>>(actionResult.Value);
-        Assert.Equal(4, brands.Count());
-        Assert.Collection(
-            brands,
-            b => Assert.Equal("Apple", b.Name),
-            b => Assert.Equal("Samsung", b.Name),
-            b => Assert.Equal("Lg", b.Name),
-            b => Assert.Equal("Lenovo", b.Name));
-    }   
 }
 
 

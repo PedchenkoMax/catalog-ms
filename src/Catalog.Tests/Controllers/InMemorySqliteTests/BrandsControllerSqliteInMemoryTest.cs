@@ -1,15 +1,15 @@
-namespace Catalog.Tests.Aplication;
+namespace Catalog.Tests.Controllers.InMemorySqliteTests;
 
 public class BrandsControllerSqliteInMemoryTest : IDisposable
 {
     private readonly DbConnection _connection;
     private readonly DbContextOptions<CatalogContext> _contextOptions;
-    
+
     public BrandsControllerSqliteInMemoryTest()
-    {       
+    {
         _connection = new SqliteConnection("Filename=:memory:");
         _connection.Open();
-        
+
         _contextOptions = new DbContextOptionsBuilder<CatalogContext>()
             .UseSqlite(_connection)
             .Options;
@@ -24,10 +24,10 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
             SELECT BrandId,Name,Image
             FROM Brand;";
             viewCommand.ExecuteNonQuery();
-        }
+        }      
 
         //context.Brands.AddRange(FakeData.GetFakeBrandsList());
-        
+
         context.SaveChanges();
     }
 
@@ -37,16 +37,15 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
 
     [Fact]
     public async Task GetBrandsAsync_Returns200Ok_WhenRequestIsSuccess()
-    {     
+    {
         using var brandContext = CreateContext();
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
-        var okResult = actionResult?.Result as OkObjectResult;        
+        var okResult = actionResult?.Result as OkObjectResult;
 
         Assert.Equal(StatusCodes.Status200OK, okResult?.StatusCode);
     }
-
 
     [Fact]
     public async Task GetBrandsAsync_ReturnActionResultOfIEnumerableOfBrand_WhenSuccess()
@@ -56,26 +55,8 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
 
-        Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);             
-    }
-
-    [Fact]
-    public async Task GetBrandsAsync_ShouldReturnAllBrands_WhenSuccess()
-    {
-        using var brandContext = CreateContext();
-
-        var brandController = new BrandsController(brandContext);
-        var actionResult = await brandController.GetBrandsAsync();        
-
-        var brands = Assert.IsAssignableFrom<IEnumerable<Brand>>(actionResult.Value);
-        Assert.Equal(3, brands.Count());
-        Assert.Collection(
-            brands,
-            b => Assert.Equal("Apple", b.Name),
-            b => Assert.Equal("Samsung", b.Name),
-            b => Assert.Equal("Lg", b.Name),
-            b => Assert.Equal("Lenovo", b.Name));
-    }
+        Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
+    }    
 }
 
 

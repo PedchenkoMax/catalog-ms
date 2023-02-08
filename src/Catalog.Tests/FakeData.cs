@@ -65,7 +65,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Phone1,
-                Name = "Apple iPhone 12 Pro Max",                
+                Name = "Apple iPhone 12 Pro Max", 
+                Description = "Description Apple iPhone 12 Pro Max",
                 FullPrice = 1099.99M,
                 Discount = 0.0M,
                 Quantity = 15,             
@@ -75,7 +76,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Phone2,
-                Name = "Apple iPhone 11",                
+                Name = "Apple iPhone 11",
+                Description = "Description Apple iPhone 11",
                 FullPrice = 699.99M,
                 Discount = 0.0M,
                 Quantity = 20,               
@@ -85,7 +87,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Phone3,
-                Name = "Samsung Galaxy S21",               
+                Name = "Samsung Galaxy S21",
+                Description = "Description Samsung Galaxy S21",
                 FullPrice = 899.99M,
                 Discount = 0.0M,
                 Quantity = 20,               
@@ -95,7 +98,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Tv1,
-                Name = "Samsung QN55Q70T 55-Inch 4K UHD Smart TV",                
+                Name = "Samsung QN55Q70T 55-Inch 4K UHD Smart TV",
+                Description = "Description Samsung QN55Q70T 55-Inch",
                 FullPrice = 799.99M,
                 Discount = 99.99M,
                 Quantity = 10,               
@@ -105,7 +109,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Tv2,
-                Name = "Samsung QN82Q70T 82-Inch 4K UHD Smart TV",                
+                Name = "Samsung QN82Q70T 82-Inch 4K UHD Smart TV",
+                Description = "Description Samsung QN82Q70T",
                 FullPrice = 2199.99M,
                 Discount = 0.0M,
                 Quantity = 5,                
@@ -115,7 +120,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Tv4,
-                Name = "LG OLED65CXP 65-Inch 4K UHD Smart TV",               
+                Name = "LG OLED65CXP 65-Inch 4K UHD Smart TV",
+                Description = "Description LG OLED65CXP",
                 FullPrice = 1999.99M,
                 Discount = 0.0M,
                 Quantity = 0,                
@@ -125,7 +131,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Notebook1,
-                Name = "Lenovo ThinkPad X1 Carbon 14-Inch Laptop",                
+                Name = "Lenovo ThinkPad X1 Carbon 14-Inch Laptop",
+                Description = "Description Lenovo ThinkPad X1",
                 FullPrice = 999.99M,
                 Discount = 0.0M,
                 Quantity = 10,
@@ -136,7 +143,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Notebook2,
-                Name = "Lenovo Ideapad 330 15-Inch Laptop",                
+                Name = "Lenovo Ideapad 330 15-Inch Laptop",
+                Description = "Description Lenovo Ideapad 330",
                 FullPrice = 499.99M,
                 Discount = 199.99M,
                 Quantity = 20,              
@@ -146,7 +154,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Notebook10,
-                Name = "Apple MacBook Pro 16-inch",                
+                Name = "Apple MacBook Pro 16-inch",
+                Description = "Description Apple MacBook Pro 16-inch",
                 FullPrice = 2499.99M,
                 Discount = 500.0M,
                 Quantity = 0,               
@@ -156,7 +165,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Notebook11,
-                Name = "Apple MacBook Air 13-inch",                
+                Name = "Apple MacBook Air 13-inch",
+                Description = "Description Apple MacBook Air 13-inch",
                 FullPrice = 999.99M,
                 Discount = 100.0M,
                 Quantity = 10,               
@@ -166,7 +176,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Notebook12,
-                Name = "Apple MacBook Pro 15-inch",                
+                Name = "Apple MacBook Pro 15-inch",
+                Description = "Description Apple MacBook Pro 15-inch",
                 FullPrice = 2799.99M,
                 Discount = 700.0M,
                 Quantity = 5,             
@@ -176,7 +187,8 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Notebook13,
-                Name = "Apple MacBook 12-inch",                
+                Name = "Apple MacBook 12-inch",
+                Description = "Description Apple MacBook 12-inch",
                 FullPrice = 799.99M,
                 Discount = 50.0M,
                 Quantity = 20,               
