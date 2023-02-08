@@ -108,4 +108,29 @@ public class ApplyFilterTests
         Assert.Equal(8, result.Count());
         Assert.True(result.All(p => p.FullPrice >= minPrice && p.FullPrice <= maxPrice));
     }
+
+    [Fact]
+    public void ApplyFilter_ShouldFilterByAllCriteria()
+    {
+        var categoryId = SeedDataConstants.CategoryNotebook;
+
+        var brandIds = new List<Guid>()
+        {
+            SeedDataConstants.BrandApple,
+            SeedDataConstants.BrandSamsung
+        };
+
+        var minPrice = 700;
+        var maxPrice = 2200;
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var criteriaFilter = new ProductFilter(categoryId, brandIds, minPrice, maxPrice);
+
+        var result = products.ApplyFilter(criteriaFilter);
+
+        Assert.Equal(2, result.Count());
+        Assert.True(result.All(p => p.CategoryId == categoryId 
+                        && brandIds.Contains(p.BrandId) 
+                        && p.FullPrice >= minPrice 
+                        && p.FullPrice <= maxPrice));
+    }
 }
