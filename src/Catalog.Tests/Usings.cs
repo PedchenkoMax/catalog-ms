@@ -15,5 +15,3 @@ global using System.Data.Common;
 global using System.ComponentModel.DataAnnotations;
 global using Xunit;
 global using Catalog.Tests.Controllers;
-
-

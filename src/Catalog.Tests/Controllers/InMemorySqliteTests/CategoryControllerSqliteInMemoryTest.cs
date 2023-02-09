@@ -35,7 +35,6 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
 
     public void Dispose() => _connection.Dispose();
 
-
     [Fact]
     public async Task GetCategoriesAsync_Returns200Ok_WhenRequestIsSuccess()
     {
@@ -57,8 +56,5 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
         var actionResult = await categoryController.GetCategoriesAsync();
 
         Assert.IsType<ActionResult<IEnumerable<Category>>>(actionResult);
-    }    
+    }
 }
-
-
-

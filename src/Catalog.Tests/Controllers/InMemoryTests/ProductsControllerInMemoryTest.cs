@@ -44,7 +44,7 @@ public class ProductsControllerInMemoryTest
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductByIdAsync(Guid.Empty);
-        
+
         var badRequestResult = Assert.IsType<BadRequestResult>(result);
         Assert.Equal(StatusCodes.Status400BadRequest, badRequestResult.StatusCode);
     }
@@ -55,10 +55,10 @@ public class ProductsControllerInMemoryTest
         using var productContext = new CatalogContext(_contextOptions);
         var productController = new ProductsController(productContext);
 
-        var result = await productController.ProductByIdAsync(SeedDataConstants.Phone1);        
+        var result = await productController.ProductByIdAsync(SeedDataConstants.Phone1);
 
         var okResult = Assert.IsType<OkObjectResult>(result);
-        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);        
+        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
     }
 
     [Fact]
@@ -93,7 +93,3 @@ public class ProductsControllerInMemoryTest
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
     }
 }
-
-
-
-

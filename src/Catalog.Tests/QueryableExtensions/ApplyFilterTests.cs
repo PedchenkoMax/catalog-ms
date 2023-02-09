@@ -8,19 +8,19 @@ public class ApplyFilterTests
         var categoryId = SeedDataConstants.CategoryNotebook;
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var criteriaFilter = new ProductFilter(categoryId, default, default, default);
-        
+
         var result = products.ApplyFilter(criteriaFilter);
-       
-        Assert.Equal(6, result.Count());       
-        Assert.True(result.All(p => p.CategoryId == categoryId));       
+
+        Assert.Equal(6, result.Count());
+        Assert.True(result.All(p => p.CategoryId == categoryId));
     }
 
     [Fact]
     public void ApplyFilter_ShouldFilterByBrandId()
-    {        
-        var brandId = new List<Guid>() 
-        { 
-            SeedDataConstants.BrandApple 
+    {
+        var brandId = new List<Guid>()
+        {
+            SeedDataConstants.BrandApple
         };
 
         var products = FakeData.GetFakeProductsList().AsQueryable();
@@ -52,7 +52,7 @@ public class ApplyFilterTests
 
     [Fact]
     public void ApplyFilter_ShouldFilterByCategoryIdAndBrandIds()
-    {        
+    {
         var brandIds = new List<Guid>()
         {
             SeedDataConstants.BrandApple,
@@ -118,7 +118,7 @@ public class ApplyFilterTests
             SeedDataConstants.BrandSamsung
         };
 
-        var categoryId = SeedDataConstants.CategoryNotebook;      
+        var categoryId = SeedDataConstants.CategoryNotebook;
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var minPrice = 700;
         var maxPrice = 2200;
@@ -127,9 +127,9 @@ public class ApplyFilterTests
         var result = products.ApplyFilter(criteriaFilter);
 
         Assert.Equal(2, result.Count());
-        Assert.True(result.All(p => p.CategoryId == categoryId 
-                        && brandIds.Contains(p.BrandId) 
-                        && p.FullPrice >= minPrice 
-                        && p.FullPrice <= maxPrice));
+        Assert.True(result.All(p => p.CategoryId == categoryId
+                                    && brandIds.Contains(p.BrandId)
+                                    && p.FullPrice >= minPrice
+                                    && p.FullPrice <= maxPrice));
     }
 }

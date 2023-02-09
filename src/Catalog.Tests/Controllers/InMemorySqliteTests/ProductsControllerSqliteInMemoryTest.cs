@@ -5,7 +5,7 @@ public class ProductsControllerSqliteInMemoryTest : IDisposable
     private readonly DbConnection _connection;
     private readonly DbContextOptions<CatalogContext> _contextOptions;
 
-    public ProductsControllerSqliteInMemoryTest() 
+    public ProductsControllerSqliteInMemoryTest()
     {
         _connection = new SqliteConnection("Filename=:memory:");
         _connection.Open();
@@ -24,7 +24,7 @@ public class ProductsControllerSqliteInMemoryTest : IDisposable
             SELECT ProductId, Name, Description, FullPrice, 
             Discount, Quantity, BrandId, CategoryId 
             FROM Product;";
-            viewCommand.ExecuteNonQuery();            
+            viewCommand.ExecuteNonQuery();
         }
 
         //context.Products.AddRangeAsync(FakeData.GetFakeProductsList());
@@ -48,7 +48,6 @@ public class ProductsControllerSqliteInMemoryTest : IDisposable
         Assert.Equal(StatusCodes.Status404NotFound, notFoundResult.StatusCode);
     }
 
-
     [Fact]
     public async Task ProductByIdAsync_WhenGiudIdEmpty_ShouldReturn400BadRequest()
     {
@@ -67,13 +66,9 @@ public class ProductsControllerSqliteInMemoryTest : IDisposable
         using var productContext = CreateContext();
         var productController = new ProductsController(productContext);
 
-        var result = await productController.ProductByIdAsync(SeedDataConstants.Phone1);       
+        var result = await productController.ProductByIdAsync(SeedDataConstants.Phone1);
 
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
     }
-
-
-    
 }
-

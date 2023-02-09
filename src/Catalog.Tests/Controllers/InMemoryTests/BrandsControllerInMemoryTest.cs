@@ -44,5 +44,3 @@ public class BrandsControllerInMemoryTest
         Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
     }
 }
-
-

@@ -23,7 +23,7 @@ public class PriceRangeAttributeTests
         var results = new List<ValidationResult>();
         var isValid = Validator.TryValidateObject(model, context, results, true);
 
-        Assert.False(isValid);        
+        Assert.False(isValid);
         Assert.Equal("MinPrice must not be less than zero.", results[0].ErrorMessage);
     }
 
@@ -40,7 +40,7 @@ public class PriceRangeAttributeTests
         var results = new List<ValidationResult>();
         var isValid = Validator.TryValidateObject(model, context, results, true);
 
-        Assert.False(isValid);        
+        Assert.False(isValid);
         Assert.Equal("MaxPrice must not be less than zero.", results[0].ErrorMessage);
     }
 
@@ -57,7 +57,7 @@ public class PriceRangeAttributeTests
         var results = new List<ValidationResult>();
         var isValid = Validator.TryValidateObject(model, context, results, true);
 
-        Assert.False(isValid);       
+        Assert.False(isValid);
         Assert.Equal("MinPrice must be lower than MaxPrice.", results[0].ErrorMessage);
     }
 

@@ -42,7 +42,5 @@ public class CategoryControllerInMemoryTest
         var actionResult = await categoryController.GetCategoriesAsync();
 
         Assert.IsType<ActionResult<IEnumerable<Category>>>(actionResult);
-    }   
+    }
 }
-
-

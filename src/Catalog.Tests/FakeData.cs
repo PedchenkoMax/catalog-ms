@@ -65,11 +65,11 @@ public class FakeData
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Phone1,
-                Name = "Apple iPhone 12 Pro Max", 
+                Name = "Apple iPhone 12 Pro Max",
                 Description = "Description Apple iPhone 12 Pro Max",
                 FullPrice = 1099.99M,
                 Discount = 0.0M,
-                Quantity = 15,             
+                Quantity = 15,
                 BrandId = SeedDataConstants.BrandApple,
                 CategoryId = SeedDataConstants.CategoryPhone
             },
@@ -80,7 +80,7 @@ public class FakeData
                 Description = "Description Apple iPhone 11",
                 FullPrice = 699.99M,
                 Discount = 0.0M,
-                Quantity = 20,               
+                Quantity = 20,
                 BrandId = SeedDataConstants.BrandApple,
                 CategoryId = SeedDataConstants.CategoryPhone
             },
@@ -91,10 +91,10 @@ public class FakeData
                 Description = "Description Samsung Galaxy S21",
                 FullPrice = 899.99M,
                 Discount = 0.0M,
-                Quantity = 20,               
+                Quantity = 20,
                 BrandId = SeedDataConstants.BrandSamsung,
                 CategoryId = SeedDataConstants.CategoryPhone
-            },           
+            },
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Tv1,
@@ -102,7 +102,7 @@ public class FakeData
                 Description = "Description Samsung QN55Q70T 55-Inch",
                 FullPrice = 799.99M,
                 Discount = 99.99M,
-                Quantity = 10,               
+                Quantity = 10,
                 CategoryId = SeedDataConstants.CategoryTv,
                 BrandId = SeedDataConstants.BrandSamsung
             },
@@ -113,10 +113,10 @@ public class FakeData
                 Description = "Description Samsung QN82Q70T",
                 FullPrice = 2199.99M,
                 Discount = 0.0M,
-                Quantity = 5,                
+                Quantity = 5,
                 CategoryId = SeedDataConstants.CategoryTv,
                 BrandId = SeedDataConstants.BrandSamsung
-            },            
+            },
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Tv4,
@@ -124,10 +124,10 @@ public class FakeData
                 Description = "Description LG OLED65CXP",
                 FullPrice = 1999.99M,
                 Discount = 0.0M,
-                Quantity = 0,                
+                Quantity = 0,
                 CategoryId = SeedDataConstants.CategoryTv,
                 BrandId = SeedDataConstants.BrandLg
-            },           
+            },
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Notebook1,
@@ -147,10 +147,10 @@ public class FakeData
                 Description = "Description Lenovo Ideapad 330",
                 FullPrice = 499.99M,
                 Discount = 199.99M,
-                Quantity = 20,              
+                Quantity = 20,
                 CategoryId = SeedDataConstants.CategoryNotebook,
                 BrandId = SeedDataConstants.BrandLenovo
-            },            
+            },
             new ProductEntity
             {
                 ProductId = SeedDataConstants.Notebook10,
@@ -158,7 +158,7 @@ public class FakeData
                 Description = "Description Apple MacBook Pro 16-inch",
                 FullPrice = 2499.99M,
                 Discount = 500.0M,
-                Quantity = 0,               
+                Quantity = 0,
                 CategoryId = SeedDataConstants.CategoryNotebook,
                 BrandId = SeedDataConstants.BrandApple
             },
@@ -169,7 +169,7 @@ public class FakeData
                 Description = "Description Apple MacBook Air 13-inch",
                 FullPrice = 999.99M,
                 Discount = 100.0M,
-                Quantity = 10,               
+                Quantity = 10,
                 CategoryId = SeedDataConstants.CategoryNotebook,
                 BrandId = SeedDataConstants.BrandApple
             },
@@ -180,7 +180,7 @@ public class FakeData
                 Description = "Description Apple MacBook Pro 15-inch",
                 FullPrice = 2799.99M,
                 Discount = 700.0M,
-                Quantity = 5,             
+                Quantity = 5,
                 CategoryId = SeedDataConstants.CategoryNotebook,
                 BrandId = SeedDataConstants.BrandApple
             },
@@ -191,13 +191,10 @@ public class FakeData
                 Description = "Description Apple MacBook 12-inch",
                 FullPrice = 799.99M,
                 Discount = 50.0M,
-                Quantity = 20,               
+                Quantity = 20,
                 CategoryId = SeedDataConstants.CategoryNotebook,
                 BrandId = SeedDataConstants.BrandApple
-            }            
+            }
         };
     }
 }
-
-
-

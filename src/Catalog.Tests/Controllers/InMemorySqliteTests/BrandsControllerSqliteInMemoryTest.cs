@@ -24,7 +24,7 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
             SELECT BrandId,Name,Image
             FROM Brand;";
             viewCommand.ExecuteNonQuery();
-        }      
+        }
 
         //context.Brands.AddRange(FakeData.GetFakeBrandsList());
 
@@ -56,7 +56,5 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
         var actionResult = await brandController.GetBrandsAsync();
 
         Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
-    }    
+    }
 }
-
-

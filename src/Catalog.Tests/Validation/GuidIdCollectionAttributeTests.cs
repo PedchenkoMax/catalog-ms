@@ -43,7 +43,4 @@ public class GuidIdCollectionAttributeTests
 
         Assert.False(result);
     }
-
 }
-
-
