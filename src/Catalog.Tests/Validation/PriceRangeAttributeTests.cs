@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.ValidationAttribute;
+﻿namespace Catalog.Tests.Validation;
 
 public class PriceRangeAttributeTests
 {

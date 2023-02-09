@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-namespace Catalog.Tests.Controllers.InMemoryTests;
+﻿namespace Catalog.Tests.Controllers.InMemoryTests;
 
 public class ProductsControllerInMemoryTest
 {

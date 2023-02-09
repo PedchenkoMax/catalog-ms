@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.Controllers;
+﻿namespace Catalog.Tests;
 
 public class FakeData
 {
