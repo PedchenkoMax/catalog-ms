@@ -2,19 +2,19 @@ namespace Catalog.Tests.Controllers.InMemorySqliteTests;
 
 public class CategoryControllerSqliteInMemoryTest : IDisposable
 {
-    private readonly DbConnection _connection;
-    private readonly DbContextOptions<CatalogContext> _contextOptions;
+    private readonly DbConnection connection;
+    private readonly DbContextOptions<CatalogContext> contextOptions;
 
     public CategoryControllerSqliteInMemoryTest()
     {
-        _connection = new SqliteConnection("Filename=:memory:");
-        _connection.Open();
+        connection = new SqliteConnection("Filename=:memory:");
+        connection.Open();
 
-        _contextOptions = new DbContextOptionsBuilder<CatalogContext>()
-            .UseSqlite(_connection)
+        contextOptions = new DbContextOptionsBuilder<CatalogContext>()
+            .UseSqlite(connection)
             .Options;
 
-        using var context = new CatalogContext(_contextOptions);
+        using var context = new CatalogContext(contextOptions);
 
         if (context.Database.EnsureCreated())
         {
@@ -31,9 +31,9 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
         context.SaveChanges();
     }
 
-    CatalogContext CreateContext() => new CatalogContext(_contextOptions);
+    CatalogContext CreateContext() => new CatalogContext(contextOptions);
 
-    public void Dispose() => _connection.Dispose();
+    public void Dispose() => connection.Dispose();
 
     [Fact]
     public async Task GetCategoriesAsync_Returns200Ok_WhenRequestIsSuccess()

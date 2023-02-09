@@ -6,8 +6,8 @@ public class ApplyOrderTests
     public void GivenOrderFilterWithOrderByDiscountAndIsDescFalse_ShouldOrderByDiscount()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
-        var IsDesc = false;
-        var order = new OrderFilter(OrderByEnum.Discount, IsDesc);
+        var isDesc = false;
+        var order = new OrderFilter(OrderByEnum.Discount, isDesc);
 
         var result = products.ApplyOrder(order);
 
@@ -18,8 +18,8 @@ public class ApplyOrderTests
     public void GivenOrderFilterWithOrderByDiscountAndIsDescTrue_ShouldOrderByDiscountDescending()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
-        var IsDesc = true;
-        var order = new OrderFilter(OrderByEnum.Discount, IsDesc);
+        var isDesc = true;
+        var order = new OrderFilter(OrderByEnum.Discount, isDesc);
 
         var result = products.ApplyOrder(order);
 
@@ -30,8 +30,8 @@ public class ApplyOrderTests
     public void GivenOrderFilterWithOrderByFullPrice_ShouldOrderByFullPrice()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
-        var IsDesc = false;
-        var order = new OrderFilter(OrderByEnum.FullPrice, IsDesc);
+        var isDesc = false;
+        var order = new OrderFilter(OrderByEnum.FullPrice, isDesc);
 
         var result = products.ApplyOrder(order);
 
@@ -42,8 +42,8 @@ public class ApplyOrderTests
     public void GivenOrderFilterWithOrderByFullPriceAndIsDescTrue_ShouldOrderByFullPriceDescending()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
-        var IsDesc = true;
-        var order = new OrderFilter(OrderByEnum.FullPrice, IsDesc);
+        var isDesc = true;
+        var order = new OrderFilter(OrderByEnum.FullPrice, isDesc);
 
         var result = products.ApplyOrder(order);
 
@@ -54,8 +54,8 @@ public class ApplyOrderTests
     public void GivenOrderFilterWithOrderByQuantity_ShouldOrderByQuantity()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
-        var IsDesc = false;
-        var order = new OrderFilter(OrderByEnum.Quantity, IsDesc);
+        var isDesc = false;
+        var order = new OrderFilter(OrderByEnum.Quantity, isDesc);
 
         var result = products.ApplyOrder(order);
 
@@ -66,8 +66,8 @@ public class ApplyOrderTests
     public void GivenOrderFilterWithOrderByQuantityAndIsDescTrue_ShouldOrderByQuantityDescending()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
-        var IsDesc = true;
-        var order = new OrderFilter(OrderByEnum.Quantity, IsDesc);
+        var isDesc = true;
+        var order = new OrderFilter(OrderByEnum.Quantity, isDesc);
 
         var result = products.ApplyOrder(order);
 
@@ -89,8 +89,8 @@ public class ApplyOrderTests
     public void GivenOrderFilterWithIsDescFalse_ShouldUseDefaultOrderByDiscount()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
-        var IsDesc = false;
-        var order = new OrderFilter(default, IsDesc);
+        var isDesc = false;
+        var order = new OrderFilter(default, isDesc);
 
         var result = products.ApplyOrder(order);
 

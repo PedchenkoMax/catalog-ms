@@ -2,16 +2,16 @@ namespace Catalog.Tests.Controllers.InMemoryTests;
 
 public class CategoryControllerInMemoryTest
 {
-    private readonly DbContextOptions<CatalogContext> _contextOptions;
+    private readonly DbContextOptions<CatalogContext> contextOptions;
 
     public CategoryControllerInMemoryTest()
     {
-        _contextOptions = new DbContextOptionsBuilder<CatalogContext>()
+        contextOptions = new DbContextOptionsBuilder<CatalogContext>()
             .UseInMemoryDatabase("CategoryControllerTest")
             .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
             .Options;
 
-        using var context = new CatalogContext(_contextOptions);
+        using var context = new CatalogContext(contextOptions);
 
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
@@ -24,7 +24,7 @@ public class CategoryControllerInMemoryTest
     [Fact]
     public async Task GetCategoriesAsync_Returns200Ok_WhenRequestIsSuccess()
     {
-        using var categoryContext = new CatalogContext(_contextOptions);
+        using var categoryContext = new CatalogContext(contextOptions);
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoriesAsync();
@@ -36,7 +36,7 @@ public class CategoryControllerInMemoryTest
     [Fact]
     public async Task GetCategoriesAsync_ReturnActionResultOfIEnumerableOfBrand_WhenSuccess()
     {
-        using var categoryContext = new CatalogContext(_contextOptions);
+        using var categoryContext = new CatalogContext(contextOptions);
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoriesAsync();
