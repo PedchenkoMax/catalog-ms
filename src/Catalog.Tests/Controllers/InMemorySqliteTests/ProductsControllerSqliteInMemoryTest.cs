@@ -39,7 +39,7 @@ public class ProductsControllerSqliteInMemoryTest : IDisposable
     [Fact]
     public async Task ProductByIdAsync_WhenProductNotFound_ShouldReturn404NotFound()
     {
-        using var productContext = CreateContext();
+        await using var productContext = CreateContext();
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductByIdAsync(Guid.NewGuid());
@@ -51,7 +51,7 @@ public class ProductsControllerSqliteInMemoryTest : IDisposable
     [Fact]
     public async Task ProductByIdAsync_WhenGiudIdEmpty_ShouldReturn400BadRequest()
     {
-        using var productContext = CreateContext();
+        await using var productContext = CreateContext();
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductByIdAsync(Guid.Empty);
@@ -63,7 +63,7 @@ public class ProductsControllerSqliteInMemoryTest : IDisposable
     [Fact]
     public async Task ProductByIdAsync_WhenProductFound_ShouldReturn200OK()
     {
-        using var productContext = CreateContext();
+        await using var productContext = CreateContext();
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductByIdAsync(SeedDataConstants.Phone1);

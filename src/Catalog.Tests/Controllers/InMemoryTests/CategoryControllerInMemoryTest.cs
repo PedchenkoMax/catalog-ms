@@ -24,7 +24,7 @@ public class CategoryControllerInMemoryTest
     [Fact]
     public async Task GetCategoriesAsync_Returns200Ok_WhenRequestIsSuccess()
     {
-        using var categoryContext = new CatalogContext(contextOptions);
+        await using var categoryContext = new CatalogContext(contextOptions);
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoriesAsync();
@@ -36,7 +36,7 @@ public class CategoryControllerInMemoryTest
     [Fact]
     public async Task GetCategoriesAsync_ReturnActionResultOfIEnumerableOfBrand_WhenSuccess()
     {
-        using var categoryContext = new CatalogContext(contextOptions);
+        await using var categoryContext = new CatalogContext(contextOptions);
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoriesAsync();

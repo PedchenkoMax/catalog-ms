@@ -24,7 +24,7 @@ public class BrandsControllerInMemoryTest
     [Fact]
     public async Task GetBrandsAsync_Returns200Ok_WhenRequestIsSuccess()
     {
-        using var brandContext = new CatalogContext(contextOptions);
+        await using var brandContext = new CatalogContext(contextOptions);
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
@@ -36,7 +36,7 @@ public class BrandsControllerInMemoryTest
     [Fact]
     public async Task GetBrandsAsync_ReturnActionResultOfIEnumerableOfBrand_WhenSuccess()
     {
-        using var brandContext = new CatalogContext(contextOptions);
+        await using var brandContext = new CatalogContext(contextOptions);
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();

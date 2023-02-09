@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.Controllers.InMemoryTests;
+namespace Catalog.Tests.Controllers.InMemoryTests;
 
 public class ProductsControllerInMemoryTest
 {
@@ -25,7 +25,7 @@ public class ProductsControllerInMemoryTest
     [Fact]
     public async Task ProductByIdAsync_WhenProductNotFound_ShouldReturnNotFound()
     {
-        using var productContext = new CatalogContext(contextOptions);
+        await using var productContext = new CatalogContext(contextOptions);
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductByIdAsync(Guid.NewGuid());
@@ -37,7 +37,7 @@ public class ProductsControllerInMemoryTest
     [Fact]
     public async Task ProductByIdAsync_WhenGiudIdEmpty_ShouldReturnBadRequest()
     {
-        using var productContext = new CatalogContext(contextOptions);
+        await using var productContext = new CatalogContext(contextOptions);
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductByIdAsync(Guid.Empty);
@@ -49,7 +49,7 @@ public class ProductsControllerInMemoryTest
     [Fact]
     public async Task ProductByIdAsync_WhenProductFound_ShouldReturnProduct()
     {
-        using var productContext = new CatalogContext(contextOptions);
+        await using var productContext = new CatalogContext(contextOptions);
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductByIdAsync(SeedDataConstants.Phone1);
@@ -61,7 +61,7 @@ public class ProductsControllerInMemoryTest
     [Fact]
     public async Task ProductsByParametersAsync_WhenNoProductsFound_ShouldReturnNotFound()
     {
-        using var productContext = new CatalogContext(contextOptions);
+        await using var productContext = new CatalogContext(contextOptions);
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductsByParametersAsync(
@@ -77,7 +77,7 @@ public class ProductsControllerInMemoryTest
     [Fact]
     public async Task ProductsByParametersAsync_WhenProductsFound_ShouldReturn200Ok()
     {
-        using var productContext = new CatalogContext(contextOptions);
+        await using var productContext = new CatalogContext(contextOptions);
         var productController = new ProductsController(productContext);
 
         var result = await productController.ProductsByParametersAsync(

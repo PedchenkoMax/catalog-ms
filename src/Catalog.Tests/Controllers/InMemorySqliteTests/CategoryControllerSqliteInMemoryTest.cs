@@ -38,7 +38,7 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
     [Fact]
     public async Task GetCategoriesAsync_Returns200Ok_WhenRequestIsSuccess()
     {
-        using var categoryContext = CreateContext();
+        await using var categoryContext = CreateContext();
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoriesAsync();
@@ -50,7 +50,7 @@ public class CategoryControllerSqliteInMemoryTest : IDisposable
     [Fact]
     public async Task GetCategoriesAsync_ReturnActionResultOfIEnumerableOfBrand_WhenSuccess()
     {
-        using var categoryContext = CreateContext();
+        await using var categoryContext = CreateContext();
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoriesAsync();

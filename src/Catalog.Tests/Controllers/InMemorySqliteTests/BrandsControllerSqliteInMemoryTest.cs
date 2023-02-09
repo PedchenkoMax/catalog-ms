@@ -38,7 +38,7 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
     [Fact]
     public async Task GetBrandsAsync_Returns200Ok_WhenRequestIsSuccess()
     {
-        using var brandContext = CreateContext();
+        await using var brandContext = CreateContext();
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
@@ -50,7 +50,7 @@ public class BrandsControllerSqliteInMemoryTest : IDisposable
     [Fact]
     public async Task GetBrandsAsync_ReturnActionResultOfIEnumerableOfBrand_WhenSuccess()
     {
-        using var brandContext = CreateContext();
+        await using var brandContext = CreateContext();
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandsAsync();
