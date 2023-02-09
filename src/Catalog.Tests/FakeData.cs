@@ -8,25 +8,25 @@ public class FakeData
         {
             new()
             {
-                BrandId = SeedDataConstants.BrandApple,
+                Id = SeedDataConstants.BrandApple,
                 Name = "Apple",
                 Image = "https://blob.com/BrandApple.png"
             },
             new()
             {
-                BrandId = SeedDataConstants.BrandSamsung,
+                Id = SeedDataConstants.BrandSamsung,
                 Name = "Samsung",
                 Image = "https://blob.com/BrandSamsung.png"
             },
             new()
             {
-                BrandId = SeedDataConstants.BrandLg,
+                Id = SeedDataConstants.BrandLg,
                 Name = "Lg",
                 Image = "https://blob.com/BrandLg.png"
             },
             new()
             {
-                BrandId = SeedDataConstants.BrandLenovo,
+                Id = SeedDataConstants.BrandLenovo,
                 Name = "Lenovo",
                 Image = "https://blob.com/BrandLenovo.png"
             }
@@ -39,19 +39,19 @@ public class FakeData
         {
             new()
             {
-                CategoryId = SeedDataConstants.CategoryPhone,
+                Id = SeedDataConstants.CategoryPhone,
                 Name = "Phone",
                 Image = "https://blob.com/CategoryPhone.png"
             },
             new()
             {
-                CategoryId = SeedDataConstants.CategoryTv,
+                Id = SeedDataConstants.CategoryTv,
                 Name = "TV",
                 Image = "https://blob.com/CategoryTv.png"
             },
             new()
             {
-                CategoryId = SeedDataConstants.CategoryNotebook,
+                Id = SeedDataConstants.CategoryNotebook,
                 Name = "Notebook",
                 Image = "https://blob.com/CategoryNotebook.png"
             }
@@ -64,7 +64,7 @@ public class FakeData
         {
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Phone1,
+                Id = SeedDataConstants.Phone1,
                 Name = "Apple iPhone 12 Pro Max",
                 Description = "Description Apple iPhone 12 Pro Max",
                 FullPrice = 1099.99M,
@@ -75,7 +75,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Phone2,
+                Id = SeedDataConstants.Phone2,
                 Name = "Apple iPhone 11",
                 Description = "Description Apple iPhone 11",
                 FullPrice = 699.99M,
@@ -86,7 +86,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Phone3,
+                Id = SeedDataConstants.Phone3,
                 Name = "Samsung Galaxy S21",
                 Description = "Description Samsung Galaxy S21",
                 FullPrice = 899.99M,
@@ -97,7 +97,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Tv1,
+                Id = SeedDataConstants.Tv1,
                 Name = "Samsung QN55Q70T 55-Inch 4K UHD Smart TV",
                 Description = "Description Samsung QN55Q70T 55-Inch",
                 FullPrice = 799.99M,
@@ -108,7 +108,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Tv2,
+                Id = SeedDataConstants.Tv2,
                 Name = "Samsung QN82Q70T 82-Inch 4K UHD Smart TV",
                 Description = "Description Samsung QN82Q70T",
                 FullPrice = 2199.99M,
@@ -119,7 +119,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Tv4,
+                Id = SeedDataConstants.Tv4,
                 Name = "LG OLED65CXP 65-Inch 4K UHD Smart TV",
                 Description = "Description LG OLED65CXP",
                 FullPrice = 1999.99M,
@@ -130,7 +130,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Notebook1,
+                Id = SeedDataConstants.Notebook1,
                 Name = "Lenovo ThinkPad X1 Carbon 14-Inch Laptop",
                 Description = "Description Lenovo ThinkPad X1",
                 FullPrice = 999.99M,
@@ -142,7 +142,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Notebook2,
+                Id = SeedDataConstants.Notebook2,
                 Name = "Lenovo Ideapad 330 15-Inch Laptop",
                 Description = "Description Lenovo Ideapad 330",
                 FullPrice = 499.99M,
@@ -153,7 +153,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Notebook10,
+                Id = SeedDataConstants.Notebook10,
                 Name = "Apple MacBook Pro 16-inch",
                 Description = "Description Apple MacBook Pro 16-inch",
                 FullPrice = 2499.99M,
@@ -164,7 +164,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Notebook11,
+                Id = SeedDataConstants.Notebook11,
                 Name = "Apple MacBook Air 13-inch",
                 Description = "Description Apple MacBook Air 13-inch",
                 FullPrice = 999.99M,
@@ -175,7 +175,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Notebook12,
+                Id = SeedDataConstants.Notebook12,
                 Name = "Apple MacBook Pro 15-inch",
                 Description = "Description Apple MacBook Pro 15-inch",
                 FullPrice = 2799.99M,
@@ -186,7 +186,7 @@ public class FakeData
             },
             new ProductEntity
             {
-                ProductId = SeedDataConstants.Notebook13,
+                Id = SeedDataConstants.Notebook13,
                 Name = "Apple MacBook 12-inch",
                 Description = "Description Apple MacBook 12-inch",
                 FullPrice = 799.99M,
