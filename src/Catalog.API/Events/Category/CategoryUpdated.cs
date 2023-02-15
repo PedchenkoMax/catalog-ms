@@ -9,8 +9,8 @@ public record CategoryUpdatedEvent(Guid Id, string Name, string Image) : IEvent<
     public CategoryEntity ToEntity() => new() { Id = Id, Name = Name, Image = Image };
 }
 
-public class CategoryBaseUpdatedEventConsumer : BaseUpdatedEventConsumer<CategoryUpdatedEvent, CategoryEntity>
+public class CategoryUpdatedEventConsumer : BaseUpdatedEventConsumer<CategoryUpdatedEvent, CategoryEntity>
 {
-    public CategoryBaseUpdatedEventConsumer(ILogger<BaseUpdatedEventConsumer<CategoryUpdatedEvent, CategoryEntity>> logger, CatalogContext ctx) :
+    public CategoryUpdatedEventConsumer(ILogger<CategoryUpdatedEventConsumer> logger, CatalogContext ctx) :
         base(logger, ctx) { }
 }

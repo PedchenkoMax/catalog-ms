@@ -11,6 +11,6 @@ public record CategoryDeletedEvent(Guid Id) : IEvent<CategoryEntity>
 
 public class CategoryDeletedEventConsumer : BaseDeletedEventConsumer<CategoryDeletedEvent, CategoryEntity>
 {
-    public CategoryDeletedEventConsumer(ILogger<BaseDeletedEventConsumer<CategoryDeletedEvent, CategoryEntity>> logger, CatalogContext ctx) :
+    public CategoryDeletedEventConsumer(ILogger<CategoryDeletedEventConsumer> logger, CatalogContext ctx) :
         base(logger, ctx) { }
 }

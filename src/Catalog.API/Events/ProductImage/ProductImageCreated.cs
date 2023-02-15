@@ -11,6 +11,6 @@ public record ProductImageCreatedEvent(Guid Id, Guid ProductId, string ImageUrl,
 
 public class ProductImageCreatedEventConsumer : BaseCreatedEventConsumer<ProductImageCreatedEvent, ProductImageEntity>
 {
-    public ProductImageCreatedEventConsumer(ILogger<BaseCreatedEventConsumer<ProductImageCreatedEvent, ProductImageEntity>> logger, CatalogContext ctx) :
+    public ProductImageCreatedEventConsumer(ILogger<ProductImageCreatedEventConsumer> logger, CatalogContext ctx) :
         base(logger, ctx) { }
 }

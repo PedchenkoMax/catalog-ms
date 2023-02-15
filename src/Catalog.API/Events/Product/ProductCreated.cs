@@ -34,7 +34,7 @@ public record ProductCreatedEvent(
 
 public class ProductCreatedEventConsumer : BaseCreatedEventConsumer<ProductCreatedEvent, ProductEntity>
 {
-    public ProductCreatedEventConsumer(ILogger<BaseCreatedEventConsumer<ProductCreatedEvent, ProductEntity>> logger, CatalogContext ctx) :
+    public ProductCreatedEventConsumer(ILogger<ProductCreatedEventConsumer> logger, CatalogContext ctx) :
         base(logger, ctx)
     {
     }

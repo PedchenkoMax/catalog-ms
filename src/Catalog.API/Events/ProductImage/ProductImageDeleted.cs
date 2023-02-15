@@ -11,6 +11,6 @@ public record ProductImageDeletedEvent(Guid Id) : IEvent<ProductImageEntity>
 
 public class ProductImageDeletedEventConsumer : BaseDeletedEventConsumer<ProductImageDeletedEvent, ProductImageEntity>
 {
-    public ProductImageDeletedEventConsumer(ILogger<BaseDeletedEventConsumer<ProductImageDeletedEvent, ProductImageEntity>> logger, CatalogContext ctx) :
+    public ProductImageDeletedEventConsumer(ILogger<ProductImageDeletedEventConsumer> logger, CatalogContext ctx) :
         base(logger, ctx) { }
 }

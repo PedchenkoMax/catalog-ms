@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Abstractions;
+using Catalog.API.Events.Abstractions;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 
@@ -11,6 +11,6 @@ public record BrandDeletedEvent(Guid Id) : IEvent<BrandEntity>
 
 public class BrandDeletedEventConsumer : BaseDeletedEventConsumer<BrandDeletedEvent, BrandEntity>
 {
-    public BrandDeletedEventConsumer(ILogger<BaseDeletedEventConsumer<BrandDeletedEvent, BrandEntity>> logger, CatalogContext ctx) :
+    public BrandDeletedEventConsumer(ILogger<BrandDeletedEventConsumer> logger, CatalogContext ctx) :
         base(logger, ctx) { }
 }

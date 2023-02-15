@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Abstractions;
+using Catalog.API.Events.Abstractions;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 
@@ -9,8 +9,10 @@ public record ProductImageUpdatedEvent(Guid Id, bool IsMain) : IEvent<ProductIma
     public ProductImageEntity ToEntity() => new() { Id = Id, IsMain = IsMain };
 }
 
-public class ProductImageBaseUpdatedEventConsumer : BaseUpdatedEventConsumer<ProductImageUpdatedEvent, ProductImageEntity>
+public class ProductImageUpdatedEventConsumer : BaseUpdatedEventConsumer<ProductImageUpdatedEvent, ProductImageEntity>
 {
-    public ProductImageBaseUpdatedEventConsumer(ILogger<BaseUpdatedEventConsumer<ProductImageUpdatedEvent, ProductImageEntity>> logger, CatalogContext ctx) :
-        base(logger, ctx) { }
+    public ProductImageUpdatedEventConsumer(ILogger<ProductImageUpdatedEventConsumer> logger, CatalogContext ctx) :
+        base(logger, ctx)
+    {
+    }
 }

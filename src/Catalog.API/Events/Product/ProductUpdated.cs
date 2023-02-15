@@ -31,8 +31,8 @@ public record ProductUpdatedEvent(
         };
     }
 }
-public class ProductBaseUpdatedEventConsumer : BaseUpdatedEventConsumer<ProductUpdatedEvent, ProductEntity>
+public class ProductUpdatedEventConsumer : BaseUpdatedEventConsumer<ProductUpdatedEvent, ProductEntity>
 {
-    public ProductBaseUpdatedEventConsumer(ILogger<BaseUpdatedEventConsumer<ProductUpdatedEvent, ProductEntity>> logger, CatalogContext ctx) :
+    public ProductUpdatedEventConsumer(ILogger<ProductUpdatedEventConsumer> logger, CatalogContext ctx) :
         base(logger, ctx) { }
 }

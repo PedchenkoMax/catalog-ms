@@ -11,6 +11,6 @@ public record CategoryCreatedEvent(Guid Id, string Name, string Image) : IEvent<
 
 public class CategoryCreatedEventConsumer : BaseCreatedEventConsumer<CategoryCreatedEvent, CategoryEntity>
 {
-    public CategoryCreatedEventConsumer(ILogger<BaseCreatedEventConsumer<CategoryCreatedEvent, CategoryEntity>> logger, CatalogContext ctx) :
+    public CategoryCreatedEventConsumer(ILogger<CategoryCreatedEventConsumer> logger, CatalogContext ctx) :
         base(logger, ctx) { }
 }
