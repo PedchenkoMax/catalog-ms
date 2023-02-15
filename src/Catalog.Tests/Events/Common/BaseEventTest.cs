@@ -64,7 +64,8 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     {
         await Provider.GetTestHarness().Bus.Publish(@event);
 
-        TestCatalogContext.ResetEvent.WaitOne();
+        // Look up 'TestCatalogContext' for the explanation.
+        TestCatalogContext.ResetEvent.WaitOne(); 
     }
 
     protected async Task AddEntity<T>(T entity)
