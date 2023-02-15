@@ -11,22 +11,8 @@ public sealed class ProductEventsTest :
     BaseEventTest<ProductCreatedEventConsumer, ProductUpdatedEventConsumer, ProductDeletedEventConsumer>,
     IClassFixture<DatabaseFixture>
 {
-    private readonly BrandEntity seedBrand;
-    private readonly BrandEntity seedBrand2;
-    private readonly CategoryEntity seedCategory;
-    private readonly CategoryEntity seedCategory2;
-
     public ProductEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
-        seedBrand = new BrandEntity(Guid.NewGuid(), "Name", "");
-        seedBrand2 = new BrandEntity(Guid.NewGuid(), "Name", "");
-        seedCategory = new CategoryEntity(Guid.NewGuid(), "Name", "");
-        seedCategory2 = new CategoryEntity(Guid.NewGuid(), "Name", "");
-
-        AddEntity(seedBrand);
-        AddEntity(seedBrand2);
-        AddEntity(seedCategory);
-        AddEntity(seedCategory2);
     }
 
     [Fact]
@@ -37,7 +23,7 @@ public sealed class ProductEventsTest :
 
         // Act
         var productCreatedEvent = new ProductCreatedEvent(Id: Guid.NewGuid(), Name: "", Description: "", FullPrice: 0, Discount: 0, Quantity: 0,
-            IsActive: false, CategoryId: seedCategory.Id, BrandId: seedBrand.Id);
+            IsActive: false, CategoryId: Fixture.SeedCategory1.Id, BrandId: Fixture.SeedBrand1.Id);
         await Publish(productCreatedEvent);
 
 
@@ -72,15 +58,15 @@ public sealed class ProductEventsTest :
             Discount = 0,
             Quantity = 0,
             IsActive = false,
-            CategoryId = seedCategory.Id,
-            BrandId = seedBrand.Id,
+            CategoryId = Fixture.SeedCategory1.Id,
+            BrandId = Fixture.SeedBrand1.Id,
         };
         await AddEntity(alreadyExistEntity);
 
 
         // Act
         var productCreatedEvent = new ProductCreatedEvent(Id: alreadyExistEntity.Id, Name: "new", Description: "new", FullPrice: 1, Discount: 1,
-            Quantity: 1, IsActive: true, CategoryId: seedCategory2.Id, BrandId: seedBrand2.Id);
+            Quantity: 1, IsActive: true, CategoryId: Fixture.SeedCategory2.Id, BrandId: Fixture.SeedBrand2.Id);
         await Publish(productCreatedEvent);
 
 
@@ -114,15 +100,15 @@ public sealed class ProductEventsTest :
             Discount = 0,
             Quantity = 0,
             IsActive = false,
-            CategoryId = seedCategory.Id,
-            BrandId = seedBrand.Id,
+            CategoryId = Fixture.SeedCategory1.Id,
+            BrandId = Fixture.SeedBrand1.Id,
         };
         await AddEntity(initialEntity);
 
 
         // Act
         var productUpdatedEvent = new ProductUpdatedEvent(Id: initialEntity.Id, Name: "new", Description: "new", FullPrice: 1, Discount: 1,
-            Quantity: 1, IsActive: true, CategoryId: seedCategory2.Id, BrandId: seedBrand2.Id);
+            Quantity: 1, IsActive: true, CategoryId: Fixture.SeedCategory2.Id, BrandId: Fixture.SeedBrand2.Id);
         await Publish(productUpdatedEvent);
 
 
@@ -156,8 +142,8 @@ public sealed class ProductEventsTest :
             Discount = 0,
             Quantity = 0,
             IsActive = false,
-            CategoryId = seedCategory.Id,
-            BrandId = seedBrand.Id,
+            CategoryId = Fixture.SeedCategory1.Id,
+            BrandId = Fixture.SeedBrand1.Id,
         };
         await AddEntity(entity);
 
