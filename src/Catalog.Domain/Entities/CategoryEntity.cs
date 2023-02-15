@@ -4,7 +4,7 @@ namespace Catalog.Domain.Entities;
 
 public class CategoryEntity : Entity
 {
-    public CategoryEntity(Guid id, string name, string image, IList<ProductEntity>? products) : base(id)
+    public CategoryEntity(Guid id, string name, string image, IList<ProductEntity>? products = null) : base(id)
     {
         Name = name;
         Image = image;

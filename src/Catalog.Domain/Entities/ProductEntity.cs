@@ -8,15 +8,15 @@ public class ProductEntity : Entity
         Guid id,
         string name,
         string description,
-        IList<ProductImageEntity>? images,
         decimal fullPrice,
         decimal discount,
         int quantity,
         bool isActive,
         Guid categoryId,
-        CategoryEntity? category,
         Guid brandId,
-        BrandEntity? brand) : base(id)
+        IList<ProductImageEntity>? images = null,
+        CategoryEntity? category = null,
+        BrandEntity? brand = null) : base(id)
     {
         Name = name;
         Description = description;
