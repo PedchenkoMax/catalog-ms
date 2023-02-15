@@ -18,9 +18,6 @@ public sealed class BrandEventsTest :
     [Fact]
     public async Task CreatedEvent_DoesntExist_CreatesBrand()
     {
-        // Arrange
-
-
         // Act
         var brandCreatedEvent = new BrandCreatedEvent(Guid.NewGuid(), "Name", "Image");
         await Publish(brandCreatedEvent);
@@ -109,9 +106,6 @@ public sealed class BrandEventsTest :
     [Fact]
     public async Task DeletedEvent_DoesntExist_LogCritical()
     {
-        // Arrange
-
-
         // Act
         var brandDeletedEvent = new BrandDeletedEvent(Guid.Empty);
         await Publish(brandDeletedEvent);

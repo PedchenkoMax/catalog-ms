@@ -18,9 +18,6 @@ public sealed class CategoryEventsTest :
     [Fact]
     public async Task CreatedEvent_DoesntExist_CreatesCategory()
     {
-        // Arrange
-
-
         // Act
         var categoryCreatedEvent = new CategoryCreatedEvent(Guid.NewGuid(), "Name", "Image");
         await Publish(categoryCreatedEvent);
@@ -109,9 +106,6 @@ public sealed class CategoryEventsTest :
     [Fact]
     public async Task DeletedEvent_DoesntExist_LogCritical()
     {
-        // Arrange
-
-
         // Act
         var categoryDeletedEvent = new CategoryDeletedEvent(Guid.Empty);
         await Publish(categoryDeletedEvent);

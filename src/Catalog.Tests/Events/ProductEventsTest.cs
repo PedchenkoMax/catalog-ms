@@ -18,9 +18,6 @@ public sealed class ProductEventsTest :
     [Fact]
     public async Task CreatedEvent_DoesntExist_CreatesProduct()
     {
-        // Arrange
-
-
         // Act
         var productCreatedEvent = new ProductCreatedEvent(Guid.NewGuid(), "", "", 0, 0, 0, false, Fixture.SeedCategory1.Id, Fixture.SeedBrand1.Id);
         await Publish(productCreatedEvent);
@@ -128,9 +125,6 @@ public sealed class ProductEventsTest :
     [Fact]
     public async Task DeletedEvent_DoesntExist_LogCritical()
     {
-        // Arrange
-
-
         // Act
         var productDeletedEvent = new ProductDeletedEvent(Guid.Empty);
         await Publish(productDeletedEvent);
