@@ -4,6 +4,10 @@ namespace Catalog.Domain.Entities;
 
 public class ProductEntity : Entity
 {
+    public ProductEntity()
+    {
+    }
+
     public string Name { get; set; }
     public string Description { get; set; }
     public IList<ProductImageEntity>? Images { get; set; }

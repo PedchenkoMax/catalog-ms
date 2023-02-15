@@ -1,9 +1,13 @@
-﻿using Catalog.Domain.Abstractions;
+using Catalog.Domain.Abstractions;
 
 namespace Catalog.Domain.Entities;
 
 public class ProductImageEntity : Entity
 {
+    public ProductImageEntity()
+    {
+    }
+
     public string ImageUrl { get; set; }
     public bool IsMain { get; set; }
 
