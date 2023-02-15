@@ -9,7 +9,7 @@ public class ProductImageEntity : Entity
         string imageUrl,
         bool isMain,
         Guid productId,
-        ProductEntity productEntity) : base(id)
+        ProductEntity? productEntity) : base(id)
     {
         ImageUrl = imageUrl;
         IsMain = isMain;
@@ -25,5 +25,5 @@ public class ProductImageEntity : Entity
     public bool IsMain { get; set; }
 
     public Guid ProductId { get; set; }
-    public ProductEntity ProductEntity { get; set; }
+    public ProductEntity? ProductEntity { get; set; }
 }
