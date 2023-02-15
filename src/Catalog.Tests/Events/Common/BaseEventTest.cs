@@ -15,9 +15,9 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     where TUpdatedEventConsumer : class, IConsumer
     where TDeletedEventConsumer : class, IConsumer
 {
-    protected readonly ServiceProvider provider;
-    protected readonly DatabaseFixture fixture;
-    protected readonly ITestOutputHelper output;
+    protected readonly ServiceProvider Provider;
+    protected readonly DatabaseFixture Fixture;
+    protected readonly ITestOutputHelper Output;
 
     protected readonly ICacheLogger<TCreatedEventConsumer> CreatedLogger;
     protected readonly ICacheLogger<TUpdatedEventConsumer> UpdatedLogger;
@@ -25,14 +25,14 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
 
     protected BaseEventTest(DatabaseFixture fixture, ITestOutputHelper output)
     {
-        this.fixture = fixture;
-        this.output = output;
+        Fixture = fixture;
+        Output = output;
         
         CreatedLogger = output.BuildLoggerFor<TCreatedEventConsumer>(LogLevel.Information);
         UpdatedLogger = output.BuildLoggerFor<TUpdatedEventConsumer>(LogLevel.Information);
         DeletedLogger = output.BuildLoggerFor<TDeletedEventConsumer>(LogLevel.Information);
 
-        provider = new ServiceCollection()
+        Provider = new ServiceCollection()
             .AddSingleton<ILogger<TCreatedEventConsumer>>(CreatedLogger)
             .AddSingleton<ILogger<TUpdatedEventConsumer>>(UpdatedLogger)
             .AddSingleton<ILogger<TDeletedEventConsumer>>(DeletedLogger)
@@ -47,22 +47,22 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
             .AddTransient<CatalogContext, TestCatalogContext>()
             .BuildServiceProvider(true);
 
-        var harness = provider.GetTestHarness();
+        var harness = Provider.GetTestHarness();
         harness.Start();
     }
 
     public async ValueTask DisposeAsync()
     {
-        var harness = provider.GetTestHarness();
+        var harness = Provider.GetTestHarness();
         await harness.Stop();
 
-        await provider.DisposeAsync();
+        await Provider.DisposeAsync();
     }
 
     protected async Task Publish<T>(T @event)
         where T : IEvent<Entity>
     {
-        await provider.GetTestHarness().Bus.Publish(@event);
+        await Provider.GetTestHarness().Bus.Publish(@event);
 
         TestCatalogContext.ResetEvent.WaitOne();
     }
@@ -70,7 +70,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     protected async Task AddEntity<T>(T entity)
         where T : Entity
     {
-        var ctx = provider.CreateAsyncScope().ServiceProvider.GetRequiredService<CatalogContext>();
+        var ctx = Provider.CreateAsyncScope().ServiceProvider.GetRequiredService<CatalogContext>();
 
         ctx.Set<T>().Add(entity);
 
@@ -80,7 +80,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     protected async Task<T?> FirstOrDefault<T>(Guid id)
         where T : Entity
     {
-        var ctx = provider.CreateAsyncScope().ServiceProvider.GetRequiredService<CatalogContext>();
+        var ctx = Provider.CreateAsyncScope().ServiceProvider.GetRequiredService<CatalogContext>();
 
         return await ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
     }
