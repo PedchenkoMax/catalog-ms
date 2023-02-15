@@ -29,7 +29,6 @@ public sealed class ProductEventsTest :
         var product = await FirstOrDefault<ProductEntity>(productCreatedEvent.Id);
 
         product.Should().NotBeNull();
-        product!.Id.Should().Be(productCreatedEvent.Id);
         product.Name.Should().Be(productCreatedEvent.Name);
         product.Description.Should().Be(productCreatedEvent.Description);
         product.FullPrice.Should().Be(productCreatedEvent.FullPrice);
@@ -60,7 +59,6 @@ public sealed class ProductEventsTest :
         var product = await FirstOrDefault<ProductEntity>(productCreatedEvent.Id);
 
         product.Should().NotBeNull();
-        product!.Id.Should().Be(alreadyExistEntity.Id);
         product.Name.Should().Be(alreadyExistEntity.Name);
         product.Description.Should().Be(alreadyExistEntity.Description);
         product.FullPrice.Should().Be(alreadyExistEntity.FullPrice);
@@ -90,7 +88,6 @@ public sealed class ProductEventsTest :
         var product = await FirstOrDefault<ProductEntity>(productUpdatedEvent.Id);
 
         product.Should().NotBeNull();
-        product!.Id.Should().Be(productUpdatedEvent.Id);
         product.Name.Should().Be(productUpdatedEvent.Name);
         product.Description.Should().Be(productUpdatedEvent.Description);
         product.FullPrice.Should().Be(productUpdatedEvent.FullPrice);

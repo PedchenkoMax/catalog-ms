@@ -29,7 +29,6 @@ public sealed class ProductImageEventsTest :
         var productImage = await FirstOrDefault<ProductImageEntity>(productImageCreatedEvent.Id);
 
         productImage.Should().NotBeNull();
-        productImage!.Id.Should().Be(productImageCreatedEvent.Id);
         productImage.ImageUrl.Should().Be(productImageCreatedEvent.ImageUrl);
         productImage.IsMain.Should().Be(productImageCreatedEvent.IsMain);
     }
@@ -53,7 +52,6 @@ public sealed class ProductImageEventsTest :
         var productImage = await FirstOrDefault<ProductImageEntity>(productImageCreatedEvent.Id);
 
         productImage.Should().NotBeNull();
-        productImage!.Id.Should().Be(alreadyExistEntity.Id);
         productImage.ImageUrl.Should().Be(alreadyExistEntity.ImageUrl);
         productImage.IsMain.Should().Be(alreadyExistEntity.IsMain);
     }

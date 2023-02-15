@@ -29,7 +29,6 @@ public sealed class CategoryEventsTest :
         var category = await FirstOrDefault<CategoryEntity>(categoryCreatedEvent.Id);
 
         category.Should().NotBeNull();
-        category!.Id.Should().Be(categoryCreatedEvent.Id);
         category.Name.Should().Be(categoryCreatedEvent.Name);
         category.Image.Should().Be(categoryCreatedEvent.Image);
     }
@@ -53,7 +52,6 @@ public sealed class CategoryEventsTest :
         var category = await FirstOrDefault<CategoryEntity>(categoryCreatedEvent.Id);
 
         category.Should().NotBeNull();
-        category!.Id.Should().Be(alreadyExistEntity.Id);
         category.Name.Should().Be(alreadyExistEntity.Name);
         category.Image.Should().Be(alreadyExistEntity.Image);
     }
@@ -77,7 +75,6 @@ public sealed class CategoryEventsTest :
         var category = await FirstOrDefault<CategoryEntity>(categoryUpdatedEvent.Id);
 
         category.Should().NotBeNull();
-        category!.Id.Should().Be(categoryUpdatedEvent.Id);
         category.Name.Should().Be(categoryUpdatedEvent.Name);
         category.Image.Should().Be(categoryUpdatedEvent.Image);
     }

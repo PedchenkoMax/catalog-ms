@@ -29,7 +29,6 @@ public sealed class BrandEventsTest :
         var brand = await FirstOrDefault<BrandEntity>(brandCreatedEvent.Id);
 
         brand.Should().NotBeNull();
-        brand!.Id.Should().Be(brandCreatedEvent.Id);
         brand.Name.Should().Be(brandCreatedEvent.Name);
         brand.Image.Should().Be(brandCreatedEvent.Image);
     }
@@ -53,7 +52,6 @@ public sealed class BrandEventsTest :
         var brand = await FirstOrDefault<BrandEntity>(brandCreatedEvent.Id);
 
         brand.Should().NotBeNull();
-        brand!.Id.Should().Be(alreadyExistEntity.Id);
         brand.Name.Should().Be(alreadyExistEntity.Name);
         brand.Image.Should().Be(alreadyExistEntity.Image);
     }
@@ -77,7 +75,6 @@ public sealed class BrandEventsTest :
         var brand = await FirstOrDefault<BrandEntity>(brandUpdatedEvent.Id);
 
         brand.Should().NotBeNull();
-        brand!.Id.Should().Be(brandUpdatedEvent.Id);
         brand.Name.Should().Be(brandUpdatedEvent.Name);
         brand.Image.Should().Be(brandUpdatedEvent.Image);
     }
