@@ -11,7 +11,7 @@ public sealed class BrandEventsTest :
     BaseEventTest<BrandCreatedEventConsumer, BrandUpdatedEventConsumer, BrandDeletedEventConsumer>,
     IClassFixture<DatabaseFixture>
 {
-    public BrandEventsTest(ITestOutputHelper output) : base(output)
+    public BrandEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
     }
 

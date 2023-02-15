@@ -11,7 +11,7 @@ public sealed class CategoryEventsTest :
     BaseEventTest<CategoryCreatedEventConsumer, CategoryUpdatedEventConsumer, CategoryDeletedEventConsumer>,
     IClassFixture<DatabaseFixture>
 {
-    public CategoryEventsTest(ITestOutputHelper output) : base(output)
+    public CategoryEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
     }
 

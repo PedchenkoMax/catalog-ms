@@ -16,7 +16,7 @@ public sealed class ProductEventsTest :
     private readonly CategoryEntity seedCategory;
     private readonly CategoryEntity seedCategory2;
 
-    public ProductEventsTest(ITestOutputHelper output) : base(output)
+    public ProductEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
         seedBrand = new BrandEntity(Guid.NewGuid(), "Name", "");
         seedBrand2 = new BrandEntity(Guid.NewGuid(), "Name", "");

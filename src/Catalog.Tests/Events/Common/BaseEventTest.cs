@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Abstractions;
+using Catalog.API.Events.Abstractions;
 using Catalog.Domain.Abstractions;
 using Divergic.Logging.Xunit;
 using MassTransit;
@@ -20,7 +20,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     protected readonly ICacheLogger<TUpdatedEventConsumer> UpdatedLogger;
     protected readonly ICacheLogger<TDeletedEventConsumer> DeletedLogger;
 
-    protected BaseEventTest(ITestOutputHelper output)
+    protected BaseEventTest(DatabaseFixture fixture, ITestOutputHelper output)
     {
         CreatedLogger = output.BuildLoggerFor<TCreatedEventConsumer>(LogLevel.Information);
         UpdatedLogger = output.BuildLoggerFor<TUpdatedEventConsumer>(LogLevel.Information);

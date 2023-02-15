@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.ProductImage;
+using Catalog.API.Events.ProductImage;
 using Catalog.Tests.Events.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -13,7 +13,7 @@ public sealed class ProductImageEventsTest :
 {
     private readonly ProductEntity seedProduct;
 
-    public ProductImageEventsTest(ITestOutputHelper output) : base(output)
+    public ProductImageEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
         var seedBrand = new BrandEntity(Guid.NewGuid(), "Name", "Image");
         var seedCategory = new CategoryEntity(Guid.NewGuid(), "Name", "Image");
