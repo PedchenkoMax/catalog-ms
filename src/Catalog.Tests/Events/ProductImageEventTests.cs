@@ -111,7 +111,7 @@ public sealed class ProductImageEventsTest :
 
 
         // Act
-        var productImageDeletedEvent = new ProductImageDeletedEvent(Guid.Parse("00000000-0000-0000-0000-000000000000"));
+        var productImageDeletedEvent = new ProductImageDeletedEvent(Guid.Empty);
         await Publish(productImageDeletedEvent);
 
 

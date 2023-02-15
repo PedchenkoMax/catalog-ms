@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Brand;
+using Catalog.API.Events.Brand;
 using Catalog.Tests.Events.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -113,7 +113,7 @@ public sealed class BrandEventsTest :
 
 
         // Act
-        var brandDeletedEvent = new BrandDeletedEvent(Guid.Parse("00000000-0000-0000-0000-000000000000"));
+        var brandDeletedEvent = new BrandDeletedEvent(Guid.Empty);
         await Publish(brandDeletedEvent);
 
 

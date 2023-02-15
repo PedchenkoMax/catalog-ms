@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Product;
+using Catalog.API.Events.Product;
 using Catalog.Tests.Events.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -168,7 +168,7 @@ public sealed class ProductEventsTest :
 
 
         // Act
-        var productDeletedEvent = new ProductDeletedEvent(Guid.Parse("00000000-0000-0000-0000-000000000000"));
+        var productDeletedEvent = new ProductDeletedEvent(Guid.Empty);
         await Publish(productDeletedEvent);
 
 

@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Category;
+using Catalog.API.Events.Category;
 using Catalog.Tests.Events.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -113,7 +113,7 @@ public sealed class CategoryEventsTest :
 
 
         // Act
-        var categoryDeletedEvent = new CategoryDeletedEvent(Guid.Parse("00000000-0000-0000-0000-000000000000"));
+        var categoryDeletedEvent = new CategoryDeletedEvent(Guid.Empty);
         await Publish(categoryDeletedEvent);
 
 
