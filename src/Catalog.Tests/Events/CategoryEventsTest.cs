@@ -41,7 +41,7 @@ public sealed class CategoryEventsTest :
     public async Task CreatedEvent_Exists_LogCritical()
     {
         // Arrange
-        var alreadyExistEntity = new CategoryEntity { Id = Guid.NewGuid(), Name = "Name", Image = "Image" };
+        var alreadyExistEntity = new CategoryEntity(Guid.NewGuid(), "Name", "Image");
         await AddEntity(alreadyExistEntity);
 
 
@@ -65,7 +65,7 @@ public sealed class CategoryEventsTest :
     public async Task UpdatedEvent_UpdatesCategory()
     {
         // Arrange
-        var initialEntity = new CategoryEntity { Id = Guid.NewGuid(), Name = "Initial Name", Image = "Initial Image" };
+        var initialEntity = new CategoryEntity(Guid.NewGuid(), "Name", "Image");
         await AddEntity(initialEntity);
 
 
@@ -89,7 +89,7 @@ public sealed class CategoryEventsTest :
     public async Task DeletedEvent_Exists_DeletesCategory()
     {
         // Arrange
-        var entity = new CategoryEntity { Id = Guid.NewGuid(), Name = "Name", Image = "Image" };
+        var entity = new CategoryEntity(Guid.NewGuid(), "Name", "Image");
         await AddEntity(entity);
 
 

@@ -41,7 +41,7 @@ public sealed class BrandEventsTest :
     public async Task CreatedEvent_Exists_LogCritical()
     {
         // Arrange
-        var alreadyExistEntity = new BrandEntity(id: Guid.NewGuid(), name: "Name", image: "Image");
+        var alreadyExistEntity = new BrandEntity(Guid.NewGuid(), "Name", "Image");
         await AddEntity(alreadyExistEntity);
 
 
@@ -65,7 +65,7 @@ public sealed class BrandEventsTest :
     public async Task UpdatedEvent_UpdatesBrand()
     {
         // Arrange
-        var initialEntity = new BrandEntity(id: Guid.NewGuid(), name: "Initial Name", image: "Initial Image");
+        var initialEntity = new BrandEntity(Guid.NewGuid(), "Initial Name", "Initial Image");
         await AddEntity(initialEntity);
 
 
@@ -89,7 +89,7 @@ public sealed class BrandEventsTest :
     public async Task DeletedEvent_Exists_DeletesBrand()
     {
         // Arrange
-        var entity = new BrandEntity(id: Guid.NewGuid(), name: "Name", image: "Image");
+        var entity = new BrandEntity(Guid.NewGuid(), "Name", "Image");
         await AddEntity(entity);
 
 

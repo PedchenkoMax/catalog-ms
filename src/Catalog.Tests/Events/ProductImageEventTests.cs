@@ -41,7 +41,7 @@ public sealed class ProductImageEventsTest :
     public async Task CreatedEvent_Exists_LogCritical()
     {
         // Arrange
-        var alreadyExistEntity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id, null);
+        var alreadyExistEntity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id);
         await AddEntity(alreadyExistEntity);
 
 
@@ -65,7 +65,7 @@ public sealed class ProductImageEventsTest :
     public async Task UpdatedEvent_UpdatesProductImage()
     {
         // Arrange
-        var initialEntity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id, null);
+        var initialEntity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id);
         await AddEntity(initialEntity);
 
 
@@ -87,7 +87,7 @@ public sealed class ProductImageEventsTest :
     public async Task DeletedEvent_Exists_DeletesProductImage()
     {
         // Arrange
-        var entity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id, null);
+        var entity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id);
         await AddEntity(entity);
 
 
