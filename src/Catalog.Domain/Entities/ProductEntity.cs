@@ -4,6 +4,33 @@ namespace Catalog.Domain.Entities;
 
 public class ProductEntity : Entity
 {
+    public ProductEntity(
+        Guid id,
+        string name,
+        string description,
+        IList<ProductImageEntity>? images,
+        decimal fullPrice,
+        decimal discount,
+        int quantity,
+        bool isActive,
+        Guid categoryId,
+        CategoryEntity? category,
+        Guid brandId,
+        BrandEntity? brand) : base(id)
+    {
+        Name = name;
+        Description = description;
+        Images = images;
+        FullPrice = fullPrice;
+        Discount = discount;
+        Quantity = quantity;
+        IsActive = isActive;
+        CategoryId = categoryId;
+        Category = category;
+        BrandId = brandId;
+        Brand = brand;
+    }
+
     public ProductEntity()
     {
     }

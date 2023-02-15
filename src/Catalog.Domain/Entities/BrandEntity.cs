@@ -1,9 +1,15 @@
-using Catalog.Domain.Abstractions;
+﻿using Catalog.Domain.Abstractions;
 
 namespace Catalog.Domain.Entities;
 
 public class BrandEntity : Entity
 {
+    public BrandEntity(Guid id, string name, string image) : base(id)
+    {
+        Name = name;
+        Image = image;
+    }
+
     public BrandEntity()
     {
     }
