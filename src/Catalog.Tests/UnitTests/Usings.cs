@@ -14,4 +14,4 @@ global using Microsoft.Data.Sqlite;
 global using System.Data.Common;
 global using System.ComponentModel.DataAnnotations;
 global using Xunit;
-global using Catalog.Tests.Controllers;
+global using Catalog.Tests.UnitTests.Controllers;

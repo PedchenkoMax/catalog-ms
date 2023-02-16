@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.Validation;
+﻿namespace Catalog.Tests.UnitTests.Validation;
 
 public class GuidIdAttributeTests
 {

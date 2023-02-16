@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.Controllers.InMemorySqliteTests;
+﻿namespace Catalog.Tests.UnitTests.Controllers.InMemorySqliteTests;
 
 public class ProductsControllerSqliteInMemoryTest : IDisposable
 {

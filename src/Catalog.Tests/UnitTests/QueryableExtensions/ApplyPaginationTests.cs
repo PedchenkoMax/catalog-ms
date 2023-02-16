@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.QueryableExtensions;
+﻿namespace Catalog.Tests.UnitTests.QueryableExtensions;
 
 public class ApplyPaginationTests
 {

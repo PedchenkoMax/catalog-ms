@@ -1,10 +1,10 @@
 using Catalog.API.Events.Category;
-using Catalog.Tests.Events.Common;
+using Catalog.Tests.IntegrationTests.Events.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace Catalog.Tests.Events;
+namespace Catalog.Tests.IntegrationTests.Events;
 
 [Collection("Database Fixture")]
 public sealed class CategoryEventsTest :

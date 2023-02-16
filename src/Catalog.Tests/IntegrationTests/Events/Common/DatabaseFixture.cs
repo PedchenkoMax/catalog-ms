@@ -1,4 +1,4 @@
-namespace Catalog.Tests.Events.Common;
+namespace Catalog.Tests.IntegrationTests.Events.Common;
 
 public sealed class DatabaseFixture : IDisposable
 {

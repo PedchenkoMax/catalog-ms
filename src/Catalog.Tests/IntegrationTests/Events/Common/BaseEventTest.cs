@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace Catalog.Tests.Events.Common;
+namespace Catalog.Tests.IntegrationTests.Events.Common;
 
 public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer, TDeletedEventConsumer>
     : IAsyncDisposable

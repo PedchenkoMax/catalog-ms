@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.Events.Common;
+﻿namespace Catalog.Tests.IntegrationTests.Events.Common;
 
 // The only purpose of this wrapper is to resolve race condition.
 // It occurs at the moment between event publishing and assert part where we get the entity from DB.

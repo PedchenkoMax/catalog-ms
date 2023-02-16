@@ -1,4 +1,4 @@
-namespace Catalog.Tests.Controllers.InMemoryTests;
+namespace Catalog.Tests.UnitTests.Controllers.InMemoryTests;
 
 public class BrandsControllerInMemoryTest
 {
