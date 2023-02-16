@@ -39,4 +39,10 @@
     <ProjectReference Include="..\Catalog.Infrastructure\Catalog.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IntegrationTests" />
+    <Folder Include="LoadTests" />
+    <Folder Include="UnitTests" />
+  </ItemGroup>
+
 </Project>
