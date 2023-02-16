@@ -1,4 +1,4 @@
-﻿global using Catalog.Infrastructure.Database;
+global using Catalog.Infrastructure.Database;
 global using Catalog.Domain.Constants;
 global using Catalog.API.Validation.Attributes;
 global using Catalog.Domain.Entities;
@@ -20,5 +20,4 @@ global using System.Net.Http.Json;
 global using System.Net;
 global using System.Text.Json;
 global using Xunit;
-
-
+global using Catalog.Tests.UnitTests.Controllers;
