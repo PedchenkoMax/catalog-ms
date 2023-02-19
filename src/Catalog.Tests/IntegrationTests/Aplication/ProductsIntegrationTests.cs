@@ -87,5 +87,22 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
 
         Assert.IsType<List<Product>>(products);
         Assert.Equal(28, products.Count);
+    }
+
+    [Fact]
+    public async Task ProductsByParametersAsync_WithCategorytId_ReturnFilteredProducts()
+    {
+        Guid existCategorytId = SeedDataConstants.CategoryPhone;
+        HttpResponseMessage response = await client.GetAsync($"api/products?CategoryId={existCategorytId}");
+
+        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+
+        Assert.Equal(5, products.Count);
+        Assert.Collection(products,
+            item => Assert.Equal("Samsung Galaxy Z Flip", item.Name),
+            item => Assert.Equal("Samsung Galaxy Note 20", item.Name),
+            item => Assert.Equal("Samsung Galaxy S21", item.Name),
+            item => Assert.Equal("Apple iPhone 12 Mini", item.Name),
+            item => Assert.Equal("Apple iPhone 12 Pro Max", item.Name));
     }    
 }
