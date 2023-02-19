@@ -24,7 +24,7 @@ namespace Catalog.Infrastructure.Migrations
 
             modelBuilder.Entity("Catalog.Domain.Entities.BrandEntity", b =>
                 {
-                    b.Property<Guid>("BrandId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -36,32 +36,32 @@ namespace Catalog.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BrandId");
+                    b.HasKey("Id");
 
                     b.ToTable("Brands");
 
                     b.HasData(
                         new
                         {
-                            BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
+                            Id = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             Image = "https://blob.com/BrandApple.png",
                             Name = "Apple"
                         },
                         new
                         {
-                            BrandId = new Guid("2cd4b9a0-f70d-476d-a3cc-908da43f93c4"),
+                            Id = new Guid("2cd4b9a0-f70d-476d-a3cc-908da43f93c4"),
                             Image = "https://blob.com/BrandSamsung.png",
                             Name = "Samsung"
                         },
                         new
                         {
-                            BrandId = new Guid("1f5ad630-32cd-42e9-8218-e26f1d375c0c"),
+                            Id = new Guid("1f5ad630-32cd-42e9-8218-e26f1d375c0c"),
                             Image = "https://blob.com/BrandLg.png",
                             Name = "Lg"
                         },
                         new
                         {
-                            BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
+                            Id = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             Image = "https://blob.com/BrandLenovo.png",
                             Name = "Lenovo"
                         });
@@ -69,7 +69,7 @@ namespace Catalog.Infrastructure.Migrations
 
             modelBuilder.Entity("Catalog.Domain.Entities.CategoryEntity", b =>
                 {
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -81,26 +81,26 @@ namespace Catalog.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
-                            CategoryId = new Guid("5e7274ad-3132-4ad7-be36-38778a8f7b1c"),
+                            Id = new Guid("5e7274ad-3132-4ad7-be36-38778a8f7b1c"),
                             Image = "https://blob.com/CategoryPhone.png",
                             Name = "Phone"
                         },
                         new
                         {
-                            CategoryId = new Guid("72a7a013-8bc4-4ae6-89cb-d9f19e0c9cf9"),
+                            Id = new Guid("72a7a013-8bc4-4ae6-89cb-d9f19e0c9cf9"),
                             Image = "https://blob.com/CategoryTv.png",
                             Name = "TV"
                         },
                         new
                         {
-                            CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
+                            Id = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Image = "https://blob.com/CategoryNotebook.png",
                             Name = "Notebook"
                         });
@@ -108,7 +108,7 @@ namespace Catalog.Infrastructure.Migrations
 
             modelBuilder.Entity("Catalog.Domain.Entities.ProductEntity", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -138,7 +138,7 @@ namespace Catalog.Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
@@ -149,7 +149,7 @@ namespace Catalog.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("5b515247-f6f5-47e1-ad06-95f317a0599b"),
+                            Id = new Guid("5b515247-f6f5-47e1-ad06-95f317a0599b"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("5e7274ad-3132-4ad7-be36-38778a8f7b1c"),
                             Description = "The Apple iPhone 12 Pro Max features a 6.7-inch Super Retina XDR display, A14 Bionic chip, and a triple-camera system.",
@@ -161,7 +161,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("56d6294f-7b80-4a78-856a-92b141de2d1c"),
+                            Id = new Guid("56d6294f-7b80-4a78-856a-92b141de2d1c"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("5e7274ad-3132-4ad7-be36-38778a8f7b1c"),
                             Description = "The Apple iPhone 12 Mini features a 5.4-inch Super Retina XDR display, A14 Bionic chip, and a dual-camera system.",
@@ -173,7 +173,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a"),
+                            Id = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a"),
                             BrandId = new Guid("2cd4b9a0-f70d-476d-a3cc-908da43f93c4"),
                             CategoryId = new Guid("5e7274ad-3132-4ad7-be36-38778a8f7b1c"),
                             Description = "The Samsung Galaxy S21 features a 6.2-inch AMOLED display, Exynos 2100 or Snapdragon 888 processor, and a triple camera system.",
@@ -185,7 +185,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b"),
+                            Id = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b"),
                             BrandId = new Guid("2cd4b9a0-f70d-476d-a3cc-908da43f93c4"),
                             CategoryId = new Guid("5e7274ad-3132-4ad7-be36-38778a8f7b1c"),
                             Description = "The Samsung Galaxy Note 20 features a 6.7-inch AMOLED display, Snapdragon 865+ processor, and a triple camera system.",
@@ -197,7 +197,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("1e338b12-8aa6-438f-8832-8c7429805d59"),
+                            Id = new Guid("1e338b12-8aa6-438f-8832-8c7429805d59"),
                             BrandId = new Guid("2cd4b9a0-f70d-476d-a3cc-908da43f93c4"),
                             CategoryId = new Guid("5e7274ad-3132-4ad7-be36-38778a8f7b1c"),
                             Description = "The Samsung Galaxy Z Flip features a 6.7-inch foldable AMOLED display, Snapdragon 855+ processor, and a dual camera system.",
@@ -209,7 +209,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("d1ae1de1-1aa8-4650-937c-4ed882038ad7"),
+                            Id = new Guid("d1ae1de1-1aa8-4650-937c-4ed882038ad7"),
                             BrandId = new Guid("2cd4b9a0-f70d-476d-a3cc-908da43f93c4"),
                             CategoryId = new Guid("72a7a013-8bc4-4ae6-89cb-d9f19e0c9cf9"),
                             Description = "The Samsung QN55Q70T features a 55-inch 4K UHD display, Quantum Processor 4K, and Real Game Enhancer technology.",
@@ -221,7 +221,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("fead0b48-9986-43cb-a5c0-14f91eb6dcdf"),
+                            Id = new Guid("fead0b48-9986-43cb-a5c0-14f91eb6dcdf"),
                             BrandId = new Guid("2cd4b9a0-f70d-476d-a3cc-908da43f93c4"),
                             CategoryId = new Guid("72a7a013-8bc4-4ae6-89cb-d9f19e0c9cf9"),
                             Description = "The Samsung QN82Q70T features an 82-inch 4K UHD display, Quantum Processor 4K, and Real Game Enhancer technology.",
@@ -233,7 +233,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("9d52da22-00da-4c84-ab62-0c4279a332af"),
+                            Id = new Guid("9d52da22-00da-4c84-ab62-0c4279a332af"),
                             BrandId = new Guid("2cd4b9a0-f70d-476d-a3cc-908da43f93c4"),
                             CategoryId = new Guid("72a7a013-8bc4-4ae6-89cb-d9f19e0c9cf9"),
                             Description = "The Samsung QN85Q900RB features an 85-inch 8K UHD display, Quantum Processor 8K, and Real Game Enhancer technology.",
@@ -245,7 +245,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62"),
+                            Id = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62"),
                             BrandId = new Guid("1f5ad630-32cd-42e9-8218-e26f1d375c0c"),
                             CategoryId = new Guid("72a7a013-8bc4-4ae6-89cb-d9f19e0c9cf9"),
                             Description = "The LG OLED65CXP features a 65-inch 4K UHD OLED display, α9 Gen 3 AI Processor 4K, and Dolby Vision IQ technology.",
@@ -257,7 +257,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315"),
+                            Id = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315"),
                             BrandId = new Guid("1f5ad630-32cd-42e9-8218-e26f1d375c0c"),
                             CategoryId = new Guid("72a7a013-8bc4-4ae6-89cb-d9f19e0c9cf9"),
                             Description = "The LG OLED77GX features a 77-inch 4K UHD OLED display, α9 Gen 3 AI Processor 4K, and Dolby Vision IQ technology.",
@@ -269,7 +269,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("a14a4839-a0c9-4570-8d03-ab0c58eec6b2"),
+                            Id = new Guid("a14a4839-a0c9-4570-8d03-ab0c58eec6b2"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo ThinkPad X1 Carbon features a 14-inch full HD display, 8th Gen Intel Core i7 processor, and 16GB RAM.",
@@ -281,7 +281,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("9b06d390-6b11-439b-ab6f-378890da5f23"),
+                            Id = new Guid("9b06d390-6b11-439b-ab6f-378890da5f23"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo Ideapad 330 features a 15-inch full HD display, Intel Celeron N4000 processor, and 4GB RAM.",
@@ -293,7 +293,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("ca1d16af-eabe-4d47-acb7-c6830c9be9e9"),
+                            Id = new Guid("ca1d16af-eabe-4d47-acb7-c6830c9be9e9"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo Legion Y540 features a 15-inch full HD display, 9th Gen Intel Core i7 processor, and 16GB RAM.",
@@ -305,7 +305,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24"),
+                            Id = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo Yoga C930 features a 13.9-inch full HD display, 8th Gen Intel Core i7 processor, and 8GB RAM.",
@@ -317,7 +317,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("a9f9a957-e79f-4397-892d-5939f4ad4c1b"),
+                            Id = new Guid("a9f9a957-e79f-4397-892d-5939f4ad4c1b"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo ThinkPad X1 Yoga features a 14-inch Full HD IPS touch screen, Intel Core i7 processor, and 8GB of RAM.",
@@ -329,7 +329,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7"),
+                            Id = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo Legion 5 features a 15.6-inch Full HD IPS display, AMD Ryzen 5 4600H processor, and NVIDIA GeForce GTX 1650 graphics card.",
@@ -341,7 +341,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf"),
+                            Id = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo IdeaPad 5 features a 14-inch Full HD IPS display, Intel Core i5 processor, and 8GB of RAM.",
@@ -353,7 +353,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb"),
+                            Id = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo Yoga 9i features a 14-inch Full HD IPS touch screen, Intel Core i7 processor, and 16GB of RAM.",
@@ -365,7 +365,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5"),
+                            Id = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5"),
                             BrandId = new Guid("fd4fb70d-efdd-4d25-8a02-1c0438cb4eb2"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Lenovo ThinkPad P1 features a 15.6-inch Full HD IPS display, Intel Core i7 processor, and NVIDIA Quadro P620 graphics card.",
@@ -377,7 +377,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9"),
+                            Id = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook Pro 16-inch features a 16-inch Retina Display, 9th-generation 6-Core Intel Core i7 processor, and AMD Radeon Pro 5300M graphics card.",
@@ -389,7 +389,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("6f7c6e33-6b63-4faa-a4e1-9b27f25b8a08"),
+                            Id = new Guid("6f7c6e33-6b63-4faa-a4e1-9b27f25b8a08"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook Air 13-inch features a 13.3-inch Retina Display, 8th-generation dual-core Intel Core i5 processor, and 8GB of RAM.",
@@ -401,7 +401,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b1e14ac9-9eda-4d8c-a3c3-738056e2d7a1"),
+                            Id = new Guid("b1e14ac9-9eda-4d8c-a3c3-738056e2d7a1"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook Pro 15-inch features a 15.4-inch Retina Display, 9th-generation 8-Core Intel Core i9 processor, and AMD Radeon Pro 555X graphics card.",
@@ -413,7 +413,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("5aa5b7e5-918d-4c4d-8d87-f43f2e8031a3"),
+                            Id = new Guid("5aa5b7e5-918d-4c4d-8d87-f43f2e8031a3"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook 12-inch features a 12-inch Retina Display, 7th-generation dual-core Intel Core m3 processor, and 8GB of RAM.",
@@ -425,7 +425,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("bf44d8c7-aacd-4c0e-b1ae-14a1c6b2a9b7"),
+                            Id = new Guid("bf44d8c7-aacd-4c0e-b1ae-14a1c6b2a9b7"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook Pro 13-inch features a 13.3-inch Retina Display, 10th-generation quad-core Intel Core i5 processor, and Intel Iris Plus Graphics.",
@@ -437,7 +437,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e"),
+                            Id = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook Pro 16-inch features a 16-inch Retina display, 9th generation Intel Core i9 processor, and 32GB of RAM.",
@@ -449,7 +449,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("c9a06102-ce71-49f7-a64a-e7a6c67d8a1e"),
+                            Id = new Guid("c9a06102-ce71-49f7-a64a-e7a6c67d8a1e"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook 12-inch features a 12-inch Retina display, Intel Core m3 processor, and 8GB of RAM.",
@@ -461,7 +461,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8"),
+                            Id = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook Pro Touch Bar features a 13.3-inch Retina display, Intel Core i5 processor, and 16GB of RAM.",
@@ -473,7 +473,7 @@ namespace Catalog.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("10e52bc0-9d9c-4c2d-84f3-1d2057d0c19f"),
+                            Id = new Guid("10e52bc0-9d9c-4c2d-84f3-1d2057d0c19f"),
                             BrandId = new Guid("d942706b-e4e2-48f9-bbdc-b022816471f0"),
                             CategoryId = new Guid("ee6fe0c6-fc9c-46cf-93e9-f2e0d26676c2"),
                             Description = "The Apple MacBook Pro Touch Bar 15-inch features a 15-inch Retina display, Intel Core i7 processor, and 32GB of RAM.",
@@ -487,7 +487,7 @@ namespace Catalog.Infrastructure.Migrations
 
             modelBuilder.Entity("Catalog.Domain.Entities.ProductImageEntity", b =>
                 {
-                    b.Property<Guid>("ProductImageId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -501,7 +501,7 @@ namespace Catalog.Infrastructure.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ProductImageId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
@@ -510,1323 +510,1323 @@ namespace Catalog.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            ProductImageId = new Guid("5c3c4791-3813-40a6-916b-7e18f7fd6bc8"),
+                            Id = new Guid("b702d185-909a-4d58-bbc2-a710ae14db97"),
                             ImageUrl = "https://blob.com/Phone1Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("5b515247-f6f5-47e1-ad06-95f317a0599b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("28778109-8860-4c26-81f1-7d0c0aed5cf1"),
+                            Id = new Guid("63a87823-2606-4dfe-8c9a-7f005661b240"),
                             ImageUrl = "https://blob.com/Phone1Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("5b515247-f6f5-47e1-ad06-95f317a0599b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("287a1568-6261-4c0d-8b2e-f80e339e745c"),
+                            Id = new Guid("5c88d8e5-cef4-4ef7-9b7d-a17277c96de3"),
                             ImageUrl = "https://blob.com/Phone1Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("5b515247-f6f5-47e1-ad06-95f317a0599b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f7b27ab6-1664-48bc-9bb0-80a5676a18e1"),
+                            Id = new Guid("9f86e0c5-a992-4da3-83b4-75f8253d0db9"),
                             ImageUrl = "https://blob.com/Phone1Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("5b515247-f6f5-47e1-ad06-95f317a0599b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("aa698691-fa94-481f-bf92-fb9e8b83ecc5"),
+                            Id = new Guid("05d607b0-f59d-45f9-9a5c-61fb39255e10"),
                             ImageUrl = "https://blob.com/Phone1Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("5b515247-f6f5-47e1-ad06-95f317a0599b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a19dbc63-b9b9-40e6-9f44-32097609e54e"),
+                            Id = new Guid("885ea514-5137-4b3f-88ca-8cc9fd9422b2"),
                             ImageUrl = "https://blob.com/Phone2Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("56d6294f-7b80-4a78-856a-92b141de2d1c")
                         },
                         new
                         {
-                            ProductImageId = new Guid("685ceb1e-6753-424b-a35e-ac75a0fd8503"),
+                            Id = new Guid("3e7469d1-a34f-4149-aac6-0ec46b53bd60"),
                             ImageUrl = "https://blob.com/Phone2Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("56d6294f-7b80-4a78-856a-92b141de2d1c")
                         },
                         new
                         {
-                            ProductImageId = new Guid("d7327890-a6fa-4f76-b2bf-1be09d638cfe"),
+                            Id = new Guid("efa186fc-3b92-4077-967a-35334908ea4f"),
                             ImageUrl = "https://blob.com/Phone2Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("56d6294f-7b80-4a78-856a-92b141de2d1c")
                         },
                         new
                         {
-                            ProductImageId = new Guid("d7f939c1-79aa-4448-9270-a9cf0e4da9f1"),
+                            Id = new Guid("4b847747-6132-4e02-a312-cf90bc258274"),
                             ImageUrl = "https://blob.com/Phone3Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("80736515-d1ab-427f-b39e-96d3b2df1af7"),
+                            Id = new Guid("fa2c2e8e-a516-443e-9504-5c922b40f47c"),
                             ImageUrl = "https://blob.com/Phone3Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fbac78fb-91af-45b5-89a4-c458b961530f"),
+                            Id = new Guid("790823e1-22d4-4e03-a11d-bf297fa37885"),
                             ImageUrl = "https://blob.com/Phone3Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c9194fd3-0a69-430a-881b-5789a644820b"),
+                            Id = new Guid("3f9818f7-469e-44b4-ab4b-717566d1eec2"),
                             ImageUrl = "https://blob.com/Phone3Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fe29d51d-f28f-4848-b50e-63702310e43f"),
+                            Id = new Guid("504108bd-8f31-4e7c-9379-73ee77fbabff"),
                             ImageUrl = "https://blob.com/Phone3Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f278fe4d-453f-4146-a4e0-aa97d3de108e"),
+                            Id = new Guid("bc5eaf98-0456-4f5f-9958-7e969cfd7223"),
                             ImageUrl = "https://blob.com/Phone3Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("9c7415b9-8b6f-4872-8121-07f58981e976"),
+                            Id = new Guid("16f4ea6f-7768-4624-9371-25b32757e428"),
                             ImageUrl = "https://blob.com/Phone3Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ff1f6645-674c-4417-916b-25b69dfaef15"),
+                            Id = new Guid("7e9b5816-9cc7-4667-95ed-b0722c3feffb"),
                             ImageUrl = "https://blob.com/Phone3Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c690be90-92bf-455a-87dd-2190f445b723"),
+                            Id = new Guid("6fca4753-a079-41b8-a93b-296a5c2553c2"),
                             ImageUrl = "https://blob.com/Phone3Image-9.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("5c786122-6390-47e5-966b-9c3eb007e960"),
+                            Id = new Guid("472e65f3-4061-47a5-a43c-1547b12291a9"),
                             ImageUrl = "https://blob.com/Phone3Image-10.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("23ee6136-43de-42fa-a6fb-6374d1fc090d"),
+                            Id = new Guid("995be10a-1b6f-48e9-99a1-80d8d9a99525"),
                             ImageUrl = "https://blob.com/Phone3Image-11.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("8a5508a1-80ec-49b4-a269-7fa665a236cb"),
+                            Id = new Guid("ca3fb685-76d9-4e2f-b7e9-09535c37075c"),
                             ImageUrl = "https://blob.com/Phone3Image-12.png",
                             IsMain = false,
                             ProductId = new Guid("e77cf2cb-3f3a-4f0b-ac5a-90a3263d075a")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0e39e83c-7982-4891-8f36-ce32b908bdf4"),
+                            Id = new Guid("13994a5a-6fe1-4068-8713-caa4c58e24fb"),
                             ImageUrl = "https://blob.com/Phone4Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("36301e05-f1df-4b74-b2f4-b92ae2bf7f62"),
+                            Id = new Guid("1ee29c53-8bdb-4311-a1f3-f2d0a9000188"),
                             ImageUrl = "https://blob.com/Phone4Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("6a74520d-ea58-4eba-96ae-51c4447ab3a5"),
+                            Id = new Guid("10417238-9a38-4950-9519-a87505915613"),
                             ImageUrl = "https://blob.com/Phone4Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("333d00dd-3ae2-4e99-ad79-d160230ad1c1"),
+                            Id = new Guid("99564373-61c6-4de3-af24-777746fd6b55"),
                             ImageUrl = "https://blob.com/Phone4Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("2846b2d0-3154-4d2e-a8d3-35733ad92310"),
+                            Id = new Guid("92323c0a-9854-488a-8281-3126ea71b040"),
                             ImageUrl = "https://blob.com/Phone4Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("2eec8dba-79e5-42be-868b-1f7504d464be"),
+                            Id = new Guid("b540f3ef-a5f3-45f6-9970-a7859d9b7cbb"),
                             ImageUrl = "https://blob.com/Phone4Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("01eccf62-b0b9-451b-85a9-1f396f4f979d"),
+                            Id = new Guid("ba335933-59a9-4cd3-8270-5d0b2fe0f5dc"),
                             ImageUrl = "https://blob.com/Phone4Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fa1480da-de28-447e-a804-a22db0acf153"),
+                            Id = new Guid("0e470a0b-52b4-40b3-8e58-4a34675f59fb"),
                             ImageUrl = "https://blob.com/Phone4Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("e63e6ca9-8289-4bdc-9968-558a8071746c"),
+                            Id = new Guid("9b20a969-fff8-4acd-8389-50f1aa065ead"),
                             ImageUrl = "https://blob.com/Phone4Image-9.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("9c4be6f5-869c-4dc2-b3bd-eda163e5d333"),
+                            Id = new Guid("e503acf1-54da-4a80-ae22-5708a768fc97"),
                             ImageUrl = "https://blob.com/Phone4Image-10.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("856428af-756f-41ea-98d4-4be642f7909a"),
+                            Id = new Guid("07ff7b58-9ba6-4ece-b0a5-7b652960c9bf"),
                             ImageUrl = "https://blob.com/Phone4Image-11.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f69a47fe-3c1a-42b3-9fd8-738d9bae45a0"),
+                            Id = new Guid("085d261a-9d0d-46eb-b253-a01ef54defa0"),
                             ImageUrl = "https://blob.com/Phone4Image-12.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("e030ff22-e4fd-44cc-b2a2-e5a34aa062dd"),
+                            Id = new Guid("f6503df9-3e85-4870-b295-68cc7f54d59b"),
                             ImageUrl = "https://blob.com/Phone4Image-13.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("eee50383-1fe2-44bb-8979-8340cd75e205"),
+                            Id = new Guid("56d2f62a-6b18-4a3e-a5e4-5f6663a9ce69"),
                             ImageUrl = "https://blob.com/Phone4Image-14.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("749ca4fd-6183-4c3b-9e80-b4cae608a40a"),
+                            Id = new Guid("90b07a02-b8ec-41b8-8158-11e60bb2e9d4"),
                             ImageUrl = "https://blob.com/Phone4Image-15.png",
                             IsMain = false,
                             ProductId = new Guid("fd3c67c5-c6ff-4a5d-a166-98ece1b7752b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c444d407-f82b-4fee-a7ff-c066fc0f27bc"),
+                            Id = new Guid("832dff97-c68a-4c21-82b1-c189b83bbb5d"),
                             ImageUrl = "https://blob.com/Phone5Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("1e338b12-8aa6-438f-8832-8c7429805d59")
                         },
                         new
                         {
-                            ProductImageId = new Guid("23d15832-fd6a-4ada-9d18-723f853c50f8"),
+                            Id = new Guid("533ee759-46db-44b1-a0dd-22b42f218d00"),
                             ImageUrl = "https://blob.com/Phone5Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("1e338b12-8aa6-438f-8832-8c7429805d59")
                         },
                         new
                         {
-                            ProductImageId = new Guid("48110d85-fc1a-460c-acd9-48c6fc28baaf"),
+                            Id = new Guid("d97e26b8-d059-4a1d-b5f8-872dbc132bfb"),
                             ImageUrl = "https://blob.com/Phone5Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("1e338b12-8aa6-438f-8832-8c7429805d59")
                         },
                         new
                         {
-                            ProductImageId = new Guid("cca01c1d-34ee-4a06-aa02-1af40bb77fdf"),
+                            Id = new Guid("42bc36d2-cf7f-4fc7-ac00-5832ba26e9a5"),
                             ImageUrl = "https://blob.com/Tv1Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("d1ae1de1-1aa8-4650-937c-4ed882038ad7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("1baa7657-72e8-4841-ac3c-52d5463962dd"),
+                            Id = new Guid("686f51e1-9b0c-477e-b0c8-feef5565d491"),
                             ImageUrl = "https://blob.com/Tv1Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("d1ae1de1-1aa8-4650-937c-4ed882038ad7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fba7e56d-5d89-4582-b4f2-58754d4a2fb8"),
+                            Id = new Guid("c999add8-e57b-485a-a3cd-cb1250794f08"),
                             ImageUrl = "https://blob.com/Tv1Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("d1ae1de1-1aa8-4650-937c-4ed882038ad7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("4b841763-4040-448f-81d1-3ab504b6c6f2"),
+                            Id = new Guid("a4d1df73-9a2c-462b-b385-bcac8ed66f9e"),
                             ImageUrl = "https://blob.com/Tv1Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("d1ae1de1-1aa8-4650-937c-4ed882038ad7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fb1e4cc5-c703-44d3-b6cd-da200f6c9e3f"),
+                            Id = new Guid("ce4a0a30-8c05-44fe-92c3-7b41abd918d5"),
                             ImageUrl = "https://blob.com/Tv2Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("fead0b48-9986-43cb-a5c0-14f91eb6dcdf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("30a80d9e-823f-4c33-b0fc-ee5bdf0b4156"),
+                            Id = new Guid("fc240852-9b07-424d-84cd-7440f55240e6"),
                             ImageUrl = "https://blob.com/Tv2Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("fead0b48-9986-43cb-a5c0-14f91eb6dcdf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("586b579d-cb2d-433a-a974-96d88b6b4443"),
+                            Id = new Guid("8e2a3d74-84db-41d2-b526-1cac9d6e15b8"),
                             ImageUrl = "https://blob.com/Tv2Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("fead0b48-9986-43cb-a5c0-14f91eb6dcdf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("931a4468-4766-40b6-aab0-a1e03c0cb772"),
+                            Id = new Guid("046ac7b0-b631-4d9a-bde6-7f4c46eb7036"),
                             ImageUrl = "https://blob.com/Tv2Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("fead0b48-9986-43cb-a5c0-14f91eb6dcdf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f910cef3-9f12-47ab-b544-e54e5e1a22f9"),
+                            Id = new Guid("63df1887-0f22-4d80-bb5b-58e403e4303f"),
                             ImageUrl = "https://blob.com/Tv2Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("fead0b48-9986-43cb-a5c0-14f91eb6dcdf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("4f3bb399-bbf6-4522-8530-1048c0ac202e"),
+                            Id = new Guid("d8211e3e-09e6-46c4-8fdd-c63c4f912b32"),
                             ImageUrl = "https://blob.com/Tv2Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("fead0b48-9986-43cb-a5c0-14f91eb6dcdf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("53052b8c-ddd2-43c5-b4e7-1ba1b4c05a21"),
+                            Id = new Guid("0ae21b2c-fc20-4390-b325-9d186bb4cd4a"),
                             ImageUrl = "https://blob.com/Tv3Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("9d52da22-00da-4c84-ab62-0c4279a332af")
                         },
                         new
                         {
-                            ProductImageId = new Guid("d8377bfe-0c8d-4589-a082-d387f857b6a0"),
+                            Id = new Guid("e991a20b-f5b1-4d43-93e4-6fff838a86bc"),
                             ImageUrl = "https://blob.com/Tv4Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("44fd8aae-c92c-4781-93ff-9b1e854b40de"),
+                            Id = new Guid("0965e728-f000-4581-8f45-7790ea09c315"),
                             ImageUrl = "https://blob.com/Tv4Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("4631b18a-da42-4095-83b4-4b6263479893"),
+                            Id = new Guid("98bf68c3-e4ed-48a6-b34b-f46cc0ba436b"),
                             ImageUrl = "https://blob.com/Tv4Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("4b147821-f0f1-4777-9333-5387d7efcf72"),
+                            Id = new Guid("5d8db396-dbbf-48ef-9219-4c1337fe2e91"),
                             ImageUrl = "https://blob.com/Tv4Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("62947e17-5512-4831-bace-dc56aff1d7bb"),
+                            Id = new Guid("23514395-915a-4f1a-868b-db4714390732"),
                             ImageUrl = "https://blob.com/Tv4Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("33484c66-d539-4c60-838c-7ab7987258d2"),
+                            Id = new Guid("00de5a93-ca5a-43da-ac3a-f383fa493330"),
                             ImageUrl = "https://blob.com/Tv4Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("9850d2b6-df56-48f3-af06-d10bda02d504"),
+                            Id = new Guid("482befa9-d2ca-4230-ac1c-22386999536e"),
                             ImageUrl = "https://blob.com/Tv4Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a894852e-d0a5-4ca9-b0be-4c6e47f46987"),
+                            Id = new Guid("592be906-a5af-4115-a7c1-402f0330aae8"),
                             ImageUrl = "https://blob.com/Tv4Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("7718a42e-5de8-4692-8b45-ba30ef090193"),
+                            Id = new Guid("df5bb9b4-7ada-48ed-b7a4-a3916e3cc05c"),
                             ImageUrl = "https://blob.com/Tv4Image-9.png",
                             IsMain = false,
                             ProductId = new Guid("7ba99be2-9284-4343-bc2f-8997a5a85b62")
                         },
                         new
                         {
-                            ProductImageId = new Guid("b702288d-a2c4-4588-9f24-83f87b69b2f5"),
+                            Id = new Guid("28ba1250-a682-438a-92b7-32787be68761"),
                             ImageUrl = "https://blob.com/Tv5Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315")
                         },
                         new
                         {
-                            ProductImageId = new Guid("3d4ef2d6-734a-4028-b022-5ace60f57359"),
+                            Id = new Guid("548a0bb1-0ae0-44bb-aeb1-e889f649e174"),
                             ImageUrl = "https://blob.com/Tv5Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315")
                         },
                         new
                         {
-                            ProductImageId = new Guid("6dd466d7-83b4-4a5d-a9dc-0f58122f2920"),
+                            Id = new Guid("3ee61abb-77c9-403b-bbfd-90806d775f89"),
                             ImageUrl = "https://blob.com/Tv5Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f00874cf-c051-48ad-905e-9555054d0693"),
+                            Id = new Guid("3a7c5ab5-e8af-416d-b678-f6d609eff41a"),
                             ImageUrl = "https://blob.com/Tv5Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ad6d332c-d4bb-4830-aef7-294164147ccd"),
+                            Id = new Guid("cdc110a2-33a1-478f-83cd-f5f256e4c456"),
                             ImageUrl = "https://blob.com/Tv5Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315")
                         },
                         new
                         {
-                            ProductImageId = new Guid("891c92fb-9e8b-486c-bb34-d5bf1d29519a"),
+                            Id = new Guid("aa46f21d-69e1-46f3-80a2-dded68d48d69"),
                             ImageUrl = "https://blob.com/Tv5Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ee09e740-1e05-4154-9262-b32f637cf0df"),
+                            Id = new Guid("60730b38-a54f-470d-adfe-92d8c1d06a27"),
                             ImageUrl = "https://blob.com/Tv5Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a0bc27cf-119e-40b3-95e9-906a0ff5abb8"),
+                            Id = new Guid("765d3bea-6dba-4626-8b0f-4b59700c08b0"),
                             ImageUrl = "https://blob.com/Tv5Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("d9b7d7c8-61bb-4cee-aec7-d6aa4b8b6315")
                         },
                         new
                         {
-                            ProductImageId = new Guid("d25c1985-c9f1-4c02-9799-b0fd26d5d35d"),
+                            Id = new Guid("c09a55fe-715e-4ba1-b12e-e7ba9438b241"),
                             ImageUrl = "https://blob.com/Notebook1Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("a14a4839-a0c9-4570-8d03-ab0c58eec6b2")
                         },
                         new
                         {
-                            ProductImageId = new Guid("681b903d-05ef-4f3c-b967-46328042883a"),
+                            Id = new Guid("84c00050-518d-45ff-8a3e-f9a7516f3bb4"),
                             ImageUrl = "https://blob.com/Notebook1Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("a14a4839-a0c9-4570-8d03-ab0c58eec6b2")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ba1d79d0-74ff-4ac1-9bbc-bd316b695e2c"),
+                            Id = new Guid("cb17b250-ae10-4cd3-86b4-6959d1dd529d"),
                             ImageUrl = "https://blob.com/Notebook1Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("a14a4839-a0c9-4570-8d03-ab0c58eec6b2")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fe78f592-e986-4b6e-b187-fd18d21dc966"),
+                            Id = new Guid("084ee411-25b6-43c0-8724-9e7211e0e087"),
                             ImageUrl = "https://blob.com/Notebook1Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("a14a4839-a0c9-4570-8d03-ab0c58eec6b2")
                         },
                         new
                         {
-                            ProductImageId = new Guid("4119c90b-cc37-4c7f-9318-6732c5569758"),
+                            Id = new Guid("0f0d719d-7afa-4c38-aa14-b1e1b2012622"),
                             ImageUrl = "https://blob.com/Notebook1Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("a14a4839-a0c9-4570-8d03-ab0c58eec6b2")
                         },
                         new
                         {
-                            ProductImageId = new Guid("7af18a76-135b-4b10-ba20-8d9fdbcb7977"),
+                            Id = new Guid("b57eb1b5-2ed4-4a05-865f-e8f178d996a6"),
                             ImageUrl = "https://blob.com/Notebook2Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("9b06d390-6b11-439b-ab6f-378890da5f23")
                         },
                         new
                         {
-                            ProductImageId = new Guid("31d73bd7-aa43-47ff-8f25-e5a0f7fd8c10"),
+                            Id = new Guid("674573ce-82cc-48f2-af41-9b0ecb752835"),
                             ImageUrl = "https://blob.com/Notebook2Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("9b06d390-6b11-439b-ab6f-378890da5f23")
                         },
                         new
                         {
-                            ProductImageId = new Guid("50212b07-e854-4ea2-a980-50053bb161d6"),
+                            Id = new Guid("0c5e9f1c-25c8-4202-8bfc-871864696d09"),
                             ImageUrl = "https://blob.com/Notebook2Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("9b06d390-6b11-439b-ab6f-378890da5f23")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a8aa10d9-8d18-4d19-b64f-08a0f50971b6"),
+                            Id = new Guid("5ab9f4c9-540e-445f-a162-682528859873"),
                             ImageUrl = "https://blob.com/Notebook2Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("9b06d390-6b11-439b-ab6f-378890da5f23")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c6d513ad-a455-4d0b-b869-be6b466bfcb9"),
+                            Id = new Guid("a5a8b073-428b-4dac-b5b7-b4d765e37593"),
                             ImageUrl = "https://blob.com/Notebook3Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("ca1d16af-eabe-4d47-acb7-c6830c9be9e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("5a0f6257-463a-490c-9062-7a150129aa9a"),
+                            Id = new Guid("8d7e32f1-414d-4855-b0fb-41bd7c3a6dd3"),
                             ImageUrl = "https://blob.com/Notebook3Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("ca1d16af-eabe-4d47-acb7-c6830c9be9e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("1f08e06f-cfb2-46e4-90fb-6d86fd635852"),
+                            Id = new Guid("4b4dec85-e260-41b6-b16e-61ab943e98f5"),
                             ImageUrl = "https://blob.com/Notebook4Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("e669514f-5cc0-41be-9b5e-6ab254546615"),
+                            Id = new Guid("5e2c76b1-0aec-4981-b8c4-4f2765960bc8"),
                             ImageUrl = "https://blob.com/Notebook4Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0ecc3b46-f607-496d-aa06-ec43cb2322e6"),
+                            Id = new Guid("2fff0265-abc3-4396-970c-18d9d904900f"),
                             ImageUrl = "https://blob.com/Notebook4Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("57bd090f-6fd3-4eff-8e7c-64415a95b56d"),
+                            Id = new Guid("b25afcfb-6666-446a-b979-0e924525d9f0"),
                             ImageUrl = "https://blob.com/Notebook4Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("db329856-e08a-42a5-b3db-94d1c7b7d03e"),
+                            Id = new Guid("57bdffee-0c95-4b27-9fae-9f45a625c179"),
                             ImageUrl = "https://blob.com/Notebook4Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("5436fbef-cb3e-425c-8173-6686a1d00de3"),
+                            Id = new Guid("c7e8053d-daa3-4e2e-818a-47137076c76f"),
                             ImageUrl = "https://blob.com/Notebook4Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0c0a468b-9465-49e2-883a-d33822a615a0"),
+                            Id = new Guid("42402305-b554-4f5c-8d51-ac4f4cf31d19"),
                             ImageUrl = "https://blob.com/Notebook4Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("518b2dbd-470f-4310-b862-2a40bbbd31c9"),
+                            Id = new Guid("58ee67f2-74d7-4ee8-8198-f0d60b6d986a"),
                             ImageUrl = "https://blob.com/Notebook4Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fd516cf9-271a-4794-ac66-87edee5e992e"),
+                            Id = new Guid("495ae53b-eaf8-4a64-8764-4086a22256a2"),
                             ImageUrl = "https://blob.com/Notebook4Image-9.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("3c8cc569-6d2f-4995-b9f0-b5a83ac851d4"),
+                            Id = new Guid("bd137bdb-8e64-4f02-8cba-63a8c7f5974e"),
                             ImageUrl = "https://blob.com/Notebook4Image-10.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f0611ce1-bbbc-46bb-9eb6-6699edbc9ecf"),
+                            Id = new Guid("6ee0eb22-4637-4d28-ac88-cba308b043e5"),
                             ImageUrl = "https://blob.com/Notebook4Image-11.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("47049d65-81b8-4b08-a4cd-a948a4462807"),
+                            Id = new Guid("a6e72d41-f9a4-46f8-b19b-c9399474521b"),
                             ImageUrl = "https://blob.com/Notebook4Image-12.png",
                             IsMain = false,
                             ProductId = new Guid("b8c13516-c11a-4715-9187-3aef69bcca24")
                         },
                         new
                         {
-                            ProductImageId = new Guid("5a415f80-fd98-4a65-a3e8-08406bf3b50d"),
+                            Id = new Guid("9b862059-2bf0-4a85-9367-56f5e81d9731"),
                             ImageUrl = "https://blob.com/Notebook5Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("a9f9a957-e79f-4397-892d-5939f4ad4c1b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("44b9b84d-405f-4b35-8a98-e4bfb0513c1d"),
+                            Id = new Guid("1b2b0d2d-c624-418e-9e77-fd361afee3e0"),
                             ImageUrl = "https://blob.com/Notebook5Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("a9f9a957-e79f-4397-892d-5939f4ad4c1b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("6440b67b-9b4d-41dd-bf10-a375099bc7b5"),
+                            Id = new Guid("428c3f1b-6747-4351-84bf-9e4d3884eb9c"),
                             ImageUrl = "https://blob.com/Notebook5Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("a9f9a957-e79f-4397-892d-5939f4ad4c1b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("b00c80d8-b0de-48f2-a881-bee4679137ce"),
+                            Id = new Guid("d139ee3f-913a-41aa-8968-ba2152222dd0"),
                             ImageUrl = "https://blob.com/Notebook5Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("a9f9a957-e79f-4397-892d-5939f4ad4c1b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fbe245c2-9b6b-48ce-95a3-fd4a81cd51c4"),
+                            Id = new Guid("5ae75376-8255-4567-8738-d2f9bd2a153c"),
                             ImageUrl = "https://blob.com/Notebook5Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("a9f9a957-e79f-4397-892d-5939f4ad4c1b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c980b960-45a3-4c6c-974d-4bed6c02fe9c"),
+                            Id = new Guid("11c8cfea-398f-45fe-a892-5b8cf92e2eff"),
                             ImageUrl = "https://blob.com/Notebook5Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("a9f9a957-e79f-4397-892d-5939f4ad4c1b")
                         },
                         new
                         {
-                            ProductImageId = new Guid("06d6005d-47a6-4624-aa79-354b71e33898"),
+                            Id = new Guid("00222684-7694-4b21-bfb0-9aa44ecaed9d"),
                             ImageUrl = "https://blob.com/Notebook6Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ff74c6e0-86c2-4c0b-a720-5dc1360f95ea"),
+                            Id = new Guid("9365abdd-c0df-49c3-897a-fe60ffcb7828"),
                             ImageUrl = "https://blob.com/Notebook6Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a86bf6df-566d-4560-ba07-7538eb6fbbb1"),
+                            Id = new Guid("e5668e42-8d1c-40b5-b7bd-6998c0de58d4"),
                             ImageUrl = "https://blob.com/Notebook6Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("5bfff6fd-5741-4e7a-85bb-eb2dc0420335"),
+                            Id = new Guid("3e326d06-3b21-44fb-8294-16b90c1c57e5"),
                             ImageUrl = "https://blob.com/Notebook6Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("308d8629-5542-4a0b-a76a-0bbf97df95ed"),
+                            Id = new Guid("de85ba4b-0344-4330-9dbc-8dc3fb8228a2"),
                             ImageUrl = "https://blob.com/Notebook6Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f00b27f0-ba9f-430c-ad32-32d723d0866f"),
+                            Id = new Guid("cdc6cc20-fc65-43d0-94d6-b804707ae1e3"),
                             ImageUrl = "https://blob.com/Notebook6Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("20cdf16a-5162-4537-a5b7-967c37e2fd38"),
+                            Id = new Guid("b94341a8-9304-4b53-ba9c-66c997d98d0c"),
                             ImageUrl = "https://blob.com/Notebook6Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("3db3b3e6-e061-49aa-8d12-db3d664f9cf7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("8f3bbf97-8cc1-43d6-9945-13dbfa92b0b7"),
+                            Id = new Guid("d42240c6-b58e-41fd-accf-3867423269d8"),
                             ImageUrl = "https://blob.com/Notebook7Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0086f33e-58d7-4cbf-b18a-699c24a39ed3"),
+                            Id = new Guid("4ad217a0-4f77-421e-8bef-069feb623b90"),
                             ImageUrl = "https://blob.com/Notebook7Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("04e1f19e-46f8-4fa2-8a88-11363db18a84"),
+                            Id = new Guid("a575917b-dfd3-4df3-ba32-454a36c097cd"),
                             ImageUrl = "https://blob.com/Notebook7Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0b60d95f-b011-4e07-9da4-b8babb1344dd"),
+                            Id = new Guid("070bf487-2795-4d96-ae5a-cf1a96168846"),
                             ImageUrl = "https://blob.com/Notebook7Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("10e58862-041b-4848-88c3-6b0776deabb0"),
+                            Id = new Guid("2d616ea9-4850-4b5b-8cdd-63e9285b99ee"),
                             ImageUrl = "https://blob.com/Notebook7Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("15c781cb-6283-4702-907b-973f03c91324"),
+                            Id = new Guid("42cac58b-4b7b-4418-92b2-112b971a365b"),
                             ImageUrl = "https://blob.com/Notebook7Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a11b4915-834d-4748-aa60-c43940da0e9a"),
+                            Id = new Guid("9ee5c809-1c00-484f-a2ec-547186c528ca"),
                             ImageUrl = "https://blob.com/Notebook7Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("2429d21b-60ca-431c-b478-d62cb791a3c1"),
+                            Id = new Guid("b071e47f-4f06-4a9f-b301-2d17ff5692e4"),
                             ImageUrl = "https://blob.com/Notebook7Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("2e0d8b6b-b1ac-4534-9b10-0f1e11d91ebf")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ff7f3b77-c31f-4e4f-b432-94cf784c9323"),
+                            Id = new Guid("48783352-f2bc-42ce-9a84-ceb13bbb1b01"),
                             ImageUrl = "https://blob.com/Notebook8Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("6142b1b1-1478-40d3-b1a1-7a715276193d"),
+                            Id = new Guid("dd361f4a-30af-48e4-8614-d939eea5d5d6"),
                             ImageUrl = "https://blob.com/Notebook8Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a149a532-57bb-4b6e-84eb-d75a4e1011f9"),
+                            Id = new Guid("efdff28d-5967-4619-a99d-d8af2d702632"),
                             ImageUrl = "https://blob.com/Notebook8Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("9562ad07-4b8e-49e1-9c34-dc2ffd5d5855"),
+                            Id = new Guid("91c55121-152e-483a-922e-08a436da5b3c"),
                             ImageUrl = "https://blob.com/Notebook8Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("6c529f11-ae6f-41a7-b135-647d748bd716"),
+                            Id = new Guid("0777e478-c7e9-4197-aa9a-3eb08b7ae98d"),
                             ImageUrl = "https://blob.com/Notebook8Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("e52ab676-068d-4724-853d-f71b35e1826f"),
+                            Id = new Guid("7495f0d1-4677-4635-9bb8-3abe5a320612"),
                             ImageUrl = "https://blob.com/Notebook8Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("055a2dc2-e7e1-49ca-8e04-7bf1e6795a20"),
+                            Id = new Guid("de1f9034-b898-4132-ae3f-b3fb98b53c01"),
                             ImageUrl = "https://blob.com/Notebook8Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("97313413-89c8-4f85-b3a6-74df8f38004a"),
+                            Id = new Guid("7d658408-eb42-4021-8cf7-98d24da0a414"),
                             ImageUrl = "https://blob.com/Notebook8Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("2e18eeb1-ee57-469b-b980-6f1bf7287c60"),
+                            Id = new Guid("d8cde4e2-05d9-46fe-bd9b-edaceedda9e5"),
                             ImageUrl = "https://blob.com/Notebook8Image-9.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("170613f5-9b3a-4863-a6da-f26c4adca4a9"),
+                            Id = new Guid("ea28383f-129d-4d12-81b7-083fd532b57e"),
                             ImageUrl = "https://blob.com/Notebook8Image-10.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a34684ca-93d9-4ebc-a325-634f9e6efc3f"),
+                            Id = new Guid("6be8da95-c169-41f2-8349-216a9a94a143"),
                             ImageUrl = "https://blob.com/Notebook8Image-11.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0478c504-ea33-4d8d-857f-dbbea9bdf7b6"),
+                            Id = new Guid("a74aa5e5-7b65-48c0-a42f-af8e21946ace"),
                             ImageUrl = "https://blob.com/Notebook8Image-12.png",
                             IsMain = false,
                             ProductId = new Guid("9ffe5287-d8f5-43e5-a01b-b8829d5550fb")
                         },
                         new
                         {
-                            ProductImageId = new Guid("8176373e-ac63-4462-99c9-809ae0d75c3e"),
+                            Id = new Guid("57186806-86d6-49dc-9a63-3de462e3fb20"),
                             ImageUrl = "https://blob.com/Notebook9Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("51f9bbdb-7baf-49c1-b6b3-263f8ec40840"),
+                            Id = new Guid("d737398f-0389-4d50-a9ce-d255e5a543ce"),
                             ImageUrl = "https://blob.com/Notebook9Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("58b97018-3bb6-4620-a4f7-37d6081783ec"),
+                            Id = new Guid("2b541cde-25ee-4c71-a757-c9a242107063"),
                             ImageUrl = "https://blob.com/Notebook9Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("45c7f0ee-d585-4800-99cd-4359b4a5e211"),
+                            Id = new Guid("cb40aa7d-86de-42cb-94ad-b22f01ab3640"),
                             ImageUrl = "https://blob.com/Notebook9Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f0b06c1d-96a9-4555-9444-9b436822d0cd"),
+                            Id = new Guid("4860af95-b4de-46f0-ba87-dcc740f029b2"),
                             ImageUrl = "https://blob.com/Notebook9Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fd2ec7ef-33e2-4d9d-b9c4-0477769f9ee1"),
+                            Id = new Guid("5261f1bb-368c-49c3-ac70-9d2f7a2a5c3a"),
                             ImageUrl = "https://blob.com/Notebook9Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c0ed5e8e-0894-4794-9294-72f57962b5c9"),
+                            Id = new Guid("217427d5-77b9-4601-b98a-51e814a0f5e8"),
                             ImageUrl = "https://blob.com/Notebook9Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("100a030a-95a0-447c-baf1-efc4f5becff5"),
+                            Id = new Guid("b574a40c-8404-4178-ad6b-d13636403916"),
                             ImageUrl = "https://blob.com/Notebook9Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ed70c455-01e4-4db6-93dc-ac5a6c272676"),
+                            Id = new Guid("8083967b-7506-467a-9bd1-2cdc70c360fa"),
                             ImageUrl = "https://blob.com/Notebook9Image-9.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("92c31f05-b727-4553-8787-3d667333ef57"),
+                            Id = new Guid("67b6b3af-80fd-46e3-8111-8e2794d4588b"),
                             ImageUrl = "https://blob.com/Notebook9Image-10.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("dbaf106c-7ca3-43fe-975f-58ec49da1215"),
+                            Id = new Guid("2ab0e75f-8a48-44b2-987d-2306012828ba"),
                             ImageUrl = "https://blob.com/Notebook9Image-11.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("45641f42-b23f-4561-b900-0da0ec24575b"),
+                            Id = new Guid("ed57dd49-0885-442e-adf9-cf94cd4f5772"),
                             ImageUrl = "https://blob.com/Notebook9Image-12.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("bf53dea4-3202-4347-ad1d-c8264b8027d9"),
+                            Id = new Guid("cb693704-c544-418c-8c07-3b3429f0d53a"),
                             ImageUrl = "https://blob.com/Notebook9Image-13.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("20eabde0-981e-4cb9-804c-53a440aa4c92"),
+                            Id = new Guid("e0885726-1ba1-4dcb-8bce-bdb7bd5044c0"),
                             ImageUrl = "https://blob.com/Notebook9Image-14.png",
                             IsMain = false,
                             ProductId = new Guid("2947d95e-6c93-4c8b-8e8a-061729fccae5")
                         },
                         new
                         {
-                            ProductImageId = new Guid("e6ef5b68-aa95-4de6-871d-58453caf7d1f"),
+                            Id = new Guid("e2afffb7-fe55-40c8-8664-02503fe1417c"),
                             ImageUrl = "https://blob.com/Notebook10Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("d45bb3f0-e5f1-4fc5-85be-254a57e3b452"),
+                            Id = new Guid("8eb65a40-bf15-4d01-af41-e42a9b6da2df"),
                             ImageUrl = "https://blob.com/Notebook10Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f2514afb-6a8a-4295-a684-439733e1144d"),
+                            Id = new Guid("3cd3268d-f1f1-4c20-8467-e9544f508647"),
                             ImageUrl = "https://blob.com/Notebook10Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("8649014b-87de-4cf7-80a4-40e92f55e9bb"),
+                            Id = new Guid("d999ee44-e2a1-48fd-a6d1-671b5327b432"),
                             ImageUrl = "https://blob.com/Notebook10Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("cefba746-a7c1-426a-8f3b-133ed3b0cfc4"),
+                            Id = new Guid("43b061d9-7f2b-43f2-bd01-c0290f79d65b"),
                             ImageUrl = "https://blob.com/Notebook10Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("92d26fe6-ca4f-4dae-b6d4-be3a03131b60"),
+                            Id = new Guid("85ae6f5a-c605-4eef-96dc-878ae70e688c"),
                             ImageUrl = "https://blob.com/Notebook10Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c0f73d45-2af3-4d1e-a480-faadade78c3f"),
+                            Id = new Guid("c0b0559e-1e2a-44e2-8c02-455db889df18"),
                             ImageUrl = "https://blob.com/Notebook10Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f31a4fe2-a4b0-4316-9d92-7792b2a388cc"),
+                            Id = new Guid("e17823ce-3b81-4895-8911-00a1b5612d76"),
                             ImageUrl = "https://blob.com/Notebook10Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("f910001f-f612-4995-9712-b60eb8f5f64d"),
+                            Id = new Guid("657f3a97-dc89-4242-a156-9d60c8f03f5e"),
                             ImageUrl = "https://blob.com/Notebook10Image-9.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("cc7d1477-d278-43c9-aa8a-af4f438603f6"),
+                            Id = new Guid("e0c39d2e-9ad9-4c9c-bd92-addc3ac7ec27"),
                             ImageUrl = "https://blob.com/Notebook10Image-10.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("d9067e99-21f3-4222-ae2b-e3beffc7c19b"),
+                            Id = new Guid("c272e56a-0e16-4e45-8f83-0b09a0662008"),
                             ImageUrl = "https://blob.com/Notebook10Image-11.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ed90df90-931f-4585-a89f-9439496b92f8"),
+                            Id = new Guid("21d291d4-c3be-477a-82fa-c0ea0e7d6c2b"),
                             ImageUrl = "https://blob.com/Notebook10Image-12.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("58f9ae6f-b0be-4c30-a1dd-ad7e3f614102"),
+                            Id = new Guid("632368e4-063d-47f5-b41e-5f8ed8883c93"),
                             ImageUrl = "https://blob.com/Notebook10Image-13.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("cea3a328-201f-4d84-ac4e-c3fcf48a935d"),
+                            Id = new Guid("2fa743f1-90cc-4bd2-9357-3c057311a3e8"),
                             ImageUrl = "https://blob.com/Notebook10Image-14.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("cd8dcf67-090d-4b91-a430-42ec682f7d89"),
+                            Id = new Guid("4e1b37fe-4e71-43e6-a42a-b1cfc7cde32b"),
                             ImageUrl = "https://blob.com/Notebook10Image-15.png",
                             IsMain = false,
                             ProductId = new Guid("b1dceb3b-3d3a-484b-ac06-bc7049c9b7e9")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ef3b0252-3763-40c6-9cbf-1183eddd9293"),
+                            Id = new Guid("c6888aab-4499-4528-a521-fb70cbf92a47"),
                             ImageUrl = "https://blob.com/Notebook11Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("6f7c6e33-6b63-4faa-a4e1-9b27f25b8a08")
                         },
                         new
                         {
-                            ProductImageId = new Guid("1148afaf-abd5-4681-8959-20fcde762f28"),
+                            Id = new Guid("2b73427b-04dc-4b1a-a573-dbdf9bcb733c"),
                             ImageUrl = "https://blob.com/Notebook12Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("b1e14ac9-9eda-4d8c-a3c3-738056e2d7a1")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0b100dd2-4745-412d-a685-427adf8c6d68"),
+                            Id = new Guid("47fb6a76-0756-49ea-8924-908cba434f39"),
                             ImageUrl = "https://blob.com/Notebook12Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("b1e14ac9-9eda-4d8c-a3c3-738056e2d7a1")
                         },
                         new
                         {
-                            ProductImageId = new Guid("d5258e44-0ce6-445a-8665-44540a540b99"),
+                            Id = new Guid("c4487299-5478-417c-9170-e8f76a7317c2"),
                             ImageUrl = "https://blob.com/Notebook13Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("5aa5b7e5-918d-4c4d-8d87-f43f2e8031a3")
                         },
                         new
                         {
-                            ProductImageId = new Guid("9bfe291f-a248-4ca3-96a3-af7122a2881c"),
+                            Id = new Guid("8717085b-e508-4f0e-8368-4ec29dd83d8f"),
                             ImageUrl = "https://blob.com/Notebook13Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("5aa5b7e5-918d-4c4d-8d87-f43f2e8031a3")
                         },
                         new
                         {
-                            ProductImageId = new Guid("69c5b22a-3ed9-4dcd-a43e-95d5ccb435eb"),
+                            Id = new Guid("778e2e9c-b774-4af9-b770-8d326eef40cd"),
                             ImageUrl = "https://blob.com/Notebook13Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("5aa5b7e5-918d-4c4d-8d87-f43f2e8031a3")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ad891034-ad60-46f0-88e3-a163789c87dd"),
+                            Id = new Guid("d2033544-38f1-4890-85b8-6690c3b61f1b"),
                             ImageUrl = "https://blob.com/Notebook13Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("5aa5b7e5-918d-4c4d-8d87-f43f2e8031a3")
                         },
                         new
                         {
-                            ProductImageId = new Guid("63632bb0-63ed-4914-966f-4e6e277c8555"),
+                            Id = new Guid("2f99a785-96aa-4af7-b1dd-b9f1412d42e5"),
                             ImageUrl = "https://blob.com/Notebook13Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("5aa5b7e5-918d-4c4d-8d87-f43f2e8031a3")
                         },
                         new
                         {
-                            ProductImageId = new Guid("6be6d524-a64d-4d82-890e-0671708ee087"),
+                            Id = new Guid("4122cae5-c60f-4e42-bbdb-b7f1c4f773e0"),
                             ImageUrl = "https://blob.com/Notebook14Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("bf44d8c7-aacd-4c0e-b1ae-14a1c6b2a9b7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("6175d9d5-8107-4137-84f9-74fcbdddba48"),
+                            Id = new Guid("532e6222-4147-45da-8f89-a3847ef392f1"),
                             ImageUrl = "https://blob.com/Notebook14Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("bf44d8c7-aacd-4c0e-b1ae-14a1c6b2a9b7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("fe9ec873-3f13-4fc4-acc3-809590c466cd"),
+                            Id = new Guid("99dbc44f-ac39-48ac-8143-7ad83f7e359e"),
                             ImageUrl = "https://blob.com/Notebook14Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("bf44d8c7-aacd-4c0e-b1ae-14a1c6b2a9b7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("94bd6ab1-fb20-4347-ac06-c4995bce9c02"),
+                            Id = new Guid("a5289601-41e4-44bd-81cf-2a7012bb2294"),
                             ImageUrl = "https://blob.com/Notebook14Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("bf44d8c7-aacd-4c0e-b1ae-14a1c6b2a9b7")
                         },
                         new
                         {
-                            ProductImageId = new Guid("ac64a650-cbf0-4e85-a5d3-5b920006cbc9"),
+                            Id = new Guid("8af5ea2a-c57c-4944-ad4d-462aa095195d"),
                             ImageUrl = "https://blob.com/Notebook15Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e")
                         },
                         new
                         {
-                            ProductImageId = new Guid("b15bb278-19e6-4fab-8ed7-1b8755c1b24d"),
+                            Id = new Guid("e1238991-3eda-4e17-88ce-697edb9d2baa"),
                             ImageUrl = "https://blob.com/Notebook15Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e")
                         },
                         new
                         {
-                            ProductImageId = new Guid("487455cc-b9fb-4e84-8b6b-a2ad1ee2b2fe"),
+                            Id = new Guid("cc4a2392-2294-467c-b28e-ae562649e856"),
                             ImageUrl = "https://blob.com/Notebook15Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e")
                         },
                         new
                         {
-                            ProductImageId = new Guid("bee547e3-0f11-4c24-8991-d16a189bf67d"),
+                            Id = new Guid("9e5c6061-204b-4ecf-a365-e04b4022aecf"),
                             ImageUrl = "https://blob.com/Notebook15Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e")
                         },
                         new
                         {
-                            ProductImageId = new Guid("14c99538-3e56-484f-a8b8-9f025d9fe955"),
+                            Id = new Guid("b933f3ce-aa7b-42ec-865e-c9fe4a8bba61"),
                             ImageUrl = "https://blob.com/Notebook15Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0eea1d40-5732-45e7-a903-d37271b9f189"),
+                            Id = new Guid("55f8b7a1-d3a3-4bfe-80d4-323891669f14"),
                             ImageUrl = "https://blob.com/Notebook15Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e")
                         },
                         new
                         {
-                            ProductImageId = new Guid("b318ccd1-e5fb-4c0e-9d8a-3560271e3942"),
+                            Id = new Guid("2946f55c-9e53-42cd-b302-b5db188341c0"),
                             ImageUrl = "https://blob.com/Notebook15Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("b6f2fc6b-b6ae-48d7-9afd-8a2854b6812e")
                         },
                         new
                         {
-                            ProductImageId = new Guid("225eb4b1-af9e-4bb8-b95b-0be0e80f8cf8"),
+                            Id = new Guid("9e7baec1-d7c6-4cdc-a38f-6c171b84d090"),
                             ImageUrl = "https://blob.com/Notebook16Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("c9a06102-ce71-49f7-a64a-e7a6c67d8a1e")
                         },
                         new
                         {
-                            ProductImageId = new Guid("7f3c253f-95f8-4238-b991-aadbc9379cb8"),
+                            Id = new Guid("5e198ac9-5de6-4906-967d-5c1cc788d45c"),
                             ImageUrl = "https://blob.com/Notebook17Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("6302ffbc-6a80-4157-a21e-1484e34c050f"),
+                            Id = new Guid("229a7e1d-b39c-4d57-9874-2d59a7ab4172"),
                             ImageUrl = "https://blob.com/Notebook17Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("3225203f-0835-4763-b044-dbab0a13dc21"),
+                            Id = new Guid("5fda070e-5d5f-4116-a55c-fae067086e51"),
                             ImageUrl = "https://blob.com/Notebook17Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("58b18829-d585-4d97-80c7-45117ecd4b4d"),
+                            Id = new Guid("8da21553-b05f-4819-a229-4ce53b515cb1"),
                             ImageUrl = "https://blob.com/Notebook17Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("b6ddfe8f-d598-4f2d-96c6-f378d6e724ab"),
+                            Id = new Guid("ff69e2d3-77e0-40b9-b351-ef264c9f593f"),
                             ImageUrl = "https://blob.com/Notebook17Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("e69524ed-bbf4-4b94-bb53-126b9b539a27"),
+                            Id = new Guid("4976ac52-588d-402b-88fb-7f3a2888d718"),
                             ImageUrl = "https://blob.com/Notebook17Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("0f9724c9-17cc-4c51-bbb4-4924349d7887"),
+                            Id = new Guid("3948489a-52cb-458a-9243-7340a6612c4f"),
                             ImageUrl = "https://blob.com/Notebook17Image-7.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("b89a7dec-a49c-42c8-b41b-3476b8f3acdf"),
+                            Id = new Guid("ce93543f-055f-46f4-8dad-151975316434"),
                             ImageUrl = "https://blob.com/Notebook17Image-8.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("30d7e24d-2add-46e0-a89d-4a9d328f9ee8"),
+                            Id = new Guid("7fc44e81-abd2-4b52-acd8-d3edca886e86"),
                             ImageUrl = "https://blob.com/Notebook17Image-9.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c637d914-9074-4633-90b9-da2e8eeab931"),
+                            Id = new Guid("6061c69c-4ae2-42a7-ad10-4175f9663699"),
                             ImageUrl = "https://blob.com/Notebook17Image-10.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("3a85dd48-5e93-4910-94a4-73c377f8cae9"),
+                            Id = new Guid("7108ffd4-a101-473e-8a26-745adb970cfe"),
                             ImageUrl = "https://blob.com/Notebook17Image-11.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("27020467-ae02-49fe-9d13-8b3c65554ad6"),
+                            Id = new Guid("d848ee7b-458f-4ec7-9c05-750770eba112"),
                             ImageUrl = "https://blob.com/Notebook17Image-12.png",
                             IsMain = false,
                             ProductId = new Guid("fcb2d30e-34b0-4f3f-92c9-29d7b5fc1cc8")
                         },
                         new
                         {
-                            ProductImageId = new Guid("21f9ff96-31d0-48f2-8ebb-91dd7428368f"),
+                            Id = new Guid("7522ffd5-61fd-43c8-90cc-d7d62202a32d"),
                             ImageUrl = "https://blob.com/Notebook18Image-1.png",
                             IsMain = true,
                             ProductId = new Guid("10e52bc0-9d9c-4c2d-84f3-1d2057d0c19f")
                         },
                         new
                         {
-                            ProductImageId = new Guid("c3ecaf10-7e5b-47d2-81ec-a9d3d8d295f6"),
+                            Id = new Guid("15824281-420d-4650-aa6d-6630e0da9555"),
                             ImageUrl = "https://blob.com/Notebook18Image-2.png",
                             IsMain = false,
                             ProductId = new Guid("10e52bc0-9d9c-4c2d-84f3-1d2057d0c19f")
                         },
                         new
                         {
-                            ProductImageId = new Guid("a826c201-ae33-444f-8641-e8ca9faae8a6"),
+                            Id = new Guid("1b527f1e-7401-48d8-bb55-a9c27f382859"),
                             ImageUrl = "https://blob.com/Notebook18Image-3.png",
                             IsMain = false,
                             ProductId = new Guid("10e52bc0-9d9c-4c2d-84f3-1d2057d0c19f")
                         },
                         new
                         {
-                            ProductImageId = new Guid("60dc35dd-cd68-4928-9cf1-565c60f91f14"),
+                            Id = new Guid("e6db38c0-2ba1-4f09-af72-065d2aaa96b9"),
                             ImageUrl = "https://blob.com/Notebook18Image-4.png",
                             IsMain = false,
                             ProductId = new Guid("10e52bc0-9d9c-4c2d-84f3-1d2057d0c19f")
                         },
                         new
                         {
-                            ProductImageId = new Guid("beb4406c-6b54-4f4d-a724-a297a3e98f03"),
+                            Id = new Guid("95c71d8d-d2f2-42ac-a942-37510d624cd4"),
                             ImageUrl = "https://blob.com/Notebook18Image-5.png",
                             IsMain = false,
                             ProductId = new Guid("10e52bc0-9d9c-4c2d-84f3-1d2057d0c19f")
                         },
                         new
                         {
-                            ProductImageId = new Guid("190979be-8a89-446d-9c8f-8c165d31e8a9"),
+                            Id = new Guid("7f686b27-cdf5-40c6-aaf4-1210f106462b"),
                             ImageUrl = "https://blob.com/Notebook18Image-6.png",
                             IsMain = false,
                             ProductId = new Guid("10e52bc0-9d9c-4c2d-84f3-1d2057d0c19f")

@@ -8,28 +8,28 @@ public class FakeData
         {
             new()
             {
-                Id = SeedDataConstants.BrandApple,
-                Name = "Apple",
-                Image = "https://blob.com/BrandApple.png"
-            },
+                Id = SeedDataConstants.BrandLenovo,
+                Name = "Lenovo",
+                Image = "https://blob.com/BrandLenovo.png"
+            },           
             new()
             {
                 Id = SeedDataConstants.BrandSamsung,
                 Name = "Samsung",
                 Image = "https://blob.com/BrandSamsung.png"
             },
+             new()
+            {
+                Id = SeedDataConstants.BrandApple,
+                Name = "Apple",
+                Image = "https://blob.com/BrandApple.png"
+            },
             new()
             {
                 Id = SeedDataConstants.BrandLg,
                 Name = "Lg",
                 Image = "https://blob.com/BrandLg.png"
-            },
-            new()
-            {
-                Id = SeedDataConstants.BrandLenovo,
-                Name = "Lenovo",
-                Image = "https://blob.com/BrandLenovo.png"
-            }
+            }            
         };
     }
 
