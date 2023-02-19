@@ -13,5 +13,13 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-    }    
+    }
+
+    [Fact]
+    public async Task GetBrandsAsync_ReturnApplicationJsonUtf8()
+    {
+        var response = await client.GetAsync("/api/brands");
+
+        Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+    }   
 }
