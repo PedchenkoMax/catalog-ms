@@ -104,5 +104,14 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
             item => Assert.Equal("Samsung Galaxy S21", item.Name),
             item => Assert.Equal("Apple iPhone 12 Mini", item.Name),
             item => Assert.Equal("Apple iPhone 12 Pro Max", item.Name));
-    }    
+    }
+
+    [Fact]
+    public async Task ProductsByParametersAsync_WithNotExistCategorytId_ReturnNotFound()
+    {
+        Guid notExistCategorytId = Guid.NewGuid();
+        HttpResponseMessage response = await client.GetAsync($"api/products?CategoryId={notExistCategorytId}");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }  
 }
