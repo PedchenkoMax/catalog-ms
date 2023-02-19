@@ -22,4 +22,19 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
 
         Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
     }
+
+    [Fact]
+    public async Task GetBrandsAsync_ReturnAllBrands()
+    {
+        var response = await client.GetAsync("/api/categories");
+        response.EnsureSuccessStatusCode();
+
+        var categories = await response.Content.ReadFromJsonAsync<List<Category>>();
+
+        Assert.Equal(3, categories.Count);
+        Assert.Collection(categories,
+            item => Assert.Equal("Phone", item.Name),
+            item => Assert.Equal("TV", item.Name),
+            item => Assert.Equal("Notebook", item.Name));          
+    }
 }
