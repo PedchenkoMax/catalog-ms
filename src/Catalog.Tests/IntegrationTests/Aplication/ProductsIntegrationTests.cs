@@ -32,5 +32,14 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         HttpResponseMessage response = await client.GetAsync($"api/products/{notExistProductId}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task ProductByIdAsync_ProductEmptyId_ReturnBadRequest()
+    {
+        Guid emptyProductId = Guid.Empty;
+        HttpResponseMessage response = await client.GetAsync($"api/products/{emptyProductId}");
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }   
 }
