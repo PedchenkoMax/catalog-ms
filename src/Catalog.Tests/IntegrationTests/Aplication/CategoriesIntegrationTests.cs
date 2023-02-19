@@ -14,4 +14,12 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
+
+    [Fact]
+    public async Task GetCategoriesAsync_ReturnApplicationJsonUtf8()
+    {
+        var response = await client.GetAsync("/api/categories");
+
+        Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+    }
 }
