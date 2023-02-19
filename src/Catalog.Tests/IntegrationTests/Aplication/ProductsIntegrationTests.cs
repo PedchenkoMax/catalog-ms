@@ -113,5 +113,20 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         HttpResponseMessage response = await client.GetAsync($"api/products?CategoryId={notExistCategorytId}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-    }  
+    }
+    
+    [Fact]
+    public async Task ProductsByParametersAsync_WithCategorytIdAndBrandId_ReturnFilteredProducts()
+    {
+        Guid existCategorytId = SeedDataConstants.CategoryPhone;
+        Guid existBrandId = SeedDataConstants.BrandApple;
+        
+        HttpResponseMessage response = await client.GetAsync($"api/products?CategoryId={existCategorytId}&BrandIds={existBrandId}");
+        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        
+        Assert.Equal(2, products.Count);
+        Assert.Collection(products,
+            item => Assert.Equal("Apple iPhone 12 Mini", item.Name),
+            item => Assert.Equal("Apple iPhone 12 Pro Max", item.Name));        
+    } 
 }
