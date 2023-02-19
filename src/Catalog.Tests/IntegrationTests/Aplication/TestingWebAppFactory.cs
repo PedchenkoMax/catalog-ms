@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.IntegrationTests.API;
+﻿namespace Catalog.Tests.IntegrationTests.Aplication;
 
 public class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<Program> where TEntryPoint : Program
 {

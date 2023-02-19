@@ -1,4 +1,4 @@
-﻿namespace Catalog.Tests.IntegrationTests.API;
+﻿namespace Catalog.Tests.IntegrationTests.Aplication;
 
 public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program>>
 {
