@@ -75,5 +75,17 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
 
         Assert.IsType<List<Product>>(products);
         Assert.Equal(5, products.Count);
+    }
+
+    [Fact]
+    public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnAllProducts()
+    {
+        HttpResponseMessage response = await client.GetAsync($"api/products/?PageIndex=0&PageSize=30");
+        response.EnsureSuccessStatusCode();
+
+        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+
+        Assert.IsType<List<Product>>(products);
+        Assert.Equal(28, products.Count);
     }    
 }
