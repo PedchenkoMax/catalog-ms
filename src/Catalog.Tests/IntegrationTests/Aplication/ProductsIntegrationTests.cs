@@ -157,6 +157,20 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         Assert.Equal(1, products.Count);
         Assert.Collection(products, item => Assert.Equal("Apple iPhone 12 Mini", item.Name));
         Assert.Collection(products, item => Assert.Equal(699.99M, item.FullPrice));
+    }
+    
+    [Fact]
+    public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdOrderByPrice_ReturnFilteredProducts()
+    {
+        Guid existCategorytId = SeedDataConstants.CategoryPhone;
+        Guid existBrandId = SeedDataConstants.BrandApple;
+
+        HttpResponseMessage response = await client.GetAsync($"api/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=false");
+        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+
+        Assert.Equal(2, products.Count);
+        Assert.Equal("Apple iPhone 12 Mini", products.First().Name);
+        Assert.Equal("Apple iPhone 12 Pro Max", products.Last().Name);
     }   
     
 }
