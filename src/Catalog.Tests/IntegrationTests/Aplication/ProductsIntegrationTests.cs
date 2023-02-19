@@ -41,5 +41,15 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         HttpResponseMessage response = await client.GetAsync($"api/products/{emptyProductId}");
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-    }   
+    }
+
+    [Fact]
+    public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnOkResult()
+    {        
+        HttpResponseMessage response = await client.GetAsync($"api/products/");
+        response.EnsureSuccessStatusCode();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());       
+    }    
 }
