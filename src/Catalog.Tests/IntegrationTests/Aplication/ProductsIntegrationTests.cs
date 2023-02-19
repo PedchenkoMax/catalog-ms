@@ -51,5 +51,17 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());       
+    }
+
+    [Fact]
+    public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnDefaultPaginedTenProducts()
+    {
+        HttpResponseMessage response = await client.GetAsync($"api/products/");
+        response.EnsureSuccessStatusCode();
+
+        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+
+        Assert.IsType<List<Product>>(products);
+        Assert.Equal(10, products.Count);
     }    
 }
