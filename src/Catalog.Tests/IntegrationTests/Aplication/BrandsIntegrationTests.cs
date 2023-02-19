@@ -7,7 +7,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program
         => client = factory.CreateClient();
 
     [Fact]
-    public async Task GetBrandsAsync_ReturnsOkResultWithData()
+    public async Task GetBrandsAsync_WithData_ReturnOkResult()
     {
         var response = await client.GetAsync("/api/brands");
         response.EnsureSuccessStatusCode();
@@ -16,7 +16,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program
     }
 
     [Fact]
-    public async Task GetBrandsAsync_ReturnApplicationJsonUtf8()
+    public async Task GetBrandsAsync_WithData_ReturnApplicationJsonUtf8()
     {
         var response = await client.GetAsync("/api/brands");
 
@@ -24,7 +24,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program
     }
 
     [Fact]
-    public async Task GetBrandsAsync_ReturnAllBrands()
+    public async Task GetBrandsAsync_WithData_ReturnAllBrands()
     {
         var response = await client.GetAsync("/api/brands");
         response.EnsureSuccessStatusCode();

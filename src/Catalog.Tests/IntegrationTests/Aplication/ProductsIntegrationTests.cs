@@ -7,11 +7,21 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         => client = factory.CreateClient();
 
     [Fact]
-    public async Task GetBrandsAsync_ReturnsOkResultWithData()
+    public async Task ProductByIdAsync_ProductIdExists_ReturnOkResult()
     {
-        var response = await client.GetAsync("/api/products");
+        Guid existProductId = SeedDataConstants.Phone1;        
+        HttpResponseMessage response = await client.GetAsync($"api/products/{existProductId}");
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
+
+    [Fact]
+    public async Task ProductByIdAsync_ProductIdExists_ReturnApplicationJsonUtf8()
+    {
+        Guid existProductId = SeedDataConstants.Phone1;
+        HttpResponseMessage response = await client.GetAsync($"api/products/{existProductId}");
+
+        Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+    }    
 }

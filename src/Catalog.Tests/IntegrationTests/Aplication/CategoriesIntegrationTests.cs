@@ -7,7 +7,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
         => client = factory.CreateClient();
 
     [Fact]
-    public async Task GetCategoriesAsync_ReturnsOkResultWithData()
+    public async Task GetCategoriesAsync_WithData_ReturnOkResult()
     {
         var response = await client.GetAsync("/api/categories");
         response.EnsureSuccessStatusCode();
@@ -16,7 +16,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
     }
 
     [Fact]
-    public async Task GetCategoriesAsync_ReturnApplicationJsonUtf8()
+    public async Task GetCategoriesAsync_WithData_ReturnApplicationJsonUtf8()
     {
         var response = await client.GetAsync("/api/categories");
 
@@ -24,7 +24,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
     }
 
     [Fact]
-    public async Task GetBrandsAsync_ReturnAllBrands()
+    public async Task GetBrandsAsync_WithData_ReturnAllBrands()
     {
         var response = await client.GetAsync("/api/categories");
         response.EnsureSuccessStatusCode();
