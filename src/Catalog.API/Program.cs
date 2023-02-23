@@ -59,7 +59,12 @@ var services = builder.Services;
         options.ApiVersionReader = ApiVersionReader.Combine(
             new QueryStringApiVersionReader("api-version"),            
             new MediaTypeApiVersionReader("ver"));
-    });    
+    });
+
+    services.AddVersionedApiExplorer(setup => {
+        setup.GroupNameFormat = "'v'VVV";
+        setup.SubstituteApiVersionInUrl = true;
+    });
 }
 
 var app = builder.Build();
@@ -68,7 +73,14 @@ var app = builder.Build();
 
     if (app.Environment.IsDevelopment()) 
     {
-        app.UseSwagger();
+        app.UseSwaggerUI(options => 
+        {
+            foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions) 
+            {
+                options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                    description.GroupName.ToUpperInvariant());
+            }
+        });
         app.UseSwaggerUI();
     }
 
