@@ -21,7 +21,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         Guid existProductId = SeedDataConstants.Phone1;
         HttpResponseMessage response = await client.GetAsync($"api/products/{existProductId}");
 
-        Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+        Assert.Equal("application/json; charset=utf-8; ver=1.0", response.Content.Headers.ContentType.ToString());
     }
 
     [Fact]
@@ -49,7 +49,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());       
+        Assert.Equal("application/json; charset=utf-8; ver=1.0", response.Content.Headers.ContentType.ToString());       
     }
 
     [Fact]
