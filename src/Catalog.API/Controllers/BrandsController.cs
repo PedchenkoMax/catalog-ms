@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Catalog.API.Controllers;
 
 [Route("api/[controller]")]
+[ApiVersion("1.0")]
+[ApiVersion("2.0")]
 [ApiController]
 public class BrandsController : ControllerBase
 {
@@ -27,5 +29,24 @@ public class BrandsController : ControllerBase
             .ToListAsync();
 
         return Ok(brands);
-    }    
+    }
+
+    [MapToApiVersion("2.0")]
+    [HttpGet("{brandId:guid}")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Brand), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetBrandById([FromRoute] Guid brandId) {
+        if (brandId == Guid.Empty)
+            return BadRequest();
+
+        var brand = await brandSet
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == brandId);
+
+        if (brand == null)
+            return NotFound();
+
+        return Ok(brand.ToDTO());
+    }
 }

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Catalog.API.Controllers;
 
 [Route("api/[controller]")]
+[ApiVersion("1.0")]
 [ApiController]
 public class ProductsController : ControllerBase
 {
