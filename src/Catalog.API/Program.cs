@@ -48,6 +48,7 @@ var services = builder.Services;
 
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();   
+    services.ConfigureOptions<ConfigureSwaggerOptions>();
     services.AddDbContext<CatalogContext>(o => o.UseSqlServer(builder.Configuration["ConnectionString"]));
     services.AddHttpLogging(l => l.LoggingFields = HttpLoggingFields.All);
 
