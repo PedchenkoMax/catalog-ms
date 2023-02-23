@@ -20,7 +20,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program
     {
         var response = await client.GetAsync("/api/brands");
 
-        Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+        Assert.Equal("application/json; charset=utf-8; ver=1.0", response.Content.Headers.ContentType.ToString());
     }
 
     [Fact]

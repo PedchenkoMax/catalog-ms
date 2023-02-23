@@ -27,5 +27,5 @@ public class BrandsController : ControllerBase
             .ToListAsync();
 
         return Ok(brands);
-    }
+    }    
 }
