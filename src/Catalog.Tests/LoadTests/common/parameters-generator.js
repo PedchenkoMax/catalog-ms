@@ -1,5 +1,8 @@
 ﻿import {MAX_BRANDS, ORDERBY_OPTIONS, IS_DESC_RATIO, MAX_PRICE_RANGE, PAGE_SIZES_RATIO, PARAMETERS_NULL_RATIO} from './constants.js';
 
+/**
+ * Generates query parameters with PARAMETERS_NULL_RATIO chance for each to be null.
+ */
 export function getRandomParameters(categories, brands) {
     return {
         categoryId: generateCategoryId(categories),
@@ -10,6 +13,9 @@ export function getRandomParameters(categories, brands) {
     };
 }
 
+/**
+ * Obtains a random ID from categories.
+ */
 function generateCategoryId(categories) {
     if (parametersNullProbability()) return null;
 
@@ -18,6 +24,9 @@ function generateCategoryId(categories) {
     return categories[randomIndex].categoryId;
 }
 
+/**
+ * Obtains a random list of IDs from brands, up to a maximum of MAX_BRANDS.
+ */
 function generateBrandIds(brands) {
     if (parametersNullProbability()) return null;
 
@@ -34,6 +43,10 @@ function generateBrandIds(brands) {
     return brandIds;
 }
 
+/**
+ * Obtains random orderBy from ORDERBY_OPTIONS
+ * and generates isDesc on ratio provided by IS_DESC_RATIO.
+ */
 function generateOrdering() {
     if (parametersNullProbability()) return null;
 
@@ -43,6 +56,9 @@ function generateOrdering() {
     return {orderBy, isDesc};
 }
 
+/**
+ * Generates a random valid priceRange in MAX_PRICE_RANGE.
+ */
 function generatePriceRange() {
     if (parametersNullProbability()) return null;
 
@@ -52,6 +68,9 @@ function generatePriceRange() {
     return {minPrice, maxPrice};
 }
 
+/**
+ *  Obtains a random page size based on PAGE_SIZES_RATIO.
+ */
 function generatePageSize() {
     const rand = Math.random();
 
@@ -65,6 +84,10 @@ function generatePageSize() {
     return 25;
 }
 
+/**
+ * Returns true with a chance determined by PARAMETERS_NULL_RATIO,
+ * indicating whether a function parameter should be set to null or not.
+ */
 function parametersNullProbability() {
     return Math.random() < PARAMETERS_NULL_RATIO;
 }
