@@ -8,7 +8,6 @@ public static class Seed
 
     private static readonly DbContextOptions<CatalogContext> Options = new DbContextOptionsBuilder<CatalogContext>().UseSqlServer(ConnectionString).Options;
 
-
     public static void SeedDb()
     {
         Randomizer.Seed = new Random(42);
@@ -22,7 +21,6 @@ public static class Seed
         ctx.Brands.AddRange(Brands.All);
         ctx.Categories.AddRange(Categories.All);
 
-
         var imageFaker = new Faker<ProductImageEntity>()
             .RuleFor(i => i.Id, _ => Guid.NewGuid())
             .RuleFor(i => i.ImageUrl, _ => "blob.com/gl-survivors/proudctImage/")
@@ -35,7 +33,7 @@ public static class Seed
             {
                 var productFaker = new Faker<ProductEntity>()
                     .RuleFor(b => b.Id, _ => Guid.NewGuid())
-                    .RuleFor(b => b.Name, f => $"{brand.Name} {f.PickRandom(ProductNameTagsPerCategory.Dictionary[category])}") //  {Guid.NewGuid().ToString().ToUpper()[..4]}
+                    .RuleFor(b => b.Name, f => $"{brand.Name} {f.PickRandom(ProductNameTagsPerCategory.Dictionary[category])}")
                     .RuleFor(b => b.Description, f => f.Lorem.Paragraphs(1, 5))
                     .RuleFor(b => b.FullPrice, f => f.Random.Decimal(500, 15000))
                     .RuleFor(b => b.Discount, f => f.Random.Decimal(-500, 2500))
@@ -68,6 +66,6 @@ public static class Seed
         
         ctx.Products.AddRange(products);
 
-        var totalCount = ctx.SaveChanges();
+        ctx.SaveChanges();
     }
 }

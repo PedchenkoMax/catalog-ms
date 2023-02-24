@@ -1,13 +1,8 @@
-﻿// ReSharper disable All
+﻿using static Catalog.Tests.LoadTests.Categories;
 
-#pragma warning disable CS8604
-#pragma warning disable CA2211
+namespace Catalog.Tests.LoadTests.Seed;
 
-using static Catalog.Tests.LoadTests.Categories;
-
-namespace Catalog.Tests.LoadTests;
-
-public class ProductNameTagsPerCategory
+public static class ProductNameTagsPerCategory
 {
     public static readonly Dictionary<CategoryEntity, List<string>> Dictionary = new()
     {

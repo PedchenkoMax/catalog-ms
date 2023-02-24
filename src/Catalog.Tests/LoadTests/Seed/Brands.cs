@@ -1,11 +1,6 @@
-﻿// ReSharper disable All
+﻿using static System.Guid;
 
-// #pragma warning disable CS8604
-// #pragma warning disable CA2211
-
-using static System.Guid;
-
-namespace Catalog.Tests.LoadTests;
+namespace Catalog.Tests.LoadTests.Seed;
 
 // 264 entries
 public static class Brands

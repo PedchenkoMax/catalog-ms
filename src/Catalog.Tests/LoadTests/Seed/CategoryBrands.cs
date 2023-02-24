@@ -1,12 +1,7 @@
-﻿// ReSharper disable All
-
-#pragma warning disable CS8604
-#pragma warning disable CA2211
-
-using static Catalog.Tests.LoadTests.Brands;
+﻿using static Catalog.Tests.LoadTests.Seed.Brands;
 using static Catalog.Tests.LoadTests.Categories;
 
-namespace Catalog.Tests.LoadTests;
+namespace Catalog.Tests.LoadTests.Seed;
 
 public static class CategoryBrands
 {
