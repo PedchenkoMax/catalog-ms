@@ -2,7 +2,7 @@
 global using Catalog.Domain.Constants;
 global using Catalog.API.Validation.Attributes;
 global using Catalog.Domain.Entities;
-global using Catalog.API.Controllers;
+global using Catalog.API.Controllers.v1;
 global using Catalog.API.DTO.Filters;
 global using Catalog.API.QueryableExtensions;
 global using Catalog.API.DTO;

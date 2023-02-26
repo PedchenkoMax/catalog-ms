@@ -58,7 +58,7 @@ var services = builder.Services;
         options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
         options.ReportApiVersions = true;
         options.ApiVersionReader = ApiVersionReader.Combine(
-            new QueryStringApiVersionReader("api-version"),            
+            new UrlSegmentApiVersionReader(),            
             new MediaTypeApiVersionReader("ver"));
     });
 

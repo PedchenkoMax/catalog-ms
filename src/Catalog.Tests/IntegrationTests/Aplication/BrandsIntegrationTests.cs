@@ -9,7 +9,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program
     [Fact]
     public async Task GetBrandsAsync_WithData_ReturnOkResult()
     {
-        var response = await client.GetAsync("/api/brands");
+        var response = await client.GetAsync("/api/v1/brands");
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -18,15 +18,15 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program
     [Fact]
     public async Task GetBrandsAsync_WithData_ReturnApplicationJsonUtf8()
     {
-        var response = await client.GetAsync("/api/brands");
+        var response = await client.GetAsync("/api/v1/brands");
 
-        Assert.Equal("application/json; charset=utf-8; ver=1.0", response.Content.Headers.ContentType.ToString());
+        Assert.Equal("application/json; charset=utf-8; ver=1", response.Content.Headers.ContentType.ToString());
     }
 
     [Fact]
     public async Task GetBrandsAsync_WithData_ReturnAllBrands()
     {
-        var response = await client.GetAsync("/api/brands");
+        var response = await client.GetAsync("/api/v1/brands");
         response.EnsureSuccessStatusCode();
 
         var brands = await response.Content.ReadFromJsonAsync<List<Brand>>();

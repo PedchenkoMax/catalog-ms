@@ -9,7 +9,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
     [Fact]
     public async Task GetCategoriesAsync_WithData_ReturnOkResult()
     {
-        var response = await client.GetAsync("/api/categories");
+        var response = await client.GetAsync("/api/v1/categories");
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -18,15 +18,15 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
     [Fact]
     public async Task GetCategoriesAsync_WithData_ReturnApplicationJsonUtf8()
     {
-        var response = await client.GetAsync("/api/categories");
+        var response = await client.GetAsync("/api/v1/categories");
 
-        Assert.Equal("application/json; charset=utf-8; ver=1.0", response.Content.Headers.ContentType.ToString());
+        Assert.Equal("application/json; charset=utf-8; ver=1", response.Content.Headers.ContentType.ToString());
     }
 
     [Fact]
     public async Task GetBrandsAsync_WithData_ReturnAllBrands()
     {
-        var response = await client.GetAsync("/api/categories");
+        var response = await client.GetAsync("/api/v1/categories");
         response.EnsureSuccessStatusCode();
 
         var categories = await response.Content.ReadFromJsonAsync<List<Category>>();

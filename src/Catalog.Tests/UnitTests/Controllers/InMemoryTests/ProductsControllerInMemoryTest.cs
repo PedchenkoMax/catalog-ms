@@ -1,3 +1,5 @@
+using Catalog.API.Controllers.v1;
+
 namespace Catalog.Tests.UnitTests.Controllers.InMemoryTests;
 
 public class ProductsControllerInMemoryTest

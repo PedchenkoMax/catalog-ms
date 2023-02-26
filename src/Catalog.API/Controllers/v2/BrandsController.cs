@@ -4,10 +4,9 @@ using Catalog.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Catalog.API.Controllers;
+namespace Catalog.API.Controllers.v2;
 
-[Route("api/[controller]")]
-[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 [ApiVersion("2.0")]
 [ApiController]
 public class BrandsController : ControllerBase
@@ -18,8 +17,8 @@ public class BrandsController : ControllerBase
     {
         brandSet = context.Brands;
     }
-
-    [HttpGet]
+    
+    [HttpGet]    
     [ProducesResponseType(typeof(IEnumerable<Brand>), StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Brand>>> GetBrandsAsync()
     {
@@ -30,13 +29,13 @@ public class BrandsController : ControllerBase
 
         return Ok(brands);
     }
-
-    [MapToApiVersion("2.0")]
-    [HttpGet("{brandId:guid}")]
+    
+    [HttpGet("{brandId:guid}")]    
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Brand), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetBrandById([FromRoute] Guid brandId) {
+    public async Task<IActionResult> GetBrandById([FromRoute] Guid brandId)
+    {
         if (brandId == Guid.Empty)
             return BadRequest();
 
