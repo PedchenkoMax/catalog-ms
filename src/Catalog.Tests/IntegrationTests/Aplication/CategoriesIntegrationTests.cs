@@ -1,8 +1,9 @@
-﻿namespace Catalog.Tests.IntegrationTests.Aplication;
+namespace Catalog.Tests.IntegrationTests.Aplication;
 
 public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Program>>
 {
     private readonly HttpClient client;
+
     public CategoriesIntegrationTests(TestingWebAppFactory<Program> factory)
         => client = factory.CreateClient();
 
@@ -35,6 +36,6 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
         Assert.Collection(categories,
             item => Assert.Equal("Phone", item.Name),
             item => Assert.Equal("TV", item.Name),
-            item => Assert.Equal("Notebook", item.Name));          
+            item => Assert.Equal("Notebook", item.Name));
     }
 }

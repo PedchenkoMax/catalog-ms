@@ -17,8 +17,8 @@ public class BrandsController : ControllerBase
     {
         brandSet = context.Brands;
     }
-    
-    [HttpGet]    
+
+    [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Brand>), StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Brand>>> GetBrandsAsync()
     {
@@ -28,5 +28,5 @@ public class BrandsController : ControllerBase
             .ToListAsync();
 
         return Ok(brands);
-    }   
+    }
 }

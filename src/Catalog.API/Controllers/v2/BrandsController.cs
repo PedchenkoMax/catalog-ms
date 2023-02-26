@@ -17,8 +17,8 @@ public class BrandsController : ControllerBase
     {
         brandSet = context.Brands;
     }
-    
-    [HttpGet]    
+
+    [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Brand>), StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Brand>>> GetBrandsAsync()
     {
@@ -29,8 +29,8 @@ public class BrandsController : ControllerBase
 
         return Ok(brands);
     }
-    
-    [HttpGet("{brandId:guid}")]    
+
+    [HttpGet("{brandId:guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Brand), StatusCodes.Status200OK)]

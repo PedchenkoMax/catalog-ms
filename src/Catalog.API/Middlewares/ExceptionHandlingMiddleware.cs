@@ -1,4 +1,4 @@
-﻿namespace Catalog.API.Middlewares;
+namespace Catalog.API.Middlewares;
 
 public class ExceptionHandlingMiddleware
 {
@@ -8,7 +8,7 @@ public class ExceptionHandlingMiddleware
     public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
     {
         this.next = next;
-        this.logger = logger;        
+        this.logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)

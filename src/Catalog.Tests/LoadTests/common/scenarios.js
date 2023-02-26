@@ -26,10 +26,10 @@ export function loadTest() {
         // If the number of products is not equal to the page size,
         // it indicates that it's the last page or the page was already empty.
         // So if the statement is true -> next page, otherwise -> new iteration.
-        if (products.length === pageSize) 
+        if (products.length === pageSize)
             sleep(NEXT_PAGE_SLEEP);
-        else { 
-            sleep(NEW_ITERATION_SLEEP); 
+        else {
+            sleep(NEW_ITERATION_SLEEP);
             break;
         }
     }

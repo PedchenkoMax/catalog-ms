@@ -13,7 +13,7 @@ public record Brand
 
     [DefaultValue("https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg")]
     public string Image { get; init; }
-    
+
     public IList<Product>? Products { get; set; }
 }
 

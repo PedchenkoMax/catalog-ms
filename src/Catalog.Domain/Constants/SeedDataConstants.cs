@@ -35,7 +35,7 @@ public static class SeedDataConstants
     public static readonly Guid Notebook7 = Guid.Parse("2E0D8B6B-B1AC-4534-9B10-0F1E11D91EBF");
     public static readonly Guid Notebook8 = Guid.Parse("9FFE5287-D8F5-43E5-A01B-B8829D5550FB");
     public static readonly Guid Notebook9 = Guid.Parse("2947D95E-6C93-4C8B-8E8A-061729FCCAE5");
-    
+
     public static readonly Guid Notebook10 = Guid.Parse("B1DCEB3B-3D3A-484B-AC06-BC7049C9B7E9");
     public static readonly Guid Notebook11 = Guid.Parse("6F7C6E33-6B63-4FAA-A4E1-9B27F25B8A08");
     public static readonly Guid Notebook12 = Guid.Parse("B1E14AC9-9EDA-4D8C-A3C3-738056E2D7A1");

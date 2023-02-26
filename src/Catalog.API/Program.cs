@@ -43,11 +43,11 @@ var services = builder.Services;
             });
         });
     });
-    
+
     services.AddTransient<IEventBus, EventBus>();
 
     services.AddEndpointsApiExplorer();
-    services.AddSwaggerGen();   
+    services.AddSwaggerGen();
     services.ConfigureOptions<ConfigureSwaggerOptions>();
     services.AddDbContext<CatalogContext>(o => o.UseSqlServer(builder.Configuration["ConnectionString"]));
     services.AddHttpLogging(l => l.LoggingFields = HttpLoggingFields.All);
@@ -58,11 +58,12 @@ var services = builder.Services;
         options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
         options.ReportApiVersions = true;
         options.ApiVersionReader = ApiVersionReader.Combine(
-            new UrlSegmentApiVersionReader(),            
+            new UrlSegmentApiVersionReader(),
             new MediaTypeApiVersionReader("ver"));
     });
 
-    services.AddVersionedApiExplorer(setup => {
+    services.AddVersionedApiExplorer(setup =>
+    {
         setup.GroupNameFormat = "'v'VVV";
         setup.SubstituteApiVersionInUrl = true;
     });
@@ -72,15 +73,14 @@ var app = builder.Build();
 {
     var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
-    if (app.Environment.IsDevelopment()) 
+    if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
-            foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions) {
+            foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
                 options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
                     description.GroupName.ToUpperInvariant());
-            }
         });
     }
 

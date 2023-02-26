@@ -13,7 +13,7 @@ public record Category
 
     [DefaultValue("https://cdn-icons-png.flaticon.com/512/65/65680.png")]
     public string Image { get; init; }
-    
+
     public IList<Product>? Products { get; set; }
 }
 

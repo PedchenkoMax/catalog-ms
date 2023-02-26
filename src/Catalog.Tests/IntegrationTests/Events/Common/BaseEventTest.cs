@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Abstractions;
+using Catalog.API.Events.Abstractions;
 using Catalog.Domain.Abstractions;
 using Divergic.Logging.Xunit;
 using MassTransit;
@@ -27,7 +27,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     {
         Fixture = fixture;
         Output = output;
-        
+
         CreatedLogger = output.BuildLoggerFor<TCreatedEventConsumer>(LogLevel.Information);
         UpdatedLogger = output.BuildLoggerFor<TUpdatedEventConsumer>(LogLevel.Information);
         DeletedLogger = output.BuildLoggerFor<TDeletedEventConsumer>(LogLevel.Information);
@@ -65,7 +65,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
         await Provider.GetTestHarness().Bus.Publish(@event);
 
         // Look up 'TestCatalogContext' for the explanation.
-        TestCatalogContext.ResetEvent.WaitOne(); 
+        TestCatalogContext.ResetEvent.WaitOne();
     }
 
     protected async Task AddEntity<T>(T entity)

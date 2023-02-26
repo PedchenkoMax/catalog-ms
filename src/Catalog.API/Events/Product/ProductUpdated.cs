@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Abstractions;
+using Catalog.API.Events.Abstractions;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 
@@ -31,6 +31,7 @@ public record ProductUpdatedEvent(
         };
     }
 }
+
 public class ProductUpdatedEventConsumer : BaseUpdatedEventConsumer<ProductUpdatedEvent, ProductEntity>
 {
     public ProductUpdatedEventConsumer(ILogger<ProductUpdatedEventConsumer> logger, CatalogContext ctx) :

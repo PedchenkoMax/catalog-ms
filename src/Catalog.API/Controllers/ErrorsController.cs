@@ -9,13 +9,9 @@ public class ErrorsController : ControllerBase
     [ApiExplorerSettings(IgnoreApi = true)]
     public IActionResult Error()
     {
-        var exception = HttpContext.Features.Get<IExceptionHandlerFeature>().Error;      
-        
+        var exception = HttpContext.Features.Get<IExceptionHandlerFeature>().Error;
+
         return Problem(title: "An error has occurred, try again later or contact support",
-                       detail: exception.Message);
-    
+            detail: exception.Message);
     }
 }
-
-
-

@@ -1,4 +1,4 @@
-﻿using Bogus;
+using Bogus;
 
 namespace Catalog.Tests.LoadTests.Seed;
 
@@ -42,7 +42,7 @@ public static class Seed
                     .RuleFor(b => b.CategoryId, _ => category.Id)
                     .RuleFor(b => b.Brand, _ => brand)
                     .RuleFor(b => b.BrandId, _ => brand.Id)
-                    .RuleFor(b => b.Images, _ => imageFaker.Generate(faker.Random.Int(1,10)))
+                    .RuleFor(b => b.Images, _ => imageFaker.Generate(faker.Random.Int(1, 10)))
                     .FinishWith((f, b) =>
                     {
                         b.FullPrice = Math.Ceiling(b.FullPrice);
@@ -52,18 +52,19 @@ public static class Seed
                         b.Quantity = b.Quantity < 0 ? 0 : b.Quantity;
 
                         b.IsActive = b.Quantity > 0;
-                        
+
                         foreach (var image in b.Images!)
                         {
                             image.ProductId = b.Id;
                         }
+
                         b.Images.First().IsMain = true;
                     });
 
                 products.AddRange(productFaker.Generate(faker.Random.Int(0, 42)));
             }
         }
-        
+
         ctx.Products.AddRange(products);
 
         ctx.SaveChanges();
