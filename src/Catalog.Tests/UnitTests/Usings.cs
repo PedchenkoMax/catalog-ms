@@ -18,6 +18,4 @@ global using System.ComponentModel.DataAnnotations;
 global using System.Data.Common;
 global using System.Net.Http.Json;
 global using System.Net;
-global using System.Text.Json;
 global using Xunit;
-global using Catalog.Tests.UnitTests.Controllers;

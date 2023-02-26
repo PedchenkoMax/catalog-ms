@@ -1,8 +1,6 @@
 using System.Reflection;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 using Catalog.API;
-using Catalog.API.Middlewares;
 using Catalog.Domain.Abstractions.EventBus;
 using Catalog.Infrastructure.Database;
 using Catalog.Infrastructure.MessageBroker;
