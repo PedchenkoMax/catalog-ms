@@ -1,7 +1,7 @@
 ﻿export const HOST_URL = 'http://localhost:5050';
-export const ENDPOINT_PRODUCTS = `${HOST_URL}/api/Products`;
-export const ENDPOINT_CATEGORIES = `${HOST_URL}/api/Categories`;
-export const ENDPOINT_BRANDS = `${HOST_URL}/api/Brands`;
+export const ENDPOINT_PRODUCTS = `${HOST_URL}/api/v1/Products`;
+export const ENDPOINT_CATEGORIES = `${HOST_URL}/api/v1/Categories`;
+export const ENDPOINT_BRANDS = `${HOST_URL}/api/v1/Brands`;
 
 export const NEXT_PAGE_SLEEP = 1;
 export const NEW_ITERATION_SLEEP = 5;
