@@ -1,148 +1,290 @@
-<h1>Catalog microservice</h1>
+# 📱 Catalog microservice
 
-<h2>Main responsibilities</h2>
-
-<li>Retrieving and displaying product information and details, such as <b>product name</b>, <b>description</b>, <b>price</b>, <b>images</b>, and <b>availability</b>.</li>
-<li>Filtering and searching for products based on various criteria, such as <b>category</b>, <b>price range</b>, and <b>keywords</b>.</li>
-<li>Sorting and ordering products based on different criteria, such as <b>popularity</b>, <b>price</b>, and <b>rating</b>.</li>
-<li>Providing detailed information about product reviews, ratings, and other user-generated content.</li>
-
-<h2>API documentation</h2>
-
-<p>This API allows users to perform read operations on products, categories, and brands. </p>
-<p>The following routes and methods are available:</p>
-
-<hr>
-
-<h2>🛍️Products</h2>
+## 📌 Table of contents
+- [❓ Main responsibilities](#-main-responsibilities)
 
 
-<h3>🔍 Get all products</h3>
+- [📡 API documentation](#-api-documentation)
+  - [📦 Product](#-product-endpoints)
+    - [⚖️Retrieve products](#-retrieve-products)
+    - [📎 Retrieve product by Id](#-retrieve-product-by-id)
+    - [Object](#-product-object)
+  - [🏷️ Category](#-category-endpoints)
+    - [⚖️Retrieve all categories](#-retrieve-all-categories)
+    - [📎 Retrieve category by Id](#-retrieve-category-by-id)
+    - [Object](#-category-object)
+  - [🛍️ Brand](#-brand-endpoints)
+    - [⚖️Retrieve all brands](#-retrieve-all-brands)
+    - [📎 Retrieve brand by Id](#-retrieve-brand-by-id)
+    - [Object](#-brand-object)
 
-<strong>GET</strong> <code>/api/products</code>
+  
+- [📮 Event contracts](#-event-contracts)
+  - [📦 Product](#-product)
+    - [📃 Created](#-product-created-event)
+    - [✏️ Updated](#-product-updated-event)
+    - [🗑️ Deleted](#-product-deleted-event)
+  - [🖼️ Product Image](#-product-image)
+    - [📃 Created](#-product-image-created-event)
+    - [✏️ Updated](#-product-image-updated-event)
+    - [🗑️ Deleted](#-product-image-deleted-event)
+  - [🏷️ Category](#-category)
+    - [📃 Created](#-category-created-event)
+    - [✏️ Updated](#-category-updated-event)
+    - [🗑️ Deleted](#-category-deleted-event)
+  - [🛍️ Brand](#-brand)
+    - [📃 Created](#-brand-created-event)
+    - [✏️ Updated](#-brand-updated-event)
+    - [🗑️ Deleted](#-brand-deleted-event)
 
-<p>Retrieves all products in the system, with pagination support.</p>
 
-<h4>Query Parameters</h4>
+## ❓ Main responsibilities
 
-<ul>
-  <li><code>pageSize</code>: The number of products per page. Default: 10</li>
-  <li><code>pageIndex</code>: The current page number. Default: 0</li>
-</ul>
+* ### Retrieving and displaying product information and details.
+* ### Filtering, ordering and searching for products based on various criteria.
 
-<h4>Response</h4>
+## 📡 API documentation
 
-<ul>
-  <li><strong>200 OK</strong>: Returns a paginated list of products</li>
-</ul>
+### ️📦 Product endpoints
 
-<br>
+#### ⚖️ Retrieve products
 
-<h3>📝 Get product by ID</h3>
+```http 
+GET /api/v1/Products
+```
+##### ***Input:***
 
-<strong>GET</strong> <code>/api/products/{productId:guid}</code>
+| Query Parameter |  Type  | Required |            Valid values             |
+|:----------------|:------:|:--------:|:-----------------------------------:|
+| `CategoryId`    |  uuid  |    -     |                                     |
+| `BrandIds`      | [uuid] |    -     |                                     |
+| `MinPrice`      | double |    -     |                \> 0                 |
+| `MaxPrice`      | double |    -     |         \> 0, \> `minPrice`         |
+| `Query`         | string |    -     |                                     |
+| `OrderBy`       | string |    -     | "FullPrice", "Discount", "Quantity" |
+| `IsDesc`        |  bool  |    -     |                                     |
+| `PageIndex`     |  int   |    -     |               [1 : ]                |
+| `PageSize`      |  int   |    -     |              [1 : 100]              |
 
-<p>Retrieves a single product by its ID.</p>
+##### ***Output:***
 
-<h4>Path Parameters</h4>
+- *200* array of [products](#product-object) if found, otherwise *404*.
+- *400* error code and problem details if params are invalid.
 
-<ul>
-  <li><code>productId</code>: The unique ID of the product.</li>
-</ul>
+#### 📎 Retrieve product by Id
 
-<h4>Response</h4>
+```http 
+GET /api/v1/Products/{productId:guid}
+```
 
-<ul>
-  <li><strong>200 OK</strong>: Returns the product</li>
-  <li><strong>404 Not Found</strong>: If the product cannot be found</li>
-  <li><strong>400 Bad Request</strong>: If the product ID is not a valid Guid</li>
-</ul>
+##### ***Output:***
 
-<br>
+- *200* [product](#product-object) if found, otherwise *404*.
+- *400* problem details if params are invalid.
 
-<h3>📝 Get products by category and brand</h3>
+#### 📦 Product object
+ ```json
+{
+  "productId": "e0c58b72-e65f-45af-ae7c-fd0f66b57535",
+  "name": "Valve Corporation Game Controller",
+  "description": "Lorem ipsum dolor sit amet, rebum graeco patrioque vel ut.",
+  "fullPrice": 9999,
+  "discount": 2499,
+  "quantity": 0,
+  "isActive": false,
+  "images": [
+    {
+      "imageUrl": "blob.com/gl-survivors/proudctImage/16536a66-555a-45be-93e0-3660b3bd3383.png",
+      "isMain": true
+    }
+  ],
+  "category": {
+    "categoryId": "29201f3c-ceaf-4a0e-b3a4-9df3b6b9a6b4",
+    "name": "Gaming Consoles and Games",
+    "image": "blob.com/gl-survivors/categories/GamingConsolesAndGames.png"
+  },
+  "brand": {
+    "brandId": "8df72993-5c4b-4d73-95a5-8d6f4ad209c9",
+    "name": "ValveCorporation",
+    "image": "blob.com/gl-survivors/categories/ValveCorporation.png"
+  }
+}
+```
 
-<strong>GET</strong> <code>/api/products/category/{categoryId:guid}/brand/{brandId:guid}</code>
+___
 
-<p>Retrieves all products that match the specified category and brand.</p>
+### 🏷️ Category endpoints
 
-<h4>Path Parameters</h4>
+#### ⚖️ Retrieve All Categories
 
-<ul>
-  <li><code>categoryId</code>: The unique ID of the category.</li>
-  <li><code>brandId</code>: The unique ID of the brand.</li>
-</ul>
+```http 
+GET /api/v1/Categories
+```
 
-<h4>Response</h4>
+##### ***Output:***
 
-<ul>
-  <li><strong>200 OK</strong>: Returns a list of products</li>
-  <li><strong>400 Bad Request</strong>: If the category or brand ID is not a valid Guid</li>
-</ul>
+- *200* array of [Categories](#category-object) if found, otherwise *404*.
+- *400* problem details if params are invalid.
 
-<br><hr>
+#### 📎 Retrieve category by Id
 
-<h2>📋 Categories</h2>
+```http 
+GET /api/v2/Categories/{categoryId:guid}
+```
 
-<h3>📚 Get all categories</h3>
+##### ***Output:***
 
-<strong>GET</strong> <code>/api/categories</code>
+- *200* [Category](#category-object) if found, otherwise *404*.
+- *400* problem details if params are invalid.
 
-<p>Retrieves all categories in the system.</p>
+#### 🏷️ Category object
+```json
+{
+  "categoryId": "9b3494c3-2a5b-4ee3-b78a-7e78a78fe0c7",
+  "name": "EBooks and Peripherals",
+  "image": "blob.com/gl-survivors/categories/EBooksAndPeripherals.png"
+}
+```
 
-<h4>Response</h4>
+___
 
-<ul>
-  <li><strong>200 OK</strong>: Returns a list of categories</li>
-</ul>
+### 🛍️ Brand endpoints
 
-<br><hr>
+#### ⚖️ Retrieve All Brands
 
-<h2>💼 Brands</h2>
+```http 
+GET /api/v1/Brands
+```
 
-<h3>📚 Get all brands</h3>
+##### ***Output:***
 
-<strong>GET</strong> <code>/api/brands</code>
+- *200* array of [Brands](#brand-object) if found, otherwise *404*.
+- *400* error code and problem details if params are invalid.
 
-<p>Retrieves all brands in the system.</p>
-<h4>Response</h4>
-<ul>
-  <li><strong>200 OK</strong>: Returns a list of brands</li>
-</ul>
+#### 📎 Retrieve brand by Id
 
-<br><hr>
+```http 
+GET /api/v2/Brands/{brandId:guid}
+```
 
-<ul>
-  <li><strong>Product</strong>
-    <ul>
-      <li><code>ProductId</code>: A Guid representing the unique id of the product</li>
-      <li><code>Name</code>: A string representing the name of the product</li>
-      <li><code>Quantity</code>: An int representing the quantity of the product</li>
-      <li><code>Price</code>: A decimal representing the price of the product</li>
-      <li><code>Image</code>: A string representing the image url of the product</li>
-      <li><code>Description</code>: A string representing the description of the product</li>
-      <li><code>Category</code>: A category object representing the category of the product</li>
-      <li><code>Brand</code>: A brand object representing the brand of the product</li>
-    </ul>
-  </li>
+##### ***Output:***
 
-<br>
+- *200* [Brand](#brand-object) if found, otherwise *404*.
+- *400* error code and problem details if params are invalid.
 
-  <li><strong>Brand</strong>
-    <ul>
-      <li><code>BrandId</code>: A Guid representing the unique id of the brand</li>
-      <li><code>Name</code>: A string representing the name of the brand</li>
-    </ul>
-  </li>
+#### 🛍️ Brand object
+```json
+{
+  "brandId": "64de2e62-fb95-4abf-9171-8d903fbdd1fd",
+  "name": "Sega",
+  "image": "blob.com/gl-survivors/categories/Sega.png"
+}
+```
 
-<br>
+___
 
-  <li><strong>Category</strong>
-    <ul>
-      <li><code>CategoryId</code>: A Guid representing the unique id of the category</li>
-      <li><code>Name</code>: A string representing the name of the category</li>
-    </ul>
-  </li>
-</ul>
+## 📮 Event contracts
 
-<hr>
+### 📦 Product
+#### 📃 product-created-event
+| Parameter   |  Type   |
+|:------------|:-------:|
+| Id          |  Guid   |
+| Name	       | string  |
+| Description | string  |
+| FullPrice   | decimal |
+| Discount	   | decimal |
+| Quantity	   |   int   |
+| IsActive	   |  bool   |
+| CategoryId  |  Guid   |
+| BrandId     |  Guid   |
+
+#### 📝 product-updated-event
+| Parameter   |   Type   |
+|:------------|:--------:|
+| Id          |   Guid   |
+| Name	       |  string  |
+| Description |  string  |
+| FullPrice   | decimal  |
+| Discount	   | decimal  |
+| Quantity	   |   int    |
+| IsActive	   |   bool   |
+| CategoryId  |   Guid   |
+| BrandId     |   Guid   |
+
+
+#### 🗑️ product-deleted-event
+| Parameter   |  Type   |
+|:------------|:-------:|
+| Id          |  Guid   |
+
+___
+
+### 🖼️ Product Image
+#### 📃 product-image-created-event
+
+| Parameter |  Type   |
+|:----------|:-------:|
+| Id        |   int   |
+| ProductId |   int   |
+| ImageUrl	 | string  |
+| IsMain    | boolean |
+
+
+#### 📝 product-image-updated-event
+| Parameter |  Type   |
+|:----------|:-------:|
+| Id        |   int   |
+| ProductId |   int   |
+| ImageUrl	 | string  |
+| IsMain    | boolean |
+
+#### 🗑️ product-image-deleted-event
+| Parameter   |  Type   |
+|:------------|:-------:|
+| Id          |  Guid   |
+
+___
+
+### 🏷️ Category
+#### 📃 category-created-event
+| Parameter |  Type  |
+|:----------|:------:|
+| Id        |  int   |
+| Name	     | string |
+| Image     | string |
+
+#### 📝 category-updated-event
+| Parameter |  Type  |
+|:----------|:------:|
+| Id        |  int   |
+| Name	     | string |
+| Image     | string |
+
+#### 🗑️ category-deleted-event
+| Parameter   |  Type   |
+|:------------|:-------:|
+| Id          |  Guid   |
+
+___
+
+### 🛍️ Brand
+
+#### 📃 brand-created-event
+| Parameter |  Type  |
+|:----------|:------:|
+| Id        |  int   |
+| Name	     | string |
+| Image     | string |
+
+#### 📝 brand-updated-event
+| Parameter |  Type  |
+|:----------|:------:|
+| Id        |  int   |
+| Name	     | string |
+| Image     | string |
+
+#### 🗑️ brand-deleted-event
+| Parameter   |  Type   |
+|:------------|:-------:|
+| Id          |  Guid   |
