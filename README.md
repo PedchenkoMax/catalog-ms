@@ -5,37 +5,37 @@
 
 
 - [📡 API documentation](#-api-documentation)
-  - [📦 Product](#-product-endpoints)
-    - [⚖️Retrieve products](#-retrieve-products)
+  - [💸 Product](#-product-endpoints)
+    - [📁Retrieve products](#-retrieve-products)
     - [📎 Retrieve product by Id](#-retrieve-product-by-id)
     - [Object](#-product-object)
-  - [🏷️ Category](#-category-endpoints)
-    - [⚖️Retrieve all categories](#-retrieve-all-categories)
+  - [🔖 Category](#-category-endpoints)
+    - [📁Retrieve all categories](#-retrieve-all-categories)
     - [📎 Retrieve category by Id](#-retrieve-category-by-id)
     - [Object](#-category-object)
-  - [🛍️ Brand](#-brand-endpoints)
-    - [⚖️Retrieve all brands](#-retrieve-all-brands)
+  - [💼 Brand](#-brand-endpoints)
+    - [📁Retrieve all brands](#-retrieve-all-brands)
     - [📎 Retrieve brand by Id](#-retrieve-brand-by-id)
     - [Object](#-brand-object)
 
   
 - [📮 Event contracts](#-event-contracts)
-  - [📦 Product](#-product)
+  - [💸 Product](#-product)
     - [📃 Created](#-product-created-event)
     - [✏️ Updated](#-product-updated-event)
-    - [🗑️ Deleted](#-product-deleted-event)
+    - [🚫 Deleted](#-product-deleted-event)
   - [🖼️ Product Image](#-product-image)
     - [📃 Created](#-product-image-created-event)
     - [✏️ Updated](#-product-image-updated-event)
-    - [🗑️ Deleted](#-product-image-deleted-event)
-  - [🏷️ Category](#-category)
+    - [🚫 Deleted](#-product-image-deleted-event)
+  - [🔖 Category](#-category)
     - [📃 Created](#-category-created-event)
     - [✏️ Updated](#-category-updated-event)
-    - [🗑️ Deleted](#-category-deleted-event)
+    - [🚫 Deleted](#-category-deleted-event)
   - [🛍️ Brand](#-brand)
     - [📃 Created](#-brand-created-event)
     - [✏️ Updated](#-brand-updated-event)
-    - [🗑️ Deleted](#-brand-deleted-event)
+    - [🚫 Deleted](#-brand-deleted-event)
 
 
 ## ❓ Main responsibilities
@@ -45,9 +45,9 @@
 
 ## 📡 API documentation
 
-### ️📦 Product endpoints
+### 💸 Product endpoints
 
-#### ⚖️ Retrieve products
+#### 📁 Retrieve products
 
 ```http 
 GET /api/v1/Products
@@ -82,7 +82,7 @@ GET /api/v1/Products/{productId:guid}
 - *200* [product](#-product-object) if found, otherwise *404*.
 - *400* problem details if params are invalid.
 
-#### 📦 Product object
+#### 💸 Product object
  ```json
 {
   "productId": "e0c58b72-e65f-45af-ae7c-fd0f66b57535",
@@ -113,9 +113,9 @@ GET /api/v1/Products/{productId:guid}
 
 ___
 
-### 🏷️ Category endpoints
+### 🔖 Category endpoints
 
-#### ⚖️ Retrieve All Categories
+#### 📁 Retrieve All Categories
 
 ```http 
 GET /api/v1/Categories
@@ -137,7 +137,7 @@ GET /api/v2/Categories/{categoryId:guid}
 - *200* [Category](#-category-object) if found, otherwise *404*.
 - *400* problem details if params are invalid.
 
-#### 🏷️ Category object
+#### 🔖 Category object
 ```json
 {
   "categoryId": "9b3494c3-2a5b-4ee3-b78a-7e78a78fe0c7",
@@ -148,9 +148,9 @@ GET /api/v2/Categories/{categoryId:guid}
 
 ___
 
-### 🛍️ Brand endpoints
+### 💼 Brand endpoints
 
-#### ⚖️ Retrieve All Brands
+#### 📁 Retrieve All Brands
 
 ```http 
 GET /api/v1/Brands
@@ -172,7 +172,7 @@ GET /api/v2/Brands/{brandId:guid}
 - *200* [Brand](#-brand-object) if found, otherwise *404*.
 - *400* error code and problem details if params are invalid.
 
-#### 🛍️ Brand object
+#### 💼 Brand object
 ```json
 {
   "brandId": "64de2e62-fb95-4abf-9171-8d903fbdd1fd",
@@ -185,7 +185,7 @@ ___
 
 ## 📮 Event contracts
 
-### 📦 Product
+### 💸 Product
 #### 📃 product-created-event
 | Parameter   |  Type   |
 |:------------|:-------:|
@@ -213,7 +213,7 @@ ___
 | BrandId     |   Guid   |
 
 
-#### 🗑️ product-deleted-event
+#### 🚫 product-deleted-event
 | Parameter   |  Type   |
 |:------------|:-------:|
 | Id          |  Guid   |
@@ -239,14 +239,14 @@ ___
 | ImageUrl	 | string  |
 | IsMain    | boolean |
 
-#### 🗑️ product-image-deleted-event
+#### 🚫 product-image-deleted-event
 | Parameter   |  Type   |
 |:------------|:-------:|
 | Id          |  Guid   |
 
 ___
 
-### 🏷️ Category
+### 🔖 Category
 #### 📃 category-created-event
 | Parameter |  Type  |
 |:----------|:------:|
@@ -261,7 +261,7 @@ ___
 | Name	     | string |
 | Image     | string |
 
-#### 🗑️ category-deleted-event
+#### 🚫 category-deleted-event
 | Parameter   |  Type   |
 |:------------|:-------:|
 | Id          |  Guid   |
@@ -284,7 +284,7 @@ ___
 | Name	     | string |
 | Image     | string |
 
-#### 🗑️ brand-deleted-event
+#### 🚫 brand-deleted-event
 | Parameter   |  Type   |
 |:------------|:-------:|
 | Id          |  Guid   |
