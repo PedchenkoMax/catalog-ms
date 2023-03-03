@@ -85,7 +85,6 @@ var app = builder.Build();
     app.UseHttpLogging();
 
     app.UseExceptionHandler("/error");
-    //app.ConfigureExceptionHandler();
 
     app.UseAuthorization();
 
