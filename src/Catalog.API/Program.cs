@@ -1,9 +1,7 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Catalog.API;
-using Catalog.Domain.Abstractions.EventBus;
 using Catalog.Infrastructure.Database;
-using Catalog.Infrastructure.MessageBroker;
 using MassTransit;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -41,8 +39,6 @@ var services = builder.Services;
             });
         });
     });
-
-    services.AddTransient<IEventBus, EventBus>();
 
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
