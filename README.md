@@ -68,7 +68,7 @@ GET /api/v1/Products
 
 ##### ***Output:***
 
-- *200* array of [products](#product-object) if found, otherwise *404*.
+- *200* array of [products](#-product-object) if found, otherwise *404*.
 - *400* error code and problem details if params are invalid.
 
 #### 📎 Retrieve product by Id
@@ -79,7 +79,7 @@ GET /api/v1/Products/{productId:guid}
 
 ##### ***Output:***
 
-- *200* [product](#product-object) if found, otherwise *404*.
+- *200* [product](#-product-object) if found, otherwise *404*.
 - *400* problem details if params are invalid.
 
 #### 📦 Product object
@@ -123,7 +123,7 @@ GET /api/v1/Categories
 
 ##### ***Output:***
 
-- *200* array of [Categories](#category-object) if found, otherwise *404*.
+- *200* array of [Categories](#-category-object) if found, otherwise *404*.
 - *400* problem details if params are invalid.
 
 #### 📎 Retrieve category by Id
@@ -134,7 +134,7 @@ GET /api/v2/Categories/{categoryId:guid}
 
 ##### ***Output:***
 
-- *200* [Category](#category-object) if found, otherwise *404*.
+- *200* [Category](#-category-object) if found, otherwise *404*.
 - *400* problem details if params are invalid.
 
 #### 🏷️ Category object
@@ -158,7 +158,7 @@ GET /api/v1/Brands
 
 ##### ***Output:***
 
-- *200* array of [Brands](#brand-object) if found, otherwise *404*.
+- *200* array of [Brands](#-brand-object) if found, otherwise *404*.
 - *400* error code and problem details if params are invalid.
 
 #### 📎 Retrieve brand by Id
@@ -169,7 +169,7 @@ GET /api/v2/Brands/{brandId:guid}
 
 ##### ***Output:***
 
-- *200* [Brand](#brand-object) if found, otherwise *404*.
+- *200* [Brand](#-brand-object) if found, otherwise *404*.
 - *400* error code and problem details if params are invalid.
 
 #### 🛍️ Brand object
