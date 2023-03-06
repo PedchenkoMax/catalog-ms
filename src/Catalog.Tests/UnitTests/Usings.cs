@@ -13,7 +13,6 @@ global using Microsoft.AspNetCore.Hosting;
 global using Microsoft.AspNetCore.Mvc.Testing;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;
-global using Microsoft.Data.Sqlite;
 global using System.ComponentModel.DataAnnotations;
 global using System.Data.Common;
 global using System.Net.Http.Json;

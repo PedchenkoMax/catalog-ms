@@ -26,6 +26,10 @@ public class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<Program> 
 
             dbContext.Database.EnsureCreated();
 
+            dbContext.Brands.AddRange(FakeData.GetFakeBrandsList());
+            dbContext.Categories.AddRange(FakeData.GetFakeCategoryList());
+            dbContext.Products.AddRange(FakeData.GetFakeProductsList());
+
             dbContext.SaveChanges();
         });
     }
