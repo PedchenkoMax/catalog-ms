@@ -29,4 +29,22 @@ public class CategoriesController : ControllerBase
 
         return Ok(categories);
     }
+
+    [HttpGet("{categoryId:guid}")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Category), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetCategoryById([FromRoute] Guid categoryId) {
+        if (categoryId == Guid.Empty)
+            return BadRequest();
+
+        var category = await categorySet
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == categoryId);
+
+        if (category == null)
+            return NotFound();
+
+        return Ok(category.ToDTO());
+    }
 }
