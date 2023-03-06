@@ -66,7 +66,7 @@ public class ProductsControllerSqliteInMemoryTest : IDisposable
         await using var productContext = CreateContext();
         var productController = new ProductsController(productContext);
 
-        var result = await productController.ProductByIdAsync(SeedDataConstants.Phone1);
+        var result = await productController.ProductByIdAsync(FakeData.Phone1);
 
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);

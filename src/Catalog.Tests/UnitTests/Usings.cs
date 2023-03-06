@@ -1,11 +1,11 @@
 global using Catalog.Infrastructure.Database;
-global using Catalog.Domain.Constants;
 global using Catalog.API.Validation.Attributes;
 global using Catalog.Domain.Entities;
 global using Catalog.API.Controllers.v1;
 global using Catalog.API.DTO.Filters;
 global using Catalog.API.QueryableExtensions;
 global using Catalog.API.DTO;
+global using Catalog.Tests.UnitTests;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.Extensions.DependencyInjection;

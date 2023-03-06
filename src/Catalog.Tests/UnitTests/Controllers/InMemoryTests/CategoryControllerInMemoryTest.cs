@@ -16,7 +16,7 @@ public class CategoryControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        //context.Categories.AddRange(FakeData.GetFakeCategoryList());
+        context.Categories.AddRange(FakeData.GetFakeCategoryList());
 
         context.SaveChanges();
     }

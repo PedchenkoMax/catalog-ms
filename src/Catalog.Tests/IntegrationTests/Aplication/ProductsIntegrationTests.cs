@@ -9,7 +9,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     [Fact]
     public async Task ProductByIdAsync_ProductIdExists_ReturnOkResult()
     {
-        Guid existProductId = SeedDataConstants.Phone1;        
+        Guid existProductId = FakeData.Phone1;        
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/{existProductId}");
         response.EnsureSuccessStatusCode();
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -18,7 +18,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     [Fact]
     public async Task ProductByIdAsync_ProductIdExists_ReturnApplicationJsonUtf8()
     {
-        Guid existProductId = SeedDataConstants.Phone1;
+        Guid existProductId = FakeData.Phone1;
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/{existProductId}");
 
         Assert.Equal("application/json; charset=utf-8; ver=1", response.Content.Headers.ContentType.ToString());
@@ -91,7 +91,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytId_ReturnFilteredProducts()
     {
-        Guid existCategorytId = SeedDataConstants.CategoryPhone;
+        Guid existCategorytId = FakeData.CategoryPhone;
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}");
 
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
@@ -117,8 +117,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandId_ReturnFilteredProducts()
     {
-        Guid existCategorytId = SeedDataConstants.CategoryPhone;
-        Guid existBrandId = SeedDataConstants.BrandApple;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}");
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
@@ -132,8 +132,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdAndMinPrice_ReturnFilteredProducts()
     {
-        Guid existCategorytId = SeedDataConstants.CategoryPhone;
-        Guid existBrandId = SeedDataConstants.BrandApple;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
         double minPrice = 700.0;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&MinPrice={minPrice}");
@@ -147,8 +147,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdAndMaxPrice_ReturnFilteredProducts()
     {
-        Guid existCategorytId = SeedDataConstants.CategoryPhone;
-        Guid existBrandId = SeedDataConstants.BrandApple;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
         double maxPrice = 1000.0;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&MaxPrice={maxPrice}");
@@ -162,8 +162,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdOrderByPrice_ReturnFilteredProducts()
     {
-        Guid existCategorytId = SeedDataConstants.CategoryPhone;
-        Guid existBrandId = SeedDataConstants.BrandApple;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=false");
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
@@ -176,8 +176,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdOrderByPriceDesc_ReturnFilteredProducts()
     {
-        Guid existCategorytId = SeedDataConstants.CategoryPhone;
-        Guid existBrandId = SeedDataConstants.BrandApple;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=true");
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();

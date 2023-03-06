@@ -5,7 +5,7 @@ public class ApplyFilterTests
     [Fact]
     public void ApplyFilter_ShouldFilterByCategoryId()
     {
-        var categoryId = SeedDataConstants.CategoryNotebook;
+        var categoryId = FakeData.CategoryNotebook;
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var criteriaFilter = new ProductFilter(categoryId, default, default, default);
 
@@ -20,7 +20,7 @@ public class ApplyFilterTests
     {
         var brandId = new List<Guid>()
         {
-            SeedDataConstants.BrandApple
+            FakeData.BrandApple
         };
 
         var products = FakeData.GetFakeProductsList().AsQueryable();
@@ -37,8 +37,8 @@ public class ApplyFilterTests
     {
         var brandIds = new List<Guid>()
         {
-            SeedDataConstants.BrandApple,
-            SeedDataConstants.BrandSamsung
+            FakeData.BrandApple,
+            FakeData.BrandSamsung
         };
 
         var products = FakeData.GetFakeProductsList().AsQueryable();
@@ -55,11 +55,11 @@ public class ApplyFilterTests
     {
         var brandIds = new List<Guid>()
         {
-            SeedDataConstants.BrandApple,
-            SeedDataConstants.BrandSamsung
+            FakeData.BrandApple,
+            FakeData.BrandSamsung
         };
 
-        var categoryId = SeedDataConstants.CategoryNotebook;
+        var categoryId = FakeData.CategoryNotebook;
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var criteriaFilter = new ProductFilter(categoryId, brandIds, default, default);
 
@@ -114,11 +114,11 @@ public class ApplyFilterTests
     {
         var brandIds = new List<Guid>()
         {
-            SeedDataConstants.BrandApple,
-            SeedDataConstants.BrandSamsung
+            FakeData.BrandApple,
+            FakeData.BrandSamsung
         };
 
-        var categoryId = SeedDataConstants.CategoryNotebook;
+        var categoryId = FakeData.CategoryNotebook;
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var minPrice = 700;
         var maxPrice = 2200;

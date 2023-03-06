@@ -17,7 +17,7 @@ public class ProductsControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        //context.Products.AddRange(FakeData.GetFakeProductsList());
+        context.Products.AddRange(FakeData.GetFakeProductsList());
 
         context.SaveChanges();
     }
@@ -52,7 +52,7 @@ public class ProductsControllerInMemoryTest
         await using var productContext = new CatalogContext(contextOptions);
         var productController = new ProductsController(productContext);
 
-        var result = await productController.ProductByIdAsync(SeedDataConstants.Phone1);
+        var result = await productController.ProductByIdAsync(FakeData.Phone1);
 
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
