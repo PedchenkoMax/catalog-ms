@@ -17,6 +17,8 @@ public class ProductsControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
+        context.Brands.AddRange(FakeData.GetFakeBrandsList());
+        context.Categories.AddRange(FakeData.GetFakeCategoryList());
         context.Products.AddRange(FakeData.GetFakeProductsList());
 
         context.SaveChanges();
@@ -84,7 +86,7 @@ public class ProductsControllerInMemoryTest
             new ProductFilter(default, default, default, default),
             new SearchFilter(default),
             new OrderFilter(default, default),
-            new PaginationFilter(default, default));
+            new PaginationFilter(0, 5));
 
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);

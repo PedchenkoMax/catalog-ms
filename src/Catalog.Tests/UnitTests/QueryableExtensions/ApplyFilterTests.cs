@@ -11,7 +11,7 @@ public class ApplyFilterTests
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(6, result.Count());
+        Assert.Equal(18, result.Count());
         Assert.True(result.All(p => p.CategoryId == categoryId));
     }
 
@@ -28,7 +28,7 @@ public class ApplyFilterTests
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(6, result.Count());
+        Assert.Equal(11, result.Count());
         Assert.True(result.All(p => p.BrandId == brandId.First()));
     }
 
@@ -46,7 +46,7 @@ public class ApplyFilterTests
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(9, result.Count());
+        Assert.Equal(17, result.Count());
         Assert.True(result.All(p => brandIds.Contains(p.BrandId)));
     }
 
@@ -65,7 +65,7 @@ public class ApplyFilterTests
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(4, result.Count());
+        Assert.Equal(9, result.Count());
         Assert.True(result.All(p => p.CategoryId == categoryId && brandIds.Contains(p.BrandId)));
     }
 
@@ -78,7 +78,7 @@ public class ApplyFilterTests
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(10, result.Count());
+        Assert.Equal(25, result.Count());
         Assert.True(result.All(p => p.FullPrice >= minPrice));
     }
 
@@ -91,7 +91,7 @@ public class ApplyFilterTests
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(10, result.Count());
+        Assert.Equal(23, result.Count());
         Assert.True(result.All(p => p.FullPrice <= maxPrice));
     }
 
@@ -105,7 +105,7 @@ public class ApplyFilterTests
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(8, result.Count());
+        Assert.Equal(20, result.Count());
         Assert.True(result.All(p => p.FullPrice >= minPrice && p.FullPrice <= maxPrice));
     }
 
@@ -126,7 +126,7 @@ public class ApplyFilterTests
 
         var result = products.ApplyFilter(criteriaFilter);
 
-        Assert.Equal(2, result.Count());
+        Assert.Equal(6, result.Count());
         Assert.True(result.All(p => p.CategoryId == categoryId
                                     && brandIds.Contains(p.BrandId)
                                     && p.FullPrice >= minPrice

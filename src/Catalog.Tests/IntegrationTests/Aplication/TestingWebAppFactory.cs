@@ -2,7 +2,7 @@ namespace Catalog.Tests.IntegrationTests.Aplication;
 
 public class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<Program> where TEntryPoint : Program
 {
-    private const string ConnectionString = "Server=localhost;Database=IntegrationTestDb;User=sa;TrustServerCertificate=true;Trusted_Connection=true;PersistSecurityInfo=true;";
+    private const string ConnectionString = "Server=localhost;Database=IntegrationTestDb2;User=sa;TrustServerCertificate=true;Trusted_Connection=true;PersistSecurityInfo=true;";
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -24,6 +24,7 @@ public class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<Program> 
 
             var dbContext = new CatalogContext(options);
 
+            dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
 
             dbContext.Brands.AddRange(FakeData.GetFakeBrandsList());

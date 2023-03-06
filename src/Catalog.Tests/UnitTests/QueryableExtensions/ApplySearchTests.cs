@@ -25,7 +25,7 @@ public class ApplySearchTests
         var filteredProducts = products.ApplySearch(search);
 
         Assert.NotNull(filteredProducts);
-        Assert.Equal(12, filteredProducts.Count());
+        Assert.Equal(28, filteredProducts.Count());
     }
 
     [Fact]
@@ -37,6 +37,6 @@ public class ApplySearchTests
         var filteredProducts = products.ApplySearch(search);
 
         Assert.NotNull(filteredProducts);
-        Assert.Equal(12, filteredProducts.Count());
+        Assert.Equal(28, filteredProducts.Count());
     }
 }
