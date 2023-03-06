@@ -29,4 +29,22 @@ public class BrandsController : ControllerBase
 
         return Ok(brands);
     }
+
+    [HttpGet("{brandId:guid}")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Brand), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetBrandById([FromRoute] Guid brandId) {
+        if (brandId == Guid.Empty)
+            return BadRequest();
+
+        var brand = await brandSet
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == brandId);
+
+        if (brand == null)
+            return NotFound();
+
+        return Ok(brand.ToDTO());
+    }
 }
