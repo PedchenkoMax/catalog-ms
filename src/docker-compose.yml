@@ -8,6 +8,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    environment:
+      - ConnectionString=Server=localhost;Database=LoadTestDb;User=sa;Password=KtPm23GLP@ssW0rd!;Trust Server Certificate=true;Trusted_Connection=true;Persist Security Info=true;
+      - MessageBroker__Host=amqp://localhost:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
     depends_on:
       - catalog-mssql-db
   
