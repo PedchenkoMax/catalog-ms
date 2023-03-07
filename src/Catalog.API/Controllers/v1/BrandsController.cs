@@ -34,7 +34,7 @@ public class BrandsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Brand), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetBrandById([FromRoute] Guid brandId) {
+    public async Task<IActionResult> GetBrandByIdAsync([FromRoute] Guid brandId) {
         if (brandId == Guid.Empty)
             return BadRequest();
 

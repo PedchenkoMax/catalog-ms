@@ -34,7 +34,7 @@ public class CategoriesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Category), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetCategoryById([FromRoute] Guid categoryId) {
+    public async Task<IActionResult> GetCategoryByIdAsync([FromRoute] Guid categoryId) {
         if (categoryId == Guid.Empty)
             return BadRequest();
 
