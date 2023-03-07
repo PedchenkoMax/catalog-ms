@@ -38,4 +38,43 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program
             item => Assert.Equal("Apple", item.Name),
             item => Assert.Equal("Lg", item.Name));
     }
+
+    [Fact]
+    public async Task GetBrandById_WithExistId_ReturnOkResult() 
+    {
+        Guid existBrandId = FakeData.BrandApple;
+        var response = await client.GetAsync($"/api/v1/brands/{existBrandId}");
+        response.EnsureSuccessStatusCode();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetBrandById_WithNotExistId_ReturnNotFound() 
+    {
+        Guid notExistBrandId = Guid.NewGuid();
+        var response = await client.GetAsync($"/api/v1/brands/{notExistBrandId}");        
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetBrandById_WithEmptyId_ReturnBadRequest() 
+    {
+        Guid emptyBrandId = Guid.Empty;
+        var response = await client.GetAsync($"/api/v1/brands/{emptyBrandId}");
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    }
+
+    public async Task GetBrandById_WithExistId_ReturnBrand() 
+    {
+        Guid appleBrandId = FakeData.BrandApple;
+        var response = await client.GetAsync($"/api/v1/brands/{appleBrandId}");
+        
+        var brand = await response.Content.ReadFromJsonAsync<Brand>();
+
+        Assert.IsType<Product>(brand);
+        Assert.Equal(FakeData.GetFakeBrandsList().First().Name, brand.Name);
+    }
 }
