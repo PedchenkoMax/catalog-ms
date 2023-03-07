@@ -15,6 +15,7 @@ services:
       - MessageBroker__Password=${MESSAGE_BROKER_PASSWORD}
     depends_on:
       - catalog-mssql-db
+      - rabbitmq
   
   catalog-mssql-db:
     container_name: catalog-mssql-db
