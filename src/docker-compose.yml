@@ -9,10 +9,10 @@ services:
     ports:
       - "8080:80"
     environment:
-      - ConnectionString=Server=localhost;Database=LoadTestDb;User=sa;Password=KtPm23GLP@ssW0rd!;Trust Server Certificate=true;Trusted_Connection=true;Persist Security Info=true;
-      - MessageBroker__Host=amqp://localhost:5672
-      - MessageBroker__Username=guest
-      - MessageBroker__Password=guest
+      - ConnectionString=${CONNECTION_STRING}
+      - MessageBroker__Host=${MESSAGE_BROKER_HOST}
+      - MessageBroker__Username=${MESSAGE_BROKER_USERNAME}
+      - MessageBroker__Password=${MESSAGE_BROKER_PASSWORD}
     depends_on:
       - catalog-mssql-db
   
@@ -22,8 +22,8 @@ services:
     ports:
       - "1433:1433"
     environment:
-      - ACCEPT_EULA="Y"
-      - SA_PASSWORD="KtPm23GLP@ssW0rd!"
+      - ACCEPT_EULA=${ACCEPT_EULA}
+      - SA_PASSWORD=${SA_PASSWORD}
     volumes:
       - mssql-data:/var/opt/mssql
   
@@ -34,8 +34,8 @@ services:
       - '5672:5672'
       - '15672:15672'
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
     volumes:
       - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
       - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
