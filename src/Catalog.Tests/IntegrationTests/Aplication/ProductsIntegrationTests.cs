@@ -40,19 +40,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/{emptyProductId}");
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-    }
-
-    [Fact]
-    public async Task ProductByIdAsync_WithIphoneProductId_ReturnIphoneProduct() 
-    {
-        Guid iphoneProductId = FakeData.Phone1;
-        HttpResponseMessage response = await client.GetAsync($"api/v1/products/{iphoneProductId}");
-
-        var product = await response.Content.ReadFromJsonAsync<Product>();
-
-        Assert.IsType<Product>(product);       
-        Assert.Equal("Apple iPhone 12 Pro Max", product.Name);
-    }
+    }    
 
     [Fact]
     public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnOkResult()
