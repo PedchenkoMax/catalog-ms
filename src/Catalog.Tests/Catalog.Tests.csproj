@@ -42,7 +42,6 @@
 
   <ItemGroup>
     <Folder Include="LoadTests" />
-    <Folder Include="UnitTests" />
   </ItemGroup>
 
 </Project>

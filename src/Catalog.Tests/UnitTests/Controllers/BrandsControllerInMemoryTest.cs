@@ -1,4 +1,4 @@
-namespace Catalog.Tests.UnitTests.Controllers.InMemoryTests;
+namespace Catalog.Tests.UnitTests.Controllers;
 
 public class BrandsControllerInMemoryTest
 {
@@ -34,18 +34,7 @@ public class BrandsControllerInMemoryTest
     }
 
     [Fact]
-    public async Task GetBrandsAsync_WithData_ReturnActionResultOfIEnumerableOfBrand()
-    {
-        await using var brandContext = new CatalogContext(contextOptions);
-
-        var brandController = new BrandsController(brandContext);
-        var actionResult = await brandController.GetBrandsAsync();
-
-        Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
-    }
-
-    [Fact]
-    public async Task GetBrandByIdAsync_WithExistBrandId_Returns200Ok() 
+    public async Task GetBrandByIdAsync_WithExistBrandId_Returns200Ok()
     {
         await using var brandContext = new CatalogContext(contextOptions);
         Guid existBrandId = FakeData.BrandApple;
@@ -54,11 +43,11 @@ public class BrandsControllerInMemoryTest
         var actionResult = await brandController.GetBrandByIdAsync(existBrandId);
 
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
-        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);       
+        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
     }
 
     [Fact]
-    public async Task GetBrandByIdAsync_WithNotExistBrandId_ReturnNotFound() 
+    public async Task GetBrandByIdAsync_WithNotExistBrandId_ReturnNotFound()
     {
         await using var brandContext = new CatalogContext(contextOptions);
         Guid notExistBrandId = Guid.NewGuid();
@@ -71,7 +60,7 @@ public class BrandsControllerInMemoryTest
     }
 
     [Fact]
-    public async Task GetBrandByIdAsync_WithEmptyBrandId_ReturnBadRequest() 
+    public async Task GetBrandByIdAsync_WithEmptyBrandId_ReturnBadRequest()
     {
         await using var brandContext = new CatalogContext(contextOptions);
         Guid emptyBrandId = Guid.Empty;

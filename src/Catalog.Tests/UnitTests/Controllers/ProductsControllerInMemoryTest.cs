@@ -1,4 +1,4 @@
-namespace Catalog.Tests.UnitTests.Controllers.InMemoryTests;
+namespace Catalog.Tests.UnitTests.Controllers;
 
 public class ProductsControllerInMemoryTest
 {
@@ -25,12 +25,13 @@ public class ProductsControllerInMemoryTest
     }
 
     [Fact]
-    public async Task ProductByIdAsync_WhenProductNotFound_ShouldReturnNotFound()
+    public async Task ProductByIdAsync_WithNotExistProductId_ReturnNotFound()
     {
         await using var productContext = new CatalogContext(contextOptions);
         var productController = new ProductsController(productContext);
+        Guid notExistProductId = Guid.NewGuid();
 
-        var result = await productController.ProductByIdAsync(Guid.NewGuid());
+        var result = await productController.ProductByIdAsync(notExistProductId);
 
         var notFoundResult = Assert.IsType<NotFoundResult>(result);
         Assert.Equal(StatusCodes.Status404NotFound, notFoundResult.StatusCode);
