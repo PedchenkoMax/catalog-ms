@@ -7,7 +7,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
         => client = factory.CreateClient();
 
     [Fact]
-    public async Task ProductByIdAsync_ProductIdExists_ReturnOkResult()
+    public async Task ProductByIdAsync_WithExistsProductId_ReturnOkResult()
     {
         Guid existProductId = FakeData.Phone1;        
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/{existProductId}");
@@ -16,7 +16,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     }
 
     [Fact]
-    public async Task ProductByIdAsync_ProductIdExists_ReturnApplicationJsonUtf8()
+    public async Task ProductByIdAsync_WithExistsProuctId_ReturnApplicationJsonUtf8()
     {
         Guid existProductId = FakeData.Phone1;
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/{existProductId}");
@@ -25,7 +25,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     }
 
     [Fact]
-    public async Task ProductByIdAsync_ProductIdNotExists_ReturnNotFound()
+    public async Task ProductByIdAsync_WithNotExistsProductId_ReturnNotFound()
     {
         Guid notExistProductId = Guid.NewGuid();
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/{notExistProductId}");
@@ -34,13 +34,13 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Progr
     }
 
     [Fact]
-    public async Task ProductByIdAsync_ProductEmptyId_ReturnBadRequest()
+    public async Task ProductByIdAsync_WithEmptyProductId_ReturnBadRequest()
     {
         Guid emptyProductId = Guid.Empty;
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/{emptyProductId}");
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-    }
+    }    
 
     [Fact]
     public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnOkResult()

@@ -25,7 +25,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
     }
 
     [Fact]
-    public async Task GetBrandsAsync_WithData_ReturnAllBrands()
+    public async Task GetCategoriesAsync_WithData_ReturnAllBrands()
     {
         var response = await client.GetAsync("/api/v1/categories");
         response.EnsureSuccessStatusCode();
@@ -37,5 +37,44 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory<Pro
             item => Assert.Equal("Phone", item.Name),
             item => Assert.Equal("TV", item.Name),
             item => Assert.Equal("Notebook", item.Name));
+    }
+
+    [Fact]
+    public async Task GetCategoryById_WithExistCategoryId_ReturnOkResult()
+    {
+        Guid existCategoryId = FakeData.CategoryPhone;
+        var response = await client.GetAsync($"/api/v1/categories/{existCategoryId}");
+        response.EnsureSuccessStatusCode();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetCategoryById_WithNotExistCategoryId_ReturnNotFound() 
+    {
+        Guid notExistCategoryId = Guid.NewGuid();
+        var response = await client.GetAsync($"/api/v1/categories/{notExistCategoryId}");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetCategoryById_WithEmptyCategoryId_ReturnBadRequest()
+    {
+        Guid emptyCategoryId = Guid.Empty;
+        var response = await client.GetAsync($"/api/v1/categories/{emptyCategoryId}");
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    }
+
+    public async Task GetCategoryById_WithPhoneCategoryId_ReturnPhoneCategory() 
+    {
+        Guid phoneCategoryId = FakeData.BrandApple;
+        var response = await client.GetAsync($"/api/v1/categories/{phoneCategoryId}");
+
+        var category = await response.Content.ReadFromJsonAsync<Category>();
+
+        Assert.IsType<Category>(category);
+        Assert.Equal("Phone", category.Name);
     }
 }
