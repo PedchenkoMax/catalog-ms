@@ -22,7 +22,7 @@ public class BrandsControllerInMemoryTest
     }
 
     [Fact]
-    public async Task GetBrandsAsync_Returns200Ok_WhenRequestIsSuccess()
+    public async Task GetBrandsAsync_WithData_Returns200Ok()
     {
         await using var brandContext = new CatalogContext(contextOptions);
 
@@ -34,7 +34,7 @@ public class BrandsControllerInMemoryTest
     }
 
     [Fact]
-    public async Task GetBrandsAsync_ReturnActionResultOfIEnumerableOfBrand_WhenSuccess()
+    public async Task GetBrandsAsync_WithData_ReturnActionResultOfIEnumerableOfBrand()
     {
         await using var brandContext = new CatalogContext(contextOptions);
 
@@ -42,5 +42,44 @@ public class BrandsControllerInMemoryTest
         var actionResult = await brandController.GetBrandsAsync();
 
         Assert.IsType<ActionResult<IEnumerable<Brand>>>(actionResult);
+    }
+
+    [Fact]
+    public async Task GetBrandByIdAsync_WithExistBrandId_Returns200Ok() 
+    {
+        await using var brandContext = new CatalogContext(contextOptions);
+        Guid existBrandId = FakeData.BrandApple;
+
+        var brandController = new BrandsController(brandContext);
+        var actionResult = await brandController.GetBrandByIdAsync(existBrandId);
+
+        var okResult = Assert.IsType<OkObjectResult>(actionResult);
+        Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);       
+    }
+
+    [Fact]
+    public async Task GetBrandByIdAsync_WithNotExistBrandId_ReturnNotFound() 
+    {
+        await using var brandContext = new CatalogContext(contextOptions);
+        Guid notExistBrandId = Guid.NewGuid();
+
+        var brandController = new BrandsController(brandContext);
+        var actionResult = await brandController.GetBrandByIdAsync(notExistBrandId);
+
+        var result = Assert.IsType<NotFoundResult>(actionResult);
+        Assert.Equal(StatusCodes.Status404NotFound, result.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetBrandByIdAsync_WithEmptyBrandId_ReturnBadRequest() 
+    {
+        await using var brandContext = new CatalogContext(contextOptions);
+        Guid emptyBrandId = Guid.Empty;
+
+        var brandController = new BrandsController(brandContext);
+        var actionResult = await brandController.GetBrandByIdAsync(emptyBrandId);
+
+        var result = Assert.IsType<BadRequestResult>(actionResult);
+        Assert.Equal(StatusCodes.Status400BadRequest, result.StatusCode);
     }
 }
