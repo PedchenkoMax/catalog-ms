@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Client.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,12 @@ var services = builder.Services;
             {
                 h.Username(username);
                 h.Password(password);
+            });
+            
+            busConfigurator.UseRetry(retryConfig =>
+            {
+                retryConfig.Interval(10, TimeSpan.FromSeconds(30));
+                retryConfig.Handle<BrokerUnreachableException>();
             });
         });
     });
