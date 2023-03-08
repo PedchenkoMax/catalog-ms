@@ -1,5 +1,6 @@
 using Catalog.API.DTO.Filters;
 using Catalog.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.API.QueryableExtensions;
 
@@ -27,7 +28,7 @@ public static class QueryableProductFilterExtensions
         SearchFilter search)
     {
         if (search.Query != null)
-            products = products.Where(p => p.Name.Contains(search.Query, StringComparison.OrdinalIgnoreCase));
+            products = products.Where(p => EF.Functions.Like(p.Name, $"%{search.Query}%"));
 
         return products;
     }
