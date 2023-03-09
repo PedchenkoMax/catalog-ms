@@ -45,7 +45,7 @@ public class BrandsControllerInMemoryTest
     public async Task GetBrandByIdAsync_WithExistBrandId_Returns200Ok()
     {
         await using var brandContext = new CatalogContext(contextOptions);
-        Guid existBrandId = FakeData.BrandApple;
+        var existBrandId = FakeData.BrandApple;
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandByIdAsync(existBrandId);
@@ -58,7 +58,7 @@ public class BrandsControllerInMemoryTest
     public async Task GetBrandByIdAsync_WithNotExistBrandId_ReturnNotFound()
     {
         await using var brandContext = new CatalogContext(contextOptions);
-        Guid notExistBrandId = Guid.NewGuid();
+        var notExistBrandId = Guid.NewGuid();
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandByIdAsync(notExistBrandId);
@@ -71,7 +71,7 @@ public class BrandsControllerInMemoryTest
     public async Task GetBrandByIdAsync_WithEmptyBrandId_ReturnBadRequest()
     {
         await using var brandContext = new CatalogContext(contextOptions);
-        Guid emptyBrandId = Guid.Empty;
+        var emptyBrandId = Guid.Empty;
 
         var brandController = new BrandsController(brandContext);
         var actionResult = await brandController.GetBrandByIdAsync(emptyBrandId);

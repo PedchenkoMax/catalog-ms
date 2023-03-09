@@ -48,7 +48,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetCategoryByIdAsync_WithExistCategoryId_ReturnOkResult()
     {
-        Guid existCategoryId = FakeData.CategoryPhone;
+        var existCategoryId = FakeData.CategoryPhone;
         var response = await client.GetAsync($"/api/v1/categories/{existCategoryId}");
         response.EnsureSuccessStatusCode();
 
@@ -58,7 +58,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetCategoryByIdAsync_WithNotExistCategoryId_ReturnNotFound() 
     {
-        Guid notExistCategoryId = Guid.NewGuid();
+        var notExistCategoryId = Guid.NewGuid();
         var response = await client.GetAsync($"/api/v1/categories/{notExistCategoryId}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
@@ -67,7 +67,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetCategoryByIdAsync_WithEmptyCategoryId_ReturnBadRequest()
     {
-        Guid emptyCategoryId = Guid.Empty;
+        var emptyCategoryId = Guid.Empty;
         var response = await client.GetAsync($"/api/v1/categories/{emptyCategoryId}");
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -75,7 +75,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
 
     public async Task GetCategoryByIdAsync_WithPhoneCategoryId_ReturnPhoneCategory() 
     {
-        Guid phoneCategoryId = FakeData.BrandApple;
+        var phoneCategoryId = FakeData.BrandApple;
         var response = await client.GetAsync($"/api/v1/categories/{phoneCategoryId}");
 
         var category = await response.Content.ReadFromJsonAsync<Category>();

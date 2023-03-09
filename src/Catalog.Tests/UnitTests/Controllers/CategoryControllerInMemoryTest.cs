@@ -45,7 +45,7 @@ public class CategoryControllerInMemoryTest
     public async Task GetCategoryByIdAsync_WithExistCategoryId_Returns200Ok()
     {
         await using var categoryContext = new CatalogContext(contextOptions);
-        Guid existCategoryId = FakeData.CategoryNotebook;
+        var existCategoryId = FakeData.CategoryNotebook;
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoryByIdAsync(existCategoryId);
@@ -58,7 +58,7 @@ public class CategoryControllerInMemoryTest
     public async Task GetCategoryByIdAsync_WithNotExistCategoryId_ReturnNotFound()
     {
         await using var categoryContext = new CatalogContext(contextOptions);
-        Guid notExistCategoryId = Guid.NewGuid();
+        var notExistCategoryId = Guid.NewGuid();
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoryByIdAsync(notExistCategoryId);
@@ -71,7 +71,7 @@ public class CategoryControllerInMemoryTest
     public async Task GetCategoryByIdAsync_WithEmptyCategoryId_ReturnBadRequest()
     {
         await using var categoryContext = new CatalogContext(contextOptions);
-        Guid emptyCategoryId = Guid.Empty;
+        var emptyCategoryId = Guid.Empty;
 
         var categoryController = new CategoriesController(categoryContext);
         var actionResult = await categoryController.GetCategoryByIdAsync(emptyCategoryId);
