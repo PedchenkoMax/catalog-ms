@@ -13,15 +13,27 @@ public sealed class ProductEventsTest :
     BaseEventTest<ProductCreatedEventConsumer, ProductUpdatedEventConsumer, ProductDeletedEventConsumer>,
     IClassFixture<DatabaseFixture>
 {
+    private readonly Guid brand1Id = Guid.NewGuid();
+    private readonly Guid brand2Id = Guid.NewGuid();
+    private readonly Guid category1Id = Guid.NewGuid();
+    private readonly Guid category2Id = Guid.NewGuid();
+
     public ProductEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
+        var seedBrand1 = new BrandEntity { Id = brand1Id, Name = "", Image = "" };
+        var seedBrand2 = new BrandEntity { Id = brand2Id, Name = "", Image = "" };
+        var seedCategory1 = new CategoryEntity { Id = category1Id, Name = "", Image = "" };
+        var seedCategory2 = new CategoryEntity { Id = category2Id, Name = "", Image = "" };
+
+        AddEntityRange(seedBrand1, seedBrand2);
+        AddEntityRange(seedCategory1, seedCategory2);
     }
 
     [Fact]
     public async Task CreatedEvent_DoesntExist_CreatesProduct()
     {
         // Act
-        var productCreatedEvent = new ProductCreatedEvent(Guid.NewGuid(), "", "", 0, 0, 0, false, Fixture.SeedCategory1.Id, Fixture.SeedBrand1.Id);
+        var productCreatedEvent = new ProductCreatedEvent(Guid.NewGuid(), "", "", 0, 0, 0, false, category1Id, brand1Id);
         await Publish(productCreatedEvent);
 
 
@@ -46,12 +58,12 @@ public sealed class ProductEventsTest :
     public async Task CreatedEvent_Exists_LogCritical()
     {
         // Arrange
-        var alreadyExistEntity = new ProductEntity(Guid.NewGuid(), "", "", 0, 0, 0, false, Fixture.SeedCategory1.Id, Fixture.SeedBrand1.Id);
+        var alreadyExistEntity = new ProductEntity(Guid.NewGuid(), "", "", 0, 0, 0, false, category1Id, brand1Id);
         await AddEntity(alreadyExistEntity);
 
 
         // Act
-        var productCreatedEvent = new ProductCreatedEvent(alreadyExistEntity.Id, "new", "new", 1, 1, 1, true, Fixture.SeedCategory2.Id, Fixture.SeedBrand2.Id);
+        var productCreatedEvent = new ProductCreatedEvent(alreadyExistEntity.Id, "new", "new", 1, 1, 1, true, category2Id, brand2Id);
         await Publish(productCreatedEvent);
 
 
@@ -75,12 +87,12 @@ public sealed class ProductEventsTest :
     public async Task UpdatedEvent_UpdatesProduct()
     {
         // Arrange
-        var initialEntity = new ProductEntity(Guid.NewGuid(), "", "", 0, 0, 0, false, Fixture.SeedCategory1.Id, Fixture.SeedBrand1.Id);
+        var initialEntity = new ProductEntity(Guid.NewGuid(), "", "", 0, 0, 0, false, category1Id, brand1Id);
         await AddEntity(initialEntity);
 
 
         // Act
-        var productUpdatedEvent = new ProductUpdatedEvent(initialEntity.Id, "new", "new", 1, 1, 1, true, Fixture.SeedCategory2.Id, Fixture.SeedBrand2.Id);
+        var productUpdatedEvent = new ProductUpdatedEvent(initialEntity.Id, "new", "new", 1, 1, 1, true, category2Id, brand2Id);
         await Publish(productUpdatedEvent);
 
 
@@ -104,7 +116,7 @@ public sealed class ProductEventsTest :
     public async Task DeletedEvent_Exists_DeletesProduct()
     {
         // Arrange
-        var entity = new ProductEntity(Guid.NewGuid(), "", "", 0, 0, 0, false, Fixture.SeedCategory1.Id, Fixture.SeedBrand1.Id);
+        var entity = new ProductEntity(Guid.NewGuid(), "", "", 0, 0, 0, false, category1Id, brand1Id);
         await AddEntity(entity);
 
 
