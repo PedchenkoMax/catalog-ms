@@ -6,10 +6,10 @@ using Xunit;
 
 namespace Catalog.Tests.IntegrationTests.Aplication;
 
-public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory<Program>>
+public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
 {
     private readonly HttpClient client;
-    public ProductsIntegrationTests(TestingWebAppFactory<Program> factory)
+    public ProductsIntegrationTests(TestingWebAppFactory factory)
         => client = factory.CreateClient();
 
     [Fact]
