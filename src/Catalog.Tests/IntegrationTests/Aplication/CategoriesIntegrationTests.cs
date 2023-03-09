@@ -8,6 +8,8 @@ namespace Catalog.Tests.IntegrationTests.Aplication;
 
 public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
 {
+    private const string CategoryEndpoint = "api/v1/categories";
+    
     private readonly HttpClient client;
 
     public CategoriesIntegrationTests(TestingWebAppFactory factory)
@@ -16,7 +18,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetCategoriesAsync_WithData_ReturnOkResult()
     {
-        var response = await client.GetAsync("/api/v1/categories");
+        var response = await client.GetAsync(CategoryEndpoint);
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -25,7 +27,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetCategoriesAsync_WithData_ReturnApplicationJsonUtf8()
     {
-        var response = await client.GetAsync("/api/v1/categories");
+        var response = await client.GetAsync(CategoryEndpoint);
 
         Assert.Equal("application/json; charset=utf-8; ver=1", response.Content.Headers.ContentType.ToString());
     }
@@ -33,7 +35,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetCategoriesAsync_WithData_ReturnAllBrands()
     {
-        var response = await client.GetAsync("/api/v1/categories");
+        var response = await client.GetAsync(CategoryEndpoint);
         response.EnsureSuccessStatusCode();
 
         var categories = await response.Content.ReadFromJsonAsync<List<Category>>();
@@ -49,7 +51,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     public async Task GetCategoryByIdAsync_WithExistCategoryId_ReturnOkResult()
     {
         var existCategoryId = FakeData.CategoryPhone;
-        var response = await client.GetAsync($"/api/v1/categories/{existCategoryId}");
+        var response = await client.GetAsync($"{CategoryEndpoint}/{existCategoryId}");
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -59,7 +61,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     public async Task GetCategoryByIdAsync_WithNotExistCategoryId_ReturnNotFound() 
     {
         var notExistCategoryId = Guid.NewGuid();
-        var response = await client.GetAsync($"/api/v1/categories/{notExistCategoryId}");
+        var response = await client.GetAsync($"{CategoryEndpoint}/{notExistCategoryId}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
@@ -68,7 +70,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     public async Task GetCategoryByIdAsync_WithEmptyCategoryId_ReturnBadRequest()
     {
         var emptyCategoryId = Guid.Empty;
-        var response = await client.GetAsync($"/api/v1/categories/{emptyCategoryId}");
+        var response = await client.GetAsync($"{CategoryEndpoint}/{emptyCategoryId}");
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
@@ -76,7 +78,7 @@ public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
     public async Task GetCategoryByIdAsync_WithPhoneCategoryId_ReturnPhoneCategory() 
     {
         var phoneCategoryId = FakeData.BrandApple;
-        var response = await client.GetAsync($"/api/v1/categories/{phoneCategoryId}");
+        var response = await client.GetAsync($"{CategoryEndpoint}/{phoneCategoryId}");
 
         var category = await response.Content.ReadFromJsonAsync<Category>();
 

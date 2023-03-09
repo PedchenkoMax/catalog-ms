@@ -8,6 +8,8 @@ namespace Catalog.Tests.IntegrationTests.Aplication;
 
 public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory>
 {
+    private const string BrandEndpoint = "api/v1/brands";
+    
     private readonly HttpClient client;
     public BrandsIntegrationTests(TestingWebAppFactory factory)
         => client = factory.CreateClient();
@@ -15,7 +17,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetBrandsAsync_WithData_ReturnOkResult()
     {
-        var response = await client.GetAsync("/api/v1/brands");
+        var response = await client.GetAsync(BrandEndpoint);
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -24,7 +26,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetBrandsAsync_WithData_ReturnApplicationJsonUtf8()
     {
-        var response = await client.GetAsync("/api/v1/brands");
+        var response = await client.GetAsync(BrandEndpoint);
 
         Assert.Equal("application/json; charset=utf-8; ver=1", response.Content.Headers.ContentType.ToString());
     }
@@ -32,7 +34,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task GetBrandsAsync_WithData_ReturnAllBrands()
     {
-        var response = await client.GetAsync("/api/v1/brands");
+        var response = await client.GetAsync(BrandEndpoint);
         response.EnsureSuccessStatusCode();
 
         var brands = await response.Content.ReadFromJsonAsync<List<Brand>>();
@@ -49,7 +51,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory>
     public async Task GetBrandByIdAsync_WithExistBrandId_ReturnOkResult() 
     {
         var existBrandId = FakeData.BrandApple;
-        var response = await client.GetAsync($"/api/v1/brands/{existBrandId}");
+        var response = await client.GetAsync($"{BrandEndpoint}/{existBrandId}");
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -59,7 +61,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory>
     public async Task GetBrandByIdAsync_WithNotExistBrandId_ReturnNotFound() 
     {
         var notExistBrandId = Guid.NewGuid();
-        var response = await client.GetAsync($"/api/v1/brands/{notExistBrandId}");        
+        var response = await client.GetAsync($"{BrandEndpoint}/{notExistBrandId}");        
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
@@ -68,7 +70,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory>
     public async Task GetBrandByIdAsync_WithEmptyBrandId_ReturnBadRequest() 
     {
         var emptyBrandId = Guid.Empty;
-        var response = await client.GetAsync($"/api/v1/brands/{emptyBrandId}");
+        var response = await client.GetAsync($"{BrandEndpoint}/{emptyBrandId}");
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
@@ -76,7 +78,7 @@ public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory>
     public async Task GetBrandByIdAsync_WithAppleBrandId_ReturnAppleBrand() 
     {
         var appleBrandId = FakeData.BrandApple;
-        var response = await client.GetAsync($"/api/v1/brands/{appleBrandId}");
+        var response = await client.GetAsync($"{BrandEndpoint}/{appleBrandId}");
         
         var brand = await response.Content.ReadFromJsonAsync<Brand>();
 
