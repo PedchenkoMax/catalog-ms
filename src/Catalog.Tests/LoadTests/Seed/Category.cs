@@ -3,6 +3,7 @@
 #pragma warning disable CS8604
 #pragma warning disable CA2211
 
+using Catalog.Domain.Entities;
 using static System.Guid;
 
 namespace Catalog.Tests.LoadTests;

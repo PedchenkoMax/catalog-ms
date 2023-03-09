@@ -1,3 +1,10 @@
+using Catalog.Infrastructure.Database;
+using Catalog.Tests.UnitTests;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Catalog.Tests.IntegrationTests.Aplication;
 
 public class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<Program> where TEntryPoint : Program

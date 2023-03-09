@@ -1,8 +1,11 @@
 ﻿using Catalog.API.Events.Abstractions;
 using Catalog.Domain.Abstractions;
+using Catalog.Infrastructure.Database;
 using Divergic.Logging.Xunit;
 using MassTransit;
 using MassTransit.Testing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 

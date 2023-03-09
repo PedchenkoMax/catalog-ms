@@ -1,4 +1,7 @@
-﻿namespace Catalog.Tests.UnitTests.Validation;
+﻿using Catalog.API.Validation.Attributes;
+using Xunit;
+
+namespace Catalog.Tests.UnitTests.Validation;
 
 public class GuidIdAttributeTests
 {

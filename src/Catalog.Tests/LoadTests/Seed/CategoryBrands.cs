@@ -1,4 +1,5 @@
-﻿using static Catalog.Tests.LoadTests.Seed.Brands;
+﻿using Catalog.Domain.Entities;
+using static Catalog.Tests.LoadTests.Seed.Brands;
 using static Catalog.Tests.LoadTests.Categories;
 
 namespace Catalog.Tests.LoadTests.Seed;

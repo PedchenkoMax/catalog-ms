@@ -1,3 +1,8 @@
+using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
+using Xunit;
+
 namespace Catalog.Tests.IntegrationTests.Events.Common;
 
 public sealed class DatabaseFixture : IDisposable

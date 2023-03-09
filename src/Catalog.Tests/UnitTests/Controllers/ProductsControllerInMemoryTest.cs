@@ -1,3 +1,12 @@
+using Catalog.API.Controllers.v1;
+using Catalog.API.DTO.Filters;
+using Catalog.Infrastructure.Database;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Xunit;
+
 namespace Catalog.Tests.UnitTests.Controllers;
 
 public class ProductsControllerInMemoryTest

@@ -1,4 +1,7 @@
 using Bogus;
+using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Tests.LoadTests.Seed;
 

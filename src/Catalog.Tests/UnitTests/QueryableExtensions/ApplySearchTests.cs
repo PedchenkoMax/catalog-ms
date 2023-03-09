@@ -1,4 +1,10 @@
-﻿namespace Catalog.Tests.UnitTests.QueryableExtensions;
+﻿using Catalog.API.DTO.Filters;
+using Catalog.API.QueryableExtensions;
+using Catalog.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
+using Xunit;
+
+namespace Catalog.Tests.UnitTests.QueryableExtensions;
 
 public class ApplySearchTests
 {

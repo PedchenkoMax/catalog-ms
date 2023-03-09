@@ -1,7 +1,9 @@
 using Catalog.API.Events.Brand;
+using Catalog.Domain.Entities;
 using Catalog.Tests.IntegrationTests.Events.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace Catalog.Tests.IntegrationTests.Events;

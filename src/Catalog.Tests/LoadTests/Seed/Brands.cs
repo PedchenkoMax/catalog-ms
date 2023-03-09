@@ -1,4 +1,5 @@
-﻿using static System.Guid;
+﻿using Catalog.Domain.Entities;
+using static System.Guid;
 
 namespace Catalog.Tests.LoadTests.Seed;
 
