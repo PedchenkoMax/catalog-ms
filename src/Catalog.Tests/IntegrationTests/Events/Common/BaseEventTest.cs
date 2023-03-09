@@ -80,6 +80,16 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
         await ctx.SaveChangesAsync();
     }
 
+    protected async Task AddEntityRange<T>(params T[] entity)
+        where T : Entity
+    {
+        var ctx = Provider.CreateAsyncScope().ServiceProvider.GetRequiredService<CatalogContext>();
+
+        ctx.Set<T>().AddRange(entity);
+
+        await ctx.SaveChangesAsync();
+    }
+
     protected async Task<T?> FirstOrDefault<T>(Guid id)
         where T : Entity
     {
