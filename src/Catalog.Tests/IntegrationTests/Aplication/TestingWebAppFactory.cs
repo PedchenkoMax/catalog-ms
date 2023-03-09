@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Catalog.Tests.IntegrationTests.Aplication;
 
-public class TestingWebAppFactory : WebApplicationFactory<Program>
+public class TestingWebAppFactory<TEntryPoint> : WebApplicationFactory<Program> where TEntryPoint : Program
 {
     private string ConnectionString = $"Server=localhost;Database=TestDb-{Guid.NewGuid()};User=sa;TrustServerCertificate=true;Trusted_Connection=true;PersistSecurityInfo=true;";
 
