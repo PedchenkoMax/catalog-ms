@@ -37,7 +37,7 @@ public class ProductsControllerInMemoryTest
     {
         await using var productContext = new CatalogContext(contextOptions);
         var productController = new ProductsController(productContext);
-        var notExistProductId = Guid.NewGuid();
+        Guid notExistProductId = Guid.NewGuid();
 
         var result = await productController.ProductByIdAsync(notExistProductId);
 

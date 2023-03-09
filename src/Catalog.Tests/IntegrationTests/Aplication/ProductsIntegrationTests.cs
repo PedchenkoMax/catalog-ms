@@ -15,8 +15,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductByIdAsync_WithExistsProductId_ReturnOkResult()
     {
-        var existProductId = FakeData.Phone1;        
-        var response = await client.GetAsync($"api/v1/products/{existProductId}");
+        Guid existProductId = FakeData.Phone1;        
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/{existProductId}");
         response.EnsureSuccessStatusCode();
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
@@ -24,8 +24,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductByIdAsync_WithExistsProuctId_ReturnApplicationJsonUtf8()
     {
-        var existProductId = FakeData.Phone1;
-        var response = await client.GetAsync($"api/v1/products/{existProductId}");
+        Guid existProductId = FakeData.Phone1;
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/{existProductId}");
 
         Assert.Equal("application/json; charset=utf-8; ver=1", response.Content.Headers.ContentType.ToString());
     }
@@ -33,8 +33,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductByIdAsync_WithNotExistsProductId_ReturnNotFound()
     {
-        var notExistProductId = Guid.NewGuid();
-        var response = await client.GetAsync($"api/v1/products/{notExistProductId}");
+        Guid notExistProductId = Guid.NewGuid();
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/{notExistProductId}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
@@ -42,16 +42,16 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductByIdAsync_WithEmptyProductId_ReturnBadRequest()
     {
-        var emptyProductId = Guid.Empty;
-        var response = await client.GetAsync($"api/v1/products/{emptyProductId}");
+        Guid emptyProductId = Guid.Empty;
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/{emptyProductId}");
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
     [Fact]
     public async Task ProductByIdAsync_WithIphoneProductId_ReturnIphoneProduct() {
-        var iphoneProductId = FakeData.Phone1;
-        var response = await client.GetAsync($"api/v1/products/{iphoneProductId}");
+        Guid iphoneProductId = FakeData.Phone1;
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/{iphoneProductId}");
 
         var product = await response.Content.ReadFromJsonAsync<Product>();
 
@@ -62,7 +62,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnOkResult()
     {        
-        var response = await client.GetAsync($"api/v1/products/");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/");
         response.EnsureSuccessStatusCode();
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -72,7 +72,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnDefaultPaginedTenProducts()
     {
-        var response = await client.GetAsync($"api/v1/products/");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/");
         response.EnsureSuccessStatusCode();
 
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
@@ -84,7 +84,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnFivePaginedProducts()
     {
-        var response = await client.GetAsync($"api/v1/products/?PageIndex=0&PageSize=5");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/?PageIndex=0&PageSize=5");
         response.EnsureSuccessStatusCode();
 
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
@@ -96,7 +96,7 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithoutParametersWithData_ReturnAllProducts()
     {
-        var response = await client.GetAsync($"api/v1/products/?PageIndex=0&PageSize=30");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products/?PageIndex=0&PageSize=30");
         response.EnsureSuccessStatusCode();
 
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
@@ -108,8 +108,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytId_ReturnFilteredProducts()
     {
-        var existCategorytId = FakeData.CategoryPhone;
-        var response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}");
+        Guid existCategorytId = FakeData.CategoryPhone;
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}");
 
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
 
@@ -125,8 +125,8 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithNotExistCategorytId_ReturnNotFound()
     {
-        var notExistCategorytId = Guid.NewGuid();
-        var response = await client.GetAsync($"api/products?CategoryId={notExistCategorytId}");
+        Guid notExistCategorytId = Guid.NewGuid();
+        HttpResponseMessage response = await client.GetAsync($"api/products?CategoryId={notExistCategorytId}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
@@ -134,10 +134,10 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandId_ReturnFilteredProducts()
     {
-        var existCategorytId = FakeData.CategoryPhone;
-        var existBrandId = FakeData.BrandApple;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
 
-        var response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}");
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
 
         Assert.Equal(2, products.Count);
@@ -149,11 +149,11 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdAndMinPrice_ReturnFilteredProducts()
     {
-        var existCategorytId = FakeData.CategoryPhone;
-        var existBrandId = FakeData.BrandApple;
-        var minPrice = 700.0;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
+        double minPrice = 700.0;
 
-        var response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&MinPrice={minPrice}");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&MinPrice={minPrice}");
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
 
         Assert.Equal(1, products.Count);
@@ -164,11 +164,11 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdAndMaxPrice_ReturnFilteredProducts()
     {
-        var existCategorytId = FakeData.CategoryPhone;
-        var existBrandId = FakeData.BrandApple;
-        var maxPrice = 1000.0;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
+        double maxPrice = 1000.0;
 
-        var response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&MaxPrice={maxPrice}");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&MaxPrice={maxPrice}");
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
 
         Assert.Equal(1, products.Count);
@@ -179,10 +179,10 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdOrderByPrice_ReturnFilteredProducts()
     {
-        var existCategorytId = FakeData.CategoryPhone;
-        var existBrandId = FakeData.BrandApple;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
 
-        var response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=false");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=false");
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
 
         Assert.Equal(2, products.Count);
@@ -193,10 +193,10 @@ public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
     [Fact]
     public async Task ProductsByParametersAsync_WithCategorytIdAndBrandIdOrderByPriceDesc_ReturnFilteredProducts()
     {
-        var existCategorytId = FakeData.CategoryPhone;
-        var existBrandId = FakeData.BrandApple;
+        Guid existCategorytId = FakeData.CategoryPhone;
+        Guid existBrandId = FakeData.BrandApple;
 
-        var response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=true");
+        HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=true");
         var products = await response.Content.ReadFromJsonAsync<List<Product>>();
 
         Assert.Equal(2, products.Count);
