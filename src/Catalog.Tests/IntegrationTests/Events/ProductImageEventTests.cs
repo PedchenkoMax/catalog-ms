@@ -1,25 +1,36 @@
 using Catalog.API.Events.ProductImage;
+using Catalog.Domain.Entities;
 using Catalog.Tests.IntegrationTests.Events.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace Catalog.Tests.IntegrationTests.Events;
 
-[Collection("Database Fixture")]
+[Collection("Event Fixture")]
 public sealed class ProductImageEventsTest :
     BaseEventTest<ProductImageCreatedEventConsumer, ProductImageUpdatedEventConsumer, ProductImageDeletedEventConsumer>,
-    IClassFixture<DatabaseFixture>
+    IClassFixture<EventFixture>
 {
-    public ProductImageEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
+    private readonly Guid productId = Guid.NewGuid();
+
+    public ProductImageEventsTest(EventFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
+        var seedProduct = new ProductEntity
+        {
+            Id = productId, Name = "", Description = "", FullPrice = 0, Discount = 0, Quantity = 0, IsActive = false,
+            Category = new() { Id = Guid.NewGuid(), Name = "", Image = "" }, Brand = new() { Id = Guid.NewGuid(), Name = "", Image = "" }
+        };
+
+        AddEntity(seedProduct);
     }
 
     [Fact]
     public async Task CreatedEvent_DoesntExist_CreatesProductImage()
     {
         // Act
-        var productImageCreatedEvent = new ProductImageCreatedEvent(Guid.NewGuid(), Fixture.SeedProduct1.Id, "url", true);
+        var productImageCreatedEvent = new ProductImageCreatedEvent(Guid.NewGuid(), productId, "url", true);
         await Publish(productImageCreatedEvent);
 
 
@@ -37,12 +48,12 @@ public sealed class ProductImageEventsTest :
     public async Task CreatedEvent_Exists_LogCritical()
     {
         // Arrange
-        var alreadyExistEntity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id);
+        var alreadyExistEntity = new ProductImageEntity(Guid.NewGuid(), "url", true, productId);
         await AddEntity(alreadyExistEntity);
 
 
         // Act
-        var productImageCreatedEvent = new ProductImageCreatedEvent(alreadyExistEntity.Id, Fixture.SeedProduct1.Id, "new url", false);
+        var productImageCreatedEvent = new ProductImageCreatedEvent(alreadyExistEntity.Id, productId, "new url", false);
         await Publish(productImageCreatedEvent);
 
 
@@ -60,7 +71,7 @@ public sealed class ProductImageEventsTest :
     public async Task UpdatedEvent_UpdatesProductImage()
     {
         // Arrange
-        var initialEntity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id);
+        var initialEntity = new ProductImageEntity(Guid.NewGuid(), "url", true, productId);
         await AddEntity(initialEntity);
 
 
@@ -82,7 +93,7 @@ public sealed class ProductImageEventsTest :
     public async Task DeletedEvent_Exists_DeletesProductImage()
     {
         // Arrange
-        var entity = new ProductImageEntity(Guid.NewGuid(), "url", true, Fixture.SeedProduct1.Id);
+        var entity = new ProductImageEntity(Guid.NewGuid(), "url", true, productId);
         await AddEntity(entity);
 
 

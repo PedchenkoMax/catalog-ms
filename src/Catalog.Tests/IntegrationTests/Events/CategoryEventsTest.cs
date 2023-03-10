@@ -1,17 +1,19 @@
 using Catalog.API.Events.Category;
+using Catalog.Domain.Entities;
 using Catalog.Tests.IntegrationTests.Events.Common;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace Catalog.Tests.IntegrationTests.Events;
 
-[Collection("Database Fixture")]
+[Collection("Event Fixture")]
 public sealed class CategoryEventsTest :
     BaseEventTest<CategoryCreatedEventConsumer, CategoryUpdatedEventConsumer, CategoryDeletedEventConsumer>,
-    IClassFixture<DatabaseFixture>
+    IClassFixture<EventFixture>
 {
-    public CategoryEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public CategoryEventsTest(EventFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
     }
 
