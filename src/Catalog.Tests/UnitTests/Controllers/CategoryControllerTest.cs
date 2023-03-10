@@ -1,10 +1,10 @@
 namespace Catalog.Tests.UnitTests.Controllers;
 
-public class CategoryControllerInMemoryTest
+public class CategoryControllerTest
 {
     private readonly DbContextOptions<CatalogContext> contextOptions;
 
-    public CategoryControllerInMemoryTest()
+    public CategoryControllerTest()
     {
         contextOptions = new DbContextOptionsBuilder<CatalogContext>()
             .UseInMemoryDatabase("CategoryControllerTest")
@@ -16,9 +16,7 @@ public class CategoryControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        context.Categories.AddRange(FakeData.GetFakeCategoryList());
-
-        context.SaveChanges();
+        FakeData.Seed(context);
     }
 
     [Fact]

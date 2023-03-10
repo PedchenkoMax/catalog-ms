@@ -2,6 +2,15 @@
 
 public class FakeData
 {
+    public static void Seed(CatalogContext dbContext) 
+    {
+        dbContext.Brands.AddRange(GetFakeBrandsList());
+        dbContext.Categories.AddRange(GetFakeCategoryList());
+        dbContext.Products.AddRange(GetFakeProductsList());
+
+        dbContext.SaveChanges();
+    }
+
     public static List<BrandEntity> GetFakeBrandsList()
     {
         return new List<BrandEntity>()
