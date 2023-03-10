@@ -6,13 +6,13 @@ using Xunit;
 
 namespace Catalog.Tests.IntegrationTests.Aplication;
 
-public class ProductsIntegrationTests : IClassFixture<TestingWebAppFactory>
+public class ProductsIntegrationTests : IClassFixture<ApplicationFixture>
 {
     private const string ProductEndpoint = "api/v1/products";
     
     private readonly HttpClient client;
-    public ProductsIntegrationTests(TestingWebAppFactory factory)
-        => client = factory.CreateClient();
+    public ProductsIntegrationTests(ApplicationFixture applicationFixture)
+        => client = applicationFixture.Factory.CreateClient();
 
     [Fact]
     public async Task ProductByIdAsync_WithExistsProductId_ReturnOkResult()

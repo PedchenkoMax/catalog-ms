@@ -6,14 +6,13 @@ using Xunit;
 
 namespace Catalog.Tests.IntegrationTests.Aplication;
 
-public class CategoriesIntegrationTests : IClassFixture<TestingWebAppFactory>
+public class CategoriesIntegrationTests : IClassFixture<ApplicationFixture>
 {
     private const string CategoryEndpoint = "api/v1/categories";
     
     private readonly HttpClient client;
-
-    public CategoriesIntegrationTests(TestingWebAppFactory factory)
-        => client = factory.CreateClient();
+    public CategoriesIntegrationTests(ApplicationFixture applicationFixture)
+        => client = applicationFixture.Factory.CreateClient();
 
     [Fact]
     public async Task GetCategoriesAsync_WithData_ReturnOkResult()
