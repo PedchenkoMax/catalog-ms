@@ -16,9 +16,8 @@ public class ApplySearchTests
             .UseInMemoryDatabase(databaseName: $"ApplySearchTestDatabase-{Guid.NewGuid()}")
         .Options;
 
-        context = new CatalogContext(options);                
-        context.Products.AddRange(FakeData.GetFakeProductsList());
-        context.SaveChanges();
+        context = new CatalogContext(options);
+        FakeData.Seed(context);
     }
 
     [Fact]

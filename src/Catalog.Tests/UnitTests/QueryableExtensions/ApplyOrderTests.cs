@@ -30,6 +30,18 @@ public class ApplyOrderTests
         Assert.Equal(products.OrderByDescending(p => p.Discount), result);
     }
 
+
+    [Fact]
+    public void GivenOrderFilterWithOrderByDiscountAndIsDescDefault_ShouldOrderByDiscountDescending() {
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var isDesc = true;
+        var order = new OrderFilter(OrderByEnum.Discount, default);
+
+        var result = products.ApplyOrder(order);
+
+        Assert.Equal(products.OrderByDescending(p => p.Discount), result);
+    }
+
     [Fact]
     public void GivenOrderFilterWithOrderByFullPrice_ShouldOrderByFullPrice()
     {
@@ -48,6 +60,17 @@ public class ApplyOrderTests
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var isDesc = true;
         var order = new OrderFilter(OrderByEnum.FullPrice, isDesc);
+
+        var result = products.ApplyOrder(order);
+
+        Assert.Equal(products.OrderByDescending(p => p.FullPrice), result);
+    }
+
+    [Fact]
+    public void GivenOrderFilterWithOrderByFullPriceAndIsDescDefault_ShouldOrderByFullPriceDescending() {
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var isDesc = true;
+        var order = new OrderFilter(OrderByEnum.FullPrice, default);
 
         var result = products.ApplyOrder(order);
 
@@ -79,6 +102,17 @@ public class ApplyOrderTests
     }
 
     [Fact]
+    public void GivenOrderFilterWithOrderByQuantityAndIsDescDefault_ShouldOrderByQuantityDescending() {
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var isDesc = true;
+        var order = new OrderFilter(OrderByEnum.Quantity, default);
+
+        var result = products.ApplyOrder(order);
+
+        Assert.Equal(products.OrderByDescending(p => p.Quantity), result);
+    }
+
+    [Fact]
     public void GivenOrderFilterWithoutOrderBy_ShouldUseDefaultOrderByDiscount()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
@@ -90,7 +124,7 @@ public class ApplyOrderTests
     }
 
     [Fact]
-    public void GivenOrderFilterWithIsDescFalse_ShouldUseDefaultOrderByDiscount()
+    public void GivenOrderFilterWithIsDescFalse_ShouldUseAsserdindOrderByDiscount()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
         var isDesc = false;
@@ -102,6 +136,17 @@ public class ApplyOrderTests
     }
 
     [Fact]
+    public void GivenOrderFilterWithIsDescTrue_ShouldUseDefaultOrderByDiscount() {
+        var products = FakeData.GetFakeProductsList().AsQueryable();
+        var isDesc = true;
+        var order = new OrderFilter(default, isDesc);
+
+        var result = products.ApplyOrder(order);
+
+        Assert.Equal(products.OrderByDescending(p => p.Discount), result);
+    }
+
+    [Fact]
     public void GivenOrderFilterWithNulls_ShouldOrderByDiscount()
     {
         var products = FakeData.GetFakeProductsList().AsQueryable();
@@ -110,5 +155,5 @@ public class ApplyOrderTests
         var result = products.ApplyOrder(order);
 
         Assert.Equal(products.OrderByDescending(p => p.Discount), result);
-    }
+    }    
 }

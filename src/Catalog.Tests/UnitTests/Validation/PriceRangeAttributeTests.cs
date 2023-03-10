@@ -66,7 +66,7 @@ public class PriceRangeAttributeTests
     }
 
     [Fact]
-    public void MinPriceLessThanMaxPrice_ReturnsSuccess()
+    public void MinPriceLessThanMaxPrice_ValidationSucceeds()
     {
         var model = new TestModel
         {
@@ -80,5 +80,5 @@ public class PriceRangeAttributeTests
 
         Assert.True(isValid);
         Assert.Empty(results);
-    }
+    } 
 }
