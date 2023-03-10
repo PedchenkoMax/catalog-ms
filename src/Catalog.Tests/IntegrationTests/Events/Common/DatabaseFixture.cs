@@ -6,16 +6,17 @@ namespace Catalog.Tests.IntegrationTests.Events.Common;
 
 public sealed class DatabaseFixture : IDisposable
 {
-    public const string ConnectionString = "Server=localhost;Database=EventTestDb;User=sa;TrustServerCertificate=true;Trusted_Connection=true;PersistSecurityInfo=true;";
-
-    private readonly DbContextOptions<CatalogContext> options =
-        new DbContextOptionsBuilder<CatalogContext>()
-            .UseSqlServer(ConnectionString)
-            .Options;
+    public readonly DbContextOptions<CatalogContext> Options;
 
     public DatabaseFixture()
     {
-        using var ctx = new CatalogContext(options);
+        var connectionString = $"Server=localhost;Database=EventTestDb-{Guid.NewGuid()};User=sa;TrustServerCertificate=true;Trusted_Connection=true;PersistSecurityInfo=true;";
+
+        Options = new DbContextOptionsBuilder<CatalogContext>()
+            .UseSqlServer(connectionString)
+            .Options;
+
+        using var ctx = new CatalogContext(Options);
 
         ctx.Database.EnsureDeleted();
         ctx.Database.EnsureCreated();
@@ -23,7 +24,7 @@ public sealed class DatabaseFixture : IDisposable
 
     public void Dispose()
     {
-        using var ctx = new CatalogContext(options);
+        using var ctx = new CatalogContext(Options);
 
         ctx.Database.EnsureDeleted();
     }
