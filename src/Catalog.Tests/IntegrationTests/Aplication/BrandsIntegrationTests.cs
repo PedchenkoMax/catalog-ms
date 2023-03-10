@@ -1,4 +1,10 @@
-﻿namespace Catalog.Tests.IntegrationTests.Aplication;
+﻿using System.Net;
+using System.Net.Http.Json;
+using Catalog.API.DTO;
+using Catalog.Tests.UnitTests;
+using Xunit;
+
+namespace Catalog.Tests.IntegrationTests.Aplication;
 
 public class BrandsIntegrationTests : IClassFixture<IntegrationTestsFixture>
 {

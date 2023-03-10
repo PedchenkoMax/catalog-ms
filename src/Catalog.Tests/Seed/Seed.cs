@@ -1,6 +1,10 @@
 using Bogus;
+using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
+using Catalog.Tests.LoadTests;
+using Microsoft.EntityFrameworkCore;
 
-namespace Catalog.Tests.LoadTests.Seed;
+namespace Catalog.Tests.Seed;
 
 public static class Seed
 {

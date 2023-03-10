@@ -1,4 +1,7 @@
-﻿namespace Catalog.Tests.UnitTests;
+﻿using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Database;
+
+namespace Catalog.Tests.UnitTests;
 
 public class FakeData
 {

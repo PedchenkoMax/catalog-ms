@@ -1,7 +1,8 @@
-﻿using static Catalog.Tests.LoadTests.Seed.Brands;
+﻿using Catalog.Domain.Entities;
+using static Catalog.Tests.Seed.Brands;
 using static Catalog.Tests.LoadTests.Categories;
 
-namespace Catalog.Tests.LoadTests.Seed;
+namespace Catalog.Tests.Seed;
 
 public static class CategoryBrands
 {

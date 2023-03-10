@@ -1,4 +1,8 @@
-﻿namespace Catalog.Tests.UnitTests.QueryableExtensions;
+﻿using Catalog.API.DTO.Filters;
+using Catalog.API.QueryableExtensions;
+using Xunit;
+
+namespace Catalog.Tests.UnitTests.QueryableExtensions;
 
 public class ApplyPaginationTests
 {

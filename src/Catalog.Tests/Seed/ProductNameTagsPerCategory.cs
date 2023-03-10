@@ -1,6 +1,7 @@
-﻿using static Catalog.Tests.LoadTests.Categories;
+﻿using Catalog.Domain.Entities;
+using static Catalog.Tests.LoadTests.Categories;
 
-namespace Catalog.Tests.LoadTests.Seed;
+namespace Catalog.Tests.Seed;
 
 public static class ProductNameTagsPerCategory
 {
