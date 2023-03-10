@@ -12,7 +12,6 @@ namespace Catalog.Tests.UnitTests.Controllers;
 public class ProductsControllerInMemoryTest
 {
     private readonly DbContextOptions<CatalogContext> contextOptions;
-    private readonly ProductsController controller;
 
     public ProductsControllerInMemoryTest()
     {
