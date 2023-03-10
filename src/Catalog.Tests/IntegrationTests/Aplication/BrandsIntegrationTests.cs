@@ -1,10 +1,10 @@
 ﻿namespace Catalog.Tests.IntegrationTests.Aplication;
 
-public class BrandsIntegrationTests : IClassFixture<TestingWebAppFactory<Program>>
+public class BrandsIntegrationTests : IClassFixture<IntegrationTestsFixture>
 {
     private readonly HttpClient client;
-    public BrandsIntegrationTests(TestingWebAppFactory<Program> factory)
-        => client = factory.CreateClient();
+    public BrandsIntegrationTests(IntegrationTestsFixture fixture)
+        => client = fixture.ApiClient;
 
     [Fact]
     public async Task GetBrandsAsync_WithData_ReturnOkResult()
