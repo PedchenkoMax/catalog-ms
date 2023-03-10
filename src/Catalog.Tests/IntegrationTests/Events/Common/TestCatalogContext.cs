@@ -8,10 +8,11 @@ namespace Catalog.Tests.IntegrationTests.Events.Common;
 // Maybe, there's a more straightforward solution. You can try to do it better.
 public class TestCatalogContext : CatalogContext
 {
-    public static AutoResetEvent ResetEvent = new(false);
+    public readonly AutoResetEvent ResetEvent;
 
-    public TestCatalogContext(DbContextOptions<CatalogContext> options) : base(options)
+    public TestCatalogContext(DbContextOptions<CatalogContext> options, AutoResetEvent resetEvent) : base(options)
     {
+        ResetEvent = resetEvent;
     }
 
     public override ValueTask DisposeAsync()

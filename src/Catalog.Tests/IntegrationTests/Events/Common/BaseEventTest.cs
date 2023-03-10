@@ -1,4 +1,4 @@
-﻿using Catalog.API.Events.Abstractions;
+using Catalog.API.Events.Abstractions;
 using Catalog.Domain.Abstractions;
 using Catalog.Infrastructure.Database;
 using Divergic.Logging.Xunit;
@@ -17,6 +17,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     where TUpdatedEventConsumer : class, IConsumer
     where TDeletedEventConsumer : class, IConsumer
 {
+    protected readonly AutoResetEvent ResetEvent = new(false); // Look up 'TestCatalogContext' for the explanation.
     protected readonly ServiceProvider Provider;
     protected readonly DatabaseFixture Fixture;
     protected readonly ITestOutputHelper Output;
@@ -45,8 +46,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
                 cfg.AddConsumer<TUpdatedEventConsumer>();
                 cfg.AddConsumer<TDeletedEventConsumer>();
             })
-            .AddDbContext<CatalogContext>(x => x.UseSqlServer(DatabaseFixture.ConnectionString))
-            .AddTransient<CatalogContext, TestCatalogContext>()
+            .AddTransient<CatalogContext>(_ => new TestCatalogContext(fixture.Options, ResetEvent))
             .BuildServiceProvider(true);
 
         var harness = Provider.GetTestHarness();
@@ -66,8 +66,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     {
         await Provider.GetTestHarness().Bus.Publish(@event);
 
-        // Look up 'TestCatalogContext' for the explanation.
-        TestCatalogContext.ResetEvent.WaitOne();
+        ResetEvent.WaitOne();
     }
 
     protected async Task AddEntity<T>(T entity)
