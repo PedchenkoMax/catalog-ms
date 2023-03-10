@@ -1,7 +1,7 @@
 ﻿using Catalog.Domain.Entities;
 using static System.Guid;
 
-namespace Catalog.Tests.LoadTests.Seed;
+namespace Catalog.Tests.Seed;
 
 // 264 entries
 public static class Brands
