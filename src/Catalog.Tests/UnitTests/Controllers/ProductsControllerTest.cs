@@ -1,11 +1,11 @@
 namespace Catalog.Tests.UnitTests.Controllers;
 
-public class ProductsControllerInMemoryTest
+public class ProductsControllerTest
 {
     private readonly DbContextOptions<CatalogContext> contextOptions;
     private readonly ProductsController controller;
 
-    public ProductsControllerInMemoryTest()
+    public ProductsControllerTest()
     {
         contextOptions = new DbContextOptionsBuilder<CatalogContext>()
             .UseInMemoryDatabase("ProductsControllerTest")
@@ -17,11 +17,7 @@ public class ProductsControllerInMemoryTest
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        context.Brands.AddRange(FakeData.GetFakeBrandsList());
-        context.Categories.AddRange(FakeData.GetFakeCategoryList());
-        context.Products.AddRange(FakeData.GetFakeProductsList());
-
-        context.SaveChanges();
+        FakeData.Seed(context);
     }
 
     [Fact]
