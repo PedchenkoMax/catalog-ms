@@ -19,8 +19,6 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
 {
     protected readonly AutoResetEvent ResetEvent = new(false); // Look up 'TestCatalogContext' for the explanation.
     protected readonly ServiceProvider Provider;
-    protected readonly DatabaseFixture Fixture;
-    protected readonly ITestOutputHelper Output;
 
     protected readonly ICacheLogger<TCreatedEventConsumer> CreatedLogger;
     protected readonly ICacheLogger<TUpdatedEventConsumer> UpdatedLogger;
@@ -28,9 +26,6 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
 
     protected BaseEventTest(DatabaseFixture fixture, ITestOutputHelper output)
     {
-        Fixture = fixture;
-        Output = output;
-
         CreatedLogger = output.BuildLoggerFor<TCreatedEventConsumer>(LogLevel.Information);
         UpdatedLogger = output.BuildLoggerFor<TUpdatedEventConsumer>(LogLevel.Information);
         DeletedLogger = output.BuildLoggerFor<TDeletedEventConsumer>(LogLevel.Information);
