@@ -4,11 +4,11 @@ using Xunit;
 
 namespace Catalog.Tests.IntegrationTests.Events.Common;
 
-public sealed class DatabaseFixture : IDisposable
+public sealed class EventFixture : IDisposable
 {
     public readonly DbContextOptions<CatalogContext> Options;
 
-    public DatabaseFixture()
+    public EventFixture()
     {
         var connectionString = $"Server=localhost;Database=EventTestDb-{Guid.NewGuid()};User=sa;TrustServerCertificate=true;Trusted_Connection=true;PersistSecurityInfo=true;";
 
@@ -30,7 +30,7 @@ public sealed class DatabaseFixture : IDisposable
     }
 }
 
-[CollectionDefinition("Database Fixture")]
-public class DatabaseCollection : ICollectionFixture<DatabaseFixture>
+[CollectionDefinition("Event Fixture")]
+public class DatabaseCollection : ICollectionFixture<EventFixture>
 {
 }

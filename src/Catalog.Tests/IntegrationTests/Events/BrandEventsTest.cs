@@ -8,12 +8,12 @@ using Xunit.Abstractions;
 
 namespace Catalog.Tests.IntegrationTests.Events;
 
-[Collection("Database Fixture")]
+[Collection("Event Fixture")]
 public sealed class BrandEventsTest :
     BaseEventTest<BrandCreatedEventConsumer, BrandUpdatedEventConsumer, BrandDeletedEventConsumer>,
-    IClassFixture<DatabaseFixture>
+    IClassFixture<EventFixture>
 {
-    public BrandEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public BrandEventsTest(EventFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
     }
 

@@ -24,7 +24,7 @@ public abstract class BaseEventTest<TCreatedEventConsumer, TUpdatedEventConsumer
     protected readonly ICacheLogger<TUpdatedEventConsumer> UpdatedLogger;
     protected readonly ICacheLogger<TDeletedEventConsumer> DeletedLogger;
 
-    protected BaseEventTest(DatabaseFixture fixture, ITestOutputHelper output)
+    protected BaseEventTest(EventFixture fixture, ITestOutputHelper output)
     {
         CreatedLogger = output.BuildLoggerFor<TCreatedEventConsumer>(LogLevel.Information);
         UpdatedLogger = output.BuildLoggerFor<TUpdatedEventConsumer>(LogLevel.Information);

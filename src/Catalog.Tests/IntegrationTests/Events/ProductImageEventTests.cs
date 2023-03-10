@@ -8,14 +8,14 @@ using Xunit.Abstractions;
 
 namespace Catalog.Tests.IntegrationTests.Events;
 
-[Collection("Database Fixture")]
+[Collection("Event Fixture")]
 public sealed class ProductImageEventsTest :
     BaseEventTest<ProductImageCreatedEventConsumer, ProductImageUpdatedEventConsumer, ProductImageDeletedEventConsumer>,
-    IClassFixture<DatabaseFixture>
+    IClassFixture<EventFixture>
 {
     private readonly Guid productId = Guid.NewGuid();
 
-    public ProductImageEventsTest(DatabaseFixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public ProductImageEventsTest(EventFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
         var seedProduct = new ProductEntity
         {
