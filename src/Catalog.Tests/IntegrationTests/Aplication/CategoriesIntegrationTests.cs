@@ -66,9 +66,10 @@ public class CategoriesIntegrationTests : IClassFixture<IntegrationTestsFixture>
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
+    [Fact]
     public async Task GetCategoryByIdAsync_WithPhoneCategoryId_ReturnPhoneCategory() 
     {
-        Guid phoneCategoryId = FakeData.BrandApple;
+        Guid phoneCategoryId = FakeData.CategoryPhone;
         var response = await client.GetAsync($"/api/v1/categories/{phoneCategoryId}");
 
         var category = await response.Content.ReadFromJsonAsync<Category>();

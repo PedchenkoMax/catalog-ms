@@ -67,6 +67,7 @@ public class BrandsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
+    [Fact]
     public async Task GetBrandByIdAsync_WithAppleBrandId_ReturnAppleBrand() 
     {
         Guid appleBrandId = FakeData.BrandApple;
