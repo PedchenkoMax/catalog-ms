@@ -10,8 +10,7 @@ namespace Catalog.Tests.IntegrationTests.Events;
 
 [Collection("Event Fixture")]
 public sealed class CategoryEventsTest :
-    BaseEventTest<CategoryCreatedEventConsumer, CategoryUpdatedEventConsumer, CategoryDeletedEventConsumer>,
-    IClassFixture<EventFixture>
+    BaseEventTest<CategoryCreatedEventConsumer, CategoryUpdatedEventConsumer, CategoryDeletedEventConsumer>
 {
     public CategoryEventsTest(EventFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {

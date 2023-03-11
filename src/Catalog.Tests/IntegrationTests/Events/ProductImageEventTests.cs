@@ -10,8 +10,7 @@ namespace Catalog.Tests.IntegrationTests.Events;
 
 [Collection("Event Fixture")]
 public sealed class ProductImageEventsTest :
-    BaseEventTest<ProductImageCreatedEventConsumer, ProductImageUpdatedEventConsumer, ProductImageDeletedEventConsumer>,
-    IClassFixture<EventFixture>
+    BaseEventTest<ProductImageCreatedEventConsumer, ProductImageUpdatedEventConsumer, ProductImageDeletedEventConsumer>
 {
     private readonly Guid productId = Guid.NewGuid();
 

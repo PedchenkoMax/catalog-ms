@@ -10,8 +10,7 @@ namespace Catalog.Tests.IntegrationTests.Events;
 
 [Collection("Event Fixture")]
 public sealed class BrandEventsTest :
-    BaseEventTest<BrandCreatedEventConsumer, BrandUpdatedEventConsumer, BrandDeletedEventConsumer>,
-    IClassFixture<EventFixture>
+    BaseEventTest<BrandCreatedEventConsumer, BrandUpdatedEventConsumer, BrandDeletedEventConsumer>
 {
     public BrandEventsTest(EventFixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
