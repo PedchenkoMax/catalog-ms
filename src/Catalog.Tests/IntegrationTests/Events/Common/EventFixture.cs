@@ -1,33 +1,40 @@
+using System.Security.Cryptography;
 using Catalog.Infrastructure.Database;
+using DotNet.Testcontainers.Builders;
+using DotNet.Testcontainers.Configurations;
+using DotNet.Testcontainers.Containers;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace Catalog.Tests.IntegrationTests.Events.Common;
 
-public sealed class EventFixture : IDisposable
+public sealed class EventFixture : IAsyncDisposable
 {
-    public readonly DbContextOptions<CatalogContext> Options;
+    private readonly MsSqlTestcontainer dbContainer;
+    public DbContextOptions<CatalogContext> Options;
 
     public EventFixture()
     {
-        var connectionString = $"Server=localhost;Database=EventTestDb-{Guid.NewGuid()};User=sa;TrustServerCertificate=true;Trusted_Connection=true;PersistSecurityInfo=true;";
+        var dbServerConfig = new MsSqlTestcontainerConfiguration();
+        dbServerConfig.Database = "EventTestDb";
+        dbServerConfig.Password = "EventTestDb$$$";
 
+        dbContainer = new TestcontainersBuilder<MsSqlTestcontainer>()
+            .WithDatabase(dbServerConfig)
+            .Build();
+
+        dbContainer.StartAsync().Wait();
+        
         Options = new DbContextOptionsBuilder<CatalogContext>()
-            .UseSqlServer(connectionString)
+            .UseSqlServer(dbContainer.ConnectionString + "Trust Server Certificate=True;")
             .Options;
 
         using var ctx = new CatalogContext(Options);
 
-        ctx.Database.EnsureDeleted();
-        ctx.Database.EnsureCreated();
+        ctx.Database.EnsureCreatedAsync().Wait();
     }
 
-    public void Dispose()
-    {
-        using var ctx = new CatalogContext(Options);
-
-        ctx.Database.EnsureDeleted();
-    }
+    public async ValueTask DisposeAsync() => await dbContainer.StopAsync();
 }
 
 [CollectionDefinition("Event Fixture")]
