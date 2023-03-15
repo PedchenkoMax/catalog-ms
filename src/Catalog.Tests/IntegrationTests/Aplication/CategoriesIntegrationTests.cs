@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 using Catalog.API.DTO;
-using Catalog.Tests.UnitTests;
+using Catalog.Tests.Seed;
 using Xunit;
 
 namespace Catalog.Tests.IntegrationTests.Aplication;

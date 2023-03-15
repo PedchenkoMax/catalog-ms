@@ -1,7 +1,7 @@
 ﻿using System.Data.Common;
 using System.Security.Cryptography;
 using Catalog.Infrastructure.Database;
-using Catalog.Tests.UnitTests;
+using Catalog.Tests.Seed;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Configurations;
 using DotNet.Testcontainers.Containers;

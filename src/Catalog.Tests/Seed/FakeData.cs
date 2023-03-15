@@ -1,11 +1,11 @@
 ﻿using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Database;
 
-namespace Catalog.Tests.UnitTests;
+namespace Catalog.Tests.Seed;
 
 public class FakeData
 {
-    public static void Seed(CatalogContext dbContext) 
+    public static void Seed(CatalogContext dbContext)
     {
         dbContext.Brands.AddRange(GetFakeBrandsList());
         dbContext.Categories.AddRange(GetFakeCategoryList());
@@ -78,7 +78,7 @@ public class FakeData
             {
                 Id = Phone1,
                 Name = "Apple iPhone 12 Pro Max",
-                Description = "The Apple iPhone 12 Pro Max features a 6.7-inch Super Retina XDR display",                            
+                Description = "The Apple iPhone 12 Pro Max features a 6.7-inch Super Retina XDR display",
                 FullPrice = 1099.99M,
                 Discount = 0.0M,
                 Quantity = 15,
@@ -90,7 +90,7 @@ public class FakeData
             {
                 Id = Phone2,
                 Name = "Apple iPhone 12 Mini",
-                Description = "The Apple iPhone 12 Mini features a 5.4-inch Super Retina XDR display",                             
+                Description = "The Apple iPhone 12 Mini features a 5.4-inch Super Retina XDR display",
                 FullPrice = 699.99M,
                 Discount = 0.0M,
                 Quantity = 20,
@@ -102,7 +102,7 @@ public class FakeData
             {
                 Id = Phone3,
                 Name = "Samsung Galaxy S21",
-                Description = "The Samsung Galaxy S21 features a 6.2-inch AMOLED display",                             
+                Description = "The Samsung Galaxy S21 features a 6.2-inch AMOLED display",
                 FullPrice = 899.99M,
                 Discount = 0.0M,
                 Quantity = 20,
@@ -126,7 +126,7 @@ public class FakeData
             {
                 Id = Phone5,
                 Name = "Samsung Galaxy Z Flip",
-                Description = "The Samsung Galaxy Z Flip features a 6.7-inch foldable AMOLED display",                
+                Description = "The Samsung Galaxy Z Flip features a 6.7-inch foldable AMOLED display",
                 FullPrice = 999.99M,
                 Discount = 100.0M,
                 Quantity = 0,
@@ -150,7 +150,7 @@ public class FakeData
             {
                 Id = Tv2,
                 Name = "Samsung QN82Q70T 82-Inch 4K UHD Smart TV",
-                Description = "The Samsung QN82Q70T features an 82-inch 4K UHD display, Quantum Processor 4K",             
+                Description = "The Samsung QN82Q70T features an 82-inch 4K UHD display, Quantum Processor 4K",
                 FullPrice = 2199.99M,
                 Discount = 0.0M,
                 Quantity = 5,
@@ -162,7 +162,7 @@ public class FakeData
             {
                 Id = Tv3,
                 Name = "Samsung QN85Q900RB 85-Inch 8K UHD Smart TV",
-                Description = "The Samsung QN85Q900RB features an 85-inch 8K UHD display, Quantum Processor 8K",                
+                Description = "The Samsung QN85Q900RB features an 85-inch 8K UHD display, Quantum Processor 8K",
                 FullPrice = 3999.99M,
                 Discount = 399.99M,
                 Quantity = 13,
@@ -174,7 +174,7 @@ public class FakeData
             {
                 Id = Tv4,
                 Name = "LG OLED65CXP 65-Inch 4K UHD Smart TV",
-                Description = "The LG OLED65CXP features a 65-inch 4K UHD OLED display",                
+                Description = "The LG OLED65CXP features a 65-inch 4K UHD OLED display",
                 FullPrice = 1999.99M,
                 Discount = 0.0M,
                 Quantity = 0,
@@ -186,7 +186,7 @@ public class FakeData
             {
                 Id = Tv5,
                 Name = "LG OLED77GX 77-Inch 4K UHD Smart TV",
-                Description = "The LG OLED77GX features a 77-inch 4K UHD OLED display",                
+                Description = "The LG OLED77GX features a 77-inch 4K UHD OLED display",
                 FullPrice = 4999.99M,
                 Discount = 999.99M,
                 Quantity = 1,
@@ -198,7 +198,7 @@ public class FakeData
             {
                 Id = Notebook1,
                 Name = "Lenovo ThinkPad X1 Carbon 14-Inch Laptop",
-                Description = "The Lenovo ThinkPad X1 Carbon features a 14-inch full HD display",                
+                Description = "The Lenovo ThinkPad X1 Carbon features a 14-inch full HD display",
                 FullPrice = 999.99M,
                 Discount = 0.0M,
                 Quantity = 10,
@@ -210,7 +210,7 @@ public class FakeData
             {
                 Id = Notebook2,
                 Name = "Lenovo Ideapad 330 15-Inch Laptop",
-                Description = "The Lenovo Ideapad 330 features a 15-inch full HD display",                
+                Description = "The Lenovo Ideapad 330 features a 15-inch full HD display",
                 FullPrice = 499.99M,
                 Discount = 199.99M,
                 Quantity = 20,
@@ -222,7 +222,7 @@ public class FakeData
             {
                 Id = Notebook3,
                 Name = "Lenovo Legion Y540 15-Inch Gaming Laptop",
-                Description = "The Lenovo Legion Y540 features a 15-inch full HD display",                
+                Description = "The Lenovo Legion Y540 features a 15-inch full HD display",
                 FullPrice = 1299.99M,
                 Discount = 0.0M,
                 Quantity = 15,
@@ -234,7 +234,7 @@ public class FakeData
             {
                 Id = Notebook4,
                 Name = "Lenovo Yoga C930 2-In-1 Laptop",
-                Description = "The Lenovo Yoga C930 features a 13.9-inch full HD display",               
+                Description = "The Lenovo Yoga C930 features a 13.9-inch full HD display",
                 FullPrice = 1299.99M,
                 Discount = 100.0M,
                 Quantity = 10,
@@ -246,7 +246,7 @@ public class FakeData
             {
                 Id = Notebook5,
                 Name = "Lenovo ThinkPad X1 Yoga",
-                Description = "The Lenovo ThinkPad X1 Yoga features a 14-inch Full HD IPS touch screen",                
+                Description = "The Lenovo ThinkPad X1 Yoga features a 14-inch Full HD IPS touch screen",
                 FullPrice = 1599.99M,
                 Discount = 0.0M,
                 Quantity = 20,
@@ -258,7 +258,7 @@ public class FakeData
             {
                 Id = Notebook6,
                 Name = "Lenovo Legion 5",
-                Description = "The Lenovo Legion 5 features a 15.6-inch Full HD IPS display",                
+                Description = "The Lenovo Legion 5 features a 15.6-inch Full HD IPS display",
                 FullPrice = 999.99M,
                 Discount = 0.0M,
                 Quantity = 10,
@@ -270,7 +270,7 @@ public class FakeData
             {
                 Id = Notebook7,
                 Name = "Lenovo IdeaPad 5",
-                Description = "The Lenovo IdeaPad 5 features a 14-inch Full HD IPS display",                
+                Description = "The Lenovo IdeaPad 5 features a 14-inch Full HD IPS display",
                 FullPrice = 699.99M,
                 Discount = 100.0M,
                 Quantity = 15,
@@ -282,7 +282,7 @@ public class FakeData
             {
                 Id = Notebook8,
                 Name = "Lenovo Yoga 9i",
-                Description = "The Lenovo Yoga 9i features a 14-inch Full HD IPS touch screen",                 
+                Description = "The Lenovo Yoga 9i features a 14-inch Full HD IPS touch screen",
                 FullPrice = 1799.99M,
                 Discount = 200.0M,
                 Quantity = 0,
@@ -294,7 +294,7 @@ public class FakeData
             {
                 Id = Notebook9,
                 Name = "Lenovo ThinkPad P1",
-                Description = "The Lenovo ThinkPad P1 features a 15.6-inch Full HD IPS display",                 
+                Description = "The Lenovo ThinkPad P1 features a 15.6-inch Full HD IPS display",
                 FullPrice = 2199.99M,
                 Discount = 300.0M,
                 Quantity = 3,
@@ -306,7 +306,7 @@ public class FakeData
             {
                 Id = Notebook10,
                 Name = "Apple MacBook Pro 16-inch",
-                Description = "The Apple MacBook Pro 16-inch features a 16-inch Retina Display",                
+                Description = "The Apple MacBook Pro 16-inch features a 16-inch Retina Display",
                 FullPrice = 2499.99M,
                 Discount = 500.0M,
                 Quantity = 0,
@@ -318,7 +318,7 @@ public class FakeData
             {
                 Id = Notebook11,
                 Name = "Apple MacBook Air 13-inch",
-                Description = "The Apple MacBook Air 13-inch features a 13.3-inch Retina Display",                
+                Description = "The Apple MacBook Air 13-inch features a 13.3-inch Retina Display",
                 FullPrice = 999.99M,
                 Discount = 100.0M,
                 Quantity = 10,
@@ -330,7 +330,7 @@ public class FakeData
             {
                 Id = Notebook12,
                 Name = "Apple MacBook Pro 15-inch",
-                Description = "The Apple MacBook Pro 15-inch features a 15.4-inch Retina Display",                
+                Description = "The Apple MacBook Pro 15-inch features a 15.4-inch Retina Display",
                 FullPrice = 2799.99M,
                 Discount = 700.0M,
                 Quantity = 5,
@@ -342,7 +342,7 @@ public class FakeData
             {
                 Id = Notebook13,
                 Name = "Apple MacBook 12-inch",
-                Description = "The Apple MacBook 12-inch features a 12-inch Retina Display",                
+                Description = "The Apple MacBook 12-inch features a 12-inch Retina Display",
                 FullPrice = 799.99M,
                 Discount = 50.0M,
                 Quantity = 20,
@@ -354,7 +354,7 @@ public class FakeData
             {
                 Id = Notebook14,
                 Name = "Apple MacBook Pro 13-inch",
-                Description = "The Apple MacBook Pro 13-inch features a 13.3-inch Retina Display",                
+                Description = "The Apple MacBook Pro 13-inch features a 13.3-inch Retina Display",
                 FullPrice = 1499.99M,
                 Discount = 250.0M,
                 Quantity = 8,
@@ -366,7 +366,7 @@ public class FakeData
             {
                 Id = Notebook15,
                 Name = "Apple MacBook Pro 16-inch",
-                Description = "The Apple MacBook Pro 16-inch features a 16-inch Retina display",                
+                Description = "The Apple MacBook Pro 16-inch features a 16-inch Retina display",
                 FullPrice = 2499.99M,
                 Discount = 500.0M,
                 Quantity = 2,
@@ -378,7 +378,7 @@ public class FakeData
             {
                 Id = Notebook16,
                 Name = "Apple MacBook 12-inch",
-                Description = "The Apple MacBook 12-inch features a 12-inch Retina display",                
+                Description = "The Apple MacBook 12-inch features a 12-inch Retina display",
                 FullPrice = 799.99M,
                 Discount = 100.0M,
                 Quantity = 6,
@@ -390,7 +390,7 @@ public class FakeData
             {
                 Id = Notebook17,
                 Name = "Apple MacBook Pro Touch Bar",
-                Description = "The Apple MacBook Pro Touch Bar features a 13.3-inch Retina display",                
+                Description = "The Apple MacBook Pro Touch Bar features a 13.3-inch Retina display",
                 FullPrice = 1299.99M,
                 Discount = 150.0M,
                 Quantity = 4,
@@ -402,7 +402,7 @@ public class FakeData
             {
                 Id = Notebook18,
                 Name = "Apple MacBook Pro Touch Bar 15-inch",
-                Description = "The Apple MacBook Pro Touch Bar 15-inch features a 15-inch Retina display",                
+                Description = "The Apple MacBook Pro Touch Bar 15-inch features a 15-inch Retina display",
                 FullPrice = 1799.99M,
                 Discount = 250.0M,
                 Quantity = 3,

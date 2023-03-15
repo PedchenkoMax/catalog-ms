@@ -1,4 +1,5 @@
 ﻿using Catalog.API.DTO;
+using Catalog.Tests.Seed;
 using Xunit;
 
 namespace Catalog.Tests.UnitTests.ToDTO;

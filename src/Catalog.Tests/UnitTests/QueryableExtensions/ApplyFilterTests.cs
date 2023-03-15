@@ -1,5 +1,6 @@
 ﻿using Catalog.API.DTO.Filters;
 using Catalog.API.QueryableExtensions;
+using Catalog.Tests.Seed;
 using Xunit;
 
 namespace Catalog.Tests.UnitTests.QueryableExtensions;

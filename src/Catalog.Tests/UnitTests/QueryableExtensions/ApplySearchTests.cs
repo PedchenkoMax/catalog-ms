@@ -1,6 +1,7 @@
 ﻿using Catalog.API.DTO.Filters;
 using Catalog.API.QueryableExtensions;
 using Catalog.Infrastructure.Database;
+using Catalog.Tests.Seed;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 

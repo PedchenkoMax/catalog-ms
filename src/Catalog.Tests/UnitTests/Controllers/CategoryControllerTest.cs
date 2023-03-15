@@ -1,5 +1,6 @@
 using Catalog.API.Controllers.v1;
 using Catalog.Infrastructure.Database;
+using Catalog.Tests.Seed;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
