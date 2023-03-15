@@ -8,24 +8,24 @@ public class CategoryEntityToDTOTests
     [Fact]
     public void CategoryEntityToDTOFirst_ReturnsCorrectDTOObject() 
     {
-        var categoryEntity = FakeData.GetFakeBrandsList().First();
+        var categoryEntity = FakeData.GetFakeCategoryList().First();
 
-        var brandDto = categoryEntity.ToDTO();
+        var categoryDto = categoryEntity.ToDTO();
 
-        Assert.Equal(categoryEntity.Id, brandDto.BrandId);
-        Assert.Equal(categoryEntity.Name, brandDto.Name);
-        Assert.Equal(categoryEntity.Image, brandDto.Image);
+        Assert.Equal(categoryEntity.Id, categoryDto.CategoryId);
+        Assert.Equal(categoryEntity.Name, categoryDto.Name);
+        Assert.Equal(categoryEntity.Image, categoryDto.Image);
     }
 
     [Fact]
     public void CategoryEntityToDTOLast_ReturnsCorrectDTOObject() 
     {
-        var categoryEntity = FakeData.GetFakeBrandsList().Last();
+        var categoryEntity = FakeData.GetFakeCategoryList().Last();
 
-        var brandDto = categoryEntity.ToDTO();
+        var categoryDto = categoryEntity.ToDTO();
 
-        Assert.Equal(categoryEntity.Id, brandDto.BrandId);
-        Assert.Equal(categoryEntity.Name, brandDto.Name);
-        Assert.Equal(categoryEntity.Image, brandDto.Image);
+        Assert.Equal(categoryEntity.Id, categoryDto.CategoryId);
+        Assert.Equal(categoryEntity.Name, categoryDto.Name);
+        Assert.Equal(categoryEntity.Image, categoryDto.Image);
     }
 }
