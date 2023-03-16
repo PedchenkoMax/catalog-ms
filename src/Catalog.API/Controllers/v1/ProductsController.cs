@@ -62,17 +62,25 @@ public class ProductsController : ControllerBase
             .AsNoTracking()
             .AsQueryable();
 
+        var totalProducts = await products.CountAsync();
+
         products = products.ApplyFilter(filter);
         products = products.ApplySearch(search);
         products = products.ApplyOrder(ordering);
         products = products.ApplyPagination(pagination);
 
-        var res = await products
+        var productsOnPage = await products
             .Select(x => x.ToDTO())
-            .ToListAsync();
+            .ToListAsync();       
 
-        return res.Count == 0
+        var model = new PaginatedList<Product>(
+            pagination.PageIndex, 
+            pagination.PageSize, 
+            totalProducts, 
+            productsOnPage);
+
+        return productsOnPage.Count == 0
             ? NotFound()
-            : Ok(res);
+            : Ok(model);
     }
 }
