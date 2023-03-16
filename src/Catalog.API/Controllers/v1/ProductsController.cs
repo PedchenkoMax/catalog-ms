@@ -62,10 +62,12 @@ public class ProductsController : ControllerBase
             .AsNoTracking()
             .AsQueryable();
 
-        var totalProducts = await products.CountAsync();
 
         products = products.ApplyFilter(filter);
         products = products.ApplySearch(search);
+        
+        var totalProducts = await products.CountAsync();
+        
         products = products.ApplyOrder(ordering);
         products = products.ApplyPagination(pagination);
 
