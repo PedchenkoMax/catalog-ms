@@ -75,10 +75,10 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/");
         response.EnsureSuccessStatusCode();
 
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.IsType<List<Product>>(products);
-        Assert.Equal(10, products.Count);
+        Assert.IsType<PaginatedList<Product>>(products);
+        Assert.Equal(10, products.Items.Count());
     }
 
     [Fact]
@@ -87,10 +87,10 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/?PageIndex=0&PageSize=5");
         response.EnsureSuccessStatusCode();
 
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.IsType<List<Product>>(products);
-        Assert.Equal(5, products.Count);
+        Assert.IsType<PaginatedList<Product>>(products);
+        Assert.Equal(5, products.Items.Count());
     }
 
     [Fact]
@@ -99,10 +99,10 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         HttpResponseMessage response = await client.GetAsync($"api/v1/products/?PageIndex=0&PageSize=30");
         response.EnsureSuccessStatusCode();
 
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.IsType<List<Product>>(products);
-        Assert.Equal(28, products.Count);
+        Assert.IsType<PaginatedList<Product>>(products);
+        Assert.Equal(28, products.Items.Count());
     }
 
     [Fact]
@@ -111,10 +111,10 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         Guid existCategorytId = FakeData.CategoryPhone;
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}");
 
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.Equal(5, products.Count);
-        Assert.Collection(products,
+        Assert.Equal(5, products.Items.Count());
+        Assert.Collection(products.Items,
             item => Assert.Equal("Samsung Galaxy Z Flip", item.Name),
             item => Assert.Equal("Samsung Galaxy Note 20", item.Name),
             item => Assert.Equal("Samsung Galaxy S21", item.Name),
@@ -138,10 +138,10 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         Guid existBrandId = FakeData.BrandApple;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}");
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.Equal(2, products.Count);
-        Assert.Collection(products,
+        Assert.Equal(2, products.Items.Count());
+        Assert.Collection(products.Items,
             item => Assert.Equal("Apple iPhone 12 Mini", item.Name),
             item => Assert.Equal("Apple iPhone 12 Pro Max", item.Name));
     }
@@ -154,11 +154,11 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         double minPrice = 700.0;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&MinPrice={minPrice}");
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.Equal(1, products.Count);
-        Assert.Collection(products, item => Assert.Equal("Apple iPhone 12 Pro Max", item.Name));
-        Assert.Collection(products, item => Assert.Equal(1099.99M, item.FullPrice));
+        Assert.Equal(1, products.Items.Count());
+        Assert.Collection(products.Items, item => Assert.Equal("Apple iPhone 12 Pro Max", item.Name));
+        Assert.Collection(products.Items, item => Assert.Equal(1099.99M, item.FullPrice));
     }
 
     [Fact]
@@ -169,11 +169,11 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         double maxPrice = 1000.0;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&MaxPrice={maxPrice}");
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.Equal(1, products.Count);
-        Assert.Collection(products, item => Assert.Equal("Apple iPhone 12 Mini", item.Name));
-        Assert.Collection(products, item => Assert.Equal(699.99M, item.FullPrice));
+        Assert.Equal(1, products.Items.Count());
+        Assert.Collection(products.Items, item => Assert.Equal("Apple iPhone 12 Mini", item.Name));
+        Assert.Collection(products.Items, item => Assert.Equal(699.99M, item.FullPrice));
     }
 
     [Fact]
@@ -183,11 +183,11 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         Guid existBrandId = FakeData.BrandApple;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=false");
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.Equal(2, products.Count);
-        Assert.Equal("Apple iPhone 12 Mini", products.First().Name);
-        Assert.Equal("Apple iPhone 12 Pro Max", products.Last().Name);
+        Assert.Equal(2, products.Items.Count());
+        Assert.Equal("Apple iPhone 12 Mini", products.Items.First().Name);
+        Assert.Equal("Apple iPhone 12 Pro Max", products.Items.Last().Name);
     }
 
     [Fact]
@@ -197,10 +197,10 @@ public class ProductsIntegrationTests : IClassFixture<IntegrationTestsFixture>
         Guid existBrandId = FakeData.BrandApple;
 
         HttpResponseMessage response = await client.GetAsync($"api/v1/products?CategoryId={existCategorytId}&BrandIds={existBrandId}&OrderBy=FullPrice&IsDesc=true");
-        var products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        var products = await response.Content.ReadFromJsonAsync<PaginatedList<Product>>();
 
-        Assert.Equal(2, products.Count);
-        Assert.Equal("Apple iPhone 12 Pro Max", products.First().Name);
-        Assert.Equal("Apple iPhone 12 Mini", products.Last().Name);
+        Assert.Equal(2, products.Items.Count());
+        Assert.Equal("Apple iPhone 12 Pro Max", products.Items.First().Name);
+        Assert.Equal("Apple iPhone 12 Mini", products.Items.Last().Name);
     }
 }
