@@ -2,7 +2,7 @@
 
 ## 📌 Table of contents
 - [❓ Main responsibilities](#-main-responsibilities)
-
+- [🚀 How to start](#-how-to-start)
 
 - [📡 API documentation](#-api-documentation)
   - [💸 Product](#-product-endpoints)
@@ -42,6 +42,32 @@
 
 * ### Retrieving and displaying product information and details.
 * ### Filtering, ordering and searching for products based on various criteria.
+
+## 🚀 How to start
+
+### To clone and run this application, you'll need [Git](https://git-scm.com) and [Docker](https://www.docker.com/get-started). From your command line:
+
+```bash
+# Clone the repository
+$ git clone --branch dev https://github.com/GL-Survivors/catalog-ms.git
+
+# Navigate to the src folder
+$ cd catalog-ms/src
+
+# Create a .env file from the .env.example file
+$ cp .env.example .env
+
+# Edit the .env file to set your environment variables, if needed
+
+# Build and run app with Docker Compose
+$ docker-compose up --detach
+
+# Go to the API
+Open your browser and go to http://localhost:80 or use a REST client like Postman to access the API endpoints.
+
+# Access the API documentation using Swagger
+Open your browser and go to http://localhost:80/swagger to view and interact with the API documentation.
+```
 
 ## 📡 API documentation
 
