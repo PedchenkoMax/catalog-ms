@@ -33,3 +33,7 @@ jobs:
           ThresholdStat: total
           ThresholdType: Line
           CoverletOutput: TestResults/
+          ConnectionString: 'Server=localhost,1433;Database=CatalogDb;User=sa;Password=gk+&42JV*Kvd4S6n-Px9;Trust Server Certificate=true;Persist Security Info=true;'
+          MessageBroker__Host: rabbitmq
+          MessageBroker__Username: guest
+          MessageBroker__Password: guest
