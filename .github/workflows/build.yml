@@ -23,3 +23,13 @@ jobs:
 
       - name: Build .NET Project
         run: dotnet build ./src/Catalog.sln --configuration Release --no-restore
+
+      - name: Run tests
+        run: |
+          dotnet test ./src/Catalog.Tests/Catalog.Tests.csproj --configuration Release --no-build
+        env:
+          CollectCoverage: true
+          CoverletOutputFormat: lcov
+          ThresholdStat: total
+          ThresholdType: Line
+          CoverletOutput: TestResults/
