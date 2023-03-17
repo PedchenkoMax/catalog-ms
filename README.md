@@ -2,6 +2,7 @@
 
 ## 📌 Table of contents
 - [❓ Main responsibilities](#-main-responsibilities)
+- [🧱 Technology stack](#-technology-stack)
 - [🚀 How to start](#-how-to-start)
 
 - [📡 API documentation](#-api-documentation)
@@ -42,6 +43,24 @@
 
 * ### Retrieving and displaying product information and details.
 * ### Filtering, ordering and searching for products based on various criteria.
+
+## 🧱 Technology stack
+
+- **SDK:** `.NET 7`
+- **Framework:** `ASP .NET`
+- **Persistence:**
+  - Database: `MS SQL Server`
+  - ORM: `Entity Framework Core`
+- **Messaging:**
+  - Service Bus: `MassTransit`
+  - Message Broker: `RabbitMQ`
+- **Testing:**
+  - Unit and Integration Testing: `XUnit`, `FluentAssertions`, `Testcontainers`
+  - Load Testing: `k6`, `Grafana`
+  - Data seeding: `Bogus`
+- **CI/CD:** `GitHub Actions`
+- **Containerization:** `Docker`
+- **API Documentation:** `OpenAPI (Swagger)`
 
 ## 🚀 How to start
 
