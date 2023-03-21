@@ -89,8 +89,6 @@ var app = builder.Build();
 
     app.UseExceptionHandler("/error");
 
-    app.UseAuthorization();
-
     app.MapControllers();
 }
 
