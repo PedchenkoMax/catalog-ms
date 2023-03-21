@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Text.Json.Serialization;
 using Catalog.API;
 using Catalog.Infrastructure.Database;
 using MassTransit;
@@ -13,12 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 {
-    services.AddControllers()
-        .AddJsonOptions(options =>
-        {
-            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-        });
-
     services.AddMassTransit(configurator =>
     {
         configurator.SetKebabCaseEndpointNameFormatter();
