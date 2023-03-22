@@ -83,7 +83,6 @@ var app = builder.Build();
     }
 
     app.UseHttpLogging();
-    app.UseSerilogRequestLogging();
 
     app.UseExceptionHandler("/error");
 
