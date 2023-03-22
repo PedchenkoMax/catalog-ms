@@ -7,8 +7,12 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using RabbitMQ.Client.Exceptions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((context, configuration) => 
+    configuration.ReadFrom.Configuration(context.Configuration));
 
 var services = builder.Services;
 {
@@ -79,6 +83,7 @@ var app = builder.Build();
     }
 
     app.UseHttpLogging();
+    app.UseSerilogRequestLogging();
 
     app.UseExceptionHandler("/error");
 
